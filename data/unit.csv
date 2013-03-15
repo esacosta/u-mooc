@@ -1,0 +1,13 @@
+id,type,unit_id,title,release_date,now_available
+
+1,A,Pre,Evaluación inicial,,1
+2,U,1,Requerimientos,,1
+3,U,2,Proceso de diseño,,1
+4,U,3,Arrancar la aplicación,,1
+5,A,Mid,Evaluación media,En construcción,1
+6,U,4,Crear el material del curso,En construcción,1
+7,U,5,Gestionar el curso,En construcción,1
+8,U,6,Evaluar el curso,En construcción,1
+9,A,Fin,Evaluación final,Próximamente,0
+
+
