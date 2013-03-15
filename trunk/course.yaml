@@ -1,0 +1,219 @@
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS-IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# FIXME: You can use this configuration file to customize Course Builder
+# for a specific course. More information on YAML can be found at:
+#
+#     http://www.yaml.org/spec/1.2/spec.html#id2759963
+#
+# Note that the values in this file can contain arbitrary HTML.
+
+############################
+# General course information
+############################
+
+course:
+  # A new line or a space separated list of email addresses of course
+  # administrative users. Each email address must be placed between '[' and ']',
+  # for example: '[test@example.com]'. Regular expressions are not supported,
+  # exact match only.
+  admin_user_emails: '[esacosta@gmail.com]'
+
+  # Course title
+  title: 'Crear un MOOC con Course-Builder'
+
+  # Main page blurb. (The '|' at the beginning enables multi-line input.)
+  blurb: |
+    Siguiendo este curso aprenderá a crear un MOOC a través de la nueva plataforma de Google Course-Builder.<br/>
+    Se trata de un experimento de Google para el mundo de la educación online que contiene el software e instrucciones necesarias para crear lecciones, 
+    actividades para los estudiantes, evaluaciones, etc. Sin embargo la creación de estos cursos resulta algo tediosa para personas poco familiarizadas con Html, Javascript o Python.<br/>
+    Esperamos que este curso le sea útil para poder crear sus propios MOOC de una manera más fácil.<br/><br/>
+    <small><i>Este curso se encuentra en fase de desarrollo, por favor pruébelo y envíe toda la información que considere oportuna para su finalización o colabore con nosotros.</i></small>
+
+    
+  # Information about the instructor to display on the main page.
+  instructor_details: '<small>Enrique Sánchez <br/> esacosta <i>at gmail</i></small>'
+
+  # You can choose whether you want a video or an image on the main page.
+  # If you specify both a video and an image link, then the video will take
+  # priority. The image alt text allows the image to be understood by text-only
+  # screen readers.
+  #main_video:
+  #  url: //www.youtube.com/embed/GAY5ICoVnA8?rel=0
+  main_image:
+    url: /assets/img/banner1.jpg
+    alt_text: Crear un curso MOOC
+
+  # Course start date.
+  start_date: '1 de Abril de 2013'
+
+  # Enable/disable the report page
+  # Set this value to False if you don't use calendar and to remove 
+  # the Calendar link from the student navigation bar.
+  report_on: True 
+
+  # Head Report embedded link
+  report_embed_url_ubicacion: /assets/pdf/ubicacion.pdf
+  report_embed_url_general: /assets/pdf/general.pdf
+
+  # Calendar embedding URL ---
+  
+  # Enable/disable the calendar page
+  # Set this value to False if you don't use calendar and to remove 
+  # the Calendar link from the student navigation bar.
+  calendar_on: True  
+  
+  # Google calendar embedded link
+  calendar_embed_url: https://www.google.com/calendar/embed?showTitle=0&amp;showPrint=0&amp;showTz=0&amp;height=600&amp;wkst=2&amp;hl=en&amp;bgcolor=%23FFFFFF&amp;src=ebkgbg9t4nulp81t7r574meu8c%40group.calendar.google.com&amp;color=%23125A12&amp;ctz=Europe%2FMadrid
+
+  # Forum URL. For details, see
+  #
+  #     http://code.google.com/p/course-builder/wiki/WebForums.
+  #forum_url: //groups.google.com/group/u-mooc
+
+  # Forum embedding URL. This link is used to embed the forum in an iframe on
+  # the forum.html page. Set this value to False if you don't use forum and/or
+  # to remove the Forum link from the student navigation bar.
+  forum_embed_url: //groups.google.com/forum/embed/?place=forum/u-mooc#!forum/u-mooc
+
+  # URL for the mailing list where students can register to receive course
+  # announcements. For details, see
+  #
+  #     http://code.google.com/p/course-builder/wiki/CreateEmailList
+  announcement_list_url: //groups.google.com/group/u-mooc
+
+  # Locale for internationalization.
+  locale: 'es'
+
+
+####################################
+# Information about your institution
+####################################
+
+institution:
+  # Name of your institution
+  name: 'u-mooc'
+
+  # URL of your institution's webpage
+  url: 'http://u-mooc.appspot.com'
+
+  # Link and alt text for the logo of the course or your institution
+  logo:
+    url: 'assets/img/mooc.png'
+    alt_text: uMOOC
+
+
+#########################################
+# Base page template for all course pages
+#########################################
+
+base:
+  # HTML to be included in all course pages. For example: if you want to
+  # include any analytics code that covers all your course webpages, you can do
+  # so here: see
+  #
+  #     https://code.google.com/p/course-builder/wiki/ReachAndEngagementMetrics.
+  #
+  # for details.
+  before_head_tag_ends: '<!-- base.before_head_tag_ends -->'
+  after_body_tag_begins: '<!-- base.after_body_tag_begins -->'
+  after_navbar_begins: '<!-- base.after_navbar_begins -->'
+  before_navbar_ends: '<!-- base.before_navbar_ends -->'
+  after_top_content_ends: '<!-- base.after_top_content_ends -->'
+  after_main_content_ends: '<!-- base.after_main_content_ends -->'
+  before_body_tag_ends: |
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-38955576-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async =
+    true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') +
+    '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+
+  # Whether to show a G+ button on the header of all pages.
+  show_gplus_button: True
+
+  # Header phrase for the main navigation bar
+  nav_header: '¿Cómo crear un MOOC?'
+
+  # Link to your privacy policy and terms of service
+  privacy_terms_url: '/assets/html/terminos y condiciones.html'
+
+
+########################
+# Course preview page
+########################
+
+preview:
+  # HTML to be included in the course preview page.
+  after_top_content_ends: '<!-- preview.after_top_content_ends -->'
+  after_main_content_ends: '<!-- preview.after_main_content_ends -->'
+
+
+##########################
+# Course registration form
+##########################
+
+reg_form:
+  # Header text for the course registration form.
+  header_text: |
+    Bienvenido!  Por favor, responda a las siguiente preguntas para apuntarse al curso.
+
+  # HTML representing additional fields to include in the course
+  # registration form, in addition to the student's name. These should
+  # be wrapped in <li></li> tags.
+  additional_registration_fields: '<!-- reg_form.additional_registration_fields -->'
+
+  # Whether to allow new students to register for the course.
+  can_register: True
+
+
+##############################
+# Assessment confirmation page
+##############################
+
+# HTML to be displayed on the test confirmation page (which is displayed when
+# the student has completed an assessment). You can optionally add code here
+# to load or generate a Certificate of Completion image. Note that the
+# postcourse assessment texts include a '%s', which will be substituted with
+# the student's actual score. ('%%' results in a single '%'.)
+assessment_confirmations:
+  postcourse_header: |
+    Gracias por realizar la evaluación post-curso. Su puntuación es %s%%.
+  postcourse_pass: |
+    En base a su puntuación total del curso (que incluye el curso medio y curso post-evaluaciones), ha aprobado el curso. ¡Felicidades!.
+  postcourse_fail: |
+    Por desgracia, en base a su puntuación total del curso (que incluye el a mitad de curso y las evaluaciones de los cursos),
+    no recibió una puntuación lo suficientemente alta para obtener un certificado de finalización,
+    nosotros recomendamos que revise las lecciones observadas y trate de realizar la evaluación de nuevo antes de que se cierre. 
+    Certificado o no, espero que disfrutara del curso y haya aprendido nuevas habilidades.
+  midcourse: |
+    Gracias por realizar la evaluación de medio curso. Puede volver y realizar la evaluación de nuevo, o continuar a la siguiente unidad.
+  precourse: |
+    Gracias por realizar la pre-evaluación del curso. Por favor comience el curso por la Unidad 1.
+
+
+########################
+# Units and lessons page
+########################
+
+unit:
+  # HTML to be included in the course unit/lesson pages.
+  after_leftnav_begins: '<!-- unit.after_leftnav_begins -->'
+  before_leftnav_ends: '<!-- unit.before_leftnav_ends -->'
+  after_content_begins: '<!-- unit.after_content_begins -->'
+  before_content_ends: '<!-- unit.before_content_ends -->'
