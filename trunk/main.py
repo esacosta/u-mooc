@@ -36,8 +36,8 @@ urls = [
     ('/assessment', lessons.AssessmentHandler),
     ('/course', lessons.CourseHandler),
     ('/forum', utils.ForumHandler),
-    ('/calendar', utils.CalendarHandler), 
-    ('/report', utils.ReportHandler), 
+	('/calendar', utils.CalendarHandler), 
+    ('/report', utils.ReportHandler),     
     ('/dashboard', dashboard.DashboardHandler),
     ('/preview', utils.PreviewHandler),
     ('/register', utils.RegisterHandler),
@@ -54,7 +54,8 @@ inputex_handler = (
 
 admin_handlers = [
     ('/admin', admin.AdminHandler),
-    ('/rest/config/item', config.ConfigPropertyItemRESTHandler)]
+    ('/rest/config/item', config.ConfigPropertyItemRESTHandler),
+    ('/rest/courses/item', config.CoursesItemRESTHandler)]
 
 app_handler = (r'(.*)', sites.ApplicationRequestHandler)
 

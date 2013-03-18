@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2013-01-31 18:40-0800\n"
-"PO-Revision-Date: 2013-01-31 16:47-0800\n"
+"POT-Creation-Date: 2013-03-06 14:44-0800\n"
+"PO-Revision-Date: 2013-03-06 14:39-0800\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: fi <LL@li.org>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
@@ -19,61 +19,62 @@ msgstr ""
 "Generated-By: Babel 0.9.6\n"
 
 #: experimental/coursebuilder/views/activity.html:4
-#: experimental/coursebuilder/views/activity.html:34
-#: experimental/coursebuilder/views/activity.html:50
-#: experimental/coursebuilder/views/activity.html:53
-#: experimental/coursebuilder/views/unit.html:38
+#: experimental/coursebuilder/views/activity.html:37
+#: experimental/coursebuilder/views/lesson_navbar.html:57
+#: experimental/coursebuilder/views/lesson_navbar.html:60
+#: experimental/coursebuilder/views/lesson_navbar.html:90
 msgid " Activity "
 msgstr " Tehtävä "
 
-#: experimental/coursebuilder/views/activity.html:23
+#: experimental/coursebuilder/views/activity.html:30
 #: experimental/coursebuilder/views/base.html:15
 #: experimental/coursebuilder/views/base.html:111
 #: experimental/coursebuilder/views/base_registration.html:14
-#: experimental/coursebuilder/views/unit.html:14
+#: experimental/coursebuilder/views/unit.html:20
 msgid " Course "
 msgstr " Kurssi "
 
-#: experimental/coursebuilder/views/activity.html:26
-#: experimental/coursebuilder/views/unit.html:16
+#: experimental/coursebuilder/views/activity.html:33
+#: experimental/coursebuilder/views/unit.html:22
 msgid " Unit "
 msgstr " Yksikkö "
 
-#: experimental/coursebuilder/views/activity.html:31
-#: experimental/coursebuilder/views/unit.html:17
+#: experimental/coursebuilder/views/activity.html:36
+#: experimental/coursebuilder/views/unit.html:23
 msgid " Lesson "
 msgstr " Oppitunti "
 
-#: experimental/coursebuilder/views/activity.html:38
-#: experimental/coursebuilder/views/course.html:34
-#: experimental/coursebuilder/views/course.html:51
+#: experimental/coursebuilder/views/activity.html:41
+#: experimental/coursebuilder/views/course.html:70
+#: experimental/coursebuilder/views/course.html:100
 #: experimental/coursebuilder/views/preview.html:39
-#: experimental/coursebuilder/views/unit.html:21
+#: experimental/coursebuilder/views/unit.html:27
 #, python-format
 msgid "Unit %(id)s - %(title)s"
 msgstr "Yksikkö %(id)s – %(title)s"
 
-#: experimental/coursebuilder/views/activity.html:78
-msgid " Slides "
-msgstr " Diat "
-
-#: experimental/coursebuilder/views/activity.html:82
-#: experimental/coursebuilder/views/unit.html:68
+#: experimental/coursebuilder/views/activity.html:70
+#: experimental/coursebuilder/views/unit.html:62
 msgid " Text Version "
 msgstr " Tekstiversio "
 
-#: experimental/coursebuilder/views/activity.html:96
+#: experimental/coursebuilder/views/activity.html:87
 #: experimental/coursebuilder/views/unit.html:85
+msgid " This lesson is not available. "
+msgstr ""
+
+#: experimental/coursebuilder/views/activity.html:97
+#: experimental/coursebuilder/views/unit.html:95
 msgid " Previous Page "
 msgstr " Edellinen sivu "
 
-#: experimental/coursebuilder/views/activity.html:101
-#: experimental/coursebuilder/views/unit.html:92
+#: experimental/coursebuilder/views/activity.html:102
+#: experimental/coursebuilder/views/unit.html:102
 msgid " Next Page "
 msgstr " Seuraava sivu "
 
-#: experimental/coursebuilder/views/activity.html:103
-#: experimental/coursebuilder/views/unit.html:96
+#: experimental/coursebuilder/views/activity.html:104
+#: experimental/coursebuilder/views/unit.html:106
 msgid " End "
 msgstr " Lopeta "
 
@@ -237,6 +238,34 @@ msgstr ""
 msgid " Schedule "
 msgstr " Aikataulu "
 
+#: experimental/coursebuilder/views/course.html:31
+#: experimental/coursebuilder/views/course.html:32
+#: experimental/coursebuilder/views/course.html:48
+#: experimental/coursebuilder/views/course.html:49
+#: experimental/coursebuilder/views/lesson_navbar.html:35
+#: experimental/coursebuilder/views/lesson_navbar.html:36
+msgid " Completed "
+msgstr " Valmis "
+
+#: experimental/coursebuilder/views/course.html:37
+#: experimental/coursebuilder/views/course.html:38
+msgid " Not yet submitted "
+msgstr " Ei vielä toimitettu "
+
+#: experimental/coursebuilder/views/course.html:54
+#: experimental/coursebuilder/views/course.html:55
+#: experimental/coursebuilder/views/lesson_navbar.html:41
+#: experimental/coursebuilder/views/lesson_navbar.html:42
+msgid " In progress "
+msgstr " Käynnissä "
+
+#: experimental/coursebuilder/views/course.html:60
+#: experimental/coursebuilder/views/course.html:61
+#: experimental/coursebuilder/views/lesson_navbar.html:47
+#: experimental/coursebuilder/views/lesson_navbar.html:48
+msgid " Not yet started "
+msgstr " Ei vielä aloitettu "
+
 #: experimental/coursebuilder/views/preview.html:12
 msgid " Register "
 msgstr " Ilmoittaudu "
@@ -273,52 +302,36 @@ msgstr " Nimi "
 msgid " Assessment scores "
 msgstr " Arvostelujen tulokset "
 
-#: experimental/coursebuilder/views/student_profile.html:46
-msgid " Pre-class "
-msgstr " Ennen kurssia "
-
-#: experimental/coursebuilder/views/student_profile.html:49
-msgid " Completed "
-msgstr " Valmis "
-
-#: experimental/coursebuilder/views/student_profile.html:54
-msgid " Mid-class "
-msgstr " Kurssin puolivälissä "
-
-#: experimental/coursebuilder/views/student_profile.html:62
-msgid " Post-class "
-msgstr " Kurssin jälkeen "
-
-#: experimental/coursebuilder/views/student_profile.html:70
+#: experimental/coursebuilder/views/student_profile.html:59
 msgid " Overall course score "
 msgstr " Kurssin kokonaistulos "
 
-#: experimental/coursebuilder/views/student_profile.html:81
+#: experimental/coursebuilder/views/student_profile.html:69
 msgid " New Name "
 msgstr " Uusi nimi "
 
-#: experimental/coursebuilder/views/student_profile.html:88
+#: experimental/coursebuilder/views/student_profile.html:76
 msgid " Save Changes "
 msgstr " Tallenna muutokset "
 
-#: experimental/coursebuilder/views/student_profile.html:91
+#: experimental/coursebuilder/views/student_profile.html:79
 msgid " Cancel "
 msgstr " Peruuta "
 
-#: experimental/coursebuilder/views/student_profile.html:96
+#: experimental/coursebuilder/views/student_profile.html:84
 msgid " To leave the course permanently, click on Unenroll "
 msgstr " Jos haluat lopettaa kurssin pysyvästi, klikkaa Peruuta osallistuminen "
 
-#: experimental/coursebuilder/views/student_profile.html:99
+#: experimental/coursebuilder/views/student_profile.html:87
 msgid " Unenroll "
 msgstr " Peruuta osallistuminen "
 
 #: experimental/coursebuilder/views/summary.html:21
-#: experimental/coursebuilder/views/unit.html:75
+#: experimental/coursebuilder/views/unit.html:69
 msgid " YouTube Video Player "
 msgstr " YouTube-videosoitin "
 
-#: experimental/coursebuilder/views/test_confirmation.html:25
+#: experimental/coursebuilder/views/test_confirmation.html:29
 msgid " Back to Course page "
 msgstr " Takaisin kurssisivulle "
 

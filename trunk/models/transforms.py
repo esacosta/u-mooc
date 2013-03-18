@@ -22,13 +22,13 @@ import json
 from google.appengine.ext import db
 
 
-SIMPLE_TYPES = (int, long, float, bool, dict, basestring, list)
-
-SUPPORTED_TYPES = (db.GeoPt, datetime.date)
-
-JSON_TYPES = ['string', 'date', 'text', 'boolean', 'integer']
-
 JSON_DATE_FORMAT = '%Y/%m/%d'
+JSON_TYPES = ['string', 'date', 'text', 'html', 'boolean', 'integer', 'array']
+# Prefix to add to all JSON responses to guard against XSSI. Must be kept in
+# sync with modules/oeditor/oeditor.html.
+_JSON_XSSI_PREFIX = ")]}'\n"
+SIMPLE_TYPES = (int, long, float, bool, dict, basestring, list)
+SUPPORTED_TYPES = (db.GeoPt, datetime.date)
 
 
 def dict_to_json(source_dict, unused_schema):
@@ -47,6 +47,44 @@ def dict_to_json(source_dict, unused_schema):
     return output
 
 
+def dumps(*args, **kwargs):
+    """Wrapper around json.dumps.
+
+    No additional behavior; present here so this module is a drop-in replacement
+    for json.dumps|loads. Clients should never use json.dumps|loads directly.
+    See usage docs at http://docs.python.org/2/library/json.html.
+
+    Args:
+        *args: positional arguments delegated to json.dumps.
+        **kwargs: keyword arguments delegated to json.dumps.
+
+    Returns:
+        string. The converted JSON.
+    """
+    return json.dumps(*args, **kwargs)
+
+
+def loads(s, prefix=_JSON_XSSI_PREFIX, **kwargs):
+    """Wrapper around json.loads that handles XSSI-protected responses.
+
+    To prevent XSSI we insert a prefix before our JSON responses during server-
+    side rendering. This loads() removes the prefix and should always be used in
+    place of json.loads. See usage docs at
+    http://docs.python.org/2/library/json.html.
+
+    Args:
+        s: str or unicode. JSON contents to convert.
+        prefix: string. The XSSI prefix we remove before conversion.
+        **kwargs: keyword arguments delegated to json.loads.
+
+    Returns:
+        object. Python object reconstituted from the given JSON string.
+    """
+    if s.startswith(prefix):
+        s = s.lstrip(prefix)
+    return json.loads(s, **kwargs)
+
+
 def json_to_dict(source_dict, schema):
     """Converts JSON dictionary into Python dictionary using schema."""
     output = {}
@@ -61,6 +99,12 @@ def json_to_dict(source_dict, schema):
         if attr_type == 'date':
             output[key] = datetime.datetime.strptime(
                 source_dict[key], JSON_DATE_FORMAT).date()
+        elif attr_type == 'array':
+            subschema = attr['items']
+            array = []
+            for item in source_dict[key]:
+                array.append(json_to_dict(item, subschema))
+            output[key] = array
         else:
             output[key] = source_dict[key]
     return output
@@ -130,17 +174,34 @@ def value_to_string(value, value_type):
         raise ValueError('Unknown type: %s' % value_type)
 
 
+def dict_to_instance(adict, instance):
+    """Populates instance attributes using data dictionary."""
+    for key, unused_value in instance.__dict__.iteritems():
+        if not key.startswith('_'):
+            setattr(instance, key, adict[key])
+
+
+def instance_to_dict(instance):
+    """Populates data dictionary from instance attrs."""
+    adict = {}
+    for key, unused_value in instance.__dict__.iteritems():
+        if not key.startswith('_'):
+            adict[key] = getattr(instance, key)
+    return adict
+
+
 def send_json_response(
     handler, status_code, message, payload_dict=None, xsrf_token=None):
     """Formats and sends out a JSON REST response envelope and body."""
+    handler.response.headers['Content-Type'] = 'application/json, charset=utf-8'
     response = {}
     response['status'] = status_code
     response['message'] = message
     if payload_dict:
-        response['payload'] = json.dumps(payload_dict)
+        response['payload'] = dumps(payload_dict)
     if xsrf_token:
         response['xsrf_token'] = xsrf_token
-    handler.response.write(json.dumps(response))
+    handler.response.write(_JSON_XSSI_PREFIX + dumps(response))
 
 
 def run_all_unit_tests():

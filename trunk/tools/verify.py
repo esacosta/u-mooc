@@ -36,6 +36,7 @@ import csv
 import json
 import os
 import re
+from StringIO import StringIO
 import sys
 
 
@@ -81,6 +82,16 @@ SCHEMA = {
             'outputHeight': STRING
         }]}
 
+UNIT_TYPE_UNIT = 'U'
+UNIT_TYPE_LINK = 'O'
+UNIT_TYPE_ASSESSMENT = 'A'
+UNIT_TYPES = [UNIT_TYPE_UNIT, UNIT_TYPE_LINK, UNIT_TYPE_ASSESSMENT]
+
+UNIT_TYPE_NAMES = {
+    UNIT_TYPE_UNIT: 'Unit',
+    UNIT_TYPE_LINK: 'Link',
+    UNIT_TYPE_ASSESSMENT: 'Assessment'}
+
 UNITS_HEADER = (
     'id,type,unit_id,title,release_date,now_available')
 LESSONS_HEADER = (
@@ -88,12 +99,12 @@ LESSONS_HEADER = (
     'lesson_activity_name,lesson_notes,lesson_video_id,lesson_objectives')
 
 UNIT_CSV_TO_DB_CONVERTER = {
-    'id': ('id', int),
+    'id': None,
     'type': ('type', unicode),
     'unit_id': ('unit_id', unicode),
     'title': ('title', unicode),
     'release_date': ('release_date', unicode),
-    'now_available': ('now_available', bool)
+    'now_available': ('now_available', lambda value: value == 'True')
 }
 LESSON_CSV_TO_DB_CONVERTER = {
     'unit_id': ('unit_id', int),
@@ -101,9 +112,9 @@ LESSON_CSV_TO_DB_CONVERTER = {
     # Field 'unit_title' is a duplicate of Unit.title. We enforce that both
     # values are the same and ignore this value altogether.
     'unit_title': None,
-    'lesson_id': ('id', int),
+    'lesson_id': ('lesson_id', int),
     'lesson_title': ('title', unicode),
-    'lesson_activity': ('activity', unicode),
+    'lesson_activity': ('activity', lambda value: value == 'yes'),
     'lesson_activity_name': ('activity_title', unicode),
     'lesson_video_id': ('video', unicode),
     'lesson_objectives': ('objectives', unicode),
@@ -614,7 +625,7 @@ class Unit(object):
         self.title = ''
         self.release_date = ''
         self.now_available = False
-        
+
     def list_properties(self, name, output):
         """Outputs all properties of the unit."""
 
@@ -739,13 +750,20 @@ def text_to_line_numbered_text(text):
     return '\n  '.join(results)
 
 
-def set_object_attributes(target_object, names, values):
+def set_object_attributes(target_object, names, values, converter=None):
     """Sets object attributes from provided values."""
 
     if len(names) != len(values):
         raise SchemaException(
             'The number of elements must match: %s and %s' % (names, values))
-    for i in range(0, len(names)):
+    for i in range(len(names)):
+        if converter:
+            target_def = converter.get(names[i])
+            if target_def:
+                target_name = target_def[0]
+                target_type = target_def[1]
+                setattr(target_object, target_name, target_type(values[i]))
+                continue
         if is_integer(values[i]):
             # if we are setting an attribute of an object that support
             # metadata, try to infer the target type and convert 'int' into
@@ -768,15 +786,17 @@ def set_object_attributes(target_object, names, values):
         setattr(target_object, names[i], values[i])
 
 
-def read_objects_from_csv_stream(stream, header, new_object):
-    return read_objects_from_csv(csv.reader(stream), header, new_object)
+def read_objects_from_csv_stream(stream, header, new_object, converter=None):
+    return read_objects_from_csv(
+        csv.reader(StringIO(stream.read())), header, new_object,
+        converter=converter)
 
 
 def read_objects_from_csv_file(fname, header, new_object):
     return read_objects_from_csv_stream(open(fname), header, new_object)
 
 
-def read_objects_from_csv(value_rows, header, new_object):
+def read_objects_from_csv(value_rows, header, new_object, converter=None):
     """Reads objects from the rows of a CSV file."""
 
     values = []
@@ -812,7 +832,7 @@ def read_objects_from_csv(value_rows, header, new_object):
             decoded_values.append(value)
 
         item = new_object()
-        set_object_attributes(item, names, decoded_values)
+        set_object_attributes(item, names, decoded_values, converter=converter)
         items.append(item)
     return items
 
@@ -892,7 +912,7 @@ def evaluate_python_expression_from_text(content, root_name, scope,
     if noverify_text:
         restricted_scope['noverify'] = noverify_text
 
-    if not restricted_scope[root_name]:
+    if restricted_scope[root_name] is None:
         raise Exception('Unable to find \'%s\'' % root_name)
     return restricted_scope
 
@@ -924,15 +944,15 @@ class Verifier(object):
     def verify_unit_fields(self, units):
         self.export.append('units = Array();')
         for unit in units:
-            if not is_one_of(unit.now_available, [False, True]):
+            if not is_one_of(unit.now_available, [True, False]):
                 self.error(
                     'Bad now_available \'%s\' for unit id %s; expected '
                     '\'True\' or \'False\'' % (unit.now_available, unit.id))
 
-            if not is_one_of(unit.type, ['U', 'A', 'O']):
+            if not is_one_of(unit.type, UNIT_TYPES):
                 self.error(
                     'Bad type \'%s\' for unit id %s; '
-                    'expected \'U\', \'A\', or \'O\'' % (unit.type, unit.id))
+                    'expected: %s.' % (unit.type, unit.id, UNIT_TYPES))
 
             if unit.type == 'A':
                 if not is_one_of(unit.unit_id, ('Pre', 'Mid', 'Fin')):
@@ -1023,6 +1043,18 @@ class Verifier(object):
                 self.error('Lesson has unknown unit_id %s (%s)' % (
                     lesson.unit_id, lesson.to_id_string()))
 
+    def get_activity_as_python(self, unit_id, lesson_id):
+        fname = os.path.join(
+            os.path.dirname(__file__),
+            '../assets/js/activity-%s.%s.js' % (unit_id, lesson_id))
+        if not os.path.exists(fname):
+            self.error('  Missing activity: %s' % fname)
+        else:
+            activity = evaluate_javascript_expression_from_file(
+                fname, 'activity', Activity().scope, self.error)
+            self.verify_activity_instance(activity, fname)
+            return activity
+
     def verify_activities(self, lessons):
         """Loads and verifies all activities."""
 
@@ -1031,19 +1063,11 @@ class Verifier(object):
         for lesson in lessons:
             if lesson.lesson_activity == 'yes':
                 count += 1
-                fname = os.path.join(
-                    os.path.dirname(__file__),
-                    '../assets/js/activity-' + str(lesson.unit_id) + '.' +
-                    str(lesson.lesson_id) + '.js')
-                if not os.path.exists(fname):
-                    self.error('  Missing activity: %s' % fname)
-                else:
-                    activity = evaluate_javascript_expression_from_file(
-                        fname, 'activity', Activity().scope, self.error)
-                    self.verify_activity_instance(activity, fname)
-                    self.export.append('')
-                    self.encode_activity_json(
-                        activity, lesson.unit_id, lesson.lesson_id)
+                activity = self.get_activity_as_python(
+                    lesson.unit_id, lesson.lesson_id)
+                self.export.append('')
+                self.encode_activity_json(
+                    activity, lesson.unit_id, lesson.lesson_id)
 
         self.info('Read %s activities' % count)
 
@@ -1061,7 +1085,7 @@ class Verifier(object):
                 assessment_name = str(unit.unit_id)
                 fname = os.path.join(
                     os.path.dirname(__file__),
-                    '../assets/js/assessment-' + assessment_name + '.js')
+                    '../assets/js/assessment-%s.js' % assessment_name)
                 if not os.path.exists(fname):
                     self.error('  Missing assessment: %s' % fname)
                 else:
@@ -1362,6 +1386,15 @@ def run_all_schema_helper_unit_tests():
         return ret['x']
 
     # CSV tests
+    units = read_objects_from_csv(
+        [
+            ['id', 'type', 'now_available'],
+            [1, 'U', 'True'],
+            [1, 'U', 'False']],
+        'id,type,now_available', Unit, converter=UNIT_CSV_TO_DB_CONVERTER)
+    assert units[0].now_available
+    assert not units[1].now_available
+
     read_objects_from_csv(
         [['id', 'type'], [1, 'none']], 'id,type', Unit)
 

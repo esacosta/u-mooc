@@ -33,9 +33,12 @@ from models import roles
 from models.config import ConfigProperty
 from modules.admin.config import ConfigPropertyEditor
 import webapp2
+import messages
 from google.appengine.api import users
 import google.appengine.api.app_identity as app
 
+
+DIRECT_CODE_EXECUTION_UI_ENABLED = False
 
 # A time this module was initialized.
 BEGINNING_OF_TIME = time.time()
@@ -43,6 +46,13 @@ BEGINNING_OF_TIME = time.time()
 DELEGATED_ACCESS_IS_NOT_ALLOWED = """
 You must be an actual admin user to continue.
 Users with the delegated admin rights are not allowed."""
+
+
+def escape(text):
+    """Escapes HTML in text."""
+    if text:
+        return cgi.escape(text)
+    return text
 
 
 def evaluate_python_code(code):
@@ -70,10 +80,22 @@ class AdminHandler(
     """Handles all pages and actions required for administration of site."""
 
     default_action = 'courses'
-    get_actions = [
-        default_action, 'settings', 'deployment', 'perf', 'config_edit',
-        'console']
-    post_actions = ['config_reset', 'config_override', 'console_run']
+
+    @property
+    def get_actions(self):
+        actions = [
+            self.default_action, 'settings', 'deployment', 'perf',
+            'config_edit', 'add_course']
+        if DIRECT_CODE_EXECUTION_UI_ENABLED:
+            actions.append('console')
+        return actions
+
+    @property
+    def post_actions(self):
+        actions = ['config_reset', 'config_override']
+        if DIRECT_CODE_EXECUTION_UI_ENABLED:
+            actions.append('console_run')
+        return actions
 
     def can_view(self):
         """Checks if current user has viewing rights."""
@@ -88,6 +110,8 @@ class AdminHandler(
         if not self.can_view():
             self.redirect('/')
             return
+        # Force reload of properties. It is expensive, but admin deserves it!
+        config.Registry.get_overrides(force_update=True)
         return super(AdminHandler, self).get()
 
     def post(self):
@@ -100,35 +124,53 @@ class AdminHandler(
     def get_template(self, template_name, dirs):
         """Sets up an environment and Gets jinja template."""
         jinja_environment = jinja2.Environment(
+            autoescape=True,
             loader=jinja2.FileSystemLoader(dirs + [os.path.dirname(__file__)]))
         return jinja_environment.get_template(template_name)
 
-    def render_page(self, template_values):
-        """Renders a page using provided template values."""
+    def _get_user_nav(self):
+        current_action = self.request.get('action')
+        nav_mappings = [
+            ('', 'Courses'),
+            ('settings', 'Settings'),
+            ('perf', 'Metrics'),
+            ('deployment', 'Deployment')]
+        if DIRECT_CODE_EXECUTION_UI_ENABLED:
+            nav_mappings.append(('console', 'Console'))
+        nav = []
+        for action, title in nav_mappings:
+            class_attr = 'class="selected"' if action == current_action else ''
+            nav.append(
+                '<a href="/admin?action=%s" %s>%s</a>' % (
+                    action, class_attr, escape(title)))
 
         if PRODUCTION_MODE:
             app_id = app.get_application_id()
-            console_link = """
+            nav.append("""
                 <a target="_blank"
                   href="https://appengine.google.com/dashboard?app_id=s~%s">
                   Google App Engine
                 </a>
-                """ % app_id
+                """ % escape(app_id))
         else:
-            console_link = """
-                <a target="_blank" href="/_ah/admin">Google App Engine</a>
-                """
+            nav.append(
+                '<a target="_blank" href="/_ah/admin">Google App Engine</a>')
 
-        template_values['top_nav'] = """
-          <a href="/admin">Courses</a>
-          <a href="/admin?action=settings">Settings</a>
-          <a href="/admin?action=perf">Metrics</a>
-          <a href="/admin?action=deployment">Deployment</a>
-          <a href="/admin?action=console">Console</a>
-          %s
-          """ % console_link
+        nav.append(
+            '<a href="https://code.google.com/p/course-builder/wiki/AdminPage"'
+            ' target="_blank">'
+            'Help</a>')
+
+        return '\n'.join(nav)
+
+    def render_page(self, template_values):
+        """Renders a page using provided template values."""
+
+        template_values['top_nav'] = self._get_user_nav()
         template_values['user_nav'] = '%s | <a href="%s">Logout</a>' % (
-            users.get_current_user().email(), users.create_logout_url('/'))
+            users.get_current_user().email(),
+            users.create_logout_url(self.request.uri)
+        )
         template_values[
             'page_footer'] = 'Created on: %s' % datetime.datetime.now()
 
@@ -140,25 +182,26 @@ class AdminHandler(
         keys = sorted(source_dict.keys())
 
         content = []
-        content.append('<h3>%s</h3>' % title)
+        content.append('<h3>%s</h3>' % escape(title))
         content.append('<ol>')
         for key in keys:
             value = source_dict[key]
             if isinstance(value, ConfigProperty):
                 value = value.value
             content.append(
-                '<li>%s: %s</li>' % (cgi.escape(key), cgi.escape(str(value))))
+                '<li>%s: %s</li>' % (escape(key), escape(str(value))))
         content.append('</ol>')
         return '\n'.join(content)
 
     def format_title(self, text):
         """Formats standard title."""
-        return 'Course Builder &gt; Admin &gt; %s' % text
+        return 'Course Builder &gt; Admin &gt; %s' % escape(text)
 
     def get_perf(self):
         """Shows server performance counters page."""
         template_values = {}
         template_values['page_title'] = self.format_title('Metrics')
+        template_values['page_description'] = messages.METRICS_DESCRIPTION
 
         perf_counters = {}
 
@@ -188,6 +231,7 @@ class AdminHandler(
         """Shows server environment and deployment information page."""
         template_values = {}
         template_values['page_title'] = self.format_title('Deployment')
+        template_values['page_description'] = messages.DEPLOYMENT_DESCRIPTION
 
         # Yaml file content.
         yaml_content = []
@@ -196,15 +240,16 @@ class AdminHandler(
         yaml_lines = open(os.path.join(os.path.dirname(
             __file__), '../../app.yaml'), 'r').readlines()
         for line in yaml_lines:
-            yaml_content.append('<li>%s</li>' % cgi.escape(line))
+            yaml_content.append('<li>%s</li>' % escape(line))
         yaml_content.append('</ol>')
         yaml_content = ''.join(yaml_content)
 
         # Application identity.
         app_id = app.get_application_id()
         app_dict = {}
-        app_dict['application_id'] = app_id
-        app_dict['default_ver_hostname'] = app.get_default_version_hostname()
+        app_dict['application_id'] = escape(app_id)
+        app_dict['default_ver_hostname'] = escape(
+            app.get_default_version_hostname())
 
         template_values['main_content'] = self.render_dict(
             app_dict,
@@ -217,6 +262,7 @@ class AdminHandler(
         """Shows configuration properties information page."""
         template_values = {}
         template_values['page_title'] = self.format_title('Settings')
+        template_values['page_description'] = messages.SETTINGS_DESCRIPTION
 
         content = []
         content.append("""
@@ -228,10 +274,8 @@ class AdminHandler(
                   background-color: #A0A0FF;
               }
             </style>
-            """)
-        content.append('<h3>All Settings</h3>')
-        content.append('<table class="gcb-config">')
-        content.append("""
+            <h3>All Settings</h3>
+            <table class="gcb-config">
             <tr>
             <th>Name</th>
             <th>Current Value</th>
@@ -253,7 +297,7 @@ class AdminHandler(
             if onclick:
                 handler = 'onclick="%s"' % onclick
             return '<a %s class="gcb-button" href="/admin?%s">%s</a>' % (
-                handler, urllib.urlencode(args), cgi.escape(caption))
+                handler, urllib.urlencode(args), escape(caption))
 
         def get_actions(name, override):
             """Creates actions appropriate to an item."""
@@ -270,18 +314,17 @@ class AdminHandler(
                     </button></form>""" % (
                         urllib.urlencode(
                             {'action': 'config_override', 'name': name}),
-                        cgi.escape(self.create_xsrf_token('config_override'))
+                        escape(self.create_xsrf_token('config_override'))
                     ))
             return ''.join(actions)
 
         def get_doc_string(item, default_value):
             """Formats an item documentation string for display."""
             doc_string = item.doc_string
-            if doc_string:
-                doc_string = cgi.escape(doc_string)
-            else:
+            if not doc_string:
                 doc_string = 'No documentation available.'
-            doc_string = ' %s Default: "%s".' % (doc_string, default_value)
+            doc_string = ' %s Default: \'%s\'.' % (
+                doc_string, escape(default_value))
             return doc_string
 
         overrides = config.Registry.get_overrides(True)
@@ -303,11 +346,14 @@ class AdminHandler(
                 class_current = 'class="gcb-env-diff"'
 
             if default_value:
-                default_value = cgi.escape(str(default_value))
+                default_value = str(default_value)
             if value:
-                value = cgi.escape(str(value))
+                value = str(value)
 
             style_current = get_style_for(value, item.value_type)
+
+            # Enable proper value wrapping.
+            escaped_value = escape(str(value)).replace('\n', '<br/>')
 
             content.append("""
                 <tr>
@@ -317,8 +363,8 @@ class AdminHandler(
                 <td>%s</td>
                 </tr>
                 """ % (
-                    item.name, class_current, style_current, value,
-                    get_actions(name, name in overrides),
+                    escape(item.name), class_current, style_current,
+                    escaped_value, get_actions(name, name in overrides),
                     get_doc_string(item, default_value)))
 
         content.append("""
@@ -344,8 +390,13 @@ class AdminHandler(
         """Shows a list of all courses available on this site."""
         template_values = {}
         template_values['page_title'] = self.format_title('Courses')
+        template_values['page_description'] = messages.COURSES_DESCRIPTION
 
         content = []
+        content.append(
+            '<a id="add_course" class="gcb-button pull-right" '
+            'role="button" href="admin?action=add_course">Add Course</a>'
+            '<div style="clear: both; padding-top: 2px;" />')
         content.append('<h3>All Courses</h3>')
         content.append('<table>')
         content.append("""
@@ -353,7 +404,7 @@ class AdminHandler(
               <th>Course Title</th>
               <th>Context Path</th>
               <th>Content Location</th>
-              <th>Datastore Namespace</th>
+              <th>Student Data Location</th>
             </tr>
             """)
         courses = sites.get_all_courses()
@@ -362,15 +413,20 @@ class AdminHandler(
             count += 1
             error = ''
             slug = course.get_slug()
-            location = sites.abspath(course.get_home_folder(), '/')
             try:
-                name = cgi.escape(course.get_environ()['course']['title'])
+                name = escape(course.get_title())
             except Exception as e:  # pylint: disable-msg=broad-except
                 name = 'UNKNOWN COURSE'
                 error = (
                     '<p>Error in <strong>course.yaml</strong> file:<br/>'
                     '<pre>\n%s\n%s\n</pre></p>' % (
-                        e.__class__.__name__, cgi.escape(str(e))))
+                        e.__class__.__name__, escape(str(e))))
+
+            if course.fs.is_read_write():
+                location = 'namespace: %s' % course.get_namespace_name()
+            else:
+                location = 'disk: %s' % sites.abspath(
+                    course.get_home_folder(), '/')
 
             if slug == '/':
                 link = '/dashboard'
@@ -386,7 +442,10 @@ class AdminHandler(
                   <td>%s</td>
                 </tr>
                 """ % (
-                    link, error, slug, location, course.get_namespace_name()))
+                    link, escape(error), escape(slug),
+                    escape(location),
+                    escape(
+                        'namespace: %s' % course.get_namespace_name())))
 
         content.append("""
             <tr><td colspan="4" align="right">Total: %s item(s)</td></tr>
@@ -424,7 +483,7 @@ class AdminHandler(
             <p align='center'>
                 <button class="gcb-button" type="submit">Run Program</button>
             </p>
-            </form>""" % cgi.escape(self.create_xsrf_token('console_run')))
+            </form>""" % escape(self.create_xsrf_token('console_run')))
 
         template_values['main_content'] = ''.join(content)
         self.render_page(template_values)
@@ -454,7 +513,7 @@ class AdminHandler(
         content.append('<h3>Submitted Python Code</h3>')
         content.append('<ol>')
         for line in code.split('\n'):
-            content.append('<li>%s</li>' % cgi.escape(line))
+            content.append('<li>%s</li>' % escape(line))
         content.append('</ol>')
 
         content.append("""
@@ -467,8 +526,7 @@ class AdminHandler(
 
         content.append('<h3>Program Output</h3>')
         content.append(
-            '<blockquote><pre>%s</pre></blockquote>' % cgi.escape(
-                output))
+            '<blockquote><pre>%s</pre></blockquote>' % escape(output))
 
         template_values['main_content'] = ''.join(content)
         self.render_page(template_values)
