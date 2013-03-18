@@ -12,22 +12,24 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Handlers that are not directly relcaated to course content."""
+"""Handlers that are not directly related to course content."""
 
 __author__ = 'Saifu Angto (saifu@google.com)'
 
 import base64
 import hmac
+import os
 import time
 import urlparse
+import appengine_config
 from models import transforms
 from models.config import ConfigProperty
+from models.config import ConfigPropertyEntity
 from models.courses import Course
-from models.models import MemcacheManager
 from models.models import Student
 from models.roles import Roles
-from models.utils import get_all_scores
 import webapp2
+from google.appengine.api import namespace_manager
 from google.appengine.api import users
 
 
@@ -37,6 +39,7 @@ COURSE_BASE_KEY = 'gcb_course_base'
 # The name of the template dict key that stores data from course.yaml.
 COURSE_INFO_KEY = 'course_info'
 
+XSRF_SECRET_LENGTH = 20
 
 XSRF_SECRET = ConfigProperty(
     'gcb_xsrf_secret', str, (
@@ -74,9 +77,9 @@ class ReflectiveRequestHandler(object):
         """Handles GET."""
         action = self.request.get('action')
         if not action:
-            action = self.__class__.default_action
+            action = self.default_action
 
-        if not action in self.__class__.get_actions:
+        if not action in self.get_actions:
             self.error(404)
             return
 
@@ -90,7 +93,7 @@ class ReflectiveRequestHandler(object):
     def post(self):
         """Handles POST."""
         action = self.request.get('action')
-        if not action or not action in self.__class__.post_actions:
+        if not action or not action in self.post_actions:
             self.error(404)
             return
 
@@ -138,6 +141,8 @@ class ApplicationHandler(webapp2.RequestHandler):
         self.template_value[COURSE_INFO_KEY] = self.app_context.get_environ()
         self.template_value['is_course_admin'] = Roles.is_course_admin(
             self.app_context)
+        self.template_value[
+            'is_read_write_course'] = self.app_context.fs.is_read_write()
         self.template_value['is_super_admin'] = Roles.is_super_admin()
         self.template_value[COURSE_BASE_KEY] = self.get_base_href(self)
         return self.app_context.get_template_environ(
@@ -147,10 +152,13 @@ class ApplicationHandler(webapp2.RequestHandler):
 
     def canonicalize_url(self, location):
         """Adds the current namespace URL prefix to the relative 'location'."""
-        if not self.is_absolute(location):
-            if (self.app_context.get_slug() and
-                self.app_context.get_slug() != '/'):
-                location = '%s%s' % (self.app_context.get_slug(), location)
+        is_relative = (
+            not self.is_absolute(location) and
+            not location.startswith(self.app_context.get_slug()))
+        has_slug = (
+            self.app_context.get_slug() and self.app_context.get_slug() != '/')
+        if is_relative and has_slug:
+            location = '%s%s' % (self.app_context.get_slug(), location)
         return location
 
     def redirect(self, location):
@@ -170,6 +178,10 @@ class BaseHandler(ApplicationHandler):
             self.course = Course(self)
         return self.course
 
+    def find_unit_by_id(self, unit_id):
+        """Gets a unit with a specific id or fails with an exception."""
+        return self.get_course().find_unit_by_id(unit_id)
+
     def get_units(self):
         """Gets all units in the course."""
         return self.get_course().get_units()
@@ -177,6 +189,10 @@ class BaseHandler(ApplicationHandler):
     def get_lessons(self, unit_id):
         """Gets all lessons (in order) in the specific course unit."""
         return self.get_course().get_lessons(unit_id)
+
+    def get_progress_tracker(self):
+        """Gets the progress tracker for the course."""
+        return self.get_course().get_progress_tracker()
 
     def get_user(self):
         """Validate user exists."""
@@ -191,7 +207,8 @@ class BaseHandler(ApplicationHandler):
         user = self.get_user()
         if user:
             self.template_value['email'] = user.email()
-            self.template_value['logoutUrl'] = users.create_logout_url('/')
+            self.template_value['logoutUrl'] = (
+                users.create_logout_url(self.request.uri))
         return user
 
     def personalize_page_and_get_enrolled(self):
@@ -217,6 +234,7 @@ class BaseHandler(ApplicationHandler):
         return True
 
     def render(self, template_file):
+        """Renders a template."""
         template = self.get_template(template_file)
         self.response.out.write(template.render(self.template_value))
 
@@ -243,10 +261,12 @@ class PreviewHandler(BaseHandler):
         """Handles GET requests."""
         user = users.get_current_user()
         if not user:
-            self.template_value['loginUrl'] = users.create_login_url('/')
+            self.template_value['loginUrl'] = (
+                users.create_login_url(self.request.uri))
         else:
             self.template_value['email'] = user.email()
-            self.template_value['logoutUrl'] = users.create_logout_url('/')
+            self.template_value['logoutUrl'] = (
+                users.create_logout_url(self.request.uri))
 
         self.template_value['navbar'] = {'course': True}
         self.template_value['units'] = self.get_units()
@@ -292,17 +312,18 @@ class RegisterHandler(BaseHandler):
             self.template_value['course_status'] = 'full'
         else:
             name = self.request.get('form01')
-            
-        # create new or re-enroll old student
-        student = Student.get_by_email(user.email())
-        if not student:
-            student = Student(key_name=user.email())
 
-        student.user_id = user.user_id()
-        student.is_enrolled = True
-        student.name = name
-        student.age = self.request.get('form02')
-        student.put()
+            # create new or re-enroll old student
+            student = Student.get_by_email(user.email())
+            if not student:
+                student = Student(key_name=user.email())
+                student.user_id = user.user_id()
+
+            student.is_enrolled = True
+            student.name = name
+            student.age = self.request.get('form02')
+		
+            student.put()
 
         # Render registration confirmation page
         self.template_value['navbar'] = {'registration': True}
@@ -351,9 +372,12 @@ class StudentProfileHandler(BaseHandler):
         if not student:
             return
 
+        course = self.get_course()
+
         self.template_value['navbar'] = {}
         self.template_value['student'] = student
-        self.template_value['scores'] = get_all_scores(student)
+        self.template_value['score_list'] = course.get_all_scores(student)
+        self.template_value['overall_score'] = course.get_overall_score(student)
         self.template_value['student_edit_xsrf_token'] = (
             XsrfTokenManager.create_xsrf_token('student-edit'))
         self.render('student_profile.html')
@@ -420,12 +444,46 @@ class XsrfTokenManager(object):
     USER_ID_DEFAULT = 'default'
 
     @classmethod
+    def init_xsrf_secret_if_none(cls):
+        """Verifies that non-default XSRF secret exists; creates one if not."""
+
+        # Any non-default value is fine.
+        if XSRF_SECRET.value and XSRF_SECRET.value != XSRF_SECRET.default_value:
+            return
+
+        # All property manipulations must run in the default namespace.
+        old_namespace = namespace_manager.get_namespace()
+        try:
+            namespace_manager.set_namespace(
+                appengine_config.DEFAULT_NAMESPACE_NAME)
+
+            # Look in the datastore directly.
+            entity = ConfigPropertyEntity.get_by_key_name(XSRF_SECRET.name)
+            if not entity:
+                entity = ConfigPropertyEntity(key_name=XSRF_SECRET.name)
+
+            # Any non-default non-None value is fine.
+            if (entity.value and not entity.is_draft and
+                (str(entity.value) != str(XSRF_SECRET.default_value))):
+                return
+
+            # Initialize to random value.
+            entity.value = base64.urlsafe_b64encode(
+                os.urandom(XSRF_SECRET_LENGTH))
+            entity.is_draft = False
+            entity.put()
+        finally:
+            namespace_manager.set_namespace(old_namespace)
+
+    @classmethod
     def _create_token(cls, action_id, issued_on):
         """Creates a string representation (digest) of a token."""
+        cls.init_xsrf_secret_if_none()
 
-        # We have decided to use transient tokens to reduce datastore costs.
-        # The token has 4 parts: hash of the actor user id, hash of the action,
-        # hash if the time issued and the plain text of time issued.
+        # We have decided to use transient tokens stored in memcache to reduce
+        # datastore costs. The token has 4 parts: hash of the actor user id,
+        # hash of the action, hash of the time issued and the plain text of time
+        # issued.
 
         # Lookup user id.
         user = users.get_current_user()
@@ -457,11 +515,10 @@ class XsrfTokenManager(object):
     @classmethod
     def is_xsrf_token_valid(cls, token, action):
         """Validate a given XSRF token by retrieving it from memcache."""
-
         try:
             parts = token.split(cls.DELIMITER_PUBLIC)
             if not len(parts) == 2:
-                raise Exception('Bad token format, expected: a/b.')
+                return False
 
             issued_on = long(parts[0])
             age = time.time() - issued_on
@@ -475,12 +532,3 @@ class XsrfTokenManager(object):
             return False
         except Exception:  # pylint: disable-msg=broad-except
             return False
-
-        user_str = cls._make_user_str()
-        token_obj = MemcacheManager.get(token)
-        if not token_obj:
-            return False
-        token_str, token_action = token_obj
-        if user_str != token_str or action != token_action:
-            return False
-        return True

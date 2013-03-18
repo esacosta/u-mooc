@@ -17,63 +17,40 @@
 __author__ = 'pgbovine@google.com (Philip Guo)'
 
 import datetime
-import json
+import logging
 from models import models
+from models import transforms
 from models import utils
 from models.models import Student
 from models.models import StudentAnswersEntity
+from tools import verify
 from utils import BaseHandler
 from google.appengine.ext import db
 
 
-def store_score(student, assessment_type, score):
+def store_score(course, student, assessment_type, score):
     """Stores a student's score on a particular assessment.
 
     Args:
+        course: the course containing the assessment.
         student: the student whose data is stored.
         assessment_type: the type of the assessment.
         score: the student's score on this assessment.
 
     Returns:
-        the (possibly modified) assessment_type, which the caller can
-        use to render an appropriate response page.
+        the result of the assessment, if appropriate.
     """
     # FIXME: Course creators can edit this code to implement custom
     # assessment scoring and storage behavior
     # TODO(pgbovine): Note that the latest version of answers are always saved,
     # but scores are only saved if they're higher than the previous attempt.
     # This can lead to unexpected analytics behavior. Resolve this.
-    existing_score = utils.get_score(student, assessment_type)
+    existing_score = course.get_score(student, assessment_type)
     # remember to cast to int for comparison
     if (existing_score is None) or (score > int(existing_score)):
         utils.set_score(student, assessment_type, score)
 
-    # special handling for computing final score:
-    if assessment_type == 'postcourse':
-        midcourse_score = utils.get_score(student, 'midcourse')
-        if midcourse_score is None:
-            midcourse_score = 0
-        else:
-            midcourse_score = int(midcourse_score)
-
-        if existing_score is None:
-            postcourse_score = score
-        else:
-            postcourse_score = int(existing_score)
-            if score > postcourse_score:
-                postcourse_score = score
-
-        # Calculate overall score based on a formula
-        overall_score = int((0.3 * midcourse_score) + (0.7 * postcourse_score))
-
-        # TODO(pgbovine): this changing of assessment_type is ugly ...
-        if overall_score >= 70:
-            assessment_type = 'postcourse_pass'
-        else:
-            assessment_type = 'postcourse_fail'
-        utils.set_score(student, 'overall_score', overall_score)
-
-    return assessment_type
+    return course.get_overall_result(student)
 
 
 class AnswerHandler(BaseHandler):
@@ -83,8 +60,19 @@ class AnswerHandler(BaseHandler):
     @db.transactional(xg=True)
     def update_assessment_transaction(
         self, email, assessment_type, new_answers, score):
-        """Stores answer and updates user scores."""
-        student = Student.get_by_email(email)
+        """Stores answer and updates user scores.
+
+        Args:
+            email: the student's email address.
+            assessment_type: the type of the assessment (as stated in unit.csv).
+            new_answers: the latest set of answers supplied by the student.
+            score: the numerical assessment score.
+
+        Returns:
+            the result of the assessment, if appropriate.
+        """
+        student = Student.get_enrolled_student_by_email(email)
+        course = self.get_course()
 
         # It may be that old Student entities don't have user_id set; fix it.
         if not student.user_id:
@@ -97,7 +85,7 @@ class AnswerHandler(BaseHandler):
 
         utils.set_answer(answers, assessment_type, new_answers)
 
-        assessment_type = store_score(student, assessment_type, score)
+        result = store_score(course, student, assessment_type, score)
 
         student.put()
         answers.put()
@@ -105,11 +93,11 @@ class AnswerHandler(BaseHandler):
         # Also record the event, which is useful for tracking multiple
         # submissions and history.
         models.EventEntity.record(
-            'submit-assessment', self.get_user(), json.dumps({
+            'submit-assessment', self.get_user(), transforms.dumps({
                 'type': 'assessment-%s' % assessment_type,
                 'values': new_answers, 'location': 'AnswerHandler'}))
 
-        return (student, assessment_type)
+        return student, result
 
     def post(self):
         """Handles POST requests."""
@@ -120,12 +108,20 @@ class AnswerHandler(BaseHandler):
         if not self.assert_xsrf_token_or_fail(self.request, 'assessment-post'):
             return
 
+        course = self.get_course()
         assessment_type = self.request.get('assessment_type')
+        unit = course.find_unit_by_id(assessment_type)
+        if not assessment_type:
+            logging.error('No assessment type supplied.')
+            return
+        if unit is None or not unit.type == verify.UNIT_TYPE_ASSESSMENT:
+            logging.error('No assessment named %s exists.', assessment_type)
+            return
 
         # Convert answers from JSON to dict.
         answers = self.request.get('answers')
         if answers:
-            answers = json.loads(answers)
+            answers = transforms.loads(answers)
         else:
             answers = []
 
@@ -133,11 +129,21 @@ class AnswerHandler(BaseHandler):
         score = int(round(float(self.request.get('score'))))
 
         # Record score.
-        (student, assessment_type) = self.update_assessment_transaction(
+        student, result = self.update_assessment_transaction(
             student.key().name(), assessment_type, answers, score)
+
+        # Record completion event in progress tracker.
+        course.get_progress_tracker().put_assessment_completed(
+            student, assessment_type)
 
         self.template_value['navbar'] = {'course': True}
         self.template_value['assessment'] = assessment_type
-        self.template_value['student_score'] = utils.get_score(
-            student, 'overall_score')
+        self.template_value['result'] = result
+        self.template_value['score'] = score
+
+        self.template_value['assessment_name'] = unit.title
+        self.template_value['is_last_assessment'] = (
+            course.is_last_assessment(unit))
+
+        self.template_value['overall_score'] = course.get_overall_score(student)
         self.render('test_confirmation.html')

@@ -8,9 +8,15 @@
 {% endblock %}
 
 {% block main_content %}
+
+{% if is_read_write_course and is_course_admin %}
+  <a href="dashboard?action=edit_assessment&key={{ unit_id }}"
+    class="gcb-button gcb-button-action">Edit assessment</a>
+{% endif %}
+
 <div class="gcb-main">
   <div class="gcb-article">
-    <script src="assets/js/assessment-{{ name }}.js"></script>
+    <script src="{{ assessment_script_src }}"></script>
     <script>
       assessmentXsrfToken = '{{ assessment_xsrf_token }}';
 
@@ -19,7 +25,7 @@
       eventXsrfToken = '{{ event_xsrf_token }}';
       {% endif %}
     </script>
-    <div id="assessmentContents"></div>
+    <div style="width: 970px;" id="assessmentContents"></div>
   </div>
 </div>
 

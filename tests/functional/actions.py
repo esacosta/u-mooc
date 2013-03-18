@@ -23,6 +23,7 @@ import appengine_config
 from controllers import sites
 from controllers import utils
 import main
+from models import config
 import suite
 from google.appengine.api import namespace_manager
 
@@ -55,8 +56,8 @@ class ShouldHaveFailedByNow(Exception):
     pass
 
 
-class TestBase(suite.BaseTestClass):
-    """Contains methods common to all tests."""
+class TestBase(suite.AppEngineTestBase):
+    """Contains methods common to all functional tests."""
 
     def getApp(self):  # pylint: disable-msg=g-bad-name
         main.debug = True
@@ -70,9 +71,14 @@ class TestBase(suite.BaseTestClass):
 
     def setUp(self):  # pylint: disable-msg=g-bad-name
         super(TestBase, self).setUp()
+
+        self.supports_editing = False
         self.assert_default_namespace()
         self.namespace = ''
         self.base = '/'
+
+        # Reload all properties now to flush the values modified in other tests.
+        config.Registry.get_overrides(True)
 
     def tearDown(self):  # pylint: disable-msg=g-bad-name
         self.assert_default_namespace()
@@ -129,10 +135,10 @@ class TestBase(suite.BaseTestClass):
 
             self.audit_url(self.canonicalize(url, response))
 
-    def get(self, url):
+    def get(self, url, **kwargs):
         url = self.canonicalize(url)
         logging.info('HTTP Get: %s', url)
-        response = self.testapp.get(url)
+        response = self.testapp.get(url, **kwargs)
         return self.hook_response(response)
 
     def post(self, url, params):
@@ -158,7 +164,7 @@ class TestBase(suite.BaseTestClass):
         return self.hook_response(response)
 
 
-def assert_equals(expected, actual):
+def assert_equals(actual, expected):
     if not expected == actual:
         raise Exception('Expected \'%s\', does not match actual \'%s\'.' %
                         (expected, actual))
@@ -172,25 +178,33 @@ def to_unicode(text):
 
 
 def assert_contains(needle, haystack):
-    if not to_unicode(needle) in to_unicode(haystack):
+    needle = to_unicode(needle)
+    haystack = to_unicode(haystack)
+    if not needle in haystack:
         raise Exception('Can\'t find \'%s\' in \'%s\'.' % (needle, haystack))
 
 
 def assert_contains_all_of(needles, haystack):
+    haystack = to_unicode(haystack)
     for needle in needles:
-        if not to_unicode(needle) in to_unicode(haystack):
+        needle = to_unicode(needle)
+        if not needle in haystack:
             raise Exception(
                 'Can\'t find \'%s\' in \'%s\'.' % (needle, haystack))
 
 
 def assert_does_not_contain(needle, haystack):
-    if to_unicode(needle) in to_unicode(haystack):
+    needle = to_unicode(needle)
+    haystack = to_unicode(haystack)
+    if needle in haystack:
         raise Exception('Found \'%s\' in \'%s\'.' % (needle, haystack))
 
 
 def assert_contains_none_of(needles, haystack):
+    haystack = to_unicode(haystack)
     for needle in needles:
-        if to_unicode(needle) in to_unicode(haystack):
+        needle = to_unicode(needle)
+        if needle in haystack:
             raise Exception('Found \'%s\' in \'%s\'.' % (needle, haystack))
 
 
@@ -305,7 +319,7 @@ def view_unit(browser):
     assert_contains('Unit 1 - Introduction', response.body)
     assert_contains('1.3 How search works', response.body)
     assert_contains('1.6 Finding text on a web page', response.body)
-    assert_contains('http://www.youtube.com/embed/1ppwmxidyIE', response.body)
+    assert_contains('https://www.youtube.com/embed/1ppwmxidyIE', response.body)
     assert_contains(get_current_user_email(), response.body)
 
     assert_contains_all_of(BASE_HOOK_POINTS, response.body)
@@ -351,6 +365,28 @@ def view_assessments(browser):
         assert 'assets/js/assessment-%s.js' % name in response.body
         assert_equals(response.status_int, 200)
         assert_contains(get_current_user_email(), response.body)
+
+
+def submit_assessment(browser, unit_id, args, base=''):
+    """Submits an assessment."""
+    response = browser.get('%s/assessment?name=%s' % (base, unit_id))
+    assert_contains(
+        '<script src="assets/js/assessment-%s.js"></script>' % unit_id,
+        response.body)
+
+    js_response = browser.get(
+        '%s/assets/js/assessment-%s.js' % (base, unit_id))
+    assert_equals(js_response.status_int, 200)
+
+    # Extract XSRF token from the page.
+    match = re.search(r'assessmentXsrfToken = [\']([^\']+)', response.body)
+    assert match
+    xsrf_token = match.group(1)
+    args['xsrf_token'] = xsrf_token
+
+    response = browser.post('%s/answer' % base, args)
+    assert_equals(response.status_int, 200)
+    return response
 
 
 def change_name(browser, new_name):

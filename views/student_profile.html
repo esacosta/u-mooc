@@ -38,47 +38,33 @@
           <th align="left">{% trans %} Name {% endtrans %}</th>
           <td>{{ student.name }}</td>
         </tr>
-        <tr>
+ 		<tr>
           <th align="left">{% trans %} Age {% endtrans %}</th>
           <td>{{ student.age }}</td>
         </tr>
-
         <tr>
           <th align="left" colspan=2>{% trans %} Assessment scores {% endtrans %}</th>
         </tr>
-        <tr>
-          <th align="left">&nbsp;&nbsp;&nbsp;{% trans %} Pre-class {% endtrans %}</th>
-          <td>
-            {% if scores.has_key('precourse') %}
-              {{ scores['precourse'] }}
-              {% trans %} puntos. Completed {% endtrans %}
-            {% endif %}
-          </td>
-        </tr>
-        <tr>
-          <th align="left">&nbsp;&nbsp;&nbsp;{% trans %} Mid-class {% endtrans %}</th>
-          <td>
-            {% if scores.has_key('midcourse') %}
-              {{ scores['midcourse'] }}
-            {% endif %}
-          </td>
-        </tr>
-        <tr>
-          <th align="left">&nbsp;&nbsp;&nbsp;{% trans %} Post-class {% endtrans %}</th>
-          <td>
-            {% if scores.has_key('postcourse') %}
-              {{ scores['postcourse'] }}
-            {% endif %}
-          </td>
-        </tr>
-        <tr>
-          <th align="left">{% trans %} Overall course score {% endtrans %}</th>
-          <td>
-            {% if scores.has_key('overall_score') %}
-              {{ scores['overall_score'] }}
-            {% endif %}
-          </td>
-        </tr>
+
+        {% for assessment in score_list %}
+          <tr>
+            <th align="left">&nbsp;&nbsp;&nbsp;{{ assessment['title'] }}</th>
+            <td>
+              {% if 'score' in assessment and assessment['score'] is defined %}
+                <span id="assessment-score-{{assessment['title']}}">{{ assessment['score'] }}</span>
+              {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+
+        {% if overall_score != None %}
+          <tr>
+            <th align="left">{% trans %} Overall course score {% endtrans %}</th>
+            <td>
+              <span id="assessment-score-overall">{{ overall_score }}</span>
+            </td>
+          </tr>
+        {% endif %}
       </table>
 
       <form action='student/editstudent' method='post'>
@@ -100,7 +86,7 @@
 
       <h2>{% trans %} To leave the course permanently, click on Unenroll {% endtrans %}</h2>
 
-      <p><a href="student/unenroll" class="gcb-button" type="submit">
+      <p><a role="button" href="student/unenroll" class="gcb-button">
         {% trans %} Unenroll {% endtrans %}
       </a></p>
 

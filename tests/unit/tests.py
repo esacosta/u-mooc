@@ -17,15 +17,14 @@
 
 __author__ = 'Pavel Simakov (psimakov@google.com)'
 
-import os
 import sys
-import time
 import unittest
 import appengine_config
 from controllers import sites
-from controllers import utils
 from models import config
+from models import courses
 from models import transforms
+import suite
 from tools import verify
 
 
@@ -46,7 +45,57 @@ def assert_fails(function):
         pass
 
 
-class InvokeExistingUnitTest(unittest.TestCase):
+class SwapTestObject(object):
+
+    def __init__(self):
+        self.member = 'member_value'
+
+    def method(self):
+        return 'method_value'
+
+
+class SuiteTestCaseTest(suite.TestBase):
+    """Sanity check of Suite.TestBase utilities."""
+
+    def setUp(self):
+        super(SuiteTestCaseTest, self).setUp()
+        self.swap_test_object = SwapTestObject()
+        self.old_member = self.swap_test_object.member
+        self.old_method = self.swap_test_object.method
+
+    def tearDown(self):
+        super(SuiteTestCaseTest, self).tearDown()
+        self.assert_unswapped()
+
+    def assert_unswapped(self):
+        self.assertIs(self.old_member, self.swap_test_object.member)
+        self.assertEqual(self.old_method(), self.swap_test_object.method())
+
+    def test_swaps_against_different_symbols_apply_and_are_unswappable(self):
+        self.assertEqual('member_value', self.swap_test_object.member)
+        self.assertEqual('method_value', self.swap_test_object.method())
+        self.swap(self.swap_test_object, 'member', 'new_member_value')
+        self.swap(self.swap_test_object, 'method', lambda: 'new_method_value')
+        self.assertEqual('new_member_value', self.swap_test_object.member)
+        self.assertEqual('new_method_value', self.swap_test_object.method())
+        self._unswap_all()
+        self.assert_unswapped()
+
+    def test_tear_down_unswapps_automatically(self):
+        # Create a swap to for tearDown to unswap via assert_unswapped.
+        self.swap(self.swap_test_object, 'member', 'new_member_value')
+        self.assertEqual('new_member_value', self.swap_test_object.member)
+
+    def test_unswap_restores_original_after_multiple_swaps(self):
+        self.assertEqual('method_value', self.swap_test_object.method())
+        self.swap(self.swap_test_object, 'method', lambda: 'first_swap')
+        self.swap(self.swap_test_object, 'method', lambda: 'second_swap')
+        self.assertEqual('second_swap', self.swap_test_object.method())
+        self._unswap_all()
+        self.assert_unswapped()
+
+
+class InvokeExistingUnitTest(suite.TestBase):
     """Run all units tests declared elsewhere."""
 
     def test_existing_unit_tests(self):
@@ -55,47 +104,6 @@ class InvokeExistingUnitTest(unittest.TestCase):
         config.run_all_unit_tests()
         verify.run_all_unit_tests()
         transforms.run_all_unit_tests()
-
-    def test_xsrf_token_manager(self):
-        """Test XSRF token operations."""
-
-        os.environ['AUTH_DOMAIN'] = 'test_domain'
-
-        # Issues and verify anonymous user token.
-        action = 'test-action'
-        token = utils.XsrfTokenManager.create_xsrf_token(action)
-        assert '/' in token
-        assert utils.XsrfTokenManager.is_xsrf_token_valid(token, action)
-
-        # Impersonate real user.
-        os.environ['USER_EMAIL'] = 'test_email'
-        os.environ['USER_ID'] = 'test_id'
-
-        # Issues and verify real user token.
-        action = 'test-action'
-        token = utils.XsrfTokenManager.create_xsrf_token(action)
-        assert '/' in token
-        assert utils.XsrfTokenManager.is_xsrf_token_valid(token, action)
-
-        # Check forged time stamp invalidates token.
-        parts = token.split('/')
-        assert len(parts) == 2
-        forgery = '%s/%s' % (long(parts[0]) + 1000, parts[1])
-        assert not forgery == token
-        assert not utils.XsrfTokenManager.is_xsrf_token_valid(forgery, action)
-
-        # Check token properly expires.
-        action = 'test-action'
-        time_in_the_past = long(
-            time.time() - utils.XsrfTokenManager.XSRF_TOKEN_AGE_SECS)
-        old_token = utils.XsrfTokenManager._create_token(
-            action, time_in_the_past)
-        assert not utils.XsrfTokenManager.is_xsrf_token_valid(old_token, action)
-
-        # Clean up.
-        del os.environ['AUTH_DOMAIN']
-        del os.environ['USER_EMAIL']
-        del os.environ['USER_ID']
 
     def test_string_encoding(self):
         """Test our understanding of Python string encoding aspects.
@@ -161,6 +169,36 @@ class InvokeExistingUnitTest(unittest.TestCase):
 
         # Clean up.
         appengine_config.gcb_force_default_encoding(original_encoding)
+
+    def test_dict_merge(self):
+        real_values = {'foo': 'bar', 'baz': {'alice': 'john'}}
+        real_original = dict(real_values.items())
+        default_values = {'foo': 'baz', 'baz': {'alice': 'ana', 'bob': 'sue'}}
+        default_original = dict(default_values.items())
+
+        # Check merge.
+        assert {'foo': 'bar', 'baz': {'bob': 'sue', 'alice': 'john'}} == (
+            courses.deep_dict_merge(real_values, default_values))
+
+        # Check originals dicts are intact.
+        assert real_original == real_values
+        assert default_original == default_values
+
+        # Check merge into an empty dict.
+        assert courses.DEFAULT_COURSE_YAML_DICT == courses.deep_dict_merge(
+            {}, courses.DEFAULT_COURSE_YAML_DICT)
+
+        # Check value does not merge into dictionary.
+        real_values = {'foo': 'bar'}
+        default_values = {'foo': {'bar': 'baz'}}
+        assert {'foo': 'bar'} == (
+            courses.deep_dict_merge(real_values, default_values))
+
+        # Test array element.
+        real_values = {'foo': [1, 2, 3]}
+        default_values = {'baz': [4, 5, 6]}
+        assert {'foo': [1, 2, 3], 'baz': [4, 5, 6]} == (
+            courses.deep_dict_merge(real_values, default_values))
 
 
 if __name__ == '__main__':

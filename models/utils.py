@@ -17,30 +17,7 @@
 __author__ = 'Sean Lip (sll@google.com)'
 
 
-import json
-
-
-def get_all_scores(student):
-    """Gets all score data for a student.
-
-    Args:
-        student: the student whose scores should be retrieved.
-
-    Returns:
-         a dict where the keys are the assessment/summary name, and the value
-         is the assessment/summary score (if available).
-    """
-    if not student.scores:
-        return {}
-    else:
-        return json.loads(student.scores)
-
-
-def dict_get(dict_as_string, my_key):
-    if not dict_as_string:
-        return None
-    else:
-        return json.loads(dict_as_string).get(my_key)
+import transforms
 
 
 def set_answer(answers, assessment_name, answer):
@@ -58,24 +35,9 @@ def set_answer(answers, assessment_name, answer):
     if not answers.data:
         score_dict = {}
     else:
-        score_dict = json.loads(answers.data)
+        score_dict = transforms.loads(answers.data)
     score_dict[assessment_name] = answer
-    answers.data = json.dumps(score_dict)
-
-
-def get_score(student, assessment_name):
-    """Gets a student's score for a particular assessment.
-
-    The caller must cast the score appropriately.
-
-    Args:
-        student: the student whose score should be retrieved.
-        assessment_name: the name of the assessment.
-
-    Returns:
-        The student's score for this assessment, or None if not found.
-    """
-    return dict_get(student.scores, assessment_name)
+    answers.data = transforms.dumps(score_dict)
 
 
 def set_score(student, assessment_name, score):
@@ -93,6 +55,6 @@ def set_score(student, assessment_name, score):
     if not student.scores:
         score_dict = {}
     else:
-        score_dict = json.loads(student.scores)
+        score_dict = transforms.loads(student.scores)
     score_dict[assessment_name] = score
-    student.scores = json.dumps(score_dict)
+    student.scores = transforms.dumps(score_dict)
