@@ -22,17 +22,16 @@ unit_id,unit_title,lesson_id,lesson_title,lesson_activity,lesson_activity_name,l
 4,Crear el material del curso,2,Especificaciones generales,,Actividad de la Lección 4.2,/assets/html/lesson-4.2.html,,lesson-4.2.html
 4,Crear el material del curso,3,Modificar la estructura del curso,,Actividad de la Lección 4.3,/assets/html/lesson-4.3.html,,lesson-4.3.html
 4,Crear el material del curso,4,Dashboard,,Actividad de la Lección 4.4,/assets/html/lesson-4.4.html,,lesson-4.4.html
-4,Crear el material del curso,5,La pantalla de registro,,Actividad de la Lección 4.5,/assets/html/lesson-4.5.html,,lesson-4.5.html
+4,Crear el material del curso,5,La pantalla de registro,yes,Actividad de la Lección 4.5,/assets/html/lesson-4.5.html,,lesson-4.5.html
 4,Crear el material del curso,6,La pantalla del perfil de usuario,,Actividad de la Lección 4.6,/assets/html/lesson-4.6.html,,lesson-4.6.html
 4,Crear el material del curso,7,La pantalla Home,,Actividad de la Lección 4.7,/assets/html/lesson-4.7.html,,lesson-4.7.html
-4,Crear el material del curso,8,Crear lecciones,,Actividad de la Lección 4.8,/assets/html/lesson-4.8.html,,lesson-4.8.html
-4,Crear el material del curso,9,Crear actividades,,Actividad de la Lección 4.9,/assets/html/lesson-4.9.html,,lesson-4.9.html
-4,Crear el material del curso,10,Crear evaluaciones,,Actividad de la Lección 4.10,/assets/html/lesson-4.10.html,,lesson-4.10.html
-4,Crear el material del curso,11,Crear multiples cursos,,Actividad de la Lección 4.11,/assets/html/lesson-4.11.html,,lesson-4.11.html
-4,Crear el material del curso,12,Accesibilidad,,Actividad de la Lección 4.12,/assets/html/lesson-4.12.html,,lesson-4.12.html
-4,Crear el material del curso,13,Internacionalización,,Actividad de la Lección 4.13,/assets/html/lesson-4.13.html,,lesson-4.13.html
-4,Crear el material del curso,14,Verificar el código fuente,,Actividad de la Lección 4.14,/assets/html/lesson-4.14.html,,lesson-4.14.html
-4,Crear el material del curso,15,Subir la aplicación,,Actividad de la Lección 4.15,/assets/html/lesson-4.15.html,,lesson-4.15.html
+4,Crear el material del curso,8,Crear lecciones,yes,Actividad de la Lección 4.8,/assets/html/lesson-4.8.html,,lesson-4.8.html
+4,Crear el material del curso,9,Crear actividades,yes,Actividad de la Lección 4.9,/assets/html/lesson-4.9.html,,lesson-4.9.html
+4,Crear el material del curso,10,Crear evaluaciones,yes,Actividad de la Lección 4.10,/assets/html/lesson-4.10.html,,lesson-4.10.html
+4,Crear el material del curso,11,Accesibilidad,,Actividad de la Lección 4.11,/assets/html/lesson-4.12.html,,lesson-4.12.html
+4,Crear el material del curso,12,Internacionalización,,Actividad de la Lección 4.12,/assets/html/lesson-4.13.html,,lesson-4.13.html
+4,Crear el material del curso,13,Verificar el código fuente,,Actividad de la Lección 4.13,/assets/html/lesson-4.14.html,,lesson-4.14.html
+4,Crear el material del curso,14,Subir la aplicación,,Actividad de la Lección 4.14,/assets/html/lesson-4.15.html,,lesson-4.15.html
 
 5,Gestionar el curso,1,Discusiones y material opcional,,Actividad de la Lección 5.1,/assets/html/lesson-5.1.html,,lesson-5.1.html
 5,Gestionar el curso,2,Foros,,Actividad de la Lección 5.2,/assets/html/lesson-5.2.html,,lesson-5.2.html

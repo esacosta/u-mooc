@@ -31,18 +31,41 @@
 
 var activity = [
 
-  '<table border="2"><tr><td><b>Objetivos:</b><p><ul><li>Entender y modificar la ventana donde se registran los estudiantes.<li>Añadir nuevas propiedades de los estudiantes a su curso para sus estadísticas.</ul></tr></td></table>',
+  '<table border="2"><tr><td><b>Objetivos:</b><p><ul><li>Aprenda a crear actividades para el curso<li>Aprenda a utilizar las expresiones regulares de javascript<li>Cree distintos tipos de test</ul></tr></td></table>',
 
-  '<p><b>1.</b> ¿De que áreas se compone la página de registro?</p>',
-
+  '<p><b>1.</b>activity-NM.js, donde N es el número de actividad y M es el número de la lección ¿es correcto?</p>',
 
   { questionType: 'multiple choice',
-    choices: [['register.html, model.py y utils.py', false, 'Incorrecto'],
-              ['register.html, model.py, utils.py y bulkloader.yaml', false, 'Incorrecto'],
-              ['base_registration.html y register.html', false, 'Incorrecto'],
-              ['Cabecera, área de contenido y pie de página', true, 'Correcto']]},
-
-  '<p><b>2.</b> <p><center><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/8/88/New-York-Jan2005.jpg/250px-New-York-Jan2005.jpg" /></center></p>Trate de pensar algunos campos que pudieran ser de su interés, enumérelos y póngalos a disposición de otros estudiantes del curso en el foro. Incluya los distintos archivos que ha modificado y sus modificaciones para que le sea util a otros estudiantes. (Como por ejemplo añadir un campo "<b>Ciudad</b>") </p>',
+    choices: [['Si', false, 'Incorrecto, N es el número de unidad, no de actividad'],
+              ['No', true, 'Correcto.']] }
 
 ];
 
+
+// Note that the following code (that is not part of the definition of the
+// 'activity' variable) needs to be surrounded with the commented tags
+// '// <gcb-no-verify>' and '// </gcb-no-verify>', so that the verifier script
+// in tools/verify.py does not treat the code as invalid. For more details,
+// please see https://code.google.com/p/course-builder/wiki/VerifyCode
+
+
+//<gcb-no-verify>
+
+// JavaScript support code for displaying text into the proper output textarea:
+function check42(id, intext) {
+  switch (id) {
+    case 1:
+    document.quiz.output1.value = intext;
+    break;
+
+    case 2:
+    document.quiz.output2.value = intext;
+    break;
+
+    case 3:
+    document.quiz.output3.value = intext;
+    break;
+  }
+}
+
+//</gcb-no-verify>
