@@ -31,18 +31,8 @@
 
 var activity = [
 
-  '<table border="2"><tr><td><b>Objetivos:</b><p><ul><li>Entender y modificar la ventana donde se registran los estudiantes.<li>Añadir nuevas propiedades de los estudiantes a su curso para sus estadísticas.</ul></tr></td></table>',
+  '<table border="2"><tr><td><b>Search Tips:</b><p> <ul><li>When you do certain queries, Google presents information about these topics directly on the search results page.<li>You can distinguish the information in these panels from advertisements because advertisements are labeled as Ads. Also, when these panels appear, they are always the top box on the right-hand side.<li>Topics for which information panels appear include, but are not limited to, animals, famous people, landmarks, countries, movies, books, works of art, sports teams, and chemical elements.</ul> </tr></td></table><br>',
 
-  '<p><b>1.</b> ¿De que áreas se compone la página de registro?</p>',
-
-
-  { questionType: 'multiple choice',
-    choices: [['register.html, model.py y utils.py', false, 'Incorrecto'],
-              ['register.html, model.py, utils.py y bulkloader.yaml', false, 'Incorrecto'],
-              ['base_registration.html y register.html', false, 'Incorrecto'],
-              ['Cabecera, área de contenido y pie de página', true, 'Correcto']]},
-
-  '<p><b>2.</b> <p><center><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/8/88/New-York-Jan2005.jpg/250px-New-York-Jan2005.jpg" /></center></p>Trate de pensar algunos campos que pudieran ser de su interés, enumérelos y póngalos a disposición de otros estudiantes del curso en el foro. Incluya los distintos archivos que ha modificado y sus modificaciones para que le sea util a otros estudiantes. (Como por ejemplo añadir un campo "<b>Ciudad</b>") </p>',
+  'Have you ever played the <a href="http://en.wikipedia.org/wiki/Six_degrees_of_separation#Kevin_Bacon_game" target="_blank">"Six Degrees of Separation"</a> game, where you try to get from one celebrity to another via co-stars in movies they have in common? Clicking only in the information panels on the right side of the screen, our search expert got from Mona Lisa to the Golden Gate Bridge in seven clicks. That is, she entered the query [Mona Lisa], clicked on something in the panel on the right side of the screen, then clicked on something else in the resulting screen, and so forth, and finally ended up at a page about the Golden Gate Bridge. How did she do it? Can you do it with fewer clicks? <p>Find your own "six degrees" chain using the panels on the right. Share your story in the <a href="LINK_TO_COURSE_FORUM" target="_blank">forum</a>.',
 
 ];
-
