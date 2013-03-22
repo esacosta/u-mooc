@@ -37,11 +37,11 @@ course:
     Se trata de un experimento de Google para el mundo de la educación online que contiene el software e instrucciones necesarias para crear lecciones, 
     actividades para los estudiantes, evaluaciones, etc. Sin embargo la creación de estos cursos resulta algo tediosa para personas poco familiarizadas con Html, Javascript o Python.<br/>
     Esperamos que este curso le sea útil para poder crear sus propios MOOC de una manera más fácil.<br/><br/>
-    <small><i>Este curso se encuentra en fase de desarrollo, por favor pruébelo y envíe toda la información que considere oportuna para su finalización o colabore con nosotros.</i></small>
+    <small><i>Este curso se encuentra en fase de desarrollo, por favor pruébelo y envíe toda la información que considere oportuna para su finalización o colabore con nosotros, esperamos haberlo terminado para finales del mes próximo.</i></small>
 
     
   # Information about the instructor to display on the main page.
-  instructor_details: '<small>Enrique Sánchez <br/> esacosta <i>at gmail</i></small>'
+  instructor_details: '<small>Enrique Sánchez <br/> u-mooc <i>at esacosta.com</i></small>'
 
   # You can choose whether you want a video or an image on the main page.
   # If you specify both a video and an image link, then the video will take
@@ -54,7 +54,7 @@ course:
     alt_text: Crear un curso MOOC
 
   # Course start date.
-  start_date: '1 de Abril de 2013'
+  start_date: '1 de Mayo de 2013'
 
   # Enable/disable the report page
   # Set this value to False if you don't use calendar and to remove 
