@@ -46,6 +46,7 @@ FLOAT = object()
 INTEGER = object()
 CORRECT = object()
 REGEX = object()
+INTEGER_OR_INTEGER_LIST = object()
 
 SCHEMA = {
     'assessment': {
@@ -63,17 +64,22 @@ SCHEMA = {
         STRING,
         {
             'questionType': 'multiple choice',
+            'questionHTML': STRING,
             'choices': [[STRING, BOOLEAN, STRING]]
         }, {
             'questionType': 'multiple choice group',
+            'questionGroupHTML': STRING,
             'questionsList': [{
                 'questionHTML': STRING,
                 'choices': [STRING],
-                'correctIndex': INTEGER}],
+                'correctIndex': INTEGER_OR_INTEGER_LIST,
+                'multiSelect': BOOLEAN}],
+            'allCorrectMinCount': INTEGER,
             'allCorrectOutput': STRING,
             'someIncorrectOutput': STRING
         }, {
             'questionType': 'freetext',
+            'questionHTML': STRING,
             'correctAnswerRegex': REGEX,
             'correctAnswerOutput': STRING,
             'incorrectAnswerOutput': STRING,
@@ -168,6 +174,8 @@ class SchemaException(Exception):
             return 'STRING'
         if name == FLOAT:
             return 'FLOAT'
+        if name == INTEGER_OR_INTEGER_LIST:
+            return 'INTEGER_OR_INTEGER_LIST'
         if name == INTEGER:
             return 'INTEGER'
         if isinstance(name, dict):
@@ -366,6 +374,17 @@ class SchemaHelper(object):
                 return True
             else:
                 raise SchemaException('Expected: \'number\'\nfound: %s', value)
+        if atype == INTEGER_OR_INTEGER_LIST:
+            if is_integer(value):
+                self.visit_element('INTEGER', value, context)
+                return True
+            if is_integer_list(value):
+                self.visit_element('INTEGER_OR_INTEGER_LIST', value, context)
+                return True
+            raise SchemaException(
+                'Expected: \'integer\' or '
+                '\'array of integer\'\nfound: %s', value,
+                path=context.format_path())
         if atype == INTEGER:
             if is_integer(value):
                 self.visit_element('INTEGER', value, context)
@@ -444,7 +463,8 @@ class SchemaHelper(object):
         if isinstance(value, dict):
             aname, adict = self.find_compatible_dict(value, maps, context)
             if adict:
-                self.visit_element('dict', value, context.new(aname), False)
+                self.visit_element(
+                    'dict', value, context.new(aname), is_terminal=False)
                 for akey, avalue in value.items():
                     if akey not in adict:
                         raise SchemaException(
@@ -480,7 +500,7 @@ class SchemaHelper(object):
         if all_values_are_lists:
             for i in range(0, len(value)):
                 self.check_value_of_valid_type(value[i], types, context.new(
-                    self.format_name_with_index(value, i)), True)
+                    self.format_name_with_index(value, i)), in_order=True)
         else:
             if len(target) != len(value):
                 raise SchemaException(
@@ -709,10 +729,22 @@ def echo(message):
     print message
 
 
+def is_integer_list(s):
+    try:
+        if not isinstance(s, list):
+            return False
+        for item in s:
+            if not isinstance(item, int):
+                return False
+        return True
+    except ValueError:
+        return False
+
+
 def is_integer(s):
     try:
         return int(s) == float(s)
-    except ValueError:
+    except Exception:  # pylint: disable-msg=broad-except
         return False
 
 
@@ -1413,7 +1445,7 @@ def run_all_schema_helper_unit_tests():
                 ('//a/b/c'))
 
     # simple map tests
-    assert_pass({'name': 'Bob'}, {'name': STRING}, None)
+    assert_pass({'name': 'Bob'}, {'name': STRING})
     assert_fail('foo', 'bar')
     assert_fail({'name': 'Bob'}, {'name': INTEGER})
     assert_fail({'name': 12345}, {'name': STRING})
@@ -1540,9 +1572,24 @@ def run_all_schema_helper_unit_tests():
                 {'a': Term(REGEX, '/hello/i')})
 
 
+def run_example_activity_tests():
+    """Parses and validates example activity file."""
+    fname = os.path.join(
+        os.path.dirname(__file__), '../assets/js/activity-examples.js')
+    if not os.path.exists(fname):
+        raise Exception('Missing file: %s', fname)
+
+    verifier = Verifier()
+    verifier.echo_func = echo
+    activity = evaluate_javascript_expression_from_file(
+        fname, 'activity', Activity().scope, verifier.echo_func)
+    verifier.verify_activity_instance(activity, fname)
+
+
 def run_all_unit_tests():
     run_all_regex_unit_tests()
     run_all_schema_helper_unit_tests()
+    run_example_activity_tests()
 
 
 run_all_unit_tests()
