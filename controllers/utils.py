@@ -322,7 +322,6 @@ class RegisterHandler(BaseHandler):
             student.is_enrolled = True
             student.name = name
             student.age = self.request.get('form02')
-		
             student.put()
 
         # Render registration confirmation page
