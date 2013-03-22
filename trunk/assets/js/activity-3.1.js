@@ -1,34 +1,3 @@
-// Copyright 2012 Google Inc. All Rights Reserved.
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//      http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS-IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
-
-// Usage instructions: Create a single array variable named 'activity'. This
-// represents explanatory text and one or more questions to present to the
-// student. Each element in the array should itself be either
-//
-// -- a string containing a set of complete HTML elements. That is, if the
-//    string contains an open HTML tag (such as <form>), it must also have the
-//    corresponding close tag (such as </form>). You put the actual question
-//    text in a string.
-//
-// -- a JavaScript object representing the answer information for a question.
-//    That is, the object contains properties such as the type of question, a
-//    regular expression indicating the correct answer, a string to show in
-//    case of either correct or incorrect answers or to show when the student
-//    asks for help. For more information on how to specify the object, please
-//    see http://code.google.com/p/course-builder/wiki/CreateActivities.
-
 var activity = [
 
   '<table border="2"><tr><td> <b>Search Tips:</b><p> <ul><li>Specific words, when used before a colon, act as commands to filter results. The coming lessons will teach you the most popular operators.<li>You can use the site: operator within images and news results.<li>You can use the site: operator with or without the period before the top-level domain extension, so [site:edu] is the same as [site:.edu].<li>When using the site: operator at the website level, you must use the period between the parts of the web address: [site:ucla.edu].<li>You can use operators at any point in a query. [Jefferson site:archives.gov] is the same as [site:archives.gov jefferson].</ul> </tr></td></table>',
