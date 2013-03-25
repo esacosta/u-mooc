@@ -51,15 +51,19 @@
 
                   {% if lesson.objectives %}
                     <div class="lesson_objective">
-                     <!-- {{ lesson.objectives | safe }} -->
- <p>
-                <iframe id = "iframe" frameborder = "0" scrolling = "no" runat ="server" class = "IframeCarga autoHeight" visible = "false" src="assets/html/{{ lesson.objectives }}" width="100%"></iframe>
-              </p>
+                    <p>
+                    {% if lesson.objectives[0] == '*' %}
+                        <iframe id = "iframe" frameborder = "0" scrolling = "no" runat ="server" class = "IframeCarga autoHeight" visible = "false" src="{{ lesson.notes }}" width="100%"></iframe>
+                    {% else %}
+                        {{ lesson.objectives | safe }}
+                    {% endif %}
+                    </p>
                     </div>
+
                   {% endif %}
 
                 </div>
-                   {% if lesson.video %}
+                   {% if lesson.video and lesson.notes %}
                 <div class="gcb-col-3">
                   <p style="float:right; margin-top: 0px;">
                     <a role="button" class="gcb-button gcb-button-primary" href="{{ lesson.notes }}" target="_blank">
