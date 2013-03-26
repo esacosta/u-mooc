@@ -1,0 +1,926 @@
+<NotepadPlus>
+    <Project name="u-mooc">
+        <Folder name="assets">
+            <Folder name="css">
+                <File name="assets\css\main.css" />
+            </Folder>
+            <Folder name="html">
+                <Folder name="Lesson 1.1_archivos">
+                    <File name="assets\html\Lesson 1.1_archivos\image001.png" />
+                    <File name="assets\html\Lesson 1.1_archivos\image002.png" />
+                    <File name="assets\html\Lesson 1.1_archivos\image003.gif" />
+                    <File name="assets\html\Lesson 1.1_archivos\image003.jpg" />
+                    <File name="assets\html\Lesson 1.1_archivos\image004.gif" />
+                    <File name="assets\html\Lesson 1.1_archivos\image004.png" />
+                    <File name="assets\html\Lesson 1.1_archivos\image005.png" />
+                </Folder>
+                <Folder name="lesson-1.1_archivos">
+                    <File name="assets\html\lesson-1.1_archivos\colorschememapping.xml" />
+                    <File name="assets\html\lesson-1.1_archivos\filelist.xml" />
+                    <File name="assets\html\lesson-1.1_archivos\themedata.thmx" />
+                </Folder>
+                <Folder name="lesson-1.2_archivos">
+                    <File name="assets\html\lesson-1.2_archivos\colorschememapping.xml" />
+                    <File name="assets\html\lesson-1.2_archivos\filelist.xml" />
+                    <File name="assets\html\lesson-1.2_archivos\themedata.thmx" />
+                </Folder>
+                <Folder name="lesson-1.3_archivos">
+                    <File name="assets\html\lesson-1.3_archivos\colorschememapping.xml" />
+                    <File name="assets\html\lesson-1.3_archivos\filelist.xml" />
+                    <File name="assets\html\lesson-1.3_archivos\image001.png" />
+                    <File name="assets\html\lesson-1.3_archivos\image002.gif" />
+                    <File name="assets\html\lesson-1.3_archivos\item0009.xml" />
+                    <File name="assets\html\lesson-1.3_archivos\preview.wmf" />
+                    <File name="assets\html\lesson-1.3_archivos\props010.xml" />
+                    <File name="assets\html\lesson-1.3_archivos\themedata.thmx" />
+                </Folder>
+                <Folder name="lesson-1.4_archivos">
+                    <File name="assets\html\lesson-1.4_archivos\colorschememapping.xml" />
+                    <File name="assets\html\lesson-1.4_archivos\filelist.xml" />
+                    <File name="assets\html\lesson-1.4_archivos\preview.wmf" />
+                    <File name="assets\html\lesson-1.4_archivos\themedata.thmx" />
+                </Folder>
+                <Folder name="lesson-2.1_archivos">
+                    <File name="assets\html\lesson-2.1_archivos\image001.jpg" />
+                    <File name="assets\html\lesson-2.1_archivos\image002.jpg" />
+                </Folder>
+                <Folder name="lesson-2.2_archivos">
+                    <File name="assets\html\lesson-2.2_archivos\colorschememapping.xml" />
+                    <File name="assets\html\lesson-2.2_archivos\filelist.xml" />
+                    <File name="assets\html\lesson-2.2_archivos\image001.jpg" />
+                    <File name="assets\html\lesson-2.2_archivos\image002.gif" />
+                    <File name="assets\html\lesson-2.2_archivos\image003.jpg" />
+                    <File name="assets\html\lesson-2.2_archivos\themedata.thmx" />
+                </Folder>
+                <Folder name="lesson-2.3_archivos">
+                    <File name="assets\html\lesson-2.3_archivos\colorschememapping.xml" />
+                    <File name="assets\html\lesson-2.3_archivos\filelist.xml" />
+                    <File name="assets\html\lesson-2.3_archivos\image001.jpg" />
+                    <File name="assets\html\lesson-2.3_archivos\image002.jpg" />
+                    <File name="assets\html\lesson-2.3_archivos\image003.jpg" />
+                    <File name="assets\html\lesson-2.3_archivos\image004.jpg" />
+                    <File name="assets\html\lesson-2.3_archivos\image005.jpg" />
+                    <File name="assets\html\lesson-2.3_archivos\image006.png" />
+                    <File name="assets\html\lesson-2.3_archivos\image007.jpg" />
+                    <File name="assets\html\lesson-2.3_archivos\image008.jpg" />
+                    <File name="assets\html\lesson-2.3_archivos\image009.png" />
+                    <File name="assets\html\lesson-2.3_archivos\image010.gif" />
+                    <File name="assets\html\lesson-2.3_archivos\image011.jpg" />
+                    <File name="assets\html\lesson-2.3_archivos\image012.jpg" />
+                    <File name="assets\html\lesson-2.3_archivos\image013.jpg" />
+                    <File name="assets\html\lesson-2.3_archivos\themedata.thmx" />
+                </Folder>
+                <Folder name="lesson-2.4_archivos">
+                    <File name="assets\html\lesson-2.4_archivos\image001.png" />
+                </Folder>
+                <Folder name="lesson-2.5_archivos">
+                    <File name="assets\html\lesson-2.5_archivos\colorschememapping.xml" />
+                    <File name="assets\html\lesson-2.5_archivos\filelist.xml" />
+                    <File name="assets\html\lesson-2.5_archivos\image001.jpg" />
+                    <File name="assets\html\lesson-2.5_archivos\image002.jpg" />
+                    <File name="assets\html\lesson-2.5_archivos\preview.wmf" />
+                    <File name="assets\html\lesson-2.5_archivos\themedata.thmx" />
+                </Folder>
+                <Folder name="lesson-2.6_archivos">
+                    <File name="assets\html\lesson-2.6_archivos\image001.jpg" />
+                    <File name="assets\html\lesson-2.6_archivos\image002.jpg" />
+                </Folder>
+                <Folder name="lesson-3.1_archivos">
+                    <File name="assets\html\lesson-3.1_archivos\colorschememapping.xml" />
+                    <File name="assets\html\lesson-3.1_archivos\filelist.xml" />
+                    <File name="assets\html\lesson-3.1_archivos\image001.jpg" />
+                    <File name="assets\html\lesson-3.1_archivos\image002.jpg" />
+                    <File name="assets\html\lesson-3.1_archivos\themedata.thmx" />
+                </Folder>
+                <Folder name="lesson-3.2_archivos">
+                    <File name="assets\html\lesson-3.2_archivos\colorschememapping.xml" />
+                    <File name="assets\html\lesson-3.2_archivos\filelist.xml" />
+                    <File name="assets\html\lesson-3.2_archivos\image001.png" />
+                    <File name="assets\html\lesson-3.2_archivos\image002.png" />
+                    <File name="assets\html\lesson-3.2_archivos\image003.png" />
+                    <File name="assets\html\lesson-3.2_archivos\themedata.thmx" />
+                </Folder>
+                <Folder name="lesson-3.3_archivos">
+                    <File name="assets\html\lesson-3.3_archivos\colorschememapping.xml" />
+                    <File name="assets\html\lesson-3.3_archivos\filelist.xml" />
+                    <File name="assets\html\lesson-3.3_archivos\image001.png" />
+                    <File name="assets\html\lesson-3.3_archivos\image002.png" />
+                    <File name="assets\html\lesson-3.3_archivos\image003.png" />
+                    <File name="assets\html\lesson-3.3_archivos\image004.png" />
+                    <File name="assets\html\lesson-3.3_archivos\image005.png" />
+                    <File name="assets\html\lesson-3.3_archivos\image006.png" />
+                    <File name="assets\html\lesson-3.3_archivos\image007.png" />
+                    <File name="assets\html\lesson-3.3_archivos\image008.png" />
+                    <File name="assets\html\lesson-3.3_archivos\image009.png" />
+                    <File name="assets\html\lesson-3.3_archivos\image010.png" />
+                    <File name="assets\html\lesson-3.3_archivos\image011.png" />
+                    <File name="assets\html\lesson-3.3_archivos\image012.png" />
+                    <File name="assets\html\lesson-3.3_archivos\themedata.thmx" />
+                </Folder>
+                <Folder name="lesson-3.4_archivos">
+                    <File name="assets\html\lesson-3.4_archivos\colorschememapping.xml" />
+                    <File name="assets\html\lesson-3.4_archivos\filelist.xml" />
+                    <File name="assets\html\lesson-3.4_archivos\image001.png" />
+                    <File name="assets\html\lesson-3.4_archivos\themedata.thmx" />
+                </Folder>
+                <Folder name="lesson-4.10_archivos">
+                    <File name="assets\html\lesson-4.10_archivos\image001.png" />
+                    <File name="assets\html\lesson-4.10_archivos\image002.png" />
+                    <File name="assets\html\lesson-4.10_archivos\image003.png" />
+                </Folder>
+                <Folder name="lesson-4.11_archivos">
+                    <File name="assets\html\lesson-4.11_archivos\colorschememapping.xml" />
+                    <File name="assets\html\lesson-4.11_archivos\filelist.xml" />
+                    <File name="assets\html\lesson-4.11_archivos\themedata.thmx" />
+                </Folder>
+                <Folder name="lesson-4.12_archivos">
+                    <File name="assets\html\lesson-4.12_archivos\colorschememapping.xml" />
+                    <File name="assets\html\lesson-4.12_archivos\filelist.xml" />
+                    <File name="assets\html\lesson-4.12_archivos\image001.png" />
+                    <File name="assets\html\lesson-4.12_archivos\image002.gif" />
+                    <File name="assets\html\lesson-4.12_archivos\themedata.thmx" />
+                </Folder>
+                <Folder name="lesson-4.13_archivos">
+                    <File name="assets\html\lesson-4.13_archivos\colorschememapping.xml" />
+                    <File name="assets\html\lesson-4.13_archivos\filelist.xml" />
+                    <File name="assets\html\lesson-4.13_archivos\image001.jpg" />
+                    <File name="assets\html\lesson-4.13_archivos\themedata.thmx" />
+                </Folder>
+                <Folder name="lesson-4.14_archivos">
+                    <File name="assets\html\lesson-4.14_archivos\colorschememapping.xml" />
+                    <File name="assets\html\lesson-4.14_archivos\filelist.xml" />
+                    <File name="assets\html\lesson-4.14_archivos\image001.jpg" />
+                    <File name="assets\html\lesson-4.14_archivos\image002.jpg" />
+                    <File name="assets\html\lesson-4.14_archivos\themedata.thmx" />
+                </Folder>
+                <Folder name="lesson-4.15_archivos">
+                    <File name="assets\html\lesson-4.15_archivos\colorschememapping.xml" />
+                    <File name="assets\html\lesson-4.15_archivos\filelist.xml" />
+                    <File name="assets\html\lesson-4.15_archivos\image001.png" />
+                    <File name="assets\html\lesson-4.15_archivos\image002.png" />
+                    <File name="assets\html\lesson-4.15_archivos\image003.png" />
+                    <File name="assets\html\lesson-4.15_archivos\image004.png" />
+                    <File name="assets\html\lesson-4.15_archivos\themedata.thmx" />
+                </Folder>
+                <Folder name="lesson-4.16_archivos">
+                    <File name="assets\html\lesson-4.16_archivos\image001.png" />
+                    <File name="assets\html\lesson-4.16_archivos\image002.png" />
+                    <File name="assets\html\lesson-4.16_archivos\image003.png" />
+                </Folder>
+                <Folder name="lesson-4.1_archivos">
+                    <File name="assets\html\lesson-4.1_archivos\colorschememapping.xml" />
+                    <File name="assets\html\lesson-4.1_archivos\filelist.xml" />
+                    <File name="assets\html\lesson-4.1_archivos\image001.jpg" />
+                    <File name="assets\html\lesson-4.1_archivos\themedata.thmx" />
+                </Folder>
+                <Folder name="lesson-4.2_archivos">
+                    <File name="assets\html\lesson-4.2_archivos\colorschememapping.xml" />
+                    <File name="assets\html\lesson-4.2_archivos\filelist.xml" />
+                    <File name="assets\html\lesson-4.2_archivos\themedata.thmx" />
+                </Folder>
+                <Folder name="lesson-4.3_archivos">
+                    <File name="assets\html\lesson-4.3_archivos\colorschememapping.xml" />
+                    <File name="assets\html\lesson-4.3_archivos\filelist.xml" />
+                    <File name="assets\html\lesson-4.3_archivos\image001.png" />
+                    <File name="assets\html\lesson-4.3_archivos\themedata.thmx" />
+                </Folder>
+                <Folder name="lesson-4.4_archivos">
+                    <File name="assets\html\lesson-4.4_archivos\colorschememapping.xml" />
+                    <File name="assets\html\lesson-4.4_archivos\filelist.xml" />
+                    <File name="assets\html\lesson-4.4_archivos\image001.png" />
+                    <File name="assets\html\lesson-4.4_archivos\themedata.thmx" />
+                </Folder>
+                <Folder name="lesson-4.5_archivos">
+                    <File name="assets\html\lesson-4.5_archivos\colorschememapping.xml" />
+                    <File name="assets\html\lesson-4.5_archivos\filelist.xml" />
+                    <File name="assets\html\lesson-4.5_archivos\image001.png" />
+                    <File name="assets\html\lesson-4.5_archivos\image002.png" />
+                    <File name="assets\html\lesson-4.5_archivos\image003.png" />
+                    <File name="assets\html\lesson-4.5_archivos\themedata.thmx" />
+                </Folder>
+                <Folder name="lesson-4.6_archivos">
+                    <File name="assets\html\lesson-4.6_archivos\colorschememapping.xml" />
+                    <File name="assets\html\lesson-4.6_archivos\filelist.xml" />
+                    <File name="assets\html\lesson-4.6_archivos\image001.png" />
+                    <File name="assets\html\lesson-4.6_archivos\image002.png" />
+                    <File name="assets\html\lesson-4.6_archivos\image003.png" />
+                    <File name="assets\html\lesson-4.6_archivos\themedata.thmx" />
+                </Folder>
+                <Folder name="lesson-4.7_archivos">
+                    <File name="assets\html\lesson-4.7_archivos\colorschememapping.xml" />
+                    <File name="assets\html\lesson-4.7_archivos\filelist.xml" />
+                    <File name="assets\html\lesson-4.7_archivos\image001.jpg" />
+                    <File name="assets\html\lesson-4.7_archivos\themedata.thmx" />
+                </Folder>
+                <Folder name="lesson-4.8_archivos">
+                    <File name="assets\html\lesson-4.8_archivos\colorschememapping.xml" />
+                    <File name="assets\html\lesson-4.8_archivos\filelist.xml" />
+                    <File name="assets\html\lesson-4.8_archivos\image001.jpg" />
+                    <File name="assets\html\lesson-4.8_archivos\image001.png" />
+                    <File name="assets\html\lesson-4.8_archivos\image002.jpg" />
+                    <File name="assets\html\lesson-4.8_archivos\image002.png" />
+                    <File name="assets\html\lesson-4.8_archivos\image003.jpg" />
+                    <File name="assets\html\lesson-4.8_archivos\image003.png" />
+                    <File name="assets\html\lesson-4.8_archivos\image004.jpg" />
+                    <File name="assets\html\lesson-4.8_archivos\themedata.thmx" />
+                </Folder>
+                <Folder name="lesson-4.9_archivos">
+                    <File name="assets\html\lesson-4.9_archivos\colorschememapping.xml" />
+                    <File name="assets\html\lesson-4.9_archivos\filelist.xml" />
+                    <File name="assets\html\lesson-4.9_archivos\image001.png" />
+                    <File name="assets\html\lesson-4.9_archivos\image002.png" />
+                    <File name="assets\html\lesson-4.9_archivos\image003.png" />
+                    <File name="assets\html\lesson-4.9_archivos\image004.png" />
+                    <File name="assets\html\lesson-4.9_archivos\themedata.thmx" />
+                </Folder>
+                <Folder name="lesson-5.1_archivos">
+                    <File name="assets\html\lesson-5.1_archivos\colorschememapping.xml" />
+                    <File name="assets\html\lesson-5.1_archivos\filelist.xml" />
+                    <File name="assets\html\lesson-5.1_archivos\image001.jpg" />
+                    <File name="assets\html\lesson-5.1_archivos\image002.jpg" />
+                    <File name="assets\html\lesson-5.1_archivos\image003.jpg" />
+                    <File name="assets\html\lesson-5.1_archivos\image004.jpg" />
+                    <File name="assets\html\lesson-5.1_archivos\image005.jpg" />
+                    <File name="assets\html\lesson-5.1_archivos\image006.jpg" />
+                    <File name="assets\html\lesson-5.1_archivos\themedata.thmx" />
+                </Folder>
+                <Folder name="lesson-5.2_archivos">
+                    <File name="assets\html\lesson-5.2_archivos\colorschememapping.xml" />
+                    <File name="assets\html\lesson-5.2_archivos\filelist.xml" />
+                    <File name="assets\html\lesson-5.2_archivos\themedata.thmx" />
+                </Folder>
+                <Folder name="lesson-5.3_archivos">
+                    <File name="assets\html\lesson-5.3_archivos\colorschememapping.xml" />
+                    <File name="assets\html\lesson-5.3_archivos\filelist.xml" />
+                    <File name="assets\html\lesson-5.3_archivos\image001.jpg" />
+                    <File name="assets\html\lesson-5.3_archivos\themedata.thmx" />
+                </Folder>
+                <Folder name="lesson-5.4_archivos">
+                    <File name="assets\html\lesson-5.4_archivos\colorschememapping.xml" />
+                    <File name="assets\html\lesson-5.4_archivos\filelist.xml" />
+                    <File name="assets\html\lesson-5.4_archivos\image001.png" />
+                    <File name="assets\html\lesson-5.4_archivos\themedata.thmx" />
+                </Folder>
+                <Folder name="lesson-5.5_archivos">
+                    <File name="assets\html\lesson-5.5_archivos\colorschememapping.xml" />
+                    <File name="assets\html\lesson-5.5_archivos\filelist.xml" />
+                    <File name="assets\html\lesson-5.5_archivos\image001.jpg" />
+                    <File name="assets\html\lesson-5.5_archivos\image002.jpg" />
+                    <File name="assets\html\lesson-5.5_archivos\themedata.thmx" />
+                </Folder>
+                <Folder name="lesson-5.6_archivos">
+                    <File name="assets\html\lesson-5.6_archivos\colorschememapping.xml" />
+                    <File name="assets\html\lesson-5.6_archivos\filelist.xml" />
+                    <File name="assets\html\lesson-5.6_archivos\themedata.thmx" />
+                </Folder>
+                <Folder name="lesson-5.8_archivos">
+                    <File name="assets\html\lesson-5.8_archivos\image001.png" />
+                </Folder>
+                <Folder name="lesson-6.7_archivos">
+                    <File name="assets\html\lesson-6.7_archivos\image001.png" />
+                </Folder>
+                <File name="assets\html\lesson-1.1.html" />
+                <File name="assets\html\lesson-1.2.html" />
+                <File name="assets\html\lesson-1.3.html" />
+                <File name="assets\html\lesson-1.4.html" />
+                <File name="assets\html\lesson-2.1.html" />
+                <File name="assets\html\lesson-2.2.html" />
+                <File name="assets\html\lesson-2.3.html" />
+                <File name="assets\html\lesson-2.4.html" />
+                <File name="assets\html\lesson-2.5.html" />
+                <File name="assets\html\lesson-2.6.html" />
+                <File name="assets\html\lesson-3.1.html" />
+                <File name="assets\html\lesson-3.2.html" />
+                <File name="assets\html\lesson-3.3.html" />
+                <File name="assets\html\lesson-3.4.html" />
+                <File name="assets\html\lesson-4.1.html" />
+                <File name="assets\html\lesson-4.10.html" />
+                <File name="assets\html\lesson-4.11.html" />
+                <File name="assets\html\lesson-4.12.html" />
+                <File name="assets\html\lesson-4.13.html" />
+                <File name="assets\html\lesson-4.14.html" />
+                <File name="assets\html\lesson-4.15.html" />
+                <File name="assets\html\lesson-4.16.html" />
+                <File name="assets\html\lesson-4.2.html" />
+                <File name="assets\html\lesson-4.3.html" />
+                <File name="assets\html\lesson-4.4.html" />
+                <File name="assets\html\lesson-4.5.html" />
+                <File name="assets\html\lesson-4.6.html" />
+                <File name="assets\html\lesson-4.7.html" />
+                <File name="assets\html\lesson-4.8.html" />
+                <File name="assets\html\lesson-4.9.html" />
+                <File name="assets\html\lesson-5.1.html" />
+                <File name="assets\html\lesson-5.2.html" />
+                <File name="assets\html\lesson-5.3.html" />
+                <File name="assets\html\lesson-5.4.html" />
+                <File name="assets\html\lesson-5.5.html" />
+                <File name="assets\html\lesson-5.6.html" />
+                <File name="assets\html\lesson-5.7.html" />
+                <File name="assets\html\lesson-5.8.html" />
+                <File name="assets\html\lesson-5.9.html" />
+                <File name="assets\html\lesson-6.1.html" />
+                <File name="assets\html\lesson-6.2.html" />
+                <File name="assets\html\lesson-6.3.html" />
+                <File name="assets\html\lesson-6.4.html" />
+                <File name="assets\html\lesson-6.5.html" />
+                <File name="assets\html\lesson-6.6.html" />
+                <File name="assets\html\lesson-6.7.html" />
+                <File name="assets\html\lesson-6.8.html" />
+                <File name="assets\html\terminos y condiciones.html" />
+            </Folder>
+            <Folder name="img">
+                <File name="assets\img\analytics.png" />
+                <File name="assets\img\appengine.png" />
+                <File name="assets\img\banner1.jpg" />
+                <File name="assets\img\banner1.png" />
+                <File name="assets\img\favicon.ico" />
+                <File name="assets\img\Image0.1.png" />
+                <File name="assets\img\Image0.8.png" />
+                <File name="assets\img\Image0.9.png" />
+                <File name="assets\img\Image1.1a.png" />
+                <File name="assets\img\Image1.3.png" />
+                <File name="assets\img\Image1.5.3.png" />
+                <File name="assets\img\Image1.5.png" />
+                <File name="assets\img\Image10.1.png" />
+                <File name="assets\img\Image11.1.png" />
+                <File name="assets\img\Image2.2.1.png" />
+                <File name="assets\img\Image2.3.1.png" />
+                <File name="assets\img\Image3.4.2.png" />
+                <File name="assets\img\Image7.7.png" />
+                <File name="assets\img\Image8.7.png" />
+                <File name="assets\img\mooc - copia.png" />
+                <File name="assets\img\mooc.png" />
+                <File name="assets\img\your_logo_here.png" />
+            </Folder>
+            <Folder name="js">
+                <File name="assets\js\activity-1.1.js" />
+                <File name="assets\js\activity-1.2.js" />
+                <File name="assets\js\activity-1.3.js" />
+                <File name="assets\js\activity-1.4.js" />
+                <File name="assets\js\activity-1.5.js" />
+                <File name="assets\js\activity-1.6.js" />
+                <File name="assets\js\activity-2.1.js" />
+                <File name="assets\js\activity-2.2.js" />
+                <File name="assets\js\activity-2.3.js" />
+                <File name="assets\js\activity-2.4.js" />
+                <File name="assets\js\activity-2.5.js" />
+                <File name="assets\js\activity-3.1.js" />
+                <File name="assets\js\activity-3.2.js" />
+                <File name="assets\js\activity-3.3.js" />
+                <File name="assets\js\activity-3.4.js" />
+                <File name="assets\js\activity-4.1.js" />
+                <File name="assets\js\activity-4.10.js" />
+                <File name="assets\js\activity-4.2.js" />
+                <File name="assets\js\activity-4.3.js" />
+                <File name="assets\js\activity-4.4.js" />
+                <File name="assets\js\activity-4.5.js" />
+                <File name="assets\js\activity-4.8.js" />
+                <File name="assets\js\activity-4.9.js" />
+                <File name="assets\js\activity-5.1.js" />
+                <File name="assets\js\activity-5.2.js" />
+                <File name="assets\js\activity-5.3.js" />
+                <File name="assets\js\activity-5.4.js" />
+                <File name="assets\js\activity-6.1.js" />
+                <File name="assets\js\activity-6.2.js" />
+                <File name="assets\js\activity-6.3.js" />
+                <File name="assets\js\activity-examples.js" />
+                <File name="assets\js\assessment-Fin.js" />
+                <File name="assets\js\assessment-Mid.js" />
+                <File name="assets\js\assessment-Pre.js" />
+                <File name="assets\js\pdfobject.js" />
+            </Folder>
+            <Folder name="lib">
+                <File name="assets\lib\activity-generic-1.2.js" />
+                <File name="assets\lib\activity-generic-1.3.js" />
+                <File name="assets\lib\completed.png" />
+                <File name="assets\lib\in_progress.png" />
+                <File name="assets\lib\jquery-1.7.2.min.js" />
+                <File name="assets\lib\json2-2012.10.08.min.js" />
+                <File name="assets\lib\not_started.png" />
+            </Folder>
+            <Folder name="pdf">
+                <File name="assets\pdf\general.pdf" />
+                <File name="assets\pdf\ubicacion.pdf" />
+            </Folder>
+        </Folder>
+        <Folder name="controllers">
+            <File name="controllers\assessments.py" />
+            <File name="controllers\assessments.pyc" />
+            <File name="controllers\lessons.py" />
+            <File name="controllers\lessons.pyc" />
+            <File name="controllers\sites.py" />
+            <File name="controllers\sites.pyc" />
+            <File name="controllers\utils.py" />
+            <File name="controllers\utils.pyc" />
+            <File name="controllers\__init__.py" />
+            <File name="controllers\__init__.pyc" />
+        </Folder>
+        <Folder name="data">
+            <File name="data\lesson.csv" />
+            <File name="data\unit.csv" />
+        </Folder>
+        <Folder name="lib">
+            <File name="lib\babel-0.9.6.zip" />
+            <File name="lib\gaepytz-2011h.zip" />
+            <File name="lib\inputex-3.1.0.zip" />
+            <File name="lib\README" />
+            <File name="lib\yui_2in3-2.9.0.zip" />
+            <File name="lib\yui_3.6.0.zip" />
+        </Folder>
+        <Folder name="models">
+            <File name="models\config.py" />
+            <File name="models\config.pyc" />
+            <File name="models\counters.py" />
+            <File name="models\counters.pyc" />
+            <File name="models\courses.py" />
+            <File name="models\courses.pyc" />
+            <File name="models\entities.py" />
+            <File name="models\entities.pyc" />
+            <File name="models\jobs.py" />
+            <File name="models\jobs.pyc" />
+            <File name="models\models.py" />
+            <File name="models\models.pyc" />
+            <File name="models\progress.py" />
+            <File name="models\progress.pyc" />
+            <File name="models\roles.py" />
+            <File name="models\roles.pyc" />
+            <File name="models\transforms.py" />
+            <File name="models\transforms.pyc" />
+            <File name="models\utils.py" />
+            <File name="models\utils.pyc" />
+            <File name="models\vfs.py" />
+            <File name="models\vfs.pyc" />
+            <File name="models\__init__.py" />
+            <File name="models\__init__.pyc" />
+        </Folder>
+        <Folder name="modules">
+            <Folder name="admin">
+                <File name="modules\admin\admin.py" />
+                <File name="modules\admin\admin.pyc" />
+                <File name="modules\admin\config.py" />
+                <File name="modules\admin\config.pyc" />
+                <File name="modules\admin\messages.py" />
+                <File name="modules\admin\messages.pyc" />
+                <File name="modules\admin\view.html" />
+                <File name="modules\admin\__init__.py" />
+                <File name="modules\admin\__init__.pyc" />
+            </Folder>
+            <Folder name="announcements">
+                <File name="modules\announcements\announcements.py" />
+                <File name="modules\announcements\announcements.pyc" />
+                <File name="modules\announcements\samples.py" />
+                <File name="modules\announcements\samples.pyc" />
+                <File name="modules\announcements\__init__.py" />
+                <File name="modules\announcements\__init__.pyc" />
+            </Folder>
+            <Folder name="dashboard">
+                <File name="modules\dashboard\dashboard.py" />
+                <File name="modules\dashboard\dashboard.pyc" />
+                <File name="modules\dashboard\filer.py" />
+                <File name="modules\dashboard\filer.pyc" />
+                <File name="modules\dashboard\messages.py" />
+                <File name="modules\dashboard\messages.pyc" />
+                <File name="modules\dashboard\unit_lesson_editor.py" />
+                <File name="modules\dashboard\unit_lesson_editor.pyc" />
+                <File name="modules\dashboard\view.html" />
+                <File name="modules\dashboard\__init__.py" />
+                <File name="modules\dashboard\__init__.pyc" />
+            </Folder>
+            <Folder name="i18n">
+                <Folder name="resources">
+                    <Folder name="locale">
+                        <Folder name="af">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\af\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\af\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="am">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\am\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\am\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="ar">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\ar\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\ar\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="bg">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\bg\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\bg\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="bn">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\bn\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\bn\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="ca">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\ca\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\ca\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="cs">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\cs\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\cs\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="da">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\da\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\da\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="de">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\de\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\de\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="el">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\el\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\el\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="en_GB">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\en_GB\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\en_GB\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="en_US">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\en_US\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\en_US\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="es">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\es\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\es\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="es_ES">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\es_ES\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\es_ES\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="et">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\et\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\et\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="eu">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\eu\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\eu\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="fa">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\fa\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\fa\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="fi">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\fi\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\fi\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="fil">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\fil\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\fil\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="fr">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\fr\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\fr\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="gl">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\gl\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\gl\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="gu">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\gu\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\gu\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="hi">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\hi\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\hi\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="hr">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\hr\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\hr\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="hu">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\hu\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\hu\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="id">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\id\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\id\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="is">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\is\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\is\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="it">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\it\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\it\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="iw">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\iw\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\iw\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="ja">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\ja\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\ja\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="kn">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\kn\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\kn\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="ko">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\ko\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\ko\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="lt">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\lt\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\lt\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="lv">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\lv\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\lv\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="ml">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\ml\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\ml\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="mr">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\mr\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\mr\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="ms">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\ms\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\ms\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="nl">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\nl\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\nl\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="no">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\no\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\no\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="pl">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\pl\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\pl\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="pt_BR">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\pt_BR\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\pt_BR\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="pt_PT">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\pt_PT\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\pt_PT\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="ro">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\ro\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\ro\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="ru">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\ru\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\ru\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="ru_RU">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\ru_RU\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\ru_RU\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="sk">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\sk\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\sk\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="sl">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\sl\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\sl\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="sr">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\sr\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\sr\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="sv">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\sv\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\sv\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="sw">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\sw\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\sw\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="ta">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\ta\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\ta\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="te">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\te\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\te\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="th">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\th\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\th\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="tr">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\tr\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\tr\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="uk">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\uk\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\uk\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="ur">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\ur\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\ur\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="vi">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\vi\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\vi\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="zh_CN">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\zh_CN\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\zh_CN\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="zh_TW">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\zh_TW\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\zh_TW\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <Folder name="zu">
+                            <Folder name="LC_MESSAGES">
+                                <File name="modules\i18n\resources\locale\zu\LC_MESSAGES\messages.mo" />
+                                <File name="modules\i18n\resources\locale\zu\LC_MESSAGES\messages.po" />
+                            </Folder>
+                        </Folder>
+                        <File name="modules\i18n\resources\locale\messages.po" />
+                    </Folder>
+                </Folder>
+            </Folder>
+            <Folder name="oeditor">
+                <File name="modules\oeditor\oeditor.html" />
+                <File name="modules\oeditor\oeditor.py" />
+                <File name="modules\oeditor\oeditor.pyc" />
+                <File name="modules\oeditor\__init__.py" />
+                <File name="modules\oeditor\__init__.pyc" />
+            </Folder>
+            <File name="modules\__init__.py" />
+            <File name="modules\__init__.pyc" />
+        </Folder>
+        <Folder name="tests">
+            <Folder name="functional">
+                <File name="tests\functional\actions.py" />
+                <File name="tests\functional\tests.py" />
+                <File name="tests\functional\__init__.py" />
+            </Folder>
+            <Folder name="unit">
+                <File name="tests\unit\tests.py" />
+                <File name="tests\unit\__init__.py" />
+            </Folder>
+            <File name="tests\suite.py" />
+            <File name="tests\__init__.py" />
+        </Folder>
+        <Folder name="tools">
+            <Folder name="etl">
+                <File name="tools\etl\etl.py" />
+                <File name="tools\etl\remote.py" />
+                <File name="tools\etl\__init__.py" />
+            </Folder>
+            <File name="tools\export.py" />
+            <File name="tools\verify.py" />
+            <File name="tools\verify.pyc" />
+            <File name="tools\__init__.py" />
+            <File name="tools\__init__.pyc" />
+        </Folder>
+        <Folder name="views">
+            <File name="views\activity.html" />
+            <File name="views\announcements.html" />
+            <File name="views\assessment.html" />
+            <File name="views\bare.html" />
+            <File name="views\base.html" />
+            <File name="views\base_registration.html" />
+            <File name="views\calendar.html" />
+            <File name="views\confirmation.html" />
+            <File name="views\course.html" />
+            <File name="views\forum.html" />
+            <File name="views\lesson_navbar.html" />
+            <File name="views\preview.html" />
+            <File name="views\register.html" />
+            <File name="views\report.html" />
+            <File name="views\student_profile.html" />
+            <File name="views\summary.html" />
+            <File name="views\test_confirmation.html" />
+            <File name="views\unenroll_confirmation.html" />
+            <File name="views\unenroll_confirmation_check.html" />
+            <File name="views\unit.html" />
+        </Folder>
+        <File name="app.yaml" />
+        <File name="appengine_config.py" />
+        <File name="appengine_config.pyc" />
+        <File name="bulkloader.yaml" />
+        <File name="COPYING" />
+        <File name="course.yaml" />
+        <File name="index.yaml" />
+        <File name="main.py" />
+        <File name="main.pyc" />
+        <File name="README" />
+        <File name="robots.txt" />
+        <File name="VERSION" />
+    </Project>
+</NotepadPlus>
