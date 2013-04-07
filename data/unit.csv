@@ -6,7 +6,7 @@ id,type,unit_id,title,release_date,now_available
 4,U,3,Arrancar la aplicación,,True
 5,A,Mid,Evaluación media,,True
 6,U,4,Crear el material del curso,,True
-7,U,5,Gestionar el curso,En construcción,False
+7,U,5,Gestionar el curso,En construcción,True
 8,U,6,Evaluar el curso,En construcción,False
 9,A,Fin,Evaluación final,Próximamente,False
 10,O,http://www.youtube.com/watch?v=_YatY-bZVnE&feature=player_embedded,¿Cómo crear un curso con unos cuantos clics?,,True
