@@ -909,6 +909,7 @@
             <File name="views\unenroll_confirmation.html" />
             <File name="views\unenroll_confirmation_check.html" />
             <File name="views\unit.html" />
+            <File name="views\blog.html" />
         </Folder>
         <File name="app.yaml" />
         <File name="appengine_config.py" />

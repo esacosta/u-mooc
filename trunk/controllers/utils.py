@@ -338,6 +338,17 @@ class ReportHandler(BaseHandler):
 
         self.template_value['navbar'] = {'report': True}
         self.render('report.html')
+		
+class BlogHandler(BaseHandler):
+    """Handler for calendar page."""
+
+    def get(self):
+        """Handles GET requests."""
+        if not self.personalize_page_and_get_enrolled():
+            return
+
+        self.template_value['navbar'] = {'blog': True}
+        self.render('blog.html')
 
 class CalendarHandler(BaseHandler):
     """Handler for calendar page."""
