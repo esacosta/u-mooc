@@ -37,6 +37,7 @@ urls = [
     ('/forum', utils.ForumHandler),
 	('/calendar', utils.CalendarHandler), 
     ('/report', utils.ReportHandler),     
+	('/blog', utils.BlogHandler), 
     ('/dashboard', dashboard.DashboardHandler),
     ('/preview', utils.PreviewHandler),
     ('/register', utils.RegisterHandler),

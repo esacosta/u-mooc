@@ -155,7 +155,7 @@
             </a>
           </li>
           {% endif %}
-{% if course_info.course.calendar_on == True %}
+          {% if course_info.course.calendar_on == True %}
           <li {% if navbar.calendar %}class='active'{% endif %}>
             <a href="calendar">
               {% trans %} Calendario {% endtrans %}
@@ -168,7 +168,15 @@
               {% trans %} Informes {% endtrans %}
             </a>
           </li>
-          {% endif %}           <li {% if navbar.myprofile %}class='active'{% endif %}>
+          {% endif %} 
+		 {% if course_info.course.blog_on == True %}
+          <li {% if navbar.blog %}class='active'{% endif %}>
+            <a href="blog">
+              {% trans %} Blog {% endtrans %}
+            </a>
+          </li>
+          {% endif %} 
+          <li {% if navbar.myprofile %}class='active'{% endif %}>
             <a href="student/home">
               {% trans %} My Profile {% endtrans %}
             </a>
