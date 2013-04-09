@@ -42,7 +42,7 @@ var assessment = {
                correct('Un Hangouts te permite chatear cara a cara con hasta 9 personas a través del chat de vídeo')],
      lesson: '1.1'},
 
-    {questionHTML: 'En la siguiente imágen ¿Cual parece el mejor modo para un curso MOOC?<br/>',
+    {questionHTML: 'En la siguiente imágen ¿Cual parece el mejor modo para un curso MOOC?<br/><img src="assets/html/lesson-1.3_archivos/image002.gif" width="50%" height="auto" border="0"><br/>',
      choices: ['La opción A es correcta.',
                'La opción B es correcta.',
                correct('La opción C correcta.')],
