@@ -34,12 +34,12 @@ unit_id,unit_title,lesson_id,lesson_title,lesson_activity,lesson_activity_name,l
 4,Crear el material del curso,14,Subir la aplicación,,Actividad de la Lección 4.14,/assets/html/lesson-4.15.html,,*
 
 5,Gestionar el curso,1,Discusiones y material opcional,,Actividad de la Lección 5.1,/assets/html/lesson-5.1.html,,*
-5,Gestionar el curso,2,Foros,,Actividad de la Lección 5.2,/assets/html/lesson-5.2.html,,*
+5,Gestionar el curso,2,Foros,yes,Actividad de la Lección 5.2,/assets/html/lesson-5.2.html,,*
 5,Gestionar el curso,3,Listas de email,,Actividad de la Lección 5.3,/assets/html/lesson-5.3.html,,*
 5,Gestionar el curso,4,Pantalla de discusiones,,Actividad de la Lección 5.4,/assets/html/lesson-5.4.html,,*
 5,Gestionar el curso,5,Ejemplos de emails,,Actividad de la Lección 5.5,/assets/html/lesson-5.5.html,,*
-5,Gestionar el curso,6,Clases en linea (Hangout),,Actividad de la Lección 5.6,/assets/html/lesson-5.6.html,,*
-5,Gestionar el curso,7,Profesores asistentes,,Actividad de la Lección 5.7,/assets/html/lesson-5.7.html,,*
+5,Gestionar el curso,6,Clases en linea (Hangout),yes,Actividad de la Lección 5.6,/assets/html/lesson-5.6.html,,*
+5,Gestionar el curso,7,Profesores asistentes,yes,Actividad de la Lección 5.7,/assets/html/lesson-5.7.html,,*
 
 6,Evaluar el curso,1,Introducción,,Actividad de la Lección 6.1,/assets/html/lesson-6.1.html,,*
 6,Evaluar el curso,2,Evaluaciones de los estudiantes,,Actividad de la Lección 6.2,/assets/html/lesson-6.2.html,,*

@@ -343,6 +343,12 @@ function generateMultipleChoiceGroupQuestion(params, domRoot, index) {
           '.\n\n' + someIncorrectOutput);
       $('#output_' + toplevel_tag).focus();
     }
+
+	//-- Badge
+	if (numCorrect == allCorrectMinCount)
+	{
+		
+	}
   });
 }
 
