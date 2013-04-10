@@ -39,8 +39,27 @@
           <td>{{ student.name }}</td>
         </tr>
         <tr>
-          <th align="left">{% trans %} Age {% endtrans %}</th>
+          <th align="left">{% trans %} Edad {% endtrans %}</th>
           <td>{{ student.age }}</td>
+        </tr>
+		<tr>
+          <th align="left">{% trans %} Insignias {% endtrans %}</th>
+		  <td>
+		  <table style="width:100%;"><tr>
+		  <td style="width:10%;text-align:center;"><img class="insignia" src="/assets/img/{{ student.badge1 }}.png"></img></td>
+		  <td style="width:10%;text-align:center;"><img class="insignia" src="/assets/img/{{ student.badge2 }}.png"></img></td>
+		  <td style="width:10%;text-align:center;"><img class="insignia" src="/assets/img/{{ student.badge3 }}.png"></img></td>
+		  <td style="width:10%;text-align:center;"><img class="insignia" src="/assets/img/{{ student.badge4 }}.png"></img></td>
+		  <td style="width:10%;text-align:center;"><img class="insignia" src="/assets/img/{{ student.badge5 }}.png"></img></td>
+		  <td style="width:10%;text-align:center;"><img class="insignia" src="/assets/img/{{ student.badge6 }}.png"></img></td>
+		  <td style="width:10%;text-align:center;"><img class="insignia" src="/assets/img/{{ student.badge7 }}.png"></img></td>
+		  <td style="width:10%;text-align:center;"><img class="insignia" src="/assets/img/{{ student.badge8 }}.png"></img></td>
+		  <td style="width:10%;text-align:center;"><img class="insignia" src="/assets/img/{{ student.badge9 }}.png"></img></td>
+		  <td style="width:10%;text-align:center;"><img class="insignia" src="/assets/img/{{ student.badge10}}.png"></img></td>
+		  
+		  </tr></table>
+		  </td>
+          
         </tr>
 
         <tr>

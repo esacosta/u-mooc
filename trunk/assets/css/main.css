@@ -1055,3 +1055,9 @@ h1.product-headers {
 {
    width: 100%; 
 }
+
+img.insignia 
+{
+height: 40px;
+text-align: center;
+}
