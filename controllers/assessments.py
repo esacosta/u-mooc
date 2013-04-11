@@ -144,6 +144,10 @@ class AnswerHandler(BaseHandler):
         self.template_value['assessment_name'] = unit.title
         self.template_value['is_last_assessment'] = (
             course.is_last_assessment(unit))
+        self.template_value['overall_score'] = course.get_overall_score(student) 
 
-        self.template_value['overall_score'] = course.get_overall_score(student)
+        if (student and score > 80):
+            student.badges[unit.unit_id] = ('%s' % unit.title)
+            student.put()
+
         self.render('test_confirmation.html')

@@ -106,17 +106,8 @@ class Student(BaseEntity):
     name = db.StringProperty(indexed=False)
     age = db.StringProperty(indexed=False)   
     is_enrolled = db.BooleanProperty(indexed=False)
-    badge1 = db.StringProperty(indexed=False)
-    badge2 = db.StringProperty(indexed=False)
-    badge3 = db.StringProperty(indexed=False)
-    badge4 = db.StringProperty(indexed=False)
-    badge5 = db.StringProperty(indexed=False)
-    badge6 = db.StringProperty(indexed=False)
-    badge7 = db.StringProperty(indexed=False)
-    badge8 = db.StringProperty(indexed=False)
-    badge9 = db.StringProperty(indexed=False)
-    badge10 = db.StringProperty(indexed=False)
-
+    badges = {}
+    
     # Each of the following is a string representation of a JSON dict.
     scores = db.TextProperty(indexed=False)
 
