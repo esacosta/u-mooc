@@ -677,6 +677,7 @@ function renderAssessment(assessment, domRoot) {
             '\n\n';
       }
 
+	  
       outtext += (score >= 100 ? trans.PERFECT_SCORE_SAVE_TEXT : trans.GENERIC_SAVE_TEXT);
       $('#answerOutput').html(outtext);
     }

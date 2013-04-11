@@ -165,7 +165,7 @@ DEFAULT_EXPIRY_DATE = 'Mon, 01 Jan 1990 00:00:00 GMT'
 DEFAULT_PRAGMA = 'no-cache'
 
 # enable debug output
-DEBUG_INFO = False
+DEBUG_INFO = True
 
 # thread local storage for current request PATH_INFO
 PATH_INFO_THREAD_LOCAL = threading.local()

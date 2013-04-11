@@ -322,17 +322,7 @@ class RegisterHandler(BaseHandler):
             student.is_enrolled = True
             student.name = name
             student.age = self.request.get('form02')
-
-            student.badge1 = 'badge1';
-            student.badge2 = 'badge2';
-            student.badge3 = 'non';
-            student.badge4 = 'non';
-            student.badge5 = 'non';
-            student.badge6 = 'non';
-            student.badge7 = 'non';
-            student.badge8 = 'non';
-            student.badge9 = 'non';
-            student.badge10 = 'non';
+            
             student.put()
 
         # Render registration confirmation page

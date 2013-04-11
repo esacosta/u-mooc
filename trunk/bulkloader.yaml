@@ -44,23 +44,5 @@ transformers:
       external_name: scores
     - property: age
       external_name: age
-    - property: badge1
-      external_name: badge1
-    - property: badge2
-      external_name: badge2
-    - property: badge3
-      external_name: badge3
-    - property: badge4
-      external_name: badge4
-    - property: badge5
-      external_name: badge5
-    - property: badge6
-      external_name: badge6
-    - property: badge7
-      external_name: badge7
-    - property: badge8
-      external_name: badge8
-    - property: badge9
-      external_name: badge9
-    - property: badge10
-      external_name: badge10
+    - property: badges
+      external_name: badges
