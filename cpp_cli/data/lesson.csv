@@ -1,0 +1,19 @@
+unit_id,unit_title,lesson_id,lesson_title,lesson_activity,lesson_activity_name,lesson_notes,lesson_video_id,lesson_objectives
+
+1,Introducción,1,¿Qué es C++/CLI?,,Actividad de la Lección 1.1,/cpp_cli/assets/html/lesson1.html,,*
+1,Introducción,2,¿Qué ha cambiado?,,Actividad de la Lección 2.1,/cpp_cli/assets/html/lesson2.html,,*
+
+2,Cambios fundamentales,1,Cambios principales,,Actividad de la Lección 3.1,/cpp_cli/assets/html/lesson3.html,,*
+2,Cambios fundamentales,2,Otros cambios,,Actividad de la Lección 4.1,/cpp_cli/assets/html/lesson4.html,,*
+2,Cambios fundamentales,3,Primer ejemplo,,Actividad de la Lección 5.1,/cpp_cli/assets/html/lesson5.html,,*
+
+3,Clases y estructuras,1,Clases y estructuras,,,/cpp_cli/assets/html/lesson6.html,,*
+3,Clases y estructuras,2,Sellar una función virtual,,,/cpp_cli/assets/html/lesson7.html,,*
+3,Clases y estructuras,3,Cambios en la semantica de los destructores,,,/cpp_cli/assets/html/lesson8.html,,*
+
+4,Arrays y otros cambios,1,Arrays,,Actividad de la Lección 5.1,/cpp_cli/assets/html/lesson9.html,,*
+4,Arrays y otros cambios,2,Envolver una clase nativa C++ en CLI,,Actividad de la Lección 5.1,/cpp_cli/assets/html/lesson10.html,,*
+4,Arrays y otros cambios,3,Otros cambios,,Actividad de la Lección 5.1,/cpp_cli/assets/html/lesson11.html,,*
+
+5,Ejemplo de WebService,1,Ejemplo de WebService,,Actividad de la Lección 6.1,/cpp_cli/assets/html/lesson12.html,,*
+

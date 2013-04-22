@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block subtitle %}
+  {% trans %} Report {% endtrans %}
+{% endblock subtitle %}
+
+{% block top_content %}
+<script type="text/javascript" src="/assets/js/pdfobject.js"></script>
+
+<script type="text/javascript">
+
+window.onload = function (){
+
+	var success = new PDFObject({ url: "{{course_info.course.report_embed_url_ubicacion}}" }).embed("pdf");
+    var success2 = new PDFObject({ url: "{{course_info.course.report_embed_url_general}}" }).embed("pdf2");
+	
+};
+
+</script>
+ <h1 class="class_header">
+      Informes relacionados con el Curso
+    </h1>
+<h2>Ubicación</h2>
+  <div>
+    <div class="gcb-aux">
+          <div id="pdf" style="height: 400px;">Parece que no tiene Adobe Reader o algún otro lector de PDF en su navegador. <a href="{{course_info.course.report_embed_url_ubicacion}}">Pulse aquí para descargarse el PDF</a></div>
+          
+    </div>
+  </div>
+<h2>General</h2>
+  <div>
+    <div class="gcb-aux">
+          <div id="pdf2" style="height: 400px;">Parece que no tiene Adobe Reader o algún otro lector de PDF en su navegador. <a href="{{course_info.course.report_embed_url_general}}">Pulse aquí para descargarse el PDF</a></div>
+          
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block main_content %}
+
+{% endblock %}
