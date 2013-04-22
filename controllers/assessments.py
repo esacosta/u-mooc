@@ -147,7 +147,8 @@ class AnswerHandler(BaseHandler):
         self.template_value['overall_score'] = course.get_overall_score(student) 
 
         if (student and score > 80):
-            student.badges[unit.unit_id] = ('%s' % unit.title)
+            student.badges.append('%s' % unit.unit_id)
+            student.badgesTitle.append('%s' % unit.title)
             student.put()
 
         self.render('test_confirmation.html')

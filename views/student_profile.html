@@ -51,8 +51,8 @@
 		  <td style="width:10%;text-align:center;"><img class="insignia" src="/assets/img/{{ badge }}.png"></img></td>
 		  {% endfor %}
 		  </tr><tr>
-		  {% for badge in student.badges %}
-		  <td style="width:10%;text-align:center;">{{ student.badges[badge] }}</td>
+		  {% for badgetitle in student.badgesTitle %}
+		  <td style="width:10%;text-align:center;">{{ badgetitle }}</td>
 		  {% endfor %}
 		  
 		  </tr></table>
