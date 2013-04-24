@@ -7,9 +7,8 @@ id,type,unit_id,title,release_date,now_available
 5,A,Mid,Evaluación media,,True
 6,U,4,Crear el material del curso,,True
 7,U,5,Gestionar el curso,,True
-8,U,6,Evaluar el curso,En construcción,False
-9,A,Fin,Evaluación final,Próximamente,False
-10,O,http://www.youtube.com/watch?v=_YatY-bZVnE&feature=player_embedded,¿Cómo crear un curso con unos cuantos clics?,,True
-
-
+8,U,6,Evaluar el curso,,True
+9,A,Fin,Evaluación final,,True
+10,U,7,Practicum,En construccion,True
+11,O,http://www.youtube.com/watch?v=_YatY-bZVnE&feature=player_embedded,¿Cómo crear un curso con unos cuantos clics?,,True
 

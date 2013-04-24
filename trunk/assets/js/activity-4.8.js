@@ -2,7 +2,7 @@ var activity = [
 
   '<table border="2"><tr><td> <b>Objetivos:</b><p> <ul><li>Aprenda a crear lecciones.<li>Añada videos y textos a las lecciones de su curso</ul></tr></td></table>',
 
-  '<p><b>1.</b> Cuando crea una lección del curso puede incluir videos para poder reproducirlos en cualquier dispositivo, como en la siguiente imagen.</p><center><img src="http://localhost:8081/assets/html/lesson-4.8_archivos/image002.jpg" border="0" alt="" title=""></center><p>Pero ¿Cual es el nombre del canal donde debe subir los vídeos?</p>',
+  '<p><b>1.</b> Cuando crea una lección del curso puede incluir videos para poder reproducirlos en cualquier dispositivo, como en la siguiente imagen.</p><center><img src="/assets/html/lesson-4.8_archivos/image002.jpg" border="0" alt="" title=""></center><p>Pero ¿Cual es el nombre del canal donde debe subir los vídeos?</p>',
 
   { questionType: 'freetext',
     correctAnswerRegex: /Youtube/i,
