@@ -1,6 +1,21 @@
 var activity = [
 
-  '<table border="1"><tr><td><p><b> Visit each of the links below to explore ways to keep yourself updated on Google Search tools:</b></p><ul><li> Pick a blog to read to keep up-to-date:<ul><li><a href="http://googleblog.blogspot.com/" target="_blank"> Official Google Blog</a></li><li><a href="http://insidesearch.blogspot.com/" target="_blank"> Inside Search</a></li><li><a href="http://searchresearch1.blogspot.com/" target="_blank"> SearchResearch (by Dan Russell)</a></li></ul></li><li> Set up an <a href="http://www.google.com/alerts" target="_blank"> email alert</a> to notify you when there is a new feature.</li><li> Try out the <a href="http://agoogleaday.com" target="_blank"> AGoogleADay</a> game on Google+</li></ul></tr></td></table>'
+  '<table border="2"><tr><td><b>Objetivos:</b><p><ul><li>Comprender como se evalua un curso.<li>Cuales son las herramientas fundamentales para evaluar los datos de un curso<li>Saber usar las herramientas necesarias para evaluar los datos</ul></tr></td></table>',
+
+  '<p><b>1.</b> ¿Cual es la herramienta de google más efectiva para realizar la evaluación de los datos del curso?</p>',
+
+  { questionType: 'multiple choice',
+    choices: [['Los archivos CVS', false, 'Inténtelo de nuevo'],
+              ['Google Analytics', true, 'Correcto'],
+              ['Los archivos YAML', false, 'Inténtelo de nuevo']]},
+
+  '<p><b>2.</b> ¿En que archivo debe incluir la información del programa con que analizará los datos del curso para que aparezca en todas y cada una de las páginas del curso?</p>',
+
+  { questionType: 'freetext',
+    correctAnswerRegex: /course.yaml/i,
+    correctAnswerOutput: 'Correcto',
+    incorrectAnswerOutput: 'Pruebe otra vez.',
+    showAnswerOutput: 'Recuerde que la respuesta puede estar en cualquiera de las lecciones de esta unidad.' },
 
 ];
 

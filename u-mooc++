@@ -307,7 +307,15 @@
                     <File name="assets\html\lesson-5.9_archivos\themedata.thmx" />
                 </Folder>
                 <Folder name="lesson-6.7_archivos">
+                    <File name="assets\html\lesson-6.7_archivos\colorschememapping.xml" />
+                    <File name="assets\html\lesson-6.7_archivos\filelist.xml" />
                     <File name="assets\html\lesson-6.7_archivos\image001.png" />
+                    <File name="assets\html\lesson-6.7_archivos\themedata.thmx" />
+                </Folder>
+                <Folder name="lesson-6.8_archivos">
+                    <File name="assets\html\lesson-6.8_archivos\colorschememapping.xml" />
+                    <File name="assets\html\lesson-6.8_archivos\filelist.xml" />
+                    <File name="assets\html\lesson-6.8_archivos\themedata.thmx" />
                 </Folder>
                 <File name="assets\html\lesson-1.1.html" />
                 <File name="assets\html\lesson-1.2.html" />
@@ -361,19 +369,11 @@
             <Folder name="img">
                 <File name="assets\img\analytics.png" />
                 <File name="assets\img\appengine.png" />
-                <File name="assets\img\badge1.png" />
-                <File name="assets\img\badge10.png" />
-                <File name="assets\img\badge2.png" />
-                <File name="assets\img\badge3.png" />
-                <File name="assets\img\badge4.png" />
-                <File name="assets\img\badge5.png" />
-                <File name="assets\img\badge6.png" />
-                <File name="assets\img\badge7.png" />
-                <File name="assets\img\badge8.png" />
-                <File name="assets\img\badge_blank.jpg" />
                 <File name="assets\img\banner1.jpg" />
                 <File name="assets\img\banner1.png" />
+                <File name="assets\img\banner_cpp_cli.jpg" />
                 <File name="assets\img\favicon.ico" />
+                <File name="assets\img\Fin.png" />
                 <File name="assets\img\Image0.1.png" />
                 <File name="assets\img\Image0.8.png" />
                 <File name="assets\img\Image0.9.png" />
@@ -392,8 +392,6 @@
                 <File name="assets\img\Mid.png" />
                 <File name="assets\img\mooc - copia.png" />
                 <File name="assets\img\mooc.png" />
-                <File name="assets\img\non.png" />
-                <File name="assets\img\None.png" />
                 <File name="assets\img\Pre.png" />
                 <File name="assets\img\your_logo_here.png" />
             </Folder>
@@ -413,21 +411,15 @@
                 <File name="assets\js\activity-3.2.js" />
                 <File name="assets\js\activity-3.3.js" />
                 <File name="assets\js\activity-3.4.js" />
-                <File name="assets\js\activity-4.1.js" />
                 <File name="assets\js\activity-4.10.js" />
-                <File name="assets\js\activity-4.2.js" />
-                <File name="assets\js\activity-4.3.js" />
-                <File name="assets\js\activity-4.4.js" />
                 <File name="assets\js\activity-4.5.js" />
                 <File name="assets\js\activity-4.8.js" />
                 <File name="assets\js\activity-4.9.js" />
-                <File name="assets\js\activity-5.1.js" />
                 <File name="assets\js\activity-5.2.js" />
                 <File name="assets\js\activity-5.6.js" />
                 <File name="assets\js\activity-5.7.js" />
-                <File name="assets\js\activity-6.1.js" />
-                <File name="assets\js\activity-6.2.js" />
                 <File name="assets\js\activity-6.3.js" />
+                <File name="assets\js\activity-6.7.js" />
                 <File name="assets\js\activity-examples.js" />
                 <File name="assets\js\assessment-Fin.js" />
                 <File name="assets\js\assessment-Mid.js" />
@@ -466,375 +458,101 @@
                     <File name="cpp_cli\assets\css\main.css" />
                 </Folder>
                 <Folder name="html">
-                    <Folder name="Lesson 1.1_archivos">
-                        <File name="cpp_cli\assets\html\Lesson 1.1_archivos\image001.png" />
-                        <File name="cpp_cli\assets\html\Lesson 1.1_archivos\image002.png" />
-                        <File name="cpp_cli\assets\html\Lesson 1.1_archivos\image003.gif" />
-                        <File name="cpp_cli\assets\html\Lesson 1.1_archivos\image003.jpg" />
-                        <File name="cpp_cli\assets\html\Lesson 1.1_archivos\image004.gif" />
-                        <File name="cpp_cli\assets\html\Lesson 1.1_archivos\image004.png" />
-                        <File name="cpp_cli\assets\html\Lesson 1.1_archivos\image005.png" />
+                    <Folder name="lesson10_archivos">
+                        <File name="cpp_cli\assets\html\lesson10_archivos\colorschememapping.xml" />
+                        <File name="cpp_cli\assets\html\lesson10_archivos\filelist.xml" />
+                        <File name="cpp_cli\assets\html\lesson10_archivos\image001.png" />
+                        <File name="cpp_cli\assets\html\lesson10_archivos\image002.png" />
+                        <File name="cpp_cli\assets\html\lesson10_archivos\themedata.thmx" />
                     </Folder>
-                    <Folder name="lesson-1.1_archivos">
-                        <File name="cpp_cli\assets\html\lesson-1.1_archivos\colorschememapping.xml" />
-                        <File name="cpp_cli\assets\html\lesson-1.1_archivos\filelist.xml" />
-                        <File name="cpp_cli\assets\html\lesson-1.1_archivos\themedata.thmx" />
+                    <Folder name="lesson11_archivos">
+                        <File name="cpp_cli\assets\html\lesson11_archivos\colorschememapping.xml" />
+                        <File name="cpp_cli\assets\html\lesson11_archivos\filelist.xml" />
+                        <File name="cpp_cli\assets\html\lesson11_archivos\themedata.thmx" />
                     </Folder>
-                    <Folder name="lesson-1.2_archivos">
-                        <File name="cpp_cli\assets\html\lesson-1.2_archivos\colorschememapping.xml" />
-                        <File name="cpp_cli\assets\html\lesson-1.2_archivos\filelist.xml" />
-                        <File name="cpp_cli\assets\html\lesson-1.2_archivos\themedata.thmx" />
+                    <Folder name="lesson12_archivos">
+                        <File name="cpp_cli\assets\html\lesson12_archivos\colorschememapping.xml" />
+                        <File name="cpp_cli\assets\html\lesson12_archivos\filelist.xml" />
+                        <File name="cpp_cli\assets\html\lesson12_archivos\image001.png" />
+                        <File name="cpp_cli\assets\html\lesson12_archivos\image002.jpg" />
+                        <File name="cpp_cli\assets\html\lesson12_archivos\image003.png" />
+                        <File name="cpp_cli\assets\html\lesson12_archivos\image004.jpg" />
+                        <File name="cpp_cli\assets\html\lesson12_archivos\image005.png" />
+                        <File name="cpp_cli\assets\html\lesson12_archivos\image006.jpg" />
+                        <File name="cpp_cli\assets\html\lesson12_archivos\image007.png" />
+                        <File name="cpp_cli\assets\html\lesson12_archivos\image008.jpg" />
+                        <File name="cpp_cli\assets\html\lesson12_archivos\themedata.thmx" />
                     </Folder>
-                    <Folder name="lesson-1.3_archivos">
-                        <File name="cpp_cli\assets\html\lesson-1.3_archivos\colorschememapping.xml" />
-                        <File name="cpp_cli\assets\html\lesson-1.3_archivos\filelist.xml" />
-                        <File name="cpp_cli\assets\html\lesson-1.3_archivos\image001.png" />
-                        <File name="cpp_cli\assets\html\lesson-1.3_archivos\image002.gif" />
-                        <File name="cpp_cli\assets\html\lesson-1.3_archivos\item0009.xml" />
-                        <File name="cpp_cli\assets\html\lesson-1.3_archivos\preview.wmf" />
-                        <File name="cpp_cli\assets\html\lesson-1.3_archivos\props010.xml" />
-                        <File name="cpp_cli\assets\html\lesson-1.3_archivos\themedata.thmx" />
+                    <Folder name="lesson1_archivos">
+                        <File name="cpp_cli\assets\html\lesson1_archivos\colorschememapping.xml" />
+                        <File name="cpp_cli\assets\html\lesson1_archivos\filelist.xml" />
+                        <File name="cpp_cli\assets\html\lesson1_archivos\image001.jpg" />
+                        <File name="cpp_cli\assets\html\lesson1_archivos\themedata.thmx" />
                     </Folder>
-                    <Folder name="lesson-1.4_archivos">
-                        <File name="cpp_cli\assets\html\lesson-1.4_archivos\colorschememapping.xml" />
-                        <File name="cpp_cli\assets\html\lesson-1.4_archivos\filelist.xml" />
-                        <File name="cpp_cli\assets\html\lesson-1.4_archivos\preview.wmf" />
-                        <File name="cpp_cli\assets\html\lesson-1.4_archivos\themedata.thmx" />
+                    <Folder name="lesson2_archivos">
+                        <File name="cpp_cli\assets\html\lesson2_archivos\colorschememapping.xml" />
+                        <File name="cpp_cli\assets\html\lesson2_archivos\filelist.xml" />
+                        <File name="cpp_cli\assets\html\lesson2_archivos\themedata.thmx" />
                     </Folder>
-                    <Folder name="lesson-2.1_archivos">
-                        <File name="cpp_cli\assets\html\lesson-2.1_archivos\image001.jpg" />
-                        <File name="cpp_cli\assets\html\lesson-2.1_archivos\image002.jpg" />
+                    <Folder name="lesson3_archivos">
+                        <File name="cpp_cli\assets\html\lesson3_archivos\colorschememapping.xml" />
+                        <File name="cpp_cli\assets\html\lesson3_archivos\filelist.xml" />
+                        <File name="cpp_cli\assets\html\lesson3_archivos\image001.png" />
+                        <File name="cpp_cli\assets\html\lesson3_archivos\themedata.thmx" />
                     </Folder>
-                    <Folder name="lesson-2.2_archivos">
-                        <File name="cpp_cli\assets\html\lesson-2.2_archivos\colorschememapping.xml" />
-                        <File name="cpp_cli\assets\html\lesson-2.2_archivos\filelist.xml" />
-                        <File name="cpp_cli\assets\html\lesson-2.2_archivos\image001.jpg" />
-                        <File name="cpp_cli\assets\html\lesson-2.2_archivos\image002.gif" />
-                        <File name="cpp_cli\assets\html\lesson-2.2_archivos\image003.jpg" />
-                        <File name="cpp_cli\assets\html\lesson-2.2_archivos\themedata.thmx" />
+                    <Folder name="lesson4_archivos">
+                        <File name="cpp_cli\assets\html\lesson4_archivos\colorschememapping.xml" />
+                        <File name="cpp_cli\assets\html\lesson4_archivos\filelist.xml" />
+                        <File name="cpp_cli\assets\html\lesson4_archivos\image001.png" />
+                        <File name="cpp_cli\assets\html\lesson4_archivos\themedata.thmx" />
                     </Folder>
-                    <Folder name="lesson-2.3_archivos">
-                        <File name="cpp_cli\assets\html\lesson-2.3_archivos\colorschememapping.xml" />
-                        <File name="cpp_cli\assets\html\lesson-2.3_archivos\filelist.xml" />
-                        <File name="cpp_cli\assets\html\lesson-2.3_archivos\image001.jpg" />
-                        <File name="cpp_cli\assets\html\lesson-2.3_archivos\image002.jpg" />
-                        <File name="cpp_cli\assets\html\lesson-2.3_archivos\image003.jpg" />
-                        <File name="cpp_cli\assets\html\lesson-2.3_archivos\image004.jpg" />
-                        <File name="cpp_cli\assets\html\lesson-2.3_archivos\image005.jpg" />
-                        <File name="cpp_cli\assets\html\lesson-2.3_archivos\image006.png" />
-                        <File name="cpp_cli\assets\html\lesson-2.3_archivos\image007.jpg" />
-                        <File name="cpp_cli\assets\html\lesson-2.3_archivos\image008.jpg" />
-                        <File name="cpp_cli\assets\html\lesson-2.3_archivos\image009.png" />
-                        <File name="cpp_cli\assets\html\lesson-2.3_archivos\image010.gif" />
-                        <File name="cpp_cli\assets\html\lesson-2.3_archivos\image011.jpg" />
-                        <File name="cpp_cli\assets\html\lesson-2.3_archivos\image012.jpg" />
-                        <File name="cpp_cli\assets\html\lesson-2.3_archivos\image013.jpg" />
-                        <File name="cpp_cli\assets\html\lesson-2.3_archivos\themedata.thmx" />
+                    <Folder name="lesson5_archivos">
+                        <File name="cpp_cli\assets\html\lesson5_archivos\colorschememapping.xml" />
+                        <File name="cpp_cli\assets\html\lesson5_archivos\filelist.xml" />
+                        <File name="cpp_cli\assets\html\lesson5_archivos\themedata.thmx" />
                     </Folder>
-                    <Folder name="lesson-2.4_archivos">
-                        <File name="cpp_cli\assets\html\lesson-2.4_archivos\image001.png" />
+                    <Folder name="lesson6_archivos">
+                        <File name="cpp_cli\assets\html\lesson6_archivos\colorschememapping.xml" />
+                        <File name="cpp_cli\assets\html\lesson6_archivos\filelist.xml" />
+                        <File name="cpp_cli\assets\html\lesson6_archivos\image001.jpg" />
+                        <File name="cpp_cli\assets\html\lesson6_archivos\themedata.thmx" />
                     </Folder>
-                    <Folder name="lesson-2.5_archivos">
-                        <File name="cpp_cli\assets\html\lesson-2.5_archivos\colorschememapping.xml" />
-                        <File name="cpp_cli\assets\html\lesson-2.5_archivos\filelist.xml" />
-                        <File name="cpp_cli\assets\html\lesson-2.5_archivos\image001.jpg" />
-                        <File name="cpp_cli\assets\html\lesson-2.5_archivos\image002.jpg" />
-                        <File name="cpp_cli\assets\html\lesson-2.5_archivos\preview.wmf" />
-                        <File name="cpp_cli\assets\html\lesson-2.5_archivos\themedata.thmx" />
+                    <Folder name="lesson7_archivos">
+                        <File name="cpp_cli\assets\html\lesson7_archivos\colorschememapping.xml" />
+                        <File name="cpp_cli\assets\html\lesson7_archivos\filelist.xml" />
+                        <File name="cpp_cli\assets\html\lesson7_archivos\themedata.thmx" />
                     </Folder>
-                    <Folder name="lesson-2.6_archivos">
-                        <File name="cpp_cli\assets\html\lesson-2.6_archivos\image001.jpg" />
-                        <File name="cpp_cli\assets\html\lesson-2.6_archivos\image002.jpg" />
+                    <Folder name="lesson8_archivos">
+                        <File name="cpp_cli\assets\html\lesson8_archivos\colorschememapping.xml" />
+                        <File name="cpp_cli\assets\html\lesson8_archivos\filelist.xml" />
+                        <File name="cpp_cli\assets\html\lesson8_archivos\themedata.thmx" />
                     </Folder>
-                    <Folder name="lesson-3.1_archivos">
-                        <File name="cpp_cli\assets\html\lesson-3.1_archivos\colorschememapping.xml" />
-                        <File name="cpp_cli\assets\html\lesson-3.1_archivos\filelist.xml" />
-                        <File name="cpp_cli\assets\html\lesson-3.1_archivos\image001.jpg" />
-                        <File name="cpp_cli\assets\html\lesson-3.1_archivos\image002.jpg" />
-                        <File name="cpp_cli\assets\html\lesson-3.1_archivos\themedata.thmx" />
+                    <Folder name="lesson9_archivos">
+                        <File name="cpp_cli\assets\html\lesson9_archivos\colorschememapping.xml" />
+                        <File name="cpp_cli\assets\html\lesson9_archivos\filelist.xml" />
+                        <File name="cpp_cli\assets\html\lesson9_archivos\themedata.thmx" />
                     </Folder>
-                    <Folder name="lesson-3.2_archivos">
-                        <File name="cpp_cli\assets\html\lesson-3.2_archivos\colorschememapping.xml" />
-                        <File name="cpp_cli\assets\html\lesson-3.2_archivos\filelist.xml" />
-                        <File name="cpp_cli\assets\html\lesson-3.2_archivos\image001.png" />
-                        <File name="cpp_cli\assets\html\lesson-3.2_archivos\image002.png" />
-                        <File name="cpp_cli\assets\html\lesson-3.2_archivos\image003.png" />
-                        <File name="cpp_cli\assets\html\lesson-3.2_archivos\themedata.thmx" />
-                    </Folder>
-                    <Folder name="lesson-3.3_archivos">
-                        <File name="cpp_cli\assets\html\lesson-3.3_archivos\colorschememapping.xml" />
-                        <File name="cpp_cli\assets\html\lesson-3.3_archivos\filelist.xml" />
-                        <File name="cpp_cli\assets\html\lesson-3.3_archivos\image001.png" />
-                        <File name="cpp_cli\assets\html\lesson-3.3_archivos\image002.png" />
-                        <File name="cpp_cli\assets\html\lesson-3.3_archivos\image003.png" />
-                        <File name="cpp_cli\assets\html\lesson-3.3_archivos\image004.png" />
-                        <File name="cpp_cli\assets\html\lesson-3.3_archivos\image005.png" />
-                        <File name="cpp_cli\assets\html\lesson-3.3_archivos\image006.png" />
-                        <File name="cpp_cli\assets\html\lesson-3.3_archivos\image007.png" />
-                        <File name="cpp_cli\assets\html\lesson-3.3_archivos\image008.png" />
-                        <File name="cpp_cli\assets\html\lesson-3.3_archivos\image009.png" />
-                        <File name="cpp_cli\assets\html\lesson-3.3_archivos\image010.png" />
-                        <File name="cpp_cli\assets\html\lesson-3.3_archivos\image011.png" />
-                        <File name="cpp_cli\assets\html\lesson-3.3_archivos\image012.png" />
-                        <File name="cpp_cli\assets\html\lesson-3.3_archivos\themedata.thmx" />
-                    </Folder>
-                    <Folder name="lesson-3.4_archivos">
-                        <File name="cpp_cli\assets\html\lesson-3.4_archivos\colorschememapping.xml" />
-                        <File name="cpp_cli\assets\html\lesson-3.4_archivos\filelist.xml" />
-                        <File name="cpp_cli\assets\html\lesson-3.4_archivos\image001.png" />
-                        <File name="cpp_cli\assets\html\lesson-3.4_archivos\themedata.thmx" />
-                    </Folder>
-                    <Folder name="lesson-4.10_archivos">
-                        <File name="cpp_cli\assets\html\lesson-4.10_archivos\colorschememapping.xml" />
-                        <File name="cpp_cli\assets\html\lesson-4.10_archivos\filelist.xml" />
-                        <File name="cpp_cli\assets\html\lesson-4.10_archivos\image001.png" />
-                        <File name="cpp_cli\assets\html\lesson-4.10_archivos\image002.png" />
-                        <File name="cpp_cli\assets\html\lesson-4.10_archivos\image003.png" />
-                        <File name="cpp_cli\assets\html\lesson-4.10_archivos\themedata.thmx" />
-                    </Folder>
-                    <Folder name="lesson-4.11_archivos">
-                        <File name="cpp_cli\assets\html\lesson-4.11_archivos\colorschememapping.xml" />
-                        <File name="cpp_cli\assets\html\lesson-4.11_archivos\filelist.xml" />
-                        <File name="cpp_cli\assets\html\lesson-4.11_archivos\themedata.thmx" />
-                    </Folder>
-                    <Folder name="lesson-4.12_archivos">
-                        <File name="cpp_cli\assets\html\lesson-4.12_archivos\colorschememapping.xml" />
-                        <File name="cpp_cli\assets\html\lesson-4.12_archivos\filelist.xml" />
-                        <File name="cpp_cli\assets\html\lesson-4.12_archivos\image001.png" />
-                        <File name="cpp_cli\assets\html\lesson-4.12_archivos\image002.gif" />
-                        <File name="cpp_cli\assets\html\lesson-4.12_archivos\themedata.thmx" />
-                    </Folder>
-                    <Folder name="lesson-4.13_archivos">
-                        <File name="cpp_cli\assets\html\lesson-4.13_archivos\colorschememapping.xml" />
-                        <File name="cpp_cli\assets\html\lesson-4.13_archivos\filelist.xml" />
-                        <File name="cpp_cli\assets\html\lesson-4.13_archivos\image001.jpg" />
-                        <File name="cpp_cli\assets\html\lesson-4.13_archivos\themedata.thmx" />
-                    </Folder>
-                    <Folder name="lesson-4.14_archivos">
-                        <File name="cpp_cli\assets\html\lesson-4.14_archivos\colorschememapping.xml" />
-                        <File name="cpp_cli\assets\html\lesson-4.14_archivos\filelist.xml" />
-                        <File name="cpp_cli\assets\html\lesson-4.14_archivos\image001.jpg" />
-                        <File name="cpp_cli\assets\html\lesson-4.14_archivos\image002.jpg" />
-                        <File name="cpp_cli\assets\html\lesson-4.14_archivos\themedata.thmx" />
-                    </Folder>
-                    <Folder name="lesson-4.15_archivos">
-                        <File name="cpp_cli\assets\html\lesson-4.15_archivos\colorschememapping.xml" />
-                        <File name="cpp_cli\assets\html\lesson-4.15_archivos\filelist.xml" />
-                        <File name="cpp_cli\assets\html\lesson-4.15_archivos\image001.png" />
-                        <File name="cpp_cli\assets\html\lesson-4.15_archivos\image002.png" />
-                        <File name="cpp_cli\assets\html\lesson-4.15_archivos\image003.png" />
-                        <File name="cpp_cli\assets\html\lesson-4.15_archivos\image004.png" />
-                        <File name="cpp_cli\assets\html\lesson-4.15_archivos\themedata.thmx" />
-                    </Folder>
-                    <Folder name="lesson-4.16_archivos">
-                        <File name="cpp_cli\assets\html\lesson-4.16_archivos\colorschememapping.xml" />
-                        <File name="cpp_cli\assets\html\lesson-4.16_archivos\filelist.xml" />
-                        <File name="cpp_cli\assets\html\lesson-4.16_archivos\image001.png" />
-                        <File name="cpp_cli\assets\html\lesson-4.16_archivos\image002.png" />
-                        <File name="cpp_cli\assets\html\lesson-4.16_archivos\image003.png" />
-                        <File name="cpp_cli\assets\html\lesson-4.16_archivos\themedata.thmx" />
-                    </Folder>
-                    <Folder name="lesson-4.1_archivos">
-                        <File name="cpp_cli\assets\html\lesson-4.1_archivos\colorschememapping.xml" />
-                        <File name="cpp_cli\assets\html\lesson-4.1_archivos\filelist.xml" />
-                        <File name="cpp_cli\assets\html\lesson-4.1_archivos\image001.jpg" />
-                        <File name="cpp_cli\assets\html\lesson-4.1_archivos\themedata.thmx" />
-                    </Folder>
-                    <Folder name="lesson-4.2_archivos">
-                        <File name="cpp_cli\assets\html\lesson-4.2_archivos\colorschememapping.xml" />
-                        <File name="cpp_cli\assets\html\lesson-4.2_archivos\filelist.xml" />
-                        <File name="cpp_cli\assets\html\lesson-4.2_archivos\themedata.thmx" />
-                    </Folder>
-                    <Folder name="lesson-4.3_archivos">
-                        <File name="cpp_cli\assets\html\lesson-4.3_archivos\colorschememapping.xml" />
-                        <File name="cpp_cli\assets\html\lesson-4.3_archivos\filelist.xml" />
-                        <File name="cpp_cli\assets\html\lesson-4.3_archivos\image001.png" />
-                        <File name="cpp_cli\assets\html\lesson-4.3_archivos\themedata.thmx" />
-                    </Folder>
-                    <Folder name="lesson-4.4_archivos">
-                        <File name="cpp_cli\assets\html\lesson-4.4_archivos\colorschememapping.xml" />
-                        <File name="cpp_cli\assets\html\lesson-4.4_archivos\filelist.xml" />
-                        <File name="cpp_cli\assets\html\lesson-4.4_archivos\image001.png" />
-                        <File name="cpp_cli\assets\html\lesson-4.4_archivos\themedata.thmx" />
-                    </Folder>
-                    <Folder name="lesson-4.5_archivos">
-                        <File name="cpp_cli\assets\html\lesson-4.5_archivos\colorschememapping.xml" />
-                        <File name="cpp_cli\assets\html\lesson-4.5_archivos\filelist.xml" />
-                        <File name="cpp_cli\assets\html\lesson-4.5_archivos\image001.png" />
-                        <File name="cpp_cli\assets\html\lesson-4.5_archivos\image002.png" />
-                        <File name="cpp_cli\assets\html\lesson-4.5_archivos\image003.png" />
-                        <File name="cpp_cli\assets\html\lesson-4.5_archivos\themedata.thmx" />
-                    </Folder>
-                    <Folder name="lesson-4.6_archivos">
-                        <File name="cpp_cli\assets\html\lesson-4.6_archivos\colorschememapping.xml" />
-                        <File name="cpp_cli\assets\html\lesson-4.6_archivos\filelist.xml" />
-                        <File name="cpp_cli\assets\html\lesson-4.6_archivos\image001.png" />
-                        <File name="cpp_cli\assets\html\lesson-4.6_archivos\image002.png" />
-                        <File name="cpp_cli\assets\html\lesson-4.6_archivos\image003.png" />
-                        <File name="cpp_cli\assets\html\lesson-4.6_archivos\themedata.thmx" />
-                    </Folder>
-                    <Folder name="lesson-4.7_archivos">
-                        <File name="cpp_cli\assets\html\lesson-4.7_archivos\colorschememapping.xml" />
-                        <File name="cpp_cli\assets\html\lesson-4.7_archivos\filelist.xml" />
-                        <File name="cpp_cli\assets\html\lesson-4.7_archivos\image001.jpg" />
-                        <File name="cpp_cli\assets\html\lesson-4.7_archivos\themedata.thmx" />
-                    </Folder>
-                    <Folder name="lesson-4.8_archivos">
-                        <File name="cpp_cli\assets\html\lesson-4.8_archivos\colorschememapping.xml" />
-                        <File name="cpp_cli\assets\html\lesson-4.8_archivos\filelist.xml" />
-                        <File name="cpp_cli\assets\html\lesson-4.8_archivos\image001.jpg" />
-                        <File name="cpp_cli\assets\html\lesson-4.8_archivos\image001.png" />
-                        <File name="cpp_cli\assets\html\lesson-4.8_archivos\image002.jpg" />
-                        <File name="cpp_cli\assets\html\lesson-4.8_archivos\image002.png" />
-                        <File name="cpp_cli\assets\html\lesson-4.8_archivos\image003.jpg" />
-                        <File name="cpp_cli\assets\html\lesson-4.8_archivos\image003.png" />
-                        <File name="cpp_cli\assets\html\lesson-4.8_archivos\image004.jpg" />
-                        <File name="cpp_cli\assets\html\lesson-4.8_archivos\themedata.thmx" />
-                    </Folder>
-                    <Folder name="lesson-4.9_archivos">
-                        <File name="cpp_cli\assets\html\lesson-4.9_archivos\colorschememapping.xml" />
-                        <File name="cpp_cli\assets\html\lesson-4.9_archivos\filelist.xml" />
-                        <File name="cpp_cli\assets\html\lesson-4.9_archivos\image001.png" />
-                        <File name="cpp_cli\assets\html\lesson-4.9_archivos\image002.png" />
-                        <File name="cpp_cli\assets\html\lesson-4.9_archivos\image003.png" />
-                        <File name="cpp_cli\assets\html\lesson-4.9_archivos\image004.png" />
-                        <File name="cpp_cli\assets\html\lesson-4.9_archivos\themedata.thmx" />
-                    </Folder>
-                    <Folder name="lesson-5.1_archivos">
-                        <File name="cpp_cli\assets\html\lesson-5.1_archivos\colorschememapping.xml" />
-                        <File name="cpp_cli\assets\html\lesson-5.1_archivos\filelist.xml" />
-                        <File name="cpp_cli\assets\html\lesson-5.1_archivos\image001.jpg" />
-                        <File name="cpp_cli\assets\html\lesson-5.1_archivos\image002.jpg" />
-                        <File name="cpp_cli\assets\html\lesson-5.1_archivos\image003.jpg" />
-                        <File name="cpp_cli\assets\html\lesson-5.1_archivos\image004.jpg" />
-                        <File name="cpp_cli\assets\html\lesson-5.1_archivos\image005.jpg" />
-                        <File name="cpp_cli\assets\html\lesson-5.1_archivos\image006.jpg" />
-                        <File name="cpp_cli\assets\html\lesson-5.1_archivos\themedata.thmx" />
-                    </Folder>
-                    <Folder name="lesson-5.2_archivos">
-                        <File name="cpp_cli\assets\html\lesson-5.2_archivos\colorschememapping.xml" />
-                        <File name="cpp_cli\assets\html\lesson-5.2_archivos\filelist.xml" />
-                        <File name="cpp_cli\assets\html\lesson-5.2_archivos\themedata.thmx" />
-                    </Folder>
-                    <Folder name="lesson-5.3_archivos">
-                        <File name="cpp_cli\assets\html\lesson-5.3_archivos\colorschememapping.xml" />
-                        <File name="cpp_cli\assets\html\lesson-5.3_archivos\filelist.xml" />
-                        <File name="cpp_cli\assets\html\lesson-5.3_archivos\image001.jpg" />
-                        <File name="cpp_cli\assets\html\lesson-5.3_archivos\themedata.thmx" />
-                    </Folder>
-                    <Folder name="lesson-5.4_archivos">
-                        <File name="cpp_cli\assets\html\lesson-5.4_archivos\colorschememapping.xml" />
-                        <File name="cpp_cli\assets\html\lesson-5.4_archivos\filelist.xml" />
-                        <File name="cpp_cli\assets\html\lesson-5.4_archivos\image001.png" />
-                        <File name="cpp_cli\assets\html\lesson-5.4_archivos\themedata.thmx" />
-                    </Folder>
-                    <Folder name="lesson-5.5_archivos">
-                        <File name="cpp_cli\assets\html\lesson-5.5_archivos\colorschememapping.xml" />
-                        <File name="cpp_cli\assets\html\lesson-5.5_archivos\filelist.xml" />
-                        <File name="cpp_cli\assets\html\lesson-5.5_archivos\image001.jpg" />
-                        <File name="cpp_cli\assets\html\lesson-5.5_archivos\image002.jpg" />
-                        <File name="cpp_cli\assets\html\lesson-5.5_archivos\themedata.thmx" />
-                    </Folder>
-                    <Folder name="lesson-5.6_archivos">
-                        <File name="cpp_cli\assets\html\lesson-5.6_archivos\colorschememapping.xml" />
-                        <File name="cpp_cli\assets\html\lesson-5.6_archivos\filelist.xml" />
-                        <File name="cpp_cli\assets\html\lesson-5.6_archivos\image001.jpg" />
-                        <File name="cpp_cli\assets\html\lesson-5.6_archivos\image002.jpg" />
-                        <File name="cpp_cli\assets\html\lesson-5.6_archivos\image003.jpg" />
-                        <File name="cpp_cli\assets\html\lesson-5.6_archivos\image004.jpg" />
-                        <File name="cpp_cli\assets\html\lesson-5.6_archivos\image005.png" />
-                        <File name="cpp_cli\assets\html\lesson-5.6_archivos\image006.jpg" />
-                        <File name="cpp_cli\assets\html\lesson-5.6_archivos\themedata.thmx" />
-                    </Folder>
-                    <Folder name="lesson-5.7_archivos">
-                        <File name="cpp_cli\assets\html\lesson-5.7_archivos\colorschememapping.xml" />
-                        <File name="cpp_cli\assets\html\lesson-5.7_archivos\filelist.xml" />
-                        <File name="cpp_cli\assets\html\lesson-5.7_archivos\image001.jpg" />
-                        <File name="cpp_cli\assets\html\lesson-5.7_archivos\image002.jpg" />
-                        <File name="cpp_cli\assets\html\lesson-5.7_archivos\image003.jpg" />
-                        <File name="cpp_cli\assets\html\lesson-5.7_archivos\image004.jpg" />
-                        <File name="cpp_cli\assets\html\lesson-5.7_archivos\preview.wmf" />
-                        <File name="cpp_cli\assets\html\lesson-5.7_archivos\themedata.thmx" />
-                    </Folder>
-                    <Folder name="lesson-5.8_archivos">
-                        <File name="cpp_cli\assets\html\lesson-5.8_archivos\colorschememapping.xml" />
-                        <File name="cpp_cli\assets\html\lesson-5.8_archivos\filelist.xml" />
-                        <File name="cpp_cli\assets\html\lesson-5.8_archivos\image001.png" />
-                        <File name="cpp_cli\assets\html\lesson-5.8_archivos\themedata.thmx" />
-                    </Folder>
-                    <Folder name="lesson-5.9_archivos">
-                        <File name="cpp_cli\assets\html\lesson-5.9_archivos\colorschememapping.xml" />
-                        <File name="cpp_cli\assets\html\lesson-5.9_archivos\filelist.xml" />
-                        <File name="cpp_cli\assets\html\lesson-5.9_archivos\themedata.thmx" />
-                    </Folder>
-                    <Folder name="lesson-6.7_archivos">
-                        <File name="cpp_cli\assets\html\lesson-6.7_archivos\image001.png" />
-                    </Folder>
-                    <File name="cpp_cli\assets\html\lesson-1.1.html" />
-                    <File name="cpp_cli\assets\html\lesson-1.2.html" />
-                    <File name="cpp_cli\assets\html\lesson-1.3.html" />
-                    <File name="cpp_cli\assets\html\lesson-1.4.html" />
-                    <File name="cpp_cli\assets\html\lesson-2.1.html" />
-                    <File name="cpp_cli\assets\html\lesson-2.2.html" />
-                    <File name="cpp_cli\assets\html\lesson-2.3.html" />
-                    <File name="cpp_cli\assets\html\lesson-2.4.html" />
-                    <File name="cpp_cli\assets\html\lesson-2.5.html" />
-                    <File name="cpp_cli\assets\html\lesson-2.6.html" />
-                    <File name="cpp_cli\assets\html\lesson-3.1.html" />
-                    <File name="cpp_cli\assets\html\lesson-3.2.html" />
-                    <File name="cpp_cli\assets\html\lesson-3.3.html" />
-                    <File name="cpp_cli\assets\html\lesson-3.4.html" />
-                    <File name="cpp_cli\assets\html\lesson-4.1.html" />
-                    <File name="cpp_cli\assets\html\lesson-4.10.html" />
-                    <File name="cpp_cli\assets\html\lesson-4.11.html" />
-                    <File name="cpp_cli\assets\html\lesson-4.12.html" />
-                    <File name="cpp_cli\assets\html\lesson-4.13.html" />
-                    <File name="cpp_cli\assets\html\lesson-4.14.html" />
-                    <File name="cpp_cli\assets\html\lesson-4.15.html" />
-                    <File name="cpp_cli\assets\html\lesson-4.16.html" />
-                    <File name="cpp_cli\assets\html\lesson-4.2.html" />
-                    <File name="cpp_cli\assets\html\lesson-4.3.html" />
-                    <File name="cpp_cli\assets\html\lesson-4.4.html" />
-                    <File name="cpp_cli\assets\html\lesson-4.5.html" />
-                    <File name="cpp_cli\assets\html\lesson-4.6.html" />
-                    <File name="cpp_cli\assets\html\lesson-4.7.html" />
-                    <File name="cpp_cli\assets\html\lesson-4.8.html" />
-                    <File name="cpp_cli\assets\html\lesson-4.9.html" />
-                    <File name="cpp_cli\assets\html\lesson-5.1.html" />
-                    <File name="cpp_cli\assets\html\lesson-5.2.html" />
-                    <File name="cpp_cli\assets\html\lesson-5.3.html" />
-                    <File name="cpp_cli\assets\html\lesson-5.4.html" />
-                    <File name="cpp_cli\assets\html\lesson-5.5.html" />
-                    <File name="cpp_cli\assets\html\lesson-5.6.html" />
-                    <File name="cpp_cli\assets\html\lesson-5.7.html" />
-                    <File name="cpp_cli\assets\html\lesson-5.8.html" />
-                    <File name="cpp_cli\assets\html\lesson-5.9.html" />
-                    <File name="cpp_cli\assets\html\lesson-6.1.html" />
-                    <File name="cpp_cli\assets\html\lesson-6.2.html" />
-                    <File name="cpp_cli\assets\html\lesson-6.3.html" />
-                    <File name="cpp_cli\assets\html\lesson-6.4.html" />
-                    <File name="cpp_cli\assets\html\lesson-6.5.html" />
-                    <File name="cpp_cli\assets\html\lesson-6.6.html" />
-                    <File name="cpp_cli\assets\html\lesson-6.7.html" />
-                    <File name="cpp_cli\assets\html\lesson-6.8.html" />
+                    <File name="cpp_cli\assets\html\lesson1.html" />
+                    <File name="cpp_cli\assets\html\lesson10.html" />
+                    <File name="cpp_cli\assets\html\lesson11.html" />
+                    <File name="cpp_cli\assets\html\lesson12.html" />
+                    <File name="cpp_cli\assets\html\lesson2.html" />
+                    <File name="cpp_cli\assets\html\lesson3.html" />
+                    <File name="cpp_cli\assets\html\lesson4.html" />
+                    <File name="cpp_cli\assets\html\lesson5.html" />
+                    <File name="cpp_cli\assets\html\lesson6.html" />
+                    <File name="cpp_cli\assets\html\lesson7.html" />
+                    <File name="cpp_cli\assets\html\lesson8.html" />
+                    <File name="cpp_cli\assets\html\lesson9.html" />
                     <File name="cpp_cli\assets\html\terminos y condiciones.html" />
                 </Folder>
                 <Folder name="img">
                     <File name="cpp_cli\assets\img\analytics.png" />
                     <File name="cpp_cli\assets\img\appengine.png" />
-                    <File name="cpp_cli\assets\img\badge1.png" />
-                    <File name="cpp_cli\assets\img\badge10.png" />
-                    <File name="cpp_cli\assets\img\badge2.png" />
-                    <File name="cpp_cli\assets\img\badge3.png" />
-                    <File name="cpp_cli\assets\img\badge4.png" />
-                    <File name="cpp_cli\assets\img\badge5.png" />
-                    <File name="cpp_cli\assets\img\badge6.png" />
-                    <File name="cpp_cli\assets\img\badge7.png" />
-                    <File name="cpp_cli\assets\img\badge8.png" />
-                    <File name="cpp_cli\assets\img\badge_blank.jpg" />
                     <File name="cpp_cli\assets\img\banner1.jpg" />
                     <File name="cpp_cli\assets\img\banner1.png" />
                     <File name="cpp_cli\assets\img\favicon.ico" />
+                    <File name="cpp_cli\assets\img\Fin.png" />
                     <File name="cpp_cli\assets\img\Image0.1.png" />
                     <File name="cpp_cli\assets\img\Image0.8.png" />
                     <File name="cpp_cli\assets\img\Image0.9.png" />

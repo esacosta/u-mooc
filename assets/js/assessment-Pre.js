@@ -17,8 +17,8 @@ var assessment = {
      choices: [correct("Si"), "No", "No lo se"]
     },
 
-    {questionHTML: '¿Quén es el fundador de Khan Academy? (Todo en Mayusculas)<p><img src="http://www.seti.cl/img/khan-academy.png" alt="Khan Academy" height=100 width=100 title="Khan Academy">',
-     correctAnswerString: 'SALMAN KHAN'
+    {questionHTML: '¿Quén es el fundador de Khan Academy?<p><img src="http://www.seti.cl/img/khan-academy.png" alt="Khan Academy" height=100 width=100 title="Khan Academy">',
+     correctAnswerString: '/SALMAN KHAN/i'
     },
 
     {questionHTML: '¿Cual de estas respuestas no es un inconveniente de los MOOC?',

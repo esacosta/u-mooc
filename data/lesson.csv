@@ -43,10 +43,11 @@ unit_id,unit_title,lesson_id,lesson_title,lesson_activity,lesson_activity_name,l
 
 6,Evaluar el curso,1,Introducción,,Actividad de la Lección 6.1,/assets/html/lesson-6.1.html,,*
 6,Evaluar el curso,2,Evaluaciones de los estudiantes,,Actividad de la Lección 6.2,/assets/html/lesson-6.2.html,,*
-6,Evaluar el curso,3,Alcance y compromiso,,Actividad de la Lección 6.3,/assets/html/lesson-6.3.html,,*
+6,Evaluar el curso,3,Alcance y compromiso,yes,Actividad de la Lección 6.3,/assets/html/lesson-6.3.html,,*
 6,Evaluar el curso,4,Ejemplo de los datos de ejemplo y compromiso,,Actividad de la Lección 6.4,/assets/html/lesson-6.4.html,,*
 6,Evaluar el curso,5,Satisfacción de los estudiantes,,Actividad de la Lección 6.5,/assets/html/lesson-6.5.html,,*
-6,Evaluar el curso,6,Ejemplo de estudio post-curso,,Actividad de la Lección 6.6,/assets/html/lesson-6.6.html,,*
-6,Evaluar el curso,7,Combinar evaluación y alcance de datos,,Actividad de la Lección 6.7,/assets/html/lesson-6.7.html,,*
-6,Evaluar el curso,8,Exportar los datos del curso,,Actividad de la Lección 6.8,/assets/html/lesson-6.8.html,,*
+6,Evaluar el curso,6,Combinar evaluación y alcance de datos,,Actividad de la Lección 6.7,/assets/html/lesson-6.7.html,,*
+6,Evaluar el curso,7,Exportar los datos del curso,yes,Actividad de la Lección 6.8,/assets/html/lesson-6.8.html,,*
+
+7,Practicum,1,Obtener el certificado,,,,,"El certificado final se enviar&aacute; al alumno con sus datos, la notas parciales y finales obtenidas, etc.<br>El único requisito indispensable para obtener el certificado es la realización de una practica, es decir, ser capaz de montar un curso en su ordenador. <b>No es necesario subirlo a appspot.com</b> Si usted consigue crear un curso, puede enviarlo de las siguientes formas:<ul><li>En un archivo .zip</li><li>Enviando el enlace de su ubicación para visualizarlo.</li></ul>. El curso puede versar sobre cualquier tema, y podrá ser incluido en la lista de cursos para que otros usuarios se benefien de su trabajo. Debe contar con al menos:<ul><li>Dos unidades</li><li>Evaluaciones Pre, Mid, y Fin</li><li>Al menos dos lecciones por unidad.</li><li>Y una activad por unidad como mínimo</li></ul><p><center><img style='width:50%' src=http://wiki.course-builder.googlecode.com/git/images/certificate.png></p><b>&Aacute;nimo, no queda nada, y el certificado es completamente gratuito.</b></center>"
 
