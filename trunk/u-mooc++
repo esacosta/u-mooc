@@ -2,7 +2,12 @@
     <Project name="u-mooc">
         <Folder name="assets">
             <Folder name="css">
+                <File name="assets\css\bootstrap-responsive.css" />
+                <File name="assets\css\bootstrap-responsive.min.css" />
+                <File name="assets\css\bootstrap.css" />
+                <File name="assets\css\bootstrap.min.css" />
                 <File name="assets\css\main.css" />
+                <File name="assets\css\normalize.css" />
             </Folder>
             <Folder name="html">
                 <Folder name="Lesson 1.1_archivos">
@@ -306,6 +311,38 @@
                     <File name="assets\html\lesson-5.9_archivos\filelist.xml" />
                     <File name="assets\html\lesson-5.9_archivos\themedata.thmx" />
                 </Folder>
+                <Folder name="lesson-6.1_archivos">
+                    <File name="assets\html\lesson-6.1_archivos\colorschememapping.xml" />
+                    <File name="assets\html\lesson-6.1_archivos\filelist.xml" />
+                    <File name="assets\html\lesson-6.1_archivos\themedata.thmx" />
+                </Folder>
+                <Folder name="lesson-6.2_archivos">
+                    <File name="assets\html\lesson-6.2_archivos\colorschememapping.xml" />
+                    <File name="assets\html\lesson-6.2_archivos\filelist.xml" />
+                    <File name="assets\html\lesson-6.2_archivos\themedata.thmx" />
+                </Folder>
+                <Folder name="lesson-6.3_archivos">
+                    <File name="assets\html\lesson-6.3_archivos\colorschememapping.xml" />
+                    <File name="assets\html\lesson-6.3_archivos\filelist.xml" />
+                    <File name="assets\html\lesson-6.3_archivos\image001.png" />
+                    <File name="assets\html\lesson-6.3_archivos\image002.jpg" />
+                    <File name="assets\html\lesson-6.3_archivos\themedata.thmx" />
+                </Folder>
+                <Folder name="lesson-6.4_archivos">
+                    <File name="assets\html\lesson-6.4_archivos\colorschememapping.xml" />
+                    <File name="assets\html\lesson-6.4_archivos\filelist.xml" />
+                    <File name="assets\html\lesson-6.4_archivos\themedata.thmx" />
+                </Folder>
+                <Folder name="lesson-6.5_archivos">
+                    <File name="assets\html\lesson-6.5_archivos\colorschememapping.xml" />
+                    <File name="assets\html\lesson-6.5_archivos\filelist.xml" />
+                    <File name="assets\html\lesson-6.5_archivos\themedata.thmx" />
+                </Folder>
+                <Folder name="lesson-6.6_archivos">
+                    <File name="assets\html\lesson-6.6_archivos\colorschememapping.xml" />
+                    <File name="assets\html\lesson-6.6_archivos\filelist.xml" />
+                    <File name="assets\html\lesson-6.6_archivos\themedata.thmx" />
+                </Folder>
                 <Folder name="lesson-6.7_archivos">
                     <File name="assets\html\lesson-6.7_archivos\colorschememapping.xml" />
                     <File name="assets\html\lesson-6.7_archivos\filelist.xml" />
@@ -374,6 +411,8 @@
                 <File name="assets\img\banner_cpp_cli.jpg" />
                 <File name="assets\img\favicon.ico" />
                 <File name="assets\img\Fin.png" />
+                <File name="assets\img\glyphicons-halflings-white.png" />
+                <File name="assets\img\glyphicons-halflings.png" />
                 <File name="assets\img\Image0.1.png" />
                 <File name="assets\img\Image0.8.png" />
                 <File name="assets\img\Image0.9.png" />
@@ -411,19 +450,28 @@
                 <File name="assets\js\activity-3.2.js" />
                 <File name="assets\js\activity-3.3.js" />
                 <File name="assets\js\activity-3.4.js" />
+                <File name="assets\js\activity-4.1.js" />
                 <File name="assets\js\activity-4.10.js" />
+                <File name="assets\js\activity-4.2.js" />
+                <File name="assets\js\activity-4.3.js" />
+                <File name="assets\js\activity-4.4.js" />
                 <File name="assets\js\activity-4.5.js" />
                 <File name="assets\js\activity-4.8.js" />
                 <File name="assets\js\activity-4.9.js" />
+                <File name="assets\js\activity-5.1.js" />
                 <File name="assets\js\activity-5.2.js" />
                 <File name="assets\js\activity-5.6.js" />
                 <File name="assets\js\activity-5.7.js" />
+                <File name="assets\js\activity-6.1.js" />
+                <File name="assets\js\activity-6.2.js" />
                 <File name="assets\js\activity-6.3.js" />
                 <File name="assets\js\activity-6.7.js" />
                 <File name="assets\js\activity-examples.js" />
                 <File name="assets\js\assessment-Fin.js" />
                 <File name="assets\js\assessment-Mid.js" />
                 <File name="assets\js\assessment-Pre.js" />
+                <File name="assets\js\bootstrap.js" />
+                <File name="assets\js\bootstrap.min.js" />
                 <File name="assets\js\pdfobject.js" />
             </Folder>
             <Folder name="lib">
