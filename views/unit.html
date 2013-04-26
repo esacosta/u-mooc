@@ -12,11 +12,11 @@
 <div class="gcb-main">
   {% if is_read_write_course and is_course_admin %}
     <a href="dashboard?action=edit_unit&key={{ unit_id }}"
-      class="gcb-button gcb-button-action">Edit unit</a>
+      class="btn btn-primary">Edit unit</a>
     <a href="dashboard?action=edit_lesson&key={{ lesson_id }}"
-      class="gcb-button gcb-button-action">Edit lesson</a>
+      class="btn btn-primary">Edit lesson</a>
   {% endif %}
-  <ul class="gcb-breadcrumb">
+  <ul class="breadcrumb">
     <li><a href="course">{% trans %} Course {% endtrans %}</a></li>
     <li><a href="unit?unit={{ unit.unit_id }}">
       {% trans %} Unit {% endtrans %}{{ unit.index }}</a></li>
@@ -36,7 +36,7 @@
       {% if lesson.lesson_id == lesson_id %}
 
         <div style="padding-bottom: 20px;">
-          <div class="gcb-aside gcb-button-box">
+          <div class="gcb-aside btn-small">
             {% if lesson.now_available or is_course_admin %}
               <div class="gcb-cols">
                 <div class="gcb-col-7">
@@ -66,7 +66,7 @@
                    {% if lesson.video and lesson.notes %}
                 <div class="gcb-col-3">
                   <p style="float:right; margin-top: 0px;">
-                    <a role="button" class="gcb-button gcb-button-primary" href="{{ lesson.notes }}" target="_blank">
+                    <a role="button" class="btn btn-primary" href="{{ lesson.notes }}" target="_blank">
                       {% trans %} Text Version {% endtrans %}
                     </a>
                   </p>
@@ -97,7 +97,7 @@
             {% endif %}
           </div><!-- /gcb-aside -->
 
-          <div class="gcb-button-box">
+          <div class="btn-small">
             <div class="prev-button" style="float:left; margin-top: 0px; margin-left: 40px;">
               {% if back_button_url %}
                 <a href="{{ back_button_url }}">

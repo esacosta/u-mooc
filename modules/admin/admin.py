@@ -296,7 +296,7 @@ class AdminHandler(
             handler = ''
             if onclick:
                 handler = 'onclick="%s"' % onclick
-            return '<a %s class="gcb-button" href="/admin?%s">%s</a>' % (
+            return '<a %s class="btn" href="/admin?%s">%s</a>' % (
                 handler, urllib.urlencode(args), escape(caption))
 
         def get_actions(name, override):
@@ -309,7 +309,7 @@ class AdminHandler(
                 actions.append("""
                     <form action='/admin?%s' method='POST'>
                     <input type="hidden" name="xsrf_token" value="%s">
-                    <button class="gcb-button" type="submit">
+                    <button class="btn" type="submit">
                       Override
                     </button></form>""" % (
                         urllib.urlencode(
@@ -394,7 +394,7 @@ class AdminHandler(
 
         content = []
         content.append(
-            '<a id="add_course" class="gcb-button pull-right" '
+            '<a id="add_course" class="btn pull-right" '
             'role="button" href="admin?action=add_course">Add Course</a>'
             '<div style="clear: both; padding-top: 2px;" />')
         content.append('<h3>All Courses</h3>')
@@ -481,7 +481,7 @@ class AdminHandler(
             <textarea
                 style='width: 95%%; height: 200px;' name='code'></textarea>
             <p align='center'>
-                <button class="gcb-button" type="submit">Run Program</button>
+                <button class="btn" type="submit">Run Program</button>
             </p>
             </form>""" % escape(self.create_xsrf_token('console_run')))
 

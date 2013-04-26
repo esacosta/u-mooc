@@ -21,71 +21,93 @@
         </h1>
         <div class="gcb-main">
           <div style="width: 100%;" class="gcb-nav" id="gcb-nav-y">
-            <ul>
+		   <table class="table table-bordered">
+            <!--<ul>-->
               {% for unit in units %}
                 {% if unit.now_available or is_course_admin %}
                   {% if unit.type == 'A' %}
-                    <li><p class="top_content">
-                      {% if progress[unit.unit_id] > 0 %}
-                        <img src="assets/lib/completed.png"
-                             alt="{% trans %} Completed {% endtrans %}"
-                             title="{% trans %} Completed {% endtrans %}"
-                             class="progress"
-                             id="progress-completed-{{unit.unit_id}}">
-                      {% else %}
-                        <img src="assets/lib/not_started.png"
-                             alt="{% trans %} Not yet submitted {% endtrans %}"
-                             title="{% trans %} Not yet submitted {% endtrans %}"
-                             class="progress"
-                             id="progress-notstarted-{{unit.unit_id}}">
-                      {% endif %}
-                      <a href="assessment?name={{ unit.unit_id }}">{{ unit.title }}</a>
+                    {% if progress[unit.unit_id] > 0 %}
+						<tr class="success">
+							<td>
+								<div class="progress progress-success progress-striped">
+									<div class="bar" style="width: 100%;"></div>
+								</div>
+								<!--<img src="assets/lib/completed.png" alt="{% trans %} Completed {% endtrans %}" title="{% trans %} Completed {% endtrans %}" id="progress-completed-{{unit.unit_id}}">-->
+							</td>
+                    {% else %}
+						<tr class="error">
+							<td>
+								<!--<img src="assets/lib/not_started.png" alt="{% trans %} Not yet submitted {% endtrans %}" title="{% trans %} Not yet submitted {% endtrans %}" id="progress-notstarted-{{unit.unit_id}}">-->
+								<div class="progress progress-danger progress-striped">
+									<div class="bar" style="width: 10%;"></div>
+								</div>
+							</td>
+                    {% endif %}
+							<td>
+								<a href="assessment?name={{ unit.unit_id }}">{{ unit.title }}</a>
+							</td>
+						</tr>
                   {% elif unit.type == 'U' %}
-                    <li><p class="top_content">
                       {% if is_progress_recorded %}
                         {% if progress[unit.unit_id] == 2 %}
-                          <img src="assets/lib/completed.png"
-                               alt="{% trans %} Completed {% endtrans %}"
-                               title="{% trans %} Completed {% endtrans %}"
-                               class="progress"
-                               id="progress-completed-{{unit.unit_id}}">
+						<tr class="success">
+							<td>
+								<!--<img src="assets/lib/completed.png" alt="{% trans %} Completed {% endtrans %}" title="{% trans %} Completed {% endtrans %}" id="progress-completed-{{unit.unit_id}}">-->
+								<div class="progress progress-success progress-striped">
+									<div class="bar" style="width: 100%;"></div>
+								</div>
+							</td>
                         {% elif progress[unit.unit_id] == 1 %}
-                          <img src="assets/lib/in_progress.png"
-                               alt="{% trans %} In progress {% endtrans %}"
-                               title="{% trans %} In progress {% endtrans %}"
-                               class="progress"
-                               id="progress-inprogress-{{unit.unit_id}}">
+						<tr class="warning">
+							<td>
+								<div class="progress progress-warning progress-striped active">
+									<div class="bar" style="width: 50%;"></div>
+								</div>
+								<!--<img src="assets/lib/in_progress.png" alt="{% trans %} In progress {% endtrans %}" title="{% trans %} In progress {% endtrans %}" id="progress-inprogress-{{unit.unit_id}}">-->
+							</td>
                         {% else %}
-                          <img src="assets/lib/not_started.png"
-                               alt="{% trans %} Not yet started {% endtrans %}"
-                               title="{% trans %} Not yet started {% endtrans %}"
-                               class="progress"
-                               id="progress-notstarted-{{unit.unit_id}}">
+						<tr class="error">
+							<td>
+								<div class="progress progress-danger progress-striped">
+									<div class="bar" style="width: 10%;"></div>
+								</div>
+								<!--<img src="assets/lib/not_started.png" alt="{% trans %} Not yet started {% endtrans %}" title="{% trans %} Not yet started {% endtrans %}" id="progress-notstarted-{{unit.unit_id}}">-->
+							</td>
                         {% endif %}
                       {% else %}
-                        <span class="progress-empty"></span>
+						<tr class="success"><td></td><td><span class="progress-empty"></span></td>
                       {% endif %}
-
-                      <a href="unit?unit={{ unit.unit_id }}">
-                         &nbsp;&nbsp;&nbsp;{{ gettext('Unit %(id)s - %(title)s', id=unit.index, title=unit.title) }}
-                      </a>
+							<td>
+								&nbsp;&nbsp;&nbsp;<a href="unit?unit={{ unit.unit_id }}">{{ gettext('Unit %(id)s - %(title)s', id=unit.index, title=unit.title) }}</a>
+							</td>
+						</tr>  
                   {% elif unit.type == 'O' %}
-                    <li>
-                      <p class="top_content">
-                        <span class="progress-empty"></span>
-                        <a href="{{ unit.href }}"> {{ unit.title }} </a>
+                    <!--<li><p class="top_content">-->
+					<tr class="info">
+						<td>
+							<span class="progress-empty"></span>
+						</td>
+						<td>
+							<a href="{{ unit.href }}"> {{ unit.title }} </a>
+						</td>
+					</tr>
                   {% else %}
-                    <li>
-                      <p class="top_content">
-                        <span class="progress-empty"></span>
-                        Error: unit type not recognized.
+					<tr class="info">
+						<td>
+							<span class="progress-empty"></span>
+						</td>
+						<td>
+							Error: unit type not recognized.
+						</td>
+					</tr>
                   {% endif %}
-                      {% if not unit.now_available and is_course_admin %}
-                        (Private)
-                      {% endif %}
-                      </p>
-                    </li>
+			  {% if not unit.now_available and is_course_admin %}
+				(Private)
+			  {% endif %}
+                      <!--</p>-->
+                    <!--</li>-->
                 {% else %}
+				  <ul>
                   {% if unit.type == 'A' %}
                     <li>
                       <p class="top_content">
@@ -93,7 +115,7 @@
                         {{ unit.title }}
                       </p>
                     </li>
-                {% elif unit.type == 'U' %}
+                  {% elif unit.type == 'U' %}
                     <li>
                       <p class="top_content">
                         <span class="progress-empty"></span>
@@ -118,10 +140,12 @@
                       </p>
                     </li>
                   {% endif %}
+				  </ul>
                 {% endif %}
 
               {% endfor %}
-            </ul>
+            <!--</ul>-->
+			</table>
           </div>
         </div>
 

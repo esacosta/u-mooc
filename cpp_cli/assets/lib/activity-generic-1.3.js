@@ -101,7 +101,7 @@ function generateMultipleChoiceQuestion(params, domRoot, index) {
   });
 
   domRoot.append('<br>');
-  domRoot.append('<p/><button class="gcb-button gcb-button-primary" ' +
+  domRoot.append('<p/><button class="btn btn-primary" ' +
       'id="submit_' + tag + '">' + trans.CHECK_ANSWER_TEXT + '</button>');
   domRoot.append(
       '<p/><textarea style="width: 600px; height: 50px;" readonly="true" ' +
@@ -249,7 +249,7 @@ function generateMultipleChoiceGroupQuestion(params, domRoot, index) {
   var toplevel_tag = getFreshTag();
 
   domRoot.append(
-      '<p/><button class="gcb-button gcb-button-primary" id="submit_' +
+      '<p/><button class="btn btn-primary" id="submit_' +
       toplevel_tag + '">' + trans.CHECK_ANSWERS_TEXT + '</button>');
   domRoot.append(
       '<p/><textarea style="width: 600px; height: 100px;" readonly="true" ' +
@@ -379,12 +379,12 @@ function generateFreetextQuestion(params, domRoot, index) {
       '&nbsp;&nbsp;<input type="text" style="width: 400px; ' +
       'class="alphanumericOnly" id="input_' + tag + '">');
   if (correctAnswerOutput && incorrectAnswerOutput) {
-    domRoot.append('<p/><button class="gcb-button gcb-button-primary" ' +
+    domRoot.append('<p/><button class="btn btn-primary" ' +
         'id="submit_' + tag + '">' + trans.CHECK_ANSWER_TEXT + '</button>');
   }
   if (showAnswerOutput) {
     domRoot.append(
-        '<p/><button class="gcb-button gcb-button-primary" ' +
+        '<p/><button class="btn btn-primary" ' +
         'id="skip_and_show_' + tag + '">' +
         showAnswerPrompt + '</button>');
   }
@@ -527,13 +527,13 @@ function renderAssessment(assessment, domRoot) {
 
   if (assessment.checkAnswers) {
     domRoot.append(
-        '<button type="button" class="gcb-button gcb-button-primary" id="checkAnswersBtn">' +
+        '<button type="button" class="btn btn-primary" id="checkAnswersBtn">' +
         trans.CHECK_ANSWERS_TEXT + '</button><p/>');
     domRoot.append('<p/><textarea style="width: 600px; height: 120px;" ' +
         'readonly="true" id="answerOutput"></textarea>');
   }
   domRoot.append(
-      '<br><button type="button" class="gcb-button gcb-button-primary" id="submitAnswersBtn">' +
+      '<br><button type="button" class="btn btn-primary" id="submitAnswersBtn">' +
       trans.SAVE_ANSWERS_TEXT + '</button>');
 
 
