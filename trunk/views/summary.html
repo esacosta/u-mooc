@@ -1,20 +1,15 @@
-<div class="gcb-col-55">
-
-  <h1 class="product-headers">
+<div class="row">
+<div class="span8">
+  <h3>
     {{course_info.course.title}}
-  </h1>
+  </h3>
 
-  <h2 class="product-headers">
     {{course_info.course.blurb}}
-  </h2>
 
-  <h2 class="bio-headers">
+
     {{course_info.course.instructor_details | safe}}
-  </h2>
-
 </div>
-
-<div class="gcb-col-5">
+<div class="span4">
 
   {% if course_info.course.main_video %}
     <iframe class="youtube-player" type="text/html" width="460"
@@ -22,7 +17,9 @@
      height="300" src="{{course_info.course.main_video.url}}"
      frameborder="0" allowfullscreen></iframe>
   {% else %}
-    <img height="300" src="{{course_info.course.main_image.url}}">
+    <img src="{{course_info.course.main_image.url}}">
   {% endif %}
+
+</div>
 
 </div>

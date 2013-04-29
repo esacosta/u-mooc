@@ -385,7 +385,7 @@ class StudentProfileHandler(BaseHandler):
 
         course = self.get_course()
 
-        self.template_value['navbar'] = {}
+        self.template_value['navbar'] = {'myprofile': True}
         self.template_value['student'] = student
         self.template_value['score_list'] = course.get_all_scores(student)
         self.template_value['overall_score'] = course.get_overall_score(student)

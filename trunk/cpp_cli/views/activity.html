@@ -11,7 +11,7 @@
 
 {% if is_read_write_course and is_course_admin %}
   <a href="dashboard?action=edit_lesson&key={{ lesson_id }}"
-    class="btn btn-primary">Edit activity</a>
+    class="gcb-button gcb-button-action">Edit activity</a>
 {% endif %}
 
 {% if lesson.now_available or is_course_admin %}
@@ -26,7 +26,7 @@
 {% endif %}
 
 <div class="gcb-main">
-  <ul class="breadcrumb">
+  <ul class="gcb-breadcrumb">
     <li><a href="course">{% trans %} Course {% endtrans %}</a></li>
     <li>
       <a href="unit?unit={{ unit.unit_id }}">
@@ -52,7 +52,7 @@
 
     {% if not lesson %}
       <div style="padding-bottom: 20px;">
-        <div class="gcb-aside btn-small">
+        <div class="gcb-aside gcb-button-box">
           {% trans %} This unit does not contain any lessons. {% endtrans %}
         </div>
       </div>
@@ -80,7 +80,7 @@
                 </div>
                 <div class="gcb-col-3">
                   <p style="float:right; margin-top: 0px;">
-                    <a role="button" class="btn btn-primary" href="{{ lesson.notes }}" target="_blank">{% trans %} Text Version {% endtrans %}</a>
+                    <a role="button" class="gcb-button gcb-button-primary" href="{{ lesson.notes }}" target="_blank">{% trans %} Text Version {% endtrans %}</a>
                   </p>
                 </div>
               </div><!-- /gcb-cols -->
@@ -96,7 +96,7 @@
 
               <br><br>
 
-              <div class="btn-small">
+              <div class="gcb-button-box">
                 {% trans %} This lesson is not available. {% endtrans %}
               </div>
 
@@ -104,7 +104,7 @@
 
           </div><!-- /gcb-aside -->
 
-          <div class="btn-small">
+          <div class="gcb-button-box">
             <div class="prev-button" style="float:left; margin-top: 0px; margin-left: 40px;">
               {% if back_button_url %}
                 <a href="{{ back_button_url }}"> {% trans %} Previous Page {% endtrans %} </a>

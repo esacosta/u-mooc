@@ -8,14 +8,14 @@
 {% endblock %}
 
 {% block main_content %}
-<div class="gcb-main">
+<div class="row">
   <div class="gcb-article tab-content">
     <div class="gcb-aside">
       {% if announcements %}
         {% if announcements.add_action %}
           <form id='gcb-add-announcement' action='{{ announcements.add_action }}' method='POST'>
             <input type="hidden" name="xsrf_token" value="{{ announcements.add_xsrf_token|escape }}">
-            <button class="btn btn-primary" type="submit">{% trans %} Add New {% endtrans %}</button>
+            <button class="btn btn-primary pull-right pull-right" type="submit">{% trans %} Add New {% endtrans %}</button>
           </form>
           <div style='clear: both; padding-top: 2px;' />
         {% endif %}
@@ -27,14 +27,15 @@
           {% if item.delete_action %}
           <form id='gcb-delete-announcement-{{ loop.index0 }}' action='{{ item.delete_action }}' method='POST'>
             <input type="hidden" name="xsrf_token" value="{{ item.delete_xsrf_token|escape }}">
-            <button class="btn btn-primary" type="submit"
+            <button class="btn btn-danger pull-right" type="submit"
               onclick='return confirm("Delete this item?");'>
               {% trans %} Delete {% endtrans %}
             </button>
           </form>
           {% endif %}
+		  
           {% if item.edit_action %}
-            <a role="button" href="{{ item.edit_action }}" class="btn btn-primary">
+            <a role="button" href="{{ item.edit_action }}" class="btn btn-info pull-right">
               {% trans %} Edit {% endtrans %}
             </a>
           {% endif %}
