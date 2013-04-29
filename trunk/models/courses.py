@@ -62,7 +62,7 @@ def deep_dict_merge(real_values_dict, default_values_dict):
 DEFAULT_COURSE_YAML_DICT = {
     'course': {
         'title': 'UNTITLED COURSE',
-        'locale': 'en_US',
+        'locale': 'es',
         'main_image': {},
         'now_available': False},
     'base': {
