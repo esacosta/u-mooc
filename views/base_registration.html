@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 
 {% block navbar %}
-<!-- nav bar -->
-<div class="gcb-nav gcb-complex" id="gcb-nav-x">
-  <div class="gcb-aux">
-    <ul>
+<!-- navbar bar -->
+<div class="row">
+<div class="navbar">
+  <div class="navbar-inner">
+    <ul class="nav">
       <li {% if navbar.announcements %}class='active'{% endif %}>
         <a href="announcements">
           {% trans %} Announcements {% endtrans %}
@@ -28,5 +29,6 @@
       {% endif %}
     </ul>
   </div>
+</div>
 </div>
 {% endblock %}

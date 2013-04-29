@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html class="google" lang="{{course_info.course.locale}}">
+<html lang="{{course_info.course.locale}}">
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="{{ gcb_course_base }}" />
     <script>
       (function(H) {
@@ -54,14 +56,14 @@
 
     <link rel="icon" href="assets/img/favicon.ico" />
 
-    
+    <!--<link href="assets/css/main.css" rel="stylesheet" type="text/css">-->
     <!-- Bootstrap -->
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet" media="screen">
-	
-	<link href="assets/css/main.css" rel="stylesheet" type="text/css">
-	
-    <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin" rel="stylesheet">
+	<meta name="viewport" content="width=device-width, initial-scale=2.0">
+	<link href="assets/css/bootstrap.css" rel="stylesheet">
+	<link href="assets/css/docs.css" rel="stylesheet">
+    <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+
+	<link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin" rel="stylesheet">
 
     <!-- jQuery should be imported first -->
     <script src="assets/lib/jquery-1.7.2.min.js"></script>
@@ -101,49 +103,52 @@
   </head>
 
   <body onload=reSize()>
-	<script src="http://code.jquery.com/jquery.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
+	<div class="container">
+	
     {{course_info.base.after_body_tag_begins | safe}}
-
+	
     <!-- logo bar -->
-    <div class="gcb-header" id="gcb-header">
-      <div class="gcb-aux">
-        <h1>
-          <a href="{{course_info.institution.url}}">
-            <img src="{{course_info.institution.logo.url}}"
-                 alt="{{course_info.institution.logo.alt_text}}">
-          </a>
-        </h1>
-        <h2>
-          <a href="/">{{course_info.base.nav_header}}</a>
-        </h2>
-        {% if course_info.base.show_gplus_button %}
-          <span class="plusone-button" id="plusone-3" style="height: 15px; width: 70px; display: inline-block; text-indent: 0px; margin: 0px; padding: 0px; background-color: transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; background-position: initial initial; background-repeat: initial initial; ">
-            <g:plusone size="medium"></g:plusone>
-          </span>
-        {% endif %}
 
-        {% if logoutUrl %}
-        <div class="pull-right" style="font-size: larger;">
+		<div class="row">
+			<div class="span8">
+					<h1>
+				  <a href="{{course_info.institution.url}}">
+					<img src="{{course_info.institution.logo.url}}"
+						 alt="{{course_info.institution.logo.alt_text}}">
+				  </a>
+				
+				  <a href="/">{{course_info.base.nav_header}}</a>
+				
+				{% if course_info.base.show_gplus_button %}
+				  <span class="plusone-button" id="plusone-3">
+					<g:plusone size="medium"></g:plusone>
+				  </span>
+				{% endif %}
+				</h1>
+			</div>
+			<div class="span4">
+			{% if logoutUrl %}
+        <div class="pull-right ">
           {{ email }}
-          &nbsp;|&nbsp;
-          <a href="{{ logoutUrl }}" style="text-decoration: underline;">
+          <a href="{{ logoutUrl }}" role="button" class="btn btn-danger">
             {% trans %} Logout {% endtrans %}
           </a>
         </div>
         {% elif loginUrl %}
-        <div class="pull-right" style="font-size: larger;">
-          <a href="{{ loginUrl }}">{% trans %} Login {% endtrans %}</a>
+        <div class="pull-right">
+          <a href="{{ loginUrl }}"  role="button" class="btn btn-primary">{% trans %} Login {% endtrans %}</a>
         </div>
-        {% endif %}
-      </div>
-    </div>
-
+        {% endif %}</div>
+			</div>
+        
+	
+    
     {% block navbar %}
-    <!-- nav bar -->
-    <div class="gcb-nav gcb-complex" id="gcb-nav-x">
-      <div class="gcb-aux">
-        <ul>
+	<div class="row">
+    <!-- navbar bar -->
+    <div class="navbar">
+      <div class="navbar-inner">
+	     <ul class="nav">
           {{course_info.base.after_navbar_begins | safe}}
           <li {% if navbar.announcements %}class='active'{% endif %}>
             <a href="announcements">
@@ -189,8 +194,11 @@
             </a>
           </li>
           {{course_info.base.before_navbar_ends | safe}}
+		  
+        </ul>
+		<ul class="nav pull-right">
           {% if is_super_admin %}
-          <li class="pull-right">
+          <li class="">
             <a href="/admin">Admin</a>
           </li>
           {% endif %}
@@ -199,33 +207,31 @@
             <a href="dashboard">Dashboard</a>
           </li>
           {% endif %}
-        </ul>
+		</ul>
+		
       </div>
-    </div>
+    
+	 </div>
+	 </div>
     {% endblock %}
-
+   
+	
     <!-- top section -->
-    <div class="is-wrapper">
-      <div class="gcb-aux">
+    
         {% block top_content %}{% endblock %}
         {{course_info.base.after_top_content_ends | safe}}
+	
 
         <!-- main section -->
         {% block main_content %}{% endblock %}
         {{course_info.base.after_main_content_ends | safe}}
-      </div>
-    </div>
 
+	
     <!-- footer section -->
-    <div style="margin-top: 50px;" id="gcb-signature"></div>
-    <div class="gcb-footer" id="gcb-footer">
-      <div id="gcb-footer-local">
-        <div class="gcb-aux">
-        </div>
-      </div>
-      <div id="gcb-footer-global">
-        <div class="gcb-aux">
-          <ul>
+    <div class="row">
+      <div class="navbar">
+        <div class="navbar-inner">
+          <ul class="nav">
             <li>
               <a href="{{course_info.institution.url}}">{{course_info.institution.name}}</a>
             </li>
@@ -237,7 +243,11 @@
           </ul>
         </div>
       </div>
-    </div>
+    
     {{course_info.base.before_body_tag_ends | safe}}
+	</div>
+	</div>
+	<script src="http://code.jquery.com/jquery.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
  </body>
 </html>

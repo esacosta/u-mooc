@@ -1,5 +1,6 @@
-<div class="gcb-nav" id="gcb-nav-y">
-  <ul>
+<div class="span3">
+<div class="tabbable tabs-left">
+  <ul class="nav nav-tabs" >
     {{course_info.unit.after_leftnav_begins | safe}}
 
     {% for lesson in lessons %}
@@ -21,9 +22,9 @@
             (Private)
           </span>
         {% endif %}
-
+		<ul class="nav nav-tabs ">
         {% if lesson.activity %}
-          <ul>
+          
             {% if page_type == 'activity' and lesson.lesson_id == lesson_id %}
               <li class="active">
             {% else %}
@@ -61,9 +62,9 @@
                   </a>
                 {% endif %}
               </li>
-          </ul>
+          
         {% endif %}
-
+		</ul>
         </li>
 
       {% else %}
@@ -99,4 +100,5 @@
 
     {{course_info.unit.before_leftnav_ends | safe}}
   </ul>
+</div>
 </div>

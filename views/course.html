@@ -1,45 +1,39 @@
 {% extends 'base.html' %}
-
 {% block top_content %}
-    <div class="gcb-cols">
-      <div class="gcb-col-11 gcb-aside">
 
-        {% include 'summary.html' %}
+{% include 'summary.html' %}
 
-      </div>
-    </div>
 {% endblock %}
 
 {% block main_content %}
-    <div style="margin-top: 20px;" class="gcb-cols">
-      <div class="gcb-col-1">
-      </div>
-      <div class="gcb-col-9">
-
-        <h1 class="schedule-headers">
+   <div class="row">
+	<div class="span2">
+        <h3>
           {% trans %} Schedule {% endtrans %}
-        </h1>
-        <div class="gcb-main">
-          <div style="width: 100%;" class="gcb-nav" id="gcb-nav-y">
+        </h3>
+		</div>
+	</div>
+	<div class="row">
+        <div>
 		   <table class="table table-bordered">
             <!--<ul>-->
               {% for unit in units %}
                 {% if unit.now_available or is_course_admin %}
                   {% if unit.type == 'A' %}
                     {% if progress[unit.unit_id] > 0 %}
-						<tr class="success">
-							<td>
+						<tr class="">
+							<td width="10%">
 								<div class="progress progress-success progress-striped">
 									<div class="bar" style="width: 100%;"></div>
 								</div>
 								<!--<img src="assets/lib/completed.png" alt="{% trans %} Completed {% endtrans %}" title="{% trans %} Completed {% endtrans %}" id="progress-completed-{{unit.unit_id}}">-->
 							</td>
                     {% else %}
-						<tr class="error">
-							<td>
+						<tr class="">
+							<td width="10%">
 								<!--<img src="assets/lib/not_started.png" alt="{% trans %} Not yet submitted {% endtrans %}" title="{% trans %} Not yet submitted {% endtrans %}" id="progress-notstarted-{{unit.unit_id}}">-->
 								<div class="progress progress-danger progress-striped">
-									<div class="bar" style="width: 10%;"></div>
+									<div class="bar" style="width: 1%;"></div>
 								</div>
 							</td>
                     {% endif %}
@@ -50,32 +44,34 @@
                   {% elif unit.type == 'U' %}
                       {% if is_progress_recorded %}
                         {% if progress[unit.unit_id] == 2 %}
-						<tr class="success">
-							<td>
+						<tr class="">
+							<td width="10%">
 								<!--<img src="assets/lib/completed.png" alt="{% trans %} Completed {% endtrans %}" title="{% trans %} Completed {% endtrans %}" id="progress-completed-{{unit.unit_id}}">-->
 								<div class="progress progress-success progress-striped">
 									<div class="bar" style="width: 100%;"></div>
 								</div>
 							</td>
                         {% elif progress[unit.unit_id] == 1 %}
-						<tr class="warning">
-							<td>
+						<tr class="">
+							<td width="10%">
 								<div class="progress progress-warning progress-striped active">
 									<div class="bar" style="width: 50%;"></div>
 								</div>
 								<!--<img src="assets/lib/in_progress.png" alt="{% trans %} In progress {% endtrans %}" title="{% trans %} In progress {% endtrans %}" id="progress-inprogress-{{unit.unit_id}}">-->
 							</td>
                         {% else %}
-						<tr class="error">
-							<td>
-								<div class="progress progress-danger progress-striped">
-									<div class="bar" style="width: 10%;"></div>
+						<tr class="">
+							<td width="10%">
+								<div class="progress progress-info progress-striped">
+									<div class="bar" style="width: 20%;";"></div>
 								</div>
 								<!--<img src="assets/lib/not_started.png" alt="{% trans %} Not yet started {% endtrans %}" title="{% trans %} Not yet started {% endtrans %}" id="progress-notstarted-{{unit.unit_id}}">-->
 							</td>
                         {% endif %}
                       {% else %}
-						<tr class="success"><td></td><td><span class="progress-empty"></span></td>
+						<tr ><td width="10%"><div class="progress progress-info progress-striped">
+									<div class="bar" style="width: 1%;"></div>
+								</div></td>
                       {% endif %}
 							<td>
 								&nbsp;&nbsp;&nbsp;<a href="unit?unit={{ unit.unit_id }}">{{ gettext('Unit %(id)s - %(title)s', id=unit.index, title=unit.title) }}</a>
@@ -83,8 +79,8 @@
 						</tr>  
                   {% elif unit.type == 'O' %}
                     <!--<li><p class="top_content">-->
-					<tr class="info">
-						<td>
+					<tr class="">
+						<td width="10%">
 							<span class="progress-empty"></span>
 						</td>
 						<td>
@@ -92,8 +88,8 @@
 						</td>
 					</tr>
                   {% else %}
-					<tr class="info">
-						<td>
+					<tr class="">
+						<td width="10%">
 							<span class="progress-empty"></span>
 						</td>
 						<td>
@@ -142,13 +138,9 @@
                   {% endif %}
 				  </ul>
                 {% endif %}
-
               {% endfor %}
             <!--</ul>-->
 			</table>
-          </div>
-        </div>
-
-      </div>
+		</div>
     </div>
 {% endblock %}
