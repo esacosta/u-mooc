@@ -38,7 +38,7 @@
 							</td>
                     {% endif %}
 							<td>
-								<a href="assessment?name={{ unit.unit_id }}">{{ unit.title }}</a>
+								<a href="assessment?name={{ unit.unit_id }}" class="btn btn-block btn-info">{{ unit.title }}</a>
 							</td>
 						</tr>
                   {% elif unit.type == 'U' %}
@@ -74,7 +74,7 @@
 								</div></td>
                       {% endif %}
 							<td>
-								&nbsp;&nbsp;&nbsp;<a href="unit?unit={{ unit.unit_id }}">{{ gettext('Unit %(id)s - %(title)s', id=unit.index, title=unit.title) }}</a>
+								&nbsp;&nbsp;&nbsp;<a href="unit?unit={{ unit.unit_id }}" class="btn btn-link">{{ gettext('Unit %(id)s - %(title)s', id=unit.index, title=unit.title) }}</a>
 							</td>
 						</tr>  
                   {% elif unit.type == 'O' %}
