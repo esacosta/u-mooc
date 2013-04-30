@@ -253,7 +253,6 @@ class BaseRESTHandler(BaseHandler):
             return False
         return True
 
-
 class PreviewHandler(BaseHandler):
     """Handler for viewing course preview."""
 
@@ -275,7 +274,13 @@ class PreviewHandler(BaseHandler):
         else:
             self.render('preview.html')
 
+class IndexHandler(BaseHandler):
+    """Handler for viewing course preview."""
 
+    def get(self):
+        """Handles GET requests."""
+        self.render('index.html')
+			
 class RegisterHandler(BaseHandler):
     """Handler for course registration."""
 
