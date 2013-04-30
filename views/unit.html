@@ -17,28 +17,28 @@
       class="btn btn-primary">Edit lesson</a>
   {% endif %}
   <ul class="breadcrumb">
-    <li><a href="course">{% trans %} Course {% endtrans %}</a></li>
+    <li><a href="course">{% trans %} Course {% endtrans %}</a><span class="divider">/</span></li>
     <li><a href="unit?unit={{ unit.unit_id }}">
-      {% trans %} Unit {% endtrans %}{{ unit.index }}</a></li>
+      {% trans %} Unit {% endtrans %}{{ unit.index }}</a><span class="divider">/</span></li>
     <li>{% trans %} Lesson {% endtrans %}{{ lesson.index }}</li>
   </ul>
   <div>
-    <h1 class="class_header">
+    <h2>
       {{ gettext('Unit %(id)s - %(title)s', id=unit.index, title=unit.title) }}
-    </h1>
+    </h2>
   </div>
 
   {% include 'lesson_navbar.html' %}
 
-  <div class="tab-content" role="main">
+  <div class="span9" role="main">
     {{course_info.unit.after_content_begins | safe}}
     {% for lesson in lessons %}
       {% if lesson.lesson_id == lesson_id %}
 
         <div>
-          <div class="btn-small">
+          <div class="">
             {% if lesson.now_available or is_course_admin %}
-                <div class="">
+                
                   <h1 class="lesson_title">
                     {{ lesson.title }}
                     {% if not lesson.now_available and is_course_admin %}
@@ -61,15 +61,15 @@
 
                   {% endif %}
 
-                </div>
+                
                    {% if lesson.video and lesson.notes %}
-                <div class="">
+                
                   <p>
-                    <a role="button" class="btn btn-primary" href="{{ lesson.notes }}" target="_blank">
+                    <a role="button" class="btn btn-primary pull-right" href="{{ lesson.notes }}" target="_blank">
                       {% trans %} Text Version {% endtrans %}
                     </a>
                   </p>
-                </div>
+                
                   {% endif %}
               {% if lesson.video %}
                 <p class="video-container">
@@ -95,31 +95,35 @@
             {% endif %}
           </div><!-- /gcb-aside -->
 
-          <div class="btn-small">
-            <div class="btn btn-warning" style="float:left; margin-top: 0px; margin-left: 40px;">
+          <div class="">
+            <div class="pull-left">
               {% if back_button_url %}
-                <a href="{{ back_button_url }}">
-                  {% trans %} Previous Page {% endtrans %}
+                <a href="{{ back_button_url }}" class="btn btn-primary">
+                   &laquo;{% trans %} Previous Page {% endtrans %}
                 </a>
               {% endif %}
             </div>
-            <div class="btn btn-success" style="float:right; margin-top: 0px; margin-right: 40px;">
+            <div class="pull-right">
               {% if next_button_url %}
-                <a href="{{ next_button_url }}">
+                <a href="{{ next_button_url }}" class="btn btn-primary">
                   {% trans %} Next Page {% endtrans %}
-                </a>
+                &raquo;</a>
               {% else %}
-                <a href="course">
+                <a href="course" class="btn btn-primary">
                   {% trans %} End {% endtrans %}
                 </a>
               {% endif %}
             </div>
+		
           </div>
         </div>
       {% endif %}
     {% endfor %}
     {{course_info.unit.before_content_ends | safe}}
+		<br/>
+			<br/>
   </div>
 </div>
 
 {% endblock %}
+

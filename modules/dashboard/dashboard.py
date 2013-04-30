@@ -420,7 +420,7 @@ class DashboardHandler(
 
         if filer.is_editable_fs(self.app_context) and upload:
             output.append(
-                '<a class="gcb-button pull-right" href="dashboard?%s">'
+                '<a class="btn pull-right" href="dashboard?%s">'
                 'Upload</a>' % urllib.urlencode(
                     {'action': 'add_asset', 'base': subfolder}))
             output.append('<div style=\"clear: both; padding-top: 2px;\" />')
@@ -497,7 +497,7 @@ class DashboardHandler(
                 method='POST'>
                 <input type="hidden" name="xsrf_token" value="%s">
                 <p>
-                    <button class="gcb-button" type="submit">
+                    <button class="btn" type="submit">
                         Re-Calculate Now
                     </button>
                 </p>

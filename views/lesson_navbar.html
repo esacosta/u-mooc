@@ -1,6 +1,6 @@
-<div class="span4">
-<div class="tabbable tabs-left">
-  <ul class="nav nav-pills nav-stacked" >
+<div class="span3">
+<div class="well">
+  <ul class="nav nav-list">
     {{course_info.unit.after_leftnav_begins | safe}}
 
     {% for lesson in lessons %}
@@ -22,8 +22,9 @@
             (Private)
           </span>
         {% endif %}
-		<ul class="nav nav-pills nav-stacked">
+		
         {% if lesson.activity %}
+			<ul class="nav">
             {% if page_type == 'activity' and lesson.lesson_id == lesson_id %}
               <li class="active">
             {% else %}
@@ -73,9 +74,9 @@
                 {% endif %}
 				</div>
               </li>
-          
+          </ul>
         {% endif %}
-		</ul>
+		
         </li>
 
       {% else %}
