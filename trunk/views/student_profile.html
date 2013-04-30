@@ -69,7 +69,10 @@
             <th align="left">&nbsp;&nbsp;&nbsp;{{ assessment['title'] }}</th>
             <td>
               {% if 'score' in assessment and assessment['score'] is defined %}
-                <span id="assessment-score-{{assessment['title']}}">{{ assessment['score'] }}</span>
+                <span id="assessment-score-{{assessment['title']}}">
+				<div class="progress progress-default progress-striped">
+									<div class="bar" style="width: {{ assessment['score'] }}%;"></div>
+								</div></span>
               {% endif %}
             </td>
           </tr>
@@ -79,7 +82,7 @@
           <tr>
             <th align="left">{% trans %} Overall course score {% endtrans %}</th>
             <td>
-              <span id="assessment-score-overall">{{ overall_score }}</span>
+              <span id="assessment-score-overall" class="badge badge-info">{{ overall_score }}</span>
             </td>
           </tr>
         {% endif %}
