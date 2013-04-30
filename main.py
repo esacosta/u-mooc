@@ -28,7 +28,7 @@ from modules.announcements import announcements
 from modules.dashboard import dashboard
 
 urls = [
-    ('/', lessons.CourseHandler),
+    ('/', utils.IndexHandler),
     ('/activity', lessons.ActivityHandler),
     ('/announcements', announcements.AnnouncementsHandler),
     ('/answer', assessments.AnswerHandler),

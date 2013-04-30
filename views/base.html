@@ -62,6 +62,7 @@
 	<link href="assets/css/bootstrap.css" rel="stylesheet">
 	<link href="assets/css/docs.css" rel="stylesheet">
     <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+	<link href="assets/css/main.css" rel="stylesheet">
 
 	<link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin" rel="stylesheet">
 
@@ -109,15 +110,10 @@
 	
     <!-- logo bar -->
 
-		<div class="row">
-			<div class="span8">
-					<h1>
-				  <a href="{{course_info.institution.url}}">
-					<img src="{{course_info.institution.logo.url}}"
-						 alt="{{course_info.institution.logo.alt_text}}">
-				  </a>
-				
-				  <a href="/">{{course_info.base.nav_header}}</a>
+		<div class="row well well-small">
+			<!--<div class="span8">
+				<!--	<h1>
+				  {{course_info.base.nav_header}}
 				
 				{% if course_info.base.show_gplus_button %}
 				  <span class="plusone-button" id="plusone-3">
@@ -125,21 +121,27 @@
 				  </span>
 				{% endif %}
 				</h1>
-			</div>
-			<div class="span4">
+			</div>-->
+			<h4 class="pull-left">{{course_info.base.nav_header}}{% if course_info.base.show_gplus_button %}
+				  <span class="plusone-button" id="plusone-3">
+					<g:plusone size="medium"></g:plusone>
+				  </span>
+				{% endif %}</h5>
+			
 			{% if logoutUrl %}
         <div class="pull-right ">
           {{ email }}
-          <a href="{{ logoutUrl }}" role="button" class="btn btn-danger">
+          <a href="{{ logoutUrl }}" role="button" class="btn btn-danger btn-small">
             {% trans %} Logout {% endtrans %}
           </a>
         </div>
         {% elif loginUrl %}
         <div class="pull-right">
-          <a href="{{ loginUrl }}"  role="button" class="btn btn-primary">{% trans %} Login {% endtrans %}</a>
+          <a href="{{ loginUrl }}"  role="button" class="btn btn-primary btn-small">{% trans %} Login {% endtrans %}</a>
         </div>
-        {% endif %}</div>
-			</div>
+        {% endif %}
+		</div>
+		
         
 	
     
@@ -148,6 +150,17 @@
     <!-- navbar bar -->
     <div class="navbar">
       <div class="navbar-inner">
+	  <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+		<span class="brand">
+		<!--<img class"" src="{{course_info.institution.logo.url}}" alt="{{course_info.institution.logo.alt_text}}">-->
+		{{course_info.base.nav_header}}
+			
+		</span>
+	   <div class="nav-collapse collapse">
 	     <ul class="nav">
           {{course_info.base.after_navbar_begins | safe}}
           <li {% if navbar.announcements %}class='active'{% endif %}>
@@ -208,10 +221,9 @@
           </li>
           {% endif %}
 		</ul>
-		
+		</div>
       </div>
-    
-	 </div>
+    </div>
 	 </div>
     {% endblock %}
    
