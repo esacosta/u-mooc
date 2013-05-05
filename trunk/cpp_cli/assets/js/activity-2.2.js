@@ -1,6 +1,6 @@
 var activity = [
 
-  '<table border="2"><tr><td><b>Objetivos:</b><p> <ul><li>Crear una planificación para un curso.<li>Probar su planificación con un público objetivo.</ul> </tr></td></table><br>',
+  '<table class="table"><tr><td><b>Objetivos:</b><p> <ul><li>Crear una planificación para un curso.<li>Probar su planificación con un público objetivo.</ul> </tr></td></table><br>',
 
   'Le proponemos a continuación un pequeño ejercicio a desarrollar para planificar el curso.',
   'Piense que debe prepara la planificación para un curso de <b>raices cuadradas</b>.Vea el siguiente video y trate de realizar lo aprendido en esta lección para un pequeño curso de raices cuadradas.',

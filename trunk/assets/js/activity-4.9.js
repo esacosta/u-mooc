@@ -1,6 +1,6 @@
 var activity = [
 
-  '<table border="2"><tr><td><b>Objetivos:</b><p><ul><li>Aprenda a crear actividades para el curso<li>Aprenda a utilizar las expresiones regulares de javascript<li>Cree distintos tipos de test</ul></tr></td></table>',
+  '<table class="table"><tr><td><b>Objetivos:</b><p><ul><li>Aprenda a crear actividades para el curso<li>Aprenda a utilizar las expresiones regulares de javascript<li>Cree distintos tipos de test</ul></tr></td></table>',
 
   '<p><b>1.</b>activity-NM.js, donde N es el número de actividad y M es el número de la lección ¿es correcto?</p>',
 

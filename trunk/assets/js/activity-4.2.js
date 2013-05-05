@@ -1,6 +1,6 @@
 var activity = [
 
-  '<table border="2"><tr><td><b>Search Tips:</b><p><ul><li>Find facts quickly with shortcuts (search features).<li>Google search features include weather, time, flight numbers, earthquakes, world capitals, sunrise/sunset times, movies, stock quotes, sports scores, package tracking numbers, medical conditions, and medications. Check out the <a href="http://www.google.com/help/features.html" target="blank">full list of search features</a>.</ul></tr></td></table>',
+  '<table class="table"><tr><td><b>Search Tips:</b><p><ul><li>Find facts quickly with shortcuts (search features).<li>Google search features include weather, time, flight numbers, earthquakes, world capitals, sunrise/sunset times, movies, stock quotes, sports scores, package tracking numbers, medical conditions, and medications. Check out the <a href="http://www.google.com/help/features.html" target="blank">full list of search features</a>.</ul></tr></td></table>',
 
   'Your boss is on her way to Bangalore, flying via London on American Flight 98. She broke her shoe as she was boarding and called you to arrange for new replacement shoes as soon as she lands at Heathrow airport. She heard it is monsoon season in India, so she also wants you to check the weather there.<p>',
  

@@ -1,6 +1,6 @@
 var activity = [
 
-  '<table border="2"><tr><td><b>Search Tips:</b><p><ul><li>Limit results to sources published during a specific time period by clicking on Search Tools in the left panel, then selecting the appropriate time range.<li>Time filters are available in Web Search, Books, Images, News, Videos, Blogs, Discussions, and Patents.<li>This feature is not available on tablet browsers. </li></tr></td></table>',
+  '<table class="table"><tr><td><b>Search Tips:</b><p><ul><li>Limit results to sources published during a specific time period by clicking on Search Tools in the left panel, then selecting the appropriate time range.<li>Time filters are available in Web Search, Books, Images, News, Videos, Blogs, Discussions, and Patents.<li>This feature is not available on tablet browsers. </li></tr></td></table>',
 
   '<p>Try this activity to test your ability to restrict time of document publication.</p><p>In 1883, a volcano on the island of Krakatoa in Indonesia erupted. The dust from this massive volcano affected weather as far away as the United States. The volcano has recently become active again. Using the query [krakatoa volcano] and the time filter, identify the following pieces of information.</p>',
 

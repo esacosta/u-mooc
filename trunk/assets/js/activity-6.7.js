@@ -1,6 +1,6 @@
 var activity = [
 
-  '<table border="2"><tr><td><b>Objetivos:</b><p><ul><li>Ser capaces de obtener los datos de un curso.<li>Aprender a optimizar las descargas de datos, para recoger aquellos que realmente vamos a utilizar.</ul></tr></td></table>',
+  '<table class="table"><tr><td><b>Objetivos:</b><p><ul><li>Ser capaces de obtener los datos de un curso.<li>Aprender a optimizar las descargas de datos, para recoger aquellos que realmente vamos a utilizar.</ul></tr></td></table>',
 
   '<p><b>1.</b> ¿Cuál es la extensión de exportación de los archivos de datos?</p>',
 

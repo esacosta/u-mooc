@@ -1,7 +1,7 @@
 
 var activity = [
 
-  '<table border="2"><tr><td><b>Objetivos:</b><p><ul><li>Obtener un enfoque completo del proceso de un MOOC<li>Entender los procesos síncronos y asíncronos de los estudiantes a la hora de seguir un curso</ul><p></tr></td></table><br>',
+  '<table class="table"><tr><td><b>Objetivos:</b><p><ul><li>Obtener un enfoque completo del proceso de un MOOC<li>Entender los procesos síncronos y asíncronos de los estudiantes a la hora de seguir un curso</ul><p></tr></td></table><br>',
 
   'Responda a estas preguntas cortas con verdadero o falso<p>',
 

@@ -376,7 +376,7 @@ function generateFreetextQuestion(params, domRoot, index) {
   }
 
   domRoot.append(
-      '&nbsp;&nbsp;<input type="text" style="width: 400px; ' +
+      '&nbsp;&nbsp;<input type="text" style=" ' +
       'class="alphanumericOnly" id="input_' + tag + '">');
   if (correctAnswerOutput && incorrectAnswerOutput) {
     domRoot.append('<p/><button class="btn btn-primary" ' +

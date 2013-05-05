@@ -1,6 +1,6 @@
 var activity = [
 
-  '<table border="2"><tr><td><b>Search Tips:</b><p><ul><li>Verify the credibility of information you find on the web.<li>To check your findings, just do one more search.</ul></tr></td></table>',
+  '<table class="table"><tr><td><b>Search Tips:</b><p><ul><li>Verify the credibility of information you find on the web.<li>To check your findings, just do one more search.</ul></tr></td></table>',
 
   'Credibility--can you trust the information you find online? How can you find out whether information is accurate and true? There are a few ways to check credibility.<br><br>',
 

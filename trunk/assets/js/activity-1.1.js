@@ -1,6 +1,6 @@
 var activity = [
 
-  '<table border="2"><tr><td><b>Objetivos de la actividad:</b><p><ul><li>Tras leer el documento de requerimientos iniciales o introducción esperamos que conteste a las siguientes preguntas.</li><li>Si tiene alguna duda aún o algo no lo recuerda bien, puede volver a revisar el texto.</li></ul><p></tr></td></table><br>',
+  '<table class="table"><tr><td><b>Objetivos de la actividad:</b><p><ul><li>Tras leer el documento de requerimientos iniciales o introducción esperamos que conteste a las siguientes preguntas.</li><li>Si tiene alguna duda aún o algo no lo recuerda bien, puede volver a revisar el texto.</li></ul><p></tr></td></table><br>',
   '<p/>',
   '<b>1.</b>¿Cree que le será absolutamente necesario tener conocimientos de Google App Engine?<br/><br/><img src="assets/img/appengine.png" height=auto width=100%><br/>',
 

@@ -1,6 +1,6 @@
 var activity = [
 
-  '<table border="2"><tr><td> <b>Objetivos:</b><p> <ul><li>No trate de crear inmediatamente un producto final bien acabado.<li>Separe el material básico del avanzado.<li>TLos estudiantes en línea no dan el feedback que estamos acostumbrados en una clase tradicional.</tr></td></table>',
+  '<table class="table"><tr><td> <b>Objetivos:</b><p> <ul><li>No trate de crear inmediatamente un producto final bien acabado.<li>Separe el material básico del avanzado.<li>TLos estudiantes en línea no dan el feedback que estamos acostumbrados en una clase tradicional.</tr></td></table>',
 
  'Respoda a estas preguntas cortas con verdadero o falso<p>',
 

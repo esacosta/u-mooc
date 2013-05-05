@@ -1,6 +1,6 @@
 var activity = [
 
-  '<table border="2"><tr><td><b>Search Tips:</b><p><ul><li>Hovering over the page preview tool (>> icon to the right of search results) allows you to preview results pages.</li><li>There are three main parts of a search engine result: the page title (in blue), the web address (in green), and the snippet/abstract (in black). The snippet contains the text from the page that appears around the terms you search for.</li><li>Links within the search engine results go directly to subpages of the site.</li><li>Use the site: operator to restrict results to a domain, website, or directory.</li></ul></tr></td></table>',
+  '<table class="table"><tr><td><b>Search Tips:</b><p><ul><li>Hovering over the page preview tool (>> icon to the right of search results) allows you to preview results pages.</li><li>There are three main parts of a search engine result: the page title (in blue), the web address (in green), and the snippet/abstract (in black). The snippet contains the text from the page that appears around the terms you search for.</li><li>Links within the search engine results go directly to subpages of the site.</li><li>Use the site: operator to restrict results to a domain, website, or directory.</li></ul></tr></td></table>',
 
   // Note: the entire question should be encapsulated into one string.
 

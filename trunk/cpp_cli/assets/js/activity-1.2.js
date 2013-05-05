@@ -2,7 +2,7 @@
 
 var activity = [
 
-  '<table border="2"><tr><td><b>Search Tips:</b><p><ul><li>In the last video, you learned how to use color filtering within image search to narrow your image results to images made up primarily of a certain color. You do this by clicking on the appropriate colored box in the left panel. <li>Please note that you can’t filter by color on iPad or Android tablets, but you can answer the questions below as if you were using a laptop or desktop computer.</ul><p></tr></td></table><br>',
+  '<table class="table"><tr><td><b>Search Tips:</b><p><ul><li>In the last video, you learned how to use color filtering within image search to narrow your image results to images made up primarily of a certain color. You do this by clicking on the appropriate colored box in the left panel. <li>Please note that you can’t filter by color on iPad or Android tablets, but you can answer the questions below as if you were using a laptop or desktop computer.</ul><p></tr></td></table><br>',
 
   '<img src="assets/img/Image1.1a.png" height=450 width=785><p/>',
   '<b>1.</b> You want to re-read an introductory accounting textbook from school, but you cannot remember the exact title. You recall that the cover is yellow and has puzzle pieces on it. In the image above, where would you click to filter the results in order to locate the book?',

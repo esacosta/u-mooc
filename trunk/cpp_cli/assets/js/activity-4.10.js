@@ -1,6 +1,6 @@
 var activity = [
 
-  '<table border="2"><tr><td><b>Objetivos:</b><p><ul><li>Aprenda a crear evaluaciones para el curso</ul></tr></td></table>',
+  '<table class="table"><tr><td><b>Objetivos:</b><p><ul><li>Aprenda a crear evaluaciones para el curso</ul></tr></td></table>',
 
   '<p><b>1.</b> ¿Una evaluación lleva asociada una nota?</p>',
 

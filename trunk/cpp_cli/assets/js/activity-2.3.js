@@ -1,5 +1,5 @@
 var activity = [
-  '<table border="2"><tr><td> <b>Objetivos:</b><p> <ul><li>Aclare el currículo y currículo oculto para el curso.<li>Aclare las suposiciones acerca de sus estudiantes.<li>Escribir los objetivos claros y específicos.<li>Decida lo que quiere usar en sus evaluaciones, tanto calificadas y sin calificar.<li>Decida qué otros datos recoger para evaluar la eficacia de su curso.<li>Secuencie y organice el contenido en trozos digeribles.<li>Valide su contenido con los demás.</ul> </td></tr></table><br>',
+  '<table class="table"><tr><td> <b>Objetivos:</b><p> <ul><li>Aclare el currículo y currículo oculto para el curso.<li>Aclare las suposiciones acerca de sus estudiantes.<li>Escribir los objetivos claros y específicos.<li>Decida lo que quiere usar en sus evaluaciones, tanto calificadas y sin calificar.<li>Decida qué otros datos recoger para evaluar la eficacia de su curso.<li>Secuencie y organice el contenido en trozos digeribles.<li>Valide su contenido con los demás.</ul> </td></tr></table><br>',
 
   '<b>1.</b> ¿Cual de estas opciones parece la mejor a la hora de enseñar a sus alumnos?<br><br>',
 
