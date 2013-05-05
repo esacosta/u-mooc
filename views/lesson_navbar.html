@@ -1,6 +1,5 @@
 <div class="span3">
-<div class="well">
-  <ul class="nav nav-list">
+  <ul class="nav nav-tabs nav-stacked">
     {{course_info.unit.after_leftnav_begins | safe}}
 
     {% for lesson in lessons %}
@@ -9,7 +8,9 @@
 
         {% if page_type == 'unit' and lesson.lesson_id == lesson_id %}
           <li class="active">
+		  <a href="#">
             {{ unit.index }}.{{ lesson.index }} {{ lesson.title }}
+			</a>
         {% else %}
           <li>
             <a href="unit?unit={{ unit_id }}&lesson={{ lesson.lesson_id }}">
@@ -22,16 +23,28 @@
             (Private)
           </span>
         {% endif %}
-		
+		</li>
         {% if lesson.activity %}
-			<ul class="nav">
+			
             {% if page_type == 'activity' and lesson.lesson_id == lesson_id %}
               <li class="active">
+			 
             {% else %}
-              <li>
+              <li>	 
             {% endif %}
-			<div class="span1">
+
+			  {% if page_type == 'activity' and lesson.lesson_id == lesson_id %}
+                  <a href="#"><div class="row-fluid"><div class="span8">&nbsp;&nbsp;&nbsp;{% trans %} Activity {% endtrans %}</div>
+				  
+                {% else %}
+                  <a href="activity?unit={{ unit_id }}&lesson={{ lesson.lesson_id }}"><div class="row-fluid">
+                    <div class="span8">&nbsp;&nbsp;&nbsp;{% trans %} Activity {% endtrans %}</div>
+                 
+                {% endif %}
+			 
+				<div class="span4">
                 {% if is_progress_recorded %}
+				
                   {% if progress[lesson.lesson_id] == 2 %}
                     <!--<img src="assets/lib/completed.png"
                          alt="{% trans %} Completed {% endtrans %}"
@@ -61,23 +74,24 @@
                          id="progress-notstarted-{{lesson.lesson_id}}"-->
                   {% endif %}
                 {% else %}
-                  <span class="progress-empty"></span>
+				 <div class="progress progress-success">
+									<div class="bar" style="width: 1%;"></div>
+								</div>
+                  <!--<span class="progress-empty"></span>-->
                 {% endif %}
 				</div>
-				<div class="span2">
-                {% if page_type == 'activity' and lesson.lesson_id == lesson_id %}
-                  {% trans %} Activity {% endtrans %}
-                {% else %}
-                  <a href="activity?unit={{ unit_id }}&lesson={{ lesson.lesson_id }}">
-                    {% trans %} Activity {% endtrans %}
-                  </a>
-                {% endif %}
 				</div>
+				
+				
+                </a>
+				
               </li>
-          </ul>
+			 
+			  
+         
         {% endif %}
 		
-        </li>
+        
 
       {% else %}
         <li>
@@ -111,6 +125,5 @@
     {% endfor %}
 
     {{course_info.unit.before_leftnav_ends | safe}}
-  </ul>
-</div>
+	</ul>
 </div>

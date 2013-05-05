@@ -87,24 +87,22 @@ function generateMultipleChoiceQuestion(params, domRoot, index) {
     var buttonId = radioButtonGroupName + '-' + i;
     if (isCorrect) {
       domRoot.append(
-          '<span class="correct_' + tag + '">' +
+          '<span class="correct_' + tag + '">' + '<label class="radio" for="' + buttonId + '">' +
           '<input type="radio" name="' + radioButtonGroupName + '" ' +
           'id="' + buttonId + '" value="correct"> ' +
-          '<label for="' + buttonId + '">' + label + '</label></span>');
+           label + '</label></span>');
     }
     else {
-      domRoot.append('<input type="radio" name="' + radioButtonGroupName + '" ' +
-          'id="' + buttonId + '"> ' +
-          '<label for="' + buttonId + '">' + label + '</label>');
+      domRoot.append('<label class="radio" for="' + buttonId + '">' + '<input type="radio" name="' + radioButtonGroupName + '" ' + 'id="' + buttonId + '"> ' + label + '</label>');
     }
-    domRoot.append('<br>');
+    /*domRoot.append('<br>');*/
   });
 
   domRoot.append('<br>');
   domRoot.append('<p/><button class="btn btn-primary" ' +
       'id="submit_' + tag + '">' + trans.CHECK_ANSWER_TEXT + '</button>');
   domRoot.append(
-      '<p/><textarea style="width: 100%; height: 50px;" readonly="true" ' +
+      '<p/><textarea class="span12" style="height: 50px;" readonly="true" ' +
       'id="output_' + tag + '"></textarea>');
 
 
@@ -229,17 +227,17 @@ function generateMultipleChoiceGroupQuestion(params, domRoot, index) {
       var buttonId = radioButtonGroupName + '-' + i + '-' + j;
       if (isCorrectAnswer(q, j)) {
         domRoot.append(
-            '<span class="correct_' + tag + '">' +
+            '<span class="correct_' + tag + '">' + '<label class="radio" for="' + buttonId + '">' + 
             '<input type="' + itemType + '" name="' + radioButtonGroupName + '" ' +
             'id="' + buttonId + '" value="correct"> ' +
-            '<label for="' + buttonId + '">' + choiceLabel + '</label></span>');
+            choiceLabel + '</label></span>');
       } else {
-        domRoot.append(
+        domRoot.append( '<label class="radio" for="' + buttonId + '">' +
             '<input type="' + itemType + '" name="' + radioButtonGroupName + '" ' +
             'id="' + buttonId + '"> ' +
-            '<label for="' + buttonId + '">' + choiceLabel + '</label>');
+             choiceLabel + '</label>');
       }
-      domRoot.append('<br>');
+      /*domRoot.append('<br>');*/
     });
 
     domRoot.append('<p/>');
@@ -252,7 +250,7 @@ function generateMultipleChoiceGroupQuestion(params, domRoot, index) {
       '<p/><button class="btn btn-primary" id="submit_' +
       toplevel_tag + '">' + trans.CHECK_ANSWERS_TEXT + '</button>');
   domRoot.append(
-      '<p/><textarea style="width: 100%; height: 100px;" readonly="true" ' +
+      '<p/><textarea class="span12" style="height: 100px;" readonly="true" ' +
       'id="output_' + toplevel_tag + '"></textarea>');
 
 
@@ -376,7 +374,7 @@ function generateFreetextQuestion(params, domRoot, index) {
   }
 
   domRoot.append(
-      '&nbsp;&nbsp;<input type="text" style="width: 400px; ' +
+      '&nbsp;&nbsp;<input type="text" style="' +
       'class="alphanumericOnly" id="input_' + tag + '">');
   if (correctAnswerOutput && incorrectAnswerOutput) {
     domRoot.append('<p/><button class="btn btn-primary" ' +
@@ -389,7 +387,7 @@ function generateFreetextQuestion(params, domRoot, index) {
         showAnswerPrompt + '</button>');
   }
   domRoot.append(
-      '<p/><textarea style="width: 100%; height: ' + outputHeight + ';" ' +
+      '<p/><textarea class="span12" style="height: ' + outputHeight + ';" ' +
       'readonly="true" id="output_' + tag + '"></textarea>');
 
 
@@ -499,8 +497,8 @@ function renderAssessment(assessment, domRoot) {
         var buttonId = 'q' + questionNum + '-' + i;
         if (typeof c == 'string') {
           // incorrect choice
-          curLI.append('<input type="radio" name="q' + questionNum + '" id="' +
-              buttonId + '">&nbsp;<label for="' + buttonId + '">' + c + '</label><br>');
+          curLI.append('<label class="radio" for="' + buttonId + '">' +'<input type="radio" name="q' + questionNum + '" id="' +
+              buttonId + '">&nbsp;' + c + '</label>');
         }
         else {
           // wrapped in correct() ...
@@ -508,13 +506,13 @@ function renderAssessment(assessment, domRoot) {
             alert('Error: Malformed question.');
           }
           // correct choice
-          curLI.append('<input type="radio" name="q' + questionNum + '" id="' +
-              buttonId + '" value="correct">&nbsp;<label for="' + buttonId + '">' +
-              c[1] + '</label><br>');
+          curLI.append('<label class="radio" for="' + buttonId + '">' + '<input type="radio" name="q' + questionNum + '" id="' +
+              buttonId + '" value="correct">&nbsp;' + 
+              c[1] + '</label>');
         }
       });
     } else if (q.correctAnswerString || q.correctAnswerRegex || q.correctAnswerNumeric) {
-      curLI.append('Answer:&nbsp;&nbsp;<input type="text" class="alphanumericOnly" ' +
+      curLI.append('Respuesta:&nbsp;&nbsp;<input type="text" class="alphanumericOnly" ' +
           'style="border-style: solid; border-color: black; border-width: 1px;" ' +
           'id="q' + questionNum + '">');
     } else {
@@ -529,7 +527,7 @@ function renderAssessment(assessment, domRoot) {
     domRoot.append(
         '<button type="button" class="btn btn-primary" id="checkAnswersBtn">' +
         trans.CHECK_ANSWERS_TEXT + '</button><p/>');
-    domRoot.append('<p/><textarea style="width: 100%; height: 120px;" ' +
+    domRoot.append('<p/><textarea class="span12" style="height: 120px;" ' +
         'readonly="true" id="answerOutput"></textarea>');
   }
   domRoot.append(

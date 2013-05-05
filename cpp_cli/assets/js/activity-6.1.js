@@ -1,6 +1,6 @@
 var activity = [
 
-  '<table border="2"><tr><td><b>Search Tips:</b><p><ul><li>Combine operators for stronger searches.<li>Operators can be placed anywhere in the query without affecting the results. For example: [black cats site:com] is equivalent to [site:com black cats].</ul></tr></td></table>',
+  '<table class="table"><tr><td><b>Search Tips:</b><p><ul><li>Combine operators for stronger searches.<li>Operators can be placed anywhere in the query without affecting the results. For example: [black cats site:com] is equivalent to [site:com black cats].</ul></tr></td></table>',
 
   '<p><b>1.</b> Which of these searches shows an <b>effective</b> use of multiple operators?</p>',
 

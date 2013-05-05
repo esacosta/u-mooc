@@ -146,7 +146,7 @@ class AnswerHandler(BaseHandler):
             course.is_last_assessment(unit))
         self.template_value['overall_score'] = course.get_overall_score(student) 
 
-        if (student and score > 80):
+        if (student and score >= 80):
             student.badges.append('%s' % unit.unit_id)
             student.badgesTitle.append('%s' % unit.title)
             student.put()

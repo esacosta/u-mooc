@@ -1,6 +1,6 @@
 var activity = [
 
-  '<table border="2"><tr><td><b>Objetivos:</b><p><ul><li>Aprender como incluir un foro<li>Que herramientas están disponibles para los foros</ul></tr></td></table>',
+  '<table class="table"><tr><td><b>Objetivos:</b><p><ul><li>Aprender como incluir un foro<li>Que herramientas están disponibles para los foros</ul></tr></td></table>',
 
   '<p><b>1.</b>¿Que herramienta puede utilizar para crear un foro en el curso?</p>',
 

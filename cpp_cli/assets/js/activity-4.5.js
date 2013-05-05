@@ -1,6 +1,6 @@
 var activity = [
 
-  '<table border="2"><tr><td><b>Objetivos:</b><p><ul><li>Entender y modificar la ventana donde se registran los estudiantes.<li>Añadir nuevas propiedades de los estudiantes a su curso para sus estadísticas.</ul></tr></td></table>',
+  '<table class="table"><tr><td><b>Objetivos:</b><p><ul><li>Entender y modificar la ventana donde se registran los estudiantes.<li>Añadir nuevas propiedades de los estudiantes a su curso para sus estadísticas.</ul></tr></td></table>',
 
   '<p><b>1.</b> ¿De que áreas se compone la página de registro?</p>',
 

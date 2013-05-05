@@ -1,6 +1,6 @@
 var activity = [
 
-  '<table border="2"><tr><td> <b>Search Tips:</b><p> <ul><li>Specific words, when used before a colon, act as commands to filter results. The coming lessons will teach you the most popular operators.<li>You can use the site: operator within images and news results.<li>You can use the site: operator with or without the period before the top-level domain extension, so [site:edu] is the same as [site:.edu].<li>When using the site: operator at the website level, you must use the period between the parts of the web address: [site:ucla.edu].<li>You can use operators at any point in a query. [Jefferson site:archives.gov] is the same as [site:archives.gov jefferson].</ul> </tr></td></table>',
+  '<table class="table"><tr><td> <b>Search Tips:</b><p> <ul><li>Specific words, when used before a colon, act as commands to filter results. The coming lessons will teach you the most popular operators.<li>You can use the site: operator within images and news results.<li>You can use the site: operator with or without the period before the top-level domain extension, so [site:edu] is the same as [site:.edu].<li>When using the site: operator at the website level, you must use the period between the parts of the web address: [site:ucla.edu].<li>You can use operators at any point in a query. [Jefferson site:archives.gov] is the same as [site:archives.gov jefferson].</ul> </tr></td></table>',
 
   '<p><b>1.</b> You want to find documents on US government websites about gamers, people who play video games. What query do you use?</p>',
 

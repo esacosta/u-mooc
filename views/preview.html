@@ -3,7 +3,7 @@
 {% block top_content %}
 
         {% include 'summary.html' %}
-		<div class="row">
+		<div class="row-fluid">
           <center>
             <a class="btn btn-large" href="register" role="button">
               {% trans %} Register {% endtrans %}
@@ -14,8 +14,7 @@
 {% endblock %}
 
 {% block main_content %}
-<div class="span1"></div>	
-    <div class="row">
+    
 
 		  <h3 class="schedule-headers">
           {% trans %} Schedule {% endtrans %}
@@ -38,7 +37,6 @@
               {% endfor %}
             </table>
 		
-    </div>
-	<div class="span1"></div>
+    
     {{course_info.preview.after_main_content_ends | safe}}
 {% endblock %}

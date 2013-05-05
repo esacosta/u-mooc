@@ -1,6 +1,6 @@
 var activity = [
 
-  '<table border="2"><tr><td> <b>Search Tips:</b><p> <ul><li>Enter any math equation into the search box, and Google will calculate your answer.<li>These search features are available on cell phone, iPad, or anywhere Google is available (like on your phone while you are cooking in the kitchen).</li> </tr></td></table> Try this activity to practice doing conversions in Google search.<p>',
+  '<table class="table"><tr><td> <b>Search Tips:</b><p> <ul><li>Enter any math equation into the search box, and Google will calculate your answer.<li>These search features are available on cell phone, iPad, or anywhere Google is available (like on your phone while you are cooking in the kitchen).</li> </tr></td></table> Try this activity to practice doing conversions in Google search.<p>',
 
   '<b>1.</b> What is 41 degrees Celsius in Fahrenheit?',
 

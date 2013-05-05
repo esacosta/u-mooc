@@ -1,6 +1,6 @@
 var activity = [
 
-  '<table border="2"><tr><td> <b>Objetivos:</b><p> <ul><li>Aprender donde se encuentran los principales archivos de la aplicación.<li>Determinar que archivos cambiar para modificar mi curso.<li>Se capaz de poner anuncios.<li>Saber donde poder colgar el foro de la aplicación<li>Etc.</ul> </tr></td></table>',
+  '<table class="table"><tr><td> <b>Objetivos:</b><p> <ul><li>Aprender donde se encuentran los principales archivos de la aplicación.<li>Determinar que archivos cambiar para modificar mi curso.<li>Se capaz de poner anuncios.<li>Saber donde poder colgar el foro de la aplicación<li>Etc.</ul> </tr></td></table>',
 
   '<p><b>1.</b> ¿En que tres partes se dividen la mayoría de las páginas?</p>',
 

@@ -1,6 +1,6 @@
 var activity = [
 
-  '<table border="2"><tr><td><b>Objetivos:</b><p><ul><li>Aprenda a gestionar a sus profesores asistentes.<li>Formelos<li>Saque el mayor rendimiento a las personas que le ayudan a gestionar el curso.</ul></tr></td></table>',
+  '<table class="table"><tr><td><b>Objetivos:</b><p><ul><li>Aprenda a gestionar a sus profesores asistentes.<li>Formelos<li>Saque el mayor rendimiento a las personas que le ayudan a gestionar el curso.</ul></tr></td></table>',
 
   '<p><b>1.</b> ¿Cual es la mejor manera de manejar a todas las personas que envían inforamción a los TA?</p>',
 

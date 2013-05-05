@@ -1,11 +1,26 @@
 {% extends 'base.html' %}
 
 {% block navbar %}
+<div class="row-fluid">
 <!-- navbar bar -->
-<div class="row">
+<div class="">
+	<div class="">
 <div class="navbar">
+
   <div class="navbar-inner">
-    <ul class="nav">
+  <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+		<span class="brand">
+		<img class"" src="{{course_info.institution.logo.url}}" alt="{{course_info.institution.logo.alt_text}}">
+		{{course_info.base.nav_header}}
+		
+			
+		</span>
+	   <div class="nav-collapse collapse">
+	     <ul class="nav">
       <li {% if navbar.announcements %}class='active'{% endif %}>
         <a href="announcements">
           {% trans %} Announcements {% endtrans %}
@@ -17,6 +32,18 @@
       <li {% if navbar.registration %}class='active'{% endif %}>
         <a href="register">{% trans %} Registration {% endtrans %}</a>
       </li>
+	   {% if course_info.base.show_gplus_button %}
+		  <li>
+            <a href="">
+				  <span class="plusone-button" id="plusone-2">
+					<g:plusone size="small"></g:plusone>
+				  </span>
+				
+            </a>
+          </li>
+		  {% endif %}
+	  </ul>
+	  <ul class="nav pull-right">
       {% if is_super_admin %}
       <li class='pull-right'>
         <a href="/admin">Admin</a>
@@ -27,8 +54,16 @@
         <a href="dashboard">Dashboard</a>
       </li>
       {% endif %}
+	  {% if loginUrl %}
+		  <li>
+		  <a href="{{ loginUrl }}">{% trans %} Login {% endtrans %}</a>
+		  </li>
+	  {% endif %}
+	  </ul>
     </ul>
   </div>
+</div>
+</div>
 </div>
 </div>
 {% endblock %}
