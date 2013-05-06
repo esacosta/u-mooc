@@ -22,10 +22,10 @@
           <col width="20%">
           <col>
         </colgroup>
-        <tr>
+        <!--<tr>
           <th align="left">{% trans %} Currently enrolled {% endtrans %}</th>
           <td>{{ student.is_enrolled }}</td>
-        </tr>
+        </tr>-->
         <tr>
           <th align="left">{% trans %} Date enrolled {% endtrans %}</th>
           <td>{{ student.enrolled_on }}</td>
@@ -46,11 +46,11 @@
           <th align="left">{% trans %} Insignias {% endtrans %}<br/>
 		  <small><i>Complete las evaluaciones por encima del 80%</i></small></th>
 		  <td>
-		  <table style="width:100%;"><tr>
+		  <table class="table table-bordered"><tr class="">
 		  {% for badge in student.badges %}
-		  <td style="width:10%;text-align:center;"><img class="insignia" src="/assets/img/{{ badge }}.png"></img></td>
+		  <td style="width:10%;text-align:center;"><img class="insignia" style="max-height:100px;" src="/assets/img/{{ badge }}.png"></img></td>
 		  {% endfor %}
-		  </tr><tr>
+		  </tr><tr class="info">
 		  {% for badgetitle in student.badgesTitle %}
 		  <td style="width:10%;text-align:center;">{{ badgetitle }}</td>
 		  {% endfor %}
