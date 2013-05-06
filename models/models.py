@@ -106,7 +106,7 @@ class Student(BaseEntity):
     name = db.StringProperty(indexed=False)
     age = db.StringProperty(indexed=False)   
     is_enrolled = db.BooleanProperty(indexed=False)
-    badges = db.StringListProperty(indexed=False)
+    badges = db.StringListProperty(indexed=True)
     badgesTitle = db.StringListProperty(indexed=False)
     
     # Each of the following is a string representation of a JSON dict.

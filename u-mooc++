@@ -6,6 +6,7 @@
                 <File name="assets\css\bootstrap-responsive.min.css" />
                 <File name="assets\css\bootstrap.css" />
                 <File name="assets\css\bootstrap.min.css" />
+                <File name="assets\css\docs.css" />
                 <File name="assets\css\main.css" />
                 <File name="assets\css\normalize.css" />
             </Folder>
@@ -409,10 +410,14 @@
                 <File name="assets\img\banner1.jpg" />
                 <File name="assets\img\banner1.png" />
                 <File name="assets\img\banner_cpp_cli.jpg" />
+                <File name="assets\img\browser-icon-chrome.png" />
+                <File name="assets\img\browser-icon-firefox.png" />
+                <File name="assets\img\browser-icon-safari.png" />
                 <File name="assets\img\favicon.ico" />
                 <File name="assets\img\Fin.png" />
                 <File name="assets\img\glyphicons-halflings-white.png" />
                 <File name="assets\img\glyphicons-halflings.png" />
+                <File name="assets\img\google-groups-logo.jpeg" />
                 <File name="assets\img\Image0.1.png" />
                 <File name="assets\img\Image0.8.png" />
                 <File name="assets\img\Image0.9.png" />
@@ -432,6 +437,12 @@
                 <File name="assets\img\mooc - copia.png" />
                 <File name="assets\img\mooc.png" />
                 <File name="assets\img\Pre.png" />
+                <File name="assets\img\responsive2.png" />
+                <File name="assets\img\responsive_web_design.png" />
+                <File name="assets\img\slide-01.jpg" />
+                <File name="assets\img\slide-02.jpg" />
+                <File name="assets\img\slide-03.jpg" />
+                <File name="assets\img\wai.jpg" />
                 <File name="assets\img\your_logo_here.png" />
             </Folder>
             <Folder name="js">
@@ -470,8 +481,21 @@
                 <File name="assets\js\assessment-Fin.js" />
                 <File name="assets\js\assessment-Mid.js" />
                 <File name="assets\js\assessment-Pre.js" />
+                <File name="assets\js\bootstrap-button.js" />
+                <File name="assets\js\bootstrap-carousel.js" />
+                <File name="assets\js\bootstrap-collapse.js" />
+                <File name="assets\js\bootstrap-dropdown.js" />
+                <File name="assets\js\bootstrap-modal.js" />
+                <File name="assets\js\bootstrap-popover.js" />
+                <File name="assets\js\bootstrap-scrollspy.js" />
+                <File name="assets\js\bootstrap-tab.js" />
+                <File name="assets\js\bootstrap-tooltip.js" />
+                <File name="assets\js\bootstrap-transition.js" />
+                <File name="assets\js\bootstrap-typeahead.js" />
                 <File name="assets\js\bootstrap.js" />
                 <File name="assets\js\bootstrap.min.js" />
+                <File name="assets\js\holder.js" />
+                <File name="assets\js\jquery.js" />
                 <File name="assets\js\pdfobject.js" />
             </Folder>
             <Folder name="lib">
@@ -1189,6 +1213,7 @@
             <File name="views\confirmation.html" />
             <File name="views\course.html" />
             <File name="views\forum.html" />
+            <File name="views\index.html" />
             <File name="views\lesson_navbar.html" />
             <File name="views\preview.html" />
             <File name="views\register.html" />
@@ -1206,6 +1231,7 @@
         <File name="bulkloader.yaml" />
         <File name="COPYING" />
         <File name="course.yaml" />
+        <File name="index.html" />
         <File name="index.yaml" />
         <File name="main.py" />
         <File name="main.pyc" />

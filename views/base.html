@@ -120,6 +120,24 @@
   </head>
 
   <body onload=reSize()>
+	
+	<!-- Modal Información -->
+	<div id="myPrivacy" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myPrivacyLabel" aria-hidden="true">
+	  <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h3 id="myPrivacyLabel">Términos y condiciones</h3>
+	  </div>
+	  <div class="modal-body">
+		<p>Usted se compromete a no reproducir, duplicar, copiar, vender, revender o explotar con algún propósito comercial cualquier parte de los servicios prestados de la plataforma o los cursos.
+Para uso no comercial, puede hacer lo que desee con ello.
+<br/>
+<br/>
+¡Recuerde referenciar siempre sus notas y publicaciones!.</p>
+	  </div>
+	  <div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+	  </div>
+	</div>
 	<div class="container">
 	
     {{course_info.base.after_body_tag_begins | safe}}
@@ -203,7 +221,7 @@
 		   <li class="dropdown">
 			 
 			  
-		   <a class="dropdown-toggle" data-toggle="dropdown" href="#">Opciones
+		   <a class="dropdown-toggle" data-toggle="dropdown">Opciones
 		   <b class="caret">
 		   </b></a>
 		   
@@ -261,7 +279,7 @@
 		   <li class="dropdown">
 			 
 			  
-		   <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ email }}
+		   <a class="dropdown-toggle" data-toggle="dropdown">{{ email }}
 		   <b class="caret">
 		   </b></a>
 		   
@@ -297,10 +315,15 @@
 			</ul>
 			</li>
 		 
-		
+			{% if overall_score != None %}
+				<li class=""><a><span id="assessment-score-overall" class="badge badge-info">{{ overall_score }}</span></a></li>
+			{% endif %}
 		 
 			</ul>
+			
+			
 			{% endif %}
+			
 		</div>
 		
       </div>
@@ -336,7 +359,8 @@
               <a href="{{course_info.institution.url}}">{{course_info.institution.name}}</a>
             </li>
             <li>
-              <a href="{{course_info.base.privacy_terms_url}}">
+              <a href="#myPrivacy" data-toggle="modal">
+			  <!--<a href="{{course_info.base.privacy_terms_url}}">-->
                 {% trans %} Privacy &amp; Terms {% endtrans %}
               </a>
             </li>

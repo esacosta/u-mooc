@@ -10,8 +10,7 @@
     <!-- Le styles -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
     <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
-	<link href="assets/css/main.css" rel="stylesheet">
-	
+		
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="assets/js/html5shiv.js"></script>
@@ -54,6 +53,24 @@
 		<button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
 	  </div>
 	</div>
+	
+	<!-- Modal Información -->
+	<div id="myPrivacy" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myPrivacyLabel" aria-hidden="true">
+	  <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h3 id="myPrivacyLabel">Términos y condiciones</h3>
+	  </div>
+	  <div class="modal-body">
+		<p>Usted se compromete a no reproducir, duplicar, copiar, vender, revender o explotar con algún propósito comercial cualquier parte de los servicios prestados de la plataforma o los cursos.
+Para uso no comercial, puede hacer lo que desee con ello.
+<br/>
+<br/>
+¡Recuerde referenciar siempre sus notas y publicaciones!.</p>
+	  </div>
+	  <div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+	  </div>
+	</div>
 
     <!-- NAVBAR
     ================================================== -->
@@ -80,15 +97,13 @@
 				<li><a href="#myInformation" data-toggle="modal">Información</a></li>
                 <!-- Read about Bootstrap dropdowns at http://twitter.github.com/bootstrap/javascript.html#dropdowns -->
                 <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Colaboradores<b class="caret"></b></a>
+                  <a class="dropdown-toggle" data-toggle="dropdown">Colaboradores<b class="caret"></b></a>
                   <ul class="dropdown-menu">
-					<li><a href="#">Google Inc.</a></li>
-                    <li><a href="#">Presto (Soft S.A)</a></li>
-                    <li><a href="#">UEM</a></li>
+					<li><a>Google Inc.</a></li>
                     <li class="divider"></li>
                     <li class="nav-header">Soporte</li>
-                    <li><a href="#">course-builder</a></li>
-                    <li><a href="#">Google App Engine (GAE)</a></li>
+                    <li><a>course-builder</a></li>
+                    <li><a>Google App Engine (GAE)</a></li>
                   </ul>
                 </li>
               </ul>
@@ -106,7 +121,7 @@
         <div class="item active">
           <img src="assets/img/slide-01.jpg" alt="">
           <div class="container">
-            <div class="carousel-caption">
+            <div class="">
               <h1>¿Cómo crear un MOOC?</h1>
               <p class="lead">Siguiendo este curso aprenderá a crear un MOOC a través de la nueva plataforma de Google Course-Builder.</p>
               <a class="btn btn-large btn-primary" href="/preview">Comience ahora</a>
@@ -116,7 +131,7 @@
         <div class="item">
           <img src="assets/img/slide-02.jpg" alt="">
           <div class="container">
-            <div class="carousel-caption">
+            <div class="">
               <h1>Aprendiendo C++/CLI</h1>
               <p class="lead">Con este curso será capaz de desarrollar aplicaciones y WebServices para Windows Azure y .NET en lenguaje C++, utilizando el nuevo lenguaje C++/CLI preparado para el desarrollo de C++ en .NET.</p>
               <a class="btn btn-large btn-primary" href="/cpp_cli/preview">Comience ahora</a>
@@ -126,7 +141,7 @@
         <div class="item">
           <img src="assets/img/slide-03.jpg" alt="">
           <div class="container">
-            <div class="carousel-caption">
+            <div class="">
               <h1>Publique aquí su curso</h1>
               <p class="lead">Puede realizar su curso y publicarlo en esta plataforma de un modo completamente abierto y gratuito, pongase en contacto con nosotros y le ayudaremos a realizar y publicar su MOOC</p>
             </div>
@@ -204,7 +219,7 @@ Esperamos que este curso le sea útil para poder crear sus propios MOOC de una m
       <!-- FOOTER -->
       <footer>
         <p class="pull-right"><a href="#">Ir al inicio</a></p>
-        <p>&copy; 2013 u-mooc &middot; <a href="#">Privacidad y condiciones</a></p>
+        <p>&copy; 2013 u-mooc &middot; <a href="#myPrivacy" data-toggle="modal">Privacidad y condiciones</a></p>
       </footer>
 
     </div><!-- /.container -->
