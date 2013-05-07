@@ -105,6 +105,7 @@ class CourseHandler(BaseHandler):
             return
 
         self.template_value['units'] = self.get_units()
+		
         self.template_value['progress'] = (
             self.get_progress_tracker().get_unit_progress(student))
         self.template_value['is_progress_recorded'] = (
