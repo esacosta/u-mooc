@@ -181,12 +181,12 @@ assessment_confirmations:
   postcourse_header: |
     Gracias por realizar la evaluación post-curso. Su puntuación es %s%%.
   postcourse_pass: |
-    En base a su puntuación total del curso (que incluye el curso medio y curso post-evaluaciones), ha aprobado el curso. ¡Felicidades!.
+    En base a su puntuación total del curso, ha aprobado. ¡Felicidades!.
   postcourse_fail: |
-    Por desgracia, en base a su puntuación total del curso (que incluye el a mitad de curso y las evaluaciones de los cursos),
+    Por desgracia, en base a su puntuación total del curso (que incluye los exámenes de curso y las evaluaciones),
     no recibió una puntuación lo suficientemente alta para obtener un certificado de finalización,
     nosotros recomendamos que revise las lecciones observadas y trate de realizar la evaluación de nuevo antes de que se cierre. 
-    Certificado o no, espero que disfrutara del curso y haya aprendido nuevas habilidades.
+    Si consigue el certificado o no, espero que disfrute del curso y haya aprendido nuevas habilidades.
   midcourse: |
     Gracias por realizar la evaluación de medio curso. Puede volver y realizar la evaluación de nuevo, o continuar a la siguiente unidad.
   precourse: |

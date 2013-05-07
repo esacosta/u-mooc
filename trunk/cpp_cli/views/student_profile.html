@@ -9,23 +9,23 @@
 
 {% block main_content %}
 <div class="row-fluid">
-  <div class="gcb-article tab-content">
-    <div class="gcb-aside">
+  <div class="">
+    <div class="">
       <h2>
         {% trans %} Student Profile for {% endtrans %}
         {{ student.key().name() }}
       </h2>
 
       {% if student %}
-      <table style="border-collapse:collapse;">
+      <table class="table table-bordered">
         <colgroup>
-          <col style="width: 10%">
+          <col width="20%">
           <col>
         </colgroup>
-        <tr>
+        <!--<tr>
           <th align="left">{% trans %} Currently enrolled {% endtrans %}</th>
           <td>{{ student.is_enrolled }}</td>
-        </tr>
+        </tr>-->
         <tr>
           <th align="left">{% trans %} Date enrolled {% endtrans %}</th>
           <td>{{ student.enrolled_on }}</td>
@@ -46,11 +46,11 @@
           <th align="left">{% trans %} Insignias {% endtrans %}<br/>
 		  <small><i>Complete las evaluaciones por encima del 80%</i></small></th>
 		  <td>
-		  <table style="width:100%;"><tr>
+		  <table class="table table-bordered"><tr class="">
 		  {% for badge in student.badges %}
-		  <td style="width:10%;text-align:center;"><img class="insignia" src="/assets/img/{{ badge }}.png"></img></td>
+		  <td style="width:10%;text-align:center;"><img class="insignia" style="max-height:100px;" src="/assets/img/{{ badge }}.png"></img></td>
 		  {% endfor %}
-		  </tr><tr>
+		  </tr><tr class="info">
 		  {% for badgetitle in student.badgesTitle %}
 		  <td style="width:10%;text-align:center;">{{ badgetitle }}</td>
 		  {% endfor %}
@@ -69,7 +69,10 @@
             <th align="left">&nbsp;&nbsp;&nbsp;{{ assessment['title'] }}</th>
             <td>
               {% if 'score' in assessment and assessment['score'] is defined %}
-                <span id="assessment-score-{{assessment['title']}}">{{ assessment['score'] }}</span>
+                <span id="assessment-score-{{assessment['title']}}">
+				<div class="progress progress-default progress-striped">
+									<div class="bar" style="width: {{ assessment['score'] }}%;"></div>
+								</div></span>
               {% endif %}
             </td>
           </tr>
@@ -79,7 +82,7 @@
           <tr>
             <th align="left">{% trans %} Overall course score {% endtrans %}</th>
             <td>
-              <span id="assessment-score-overall">{{ overall_score }}</span>
+              <span id="assessment-score-overall" class="badge badge-info">{{ overall_score }}</span>
             </td>
           </tr>
         {% endif %}
@@ -102,9 +105,9 @@
         </p>
       </form>
 
-      <h2>{% trans %} To leave the course permanently, click on Unenroll {% endtrans %}</h2>
+      <h3>{% trans %} To leave the course permanently, click on Unenroll {% endtrans %}</h3>
 
-      <p><a role="button" href="student/unenroll" class="btn">
+      <p><a role="button" href="student/unenroll" class="btn btn-danger">
         {% trans %} Unenroll {% endtrans %}
       </a></p>
 
