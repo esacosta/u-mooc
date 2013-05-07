@@ -11,11 +11,11 @@
 
 {% if is_read_write_course and is_course_admin %}
   <a href="dashboard?action=edit_assessment&key={{ unit_id }}"
-    class="btn btn-action">Edit assessment</a>
+    class="btn btn-primary">Edit assessment</a>
 {% endif %}
 
 <div class="row-fluid">
-  <div class="gcb-article">
+  <div class="">
     <script src="{{ assessment_script_src }}"></script>
     <script>
       assessmentXsrfToken = '{{ assessment_xsrf_token }}';
@@ -25,7 +25,7 @@
       eventXsrfToken = '{{ event_xsrf_token }}';
       {% endif %}
     </script>
-    <div style="width: 970px;" id="assessmentContents"></div>
+    <div id="assessmentContents"></div>
   </div>
 </div>
 

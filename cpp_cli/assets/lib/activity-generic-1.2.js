@@ -99,7 +99,7 @@ function generateMultipleChoiceQuestion(choices, domRoot, index) {
   domRoot.append('<p/><button class="btn btn-primary" ' +
       'id="submit_' + tag + '">' + trans.CHECK_ANSWER_TEXT + '</button>');
   domRoot.append(
-      '<p/><textarea style="width: 100%; height: 50px;" readonly="true" ' +
+      '<p/><textarea style="width: 600px; height: 50px;" readonly="true" ' +
       'id="output_' + tag + '"></textarea>');
 
 
@@ -206,7 +206,7 @@ function generateMultipleChoiceGroupQuestion(params, domRoot, index) {
       '<p/><button class="btn btn-primary" id="submit_' +
       toplevel_tag + '">' + trans.CHECK_ANSWERS_TEXT + '</button>');
   domRoot.append(
-      '<p/><textarea style="width: 100%; height: 100px;" readonly="true" ' +
+      '<p/><textarea style="width: 600px; height: 100px;" readonly="true" ' +
       'id="output_' + toplevel_tag + '"></textarea>');
 
 
@@ -308,7 +308,7 @@ function generateFreetextQuestion(params, domRoot, index) {
   var tag = getFreshTag();
 
   domRoot.append(
-      '&nbsp;&nbsp;<input type="text" style=" ' +
+      '&nbsp;&nbsp;<input type="text" style="width: 400px; ' +
       'class="alphanumericOnly" id="input_' + tag + '">');
   if (correctAnswerOutput && incorrectAnswerOutput) {
     domRoot.append('<p/><button class="btn btn-primary" ' +
@@ -321,7 +321,7 @@ function generateFreetextQuestion(params, domRoot, index) {
         showAnswerPrompt + '</button>');
   }
   domRoot.append(
-      '<p/><textarea style="width: 100%; height: ' + outputHeight + ';" ' +
+      '<p/><textarea style="width: 600px; height: ' + outputHeight + ';" ' +
       'readonly="true" id="output_' + tag + '"></textarea>');
 
 
@@ -461,7 +461,7 @@ function renderAssessment(assessment, domRoot) {
     domRoot.append(
         '<button type="button" class="btn btn-primary" id="checkAnswersBtn">' +
         trans.CHECK_ANSWERS_TEXT + '</button><p/>');
-    domRoot.append('<p/><textarea style="width: 100%; height: 120px;" ' +
+    domRoot.append('<p/><textarea style="width: 600px; height: 120px;" ' +
         'readonly="true" id="answerOutput"></textarea>');
   }
   domRoot.append(
