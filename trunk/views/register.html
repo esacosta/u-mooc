@@ -25,9 +25,15 @@
             </li>
             <li>
               <label class="form-label" for="form02">
-               {% trans %} ¿Edad? {% endtrans %}
+               {% trans %} What is your age? {% endtrans %}
               </label>
               <input name="form02" type="text">
+            </li>
+			<li>
+              <label class="form-label" for="form02">
+               {% trans %} Avatar {% endtrans %}
+              </label>
+              <input type="file" name="formimg">
             </li>
             {{course_info.reg_form.additional_registration_fields | safe}}
           </ol>

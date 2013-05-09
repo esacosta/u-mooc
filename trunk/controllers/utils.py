@@ -33,6 +33,7 @@ from google.appengine.api import namespace_manager
 from google.appengine.api import users
 
 
+
 # The name of the template dict key that stores a course's base location.
 COURSE_BASE_KEY = 'gcb_course_base'
 
@@ -327,6 +328,7 @@ class RegisterHandler(BaseHandler):
             student.is_enrolled = True
             student.name = name
             student.age = self.request.get('form02')
+            # student.avatar = self.request.get('formimg')
             
             student.put()
 
@@ -412,6 +414,8 @@ class StudentEditStudentHandler(BaseHandler):
             return
 
         Student.rename_current(self.request.get('name'))
+        Student.change_age_current(self.request.get('age'))
+        Student.change_avatar_current(self.request.get('img'))
 
         self.redirect('/student/home')
 
@@ -548,3 +552,12 @@ class XsrfTokenManager(object):
             return False
         except Exception:  # pylint: disable-msg=broad-except
             return False
+
+class Image(webapp2.RequestHandler):
+    def get(self):
+        student = Student.get_by_email(self.request.get('img_id'))
+        if student.avatar:
+            self.response.headers['Content-Type'] = 'image/png'
+            self.response.out.write(student.avatar)
+        else:
+            self.error(404)

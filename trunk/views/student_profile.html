@@ -39,11 +39,11 @@
           <td>{{ student.name }}</td>
         </tr>
         <tr>
-          <th align="left">{% trans %} Edad {% endtrans %}</th>
+          <th align="left">{% trans %} Age {% endtrans %}</th>
           <td>{{ student.age }}</td>
         </tr>
 		<tr>
-          <th align="left">{% trans %} Insignias {% endtrans %}<br/>
+          <th align="left">{% trans %} Badges {% endtrans %}<br/>
 		  <small><i>Complete las evaluaciones por encima del 80%</i></small></th>
 		  <td>
 		  <table class="table table-bordered"><tr class="">
@@ -88,14 +88,20 @@
         {% endif %}
       </table>
 
-      <form action='student/editstudent' method='post'>
+      <form action='student/editstudent' enctype="multipart/form-data" method='post'>
         <input type="hidden" name="xsrf_token" value="{{ student_edit_xsrf_token|escape }}">
         <h2><label for="name">{% trans %} New Name {% endtrans %}</label></h2>
         <fieldset style="border: none;">
+		  
           <p><input name="name" id="name" type="text" size="40">
-            <input type="hidden" name="email" value="{{ student.key().name() }}"></p>
+		  <h2><label for="name">{% trans %} Nueva edad {% endtrans %}</label></h2>
+		  <p><input name="age" id="age" type="text" size="40">
+		  <h2><label for="name">{% trans %} Nuevo avatar {% endtrans %}</label></h2>
+		  <p><input type="file" name="img"/>
+		  <input type="hidden" name="email" value="{{ student.key().name() }}"></p>
         </fieldset>
-
+		
+		<div><img src="img?img_id={{student.key().name()}}"></img></div>
         <p><button class="btn" type="submit">
           {% trans %} Save Changes {% endtrans %}
         </button> &nbsp;&nbsp;&nbsp;

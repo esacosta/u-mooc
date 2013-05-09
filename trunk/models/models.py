@@ -108,6 +108,7 @@ class Student(BaseEntity):
     is_enrolled = db.BooleanProperty(indexed=False)
     badges = db.StringListProperty(indexed=True)
     badgesTitle = db.StringListProperty(indexed=False)
+    avatar = db.BlobProperty()
     
     # Each of the following is a string representation of a JSON dict.
     scores = db.TextProperty(indexed=False)
@@ -158,6 +159,28 @@ class Student(BaseEntity):
         if new_name:
             student = Student.get_by_email(user.email())
             student.name = new_name
+            student.put()
+    
+    @classmethod
+    def change_age_current(cls, new_age):
+        """Gives student a new name."""
+        user = users.get_current_user()
+        if not user:
+            raise Exception('No current user.')
+        if new_age:
+            student = Student.get_by_email(user.email())
+            student.age = new_age
+            student.put()
+
+    @classmethod
+    def change_avatar_current(cls, new_avatar):
+        """Gives student a new name."""
+        user = users.get_current_user()
+        if not user:
+            raise Exception('No current user.')
+        if new_avatar:
+            student = Student.get_by_email(user.email())
+            student.avatar = new_avatar
             student.put()
 
     @classmethod
