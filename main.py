@@ -72,7 +72,8 @@ if appengine_config.BUNDLE_LIB_FILES:
 admin_handlers = [
     ('/admin', admin.AdminHandler),
     ('/rest/config/item', config.ConfigPropertyItemRESTHandler),
-    ('/rest/courses/item', config.CoursesItemRESTHandler)]
+    ('/rest/courses/item', config.CoursesItemRESTHandler),
+	('/img', utils.Image)]
 
 app_handler = (r'(.*)', sites.ApplicationRequestHandler)
 

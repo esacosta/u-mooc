@@ -873,6 +873,14 @@ empty datastore namespace.</p>
 order they are defined.</p>"""),
     'course:/:/:', multiline=True, validator=_courses_config_validator)
 
+class Image(webapp2.RequestHandler):
+    def get(self):
+        greeting = db.get(self.request.get('img_id'))
+        if greeting.avatar:
+            self.response.headers['Content-Type'] = 'image/png'
+            self.response.out.write(greeting.avatar)
+        else:
+            self.error(404)
 
 class ApplicationRequestHandler(webapp2.RequestHandler):
     """Handles dispatching of all URL's to proper handlers."""

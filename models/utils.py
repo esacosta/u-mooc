@@ -58,3 +58,4 @@ def set_score(student, assessment_name, score):
         score_dict = transforms.loads(student.scores)
     score_dict[assessment_name] = score
     student.scores = transforms.dumps(score_dict)
+
