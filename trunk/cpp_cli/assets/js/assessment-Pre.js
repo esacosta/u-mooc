@@ -9,31 +9,31 @@ var assessment = {
   //   correctAnswerRegex   - freetext regular expression match
   //   correctAnswerNumeric - freetext numeric match
   questionsList: [
-    {questionHTML: '¿Qué es MOOC?',
-     choices: [correct("Massive Online Open Course"), "Massive Open Online Course", "Curso Abierto Multiusuario En línea", "Multimedia Open Online Course", "No lo se"]
+    {questionHTML: '¿Quién creó C++/CLI?',
+     choices: [correct("Microsoft"), "Oracle", "ECMA-372", "Un grupo de programadores independiente", "No lo se"]
     },
 
-    {questionHTML: '¿Fué OpenCourseware el primer intento de colaboración y contrucción de contenidos online por parte de las universidades?',
-     choices: [correct("Si"), "No", "No lo se"]
+    {questionHTML: '¿Un compilador de C++ puede compilar esta expresión (String ^stringVar;)?',
+     choices: [correct("No"), "Si", "No lo se"]
     },
 
-    {questionHTML: '¿Quén es el fundador de Khan Academy?<p><img src="http://www.seti.cl/img/khan-academy.png" alt="Khan Academy" height=100 width=100 title="Khan Academy">',
-     correctAnswerString: 'SALMAN KHAN'
+    {questionHTML: 'Aproximádamente, ¿En qué año se estandarizó C++/CLI?',
+     correctAnswerString: '2005'
     },
 
-    {questionHTML: '¿Cual de estas respuestas no es un inconveniente de los MOOC?',
-     choices: ["Problema de evaluación con precesión y de forma normativa.", "Dificultad de certificar, credibilidad del conocimiento y de las habilidades adquiridas.", 
-     correct("Posibilidad de atraer un masivo número de estudiantes."), "Mayor dependencia con la motivación de los participantes para el éxito de los cursos.", "Futuro incierto de los MOOC, nadie sabe lo que pasará en el próximo año."]
+    {questionHTML: '¿Cual de estas respuestas es incorrecta?',
+     choices: ["Con C++/CLI puede realizar programas para .NET.", "C++/CLI fué creado por Microsoft.", 
+     correct("C++/CLI sirve solamente para aplicaciones en la red, tipo WebService, etc."), "C++ nació poco antes que C++/CLI."]
     },
 
-    {questionHTML: '¿Cual de estas respuestas no es una ventaja de los MOOC?',
-     choices: ["Acceso a un material de calidad a coste cero o reducido.", "Permite que todos los participantes colaboren y aprendan unos de otros.", 
-     "Mejora el conocimiento, tanto de los expertos como lo noveles.", correct("Dificultad de certificar, credibilidad del conocimiento y de las habilidades adquiridas."), "Posibilidad de atraer un masivo número de estudiantes.", 
-     "Herramienta potente de marketing para la marca de la institución."]
+    {questionHTML: '¿Cual de estas respuestas es correcta?',
+     choices: ["C++/CLI nace de la mano de una alianza entre Microsoft y Linux.", "C++/CLI está muy extendido para usarse en AppEngine.", 
+     "No hay nada mejor que C++/CLI.", correct("C++/CLI puede gestionar de forma diferente las referencias y punteros que C++."), "No existe diferencia entre C++ y C++/CLI.", 
+     "CLI son las siglas de Componente Libre de Interacción."]
     },
   ],
 
-  assessmentName: 'precourse', // unique name submitted along with all of the answers
+  assessmentName: 'Pre', // unique name submitted along with all of the answers
   checkAnswers: true          // render a "Check your Answers" button to allow students to check answers prior to submitting?
 }
 
