@@ -18,10 +18,10 @@
       class="btn btn-primary">Edit lesson</a>
   {% endif %}
   <ul class="breadcrumb">
-    <li><a href="course">{% trans %} Course {% endtrans %}</a><span class="divider">/</span></li>
+    <li><a href="course">{{ gettext('Course') }}</a><span class="divider">/</span></li>
     <li><a href="unit?unit={{ unit.unit_id }}">
-      {% trans %} Unit {% endtrans %}{{ unit.index }}</a><span class="divider">/</span></li>
-    <li>{% trans %} Lesson {% endtrans %}{{ lesson.index }}</li>
+      {{ gettext('Unit') }}{{ unit.index }}</a><span class="divider">/</span></li>
+    <li>{{ gettext('Lesson') }}{{ lesson.index }}</li>
   </ul>
   <div>
     <h2>
@@ -65,14 +65,14 @@
                 
                   <p class="pull-left">
                     <a role="button" class="btn btn-primary pull-right" href="{{ lesson.notes }}" target="_blank">
-                      {% trans %} Text Version {% endtrans %}
+                      {{ gettext('Text Version') }}
                     </a>
                   </p>
                 
                   {% endif %}
               {% if lesson.video %}
                 <p class="video-container">
-                  <iframe class="youtube-player" title="{% trans %} YouTube Video Player {% endtrans %}"
+                  <iframe class="youtube-player" title="{{ gettext('YouTube Video Player') }}"
                           type="text/html" width="100%" height="400" frameborder="0" allowfullscreen
                           src="https://www.youtube.com/embed/{{ lesson.video }}?feature=player_embedded&rel=0">
                   </iframe>
@@ -88,7 +88,7 @@
               <br><br>
 
               <div>
-                {% trans %} This lesson is not available. {% endtrans %}
+                {{ gettext('This lesson is not available.') }}
               </div>
 
             {% endif %}
@@ -98,18 +98,18 @@
             <div class="pull-left">
               {% if back_button_url %}
                 <a href="{{ back_button_url }}" class="btn btn-primary">
-                   &laquo;{% trans %} Previous Page {% endtrans %}
+                   &laquo;{{ gettext('Previous Page') }}
                 </a>
               {% endif %}
             </div>
             <div class="pull-right">
               {% if next_button_url %}
                 <a href="{{ next_button_url }}" class="btn btn-primary">
-                  {% trans %} Next Page {% endtrans %}
+                  {{ gettext('Next Page') }}
                 &raquo;</a>
               {% else %}
                 <a href="course" class="btn btn-primary">
-                  {% trans %} End {% endtrans %}
+                  {{ gettext('End') }}
                 </a>
               {% endif %}
             </div>

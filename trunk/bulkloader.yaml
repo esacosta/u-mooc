@@ -42,7 +42,3 @@ transformers:
       external_name: name
     - property: scores
       external_name: scores
-    - property: age
-      external_name: age
-    - property: badges
-      external_name: badges

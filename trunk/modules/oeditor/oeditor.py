@@ -19,7 +19,14 @@ __author__ = 'Pavel Simakov (psimakov@google.com)'
 import os
 import urllib
 import appengine_config
+from common import jinja_filters
+from common import schema_fields
+from common import tags
+from controllers import utils
+import jinja2
+from models import custom_modules
 from models import transforms
+import webapp2
 
 # a set of YUI and inputex modules required by the editor
 COMMON_REQUIRED_MODULES = [
@@ -29,35 +36,12 @@ ALL_MODULES = [
     'querystring-stringify-simple', 'inputex-select', 'inputex-string',
     'inputex-radio', 'inputex-date', 'inputex-datepicker', 'inputex-checkbox',
     'inputex-list', 'inputex-color', 'gcb-rte', 'inputex-textarea',
-    'inputex-uneditable', 'inputex-integer', 'inputex-hidden', 'inputex-file',
-    'io-upload-iframe']
+    'inputex-url', 'inputex-uneditable', 'inputex-integer', 'inputex-hidden',
+    'inputex-file', 'io-upload-iframe']
 
 
 class ObjectEditor(object):
     """Generic object editor powered by jsonschema."""
-
-    @classmethod
-    def format_annotations(cls, annotations):
-        """Formats annotations into JavaScript.
-
-        An annotation is a tuple of two elements. The first element is a
-        list of key names forming xpath of a target schema element. The second
-        is a dictionary, items of which must be attached to the target element.
-
-        Args:
-            annotations: an array of annotations
-
-        Returns:
-            The JavaScript representation of the annotations.
-        """
-        annotations_lines = []
-        for item in annotations:
-            path = []
-            for element in item[0]:
-                path.append('[\'%s\']' % element)
-            annotations_lines.append('schema.root%s = %s;' % (
-                ''.join(path), transforms.dumps(item[1])))
-        return '\n'.join(annotations_lines)
 
     @classmethod
     def get_html_for(
@@ -67,7 +51,9 @@ class ObjectEditor(object):
         save_method='put',
         delete_url=None, delete_method='post',
         auto_return=False, read_only=False,
-        required_modules=None, save_button_caption='Save',
+        required_modules=None,
+        extra_js_files=None,
+        save_button_caption='Save',
         exit_button_caption='Close'):
         """Creates an HTML code needed to embed and operate this form.
 
@@ -88,6 +74,7 @@ class ObjectEditor(object):
             auto_return: whether to return to the exit_url on successful save
             read_only: optional flag; if set, removes Save and Delete operations
             required_modules: list of inputex modules required for this editor
+            extra_js_files: list of extra JS files to be included
             save_button_caption: a caption for the 'Save' button
             exit_button_caption: a caption for the 'Close' button
 
@@ -97,7 +84,7 @@ class ObjectEditor(object):
         required_modules = required_modules or ALL_MODULES
 
         # extract label
-        type_label = transforms.loads(schema_json)['description']
+        type_label = transforms.loads(schema_json).get('description')
         if not type_label:
             type_label = 'Generic Object'
 
@@ -115,7 +102,14 @@ class ObjectEditor(object):
             post_url = ''
             post_args = ''
 
+        custom_rte_tag_icons = []
+        for tag, tag_class in tags.get_tag_bindings().items():
+            custom_rte_tag_icons.append({
+                'name': tag,
+                'iconUrl': tag_class().get_icon_url()})
+
         template_values = {
+            'enabled': custom_module.enabled,
             'schema': schema_json,
             'type_label': type_label,
             'get_url': '%s?%s' % (get_url, urllib.urlencode(get_args, True)),
@@ -123,12 +117,14 @@ class ObjectEditor(object):
             'save_args': transforms.dumps(post_args),
             'exit_button_caption': exit_button_caption,
             'exit_url': exit_url,
-            'required_modules': '"%s"' % '","'.join(
-                COMMON_REQUIRED_MODULES + required_modules),
-            'schema_annotations': cls.format_annotations(annotations),
+            'required_modules': COMMON_REQUIRED_MODULES + required_modules,
+            'extra_js_files': extra_js_files or [],
+            'schema_annotations': [
+                (item[0], transforms.dumps(item[1])) for item in annotations],
             'save_method': save_method,
             'auto_return': auto_return,
-            'save_button_caption': save_button_caption
+            'save_button_caption': save_button_caption,
+            'custom_rte_tag_icons': transforms.dumps(custom_rte_tag_icons)
             }
 
         if delete_url and not read_only:
@@ -138,8 +134,75 @@ class ObjectEditor(object):
         if appengine_config.BUNDLE_LIB_FILES:
             template_values['bundle_lib_files'] = True
 
-        return handler.get_template(
-            'oeditor.html', [os.path.dirname(__file__)]).render(template_values)
+        return jinja2.utils.Markup(handler.get_template(
+            'oeditor.html', [os.path.dirname(__file__)]
+        ).render(template_values))
+
+
+class PopupHandler(webapp2.RequestHandler, utils.ReflectiveRequestHandler):
+    """A handler to serve the content of the popup subeditor."""
+
+    default_action = 'custom_tag'
+    get_actions = ['edit_custom_tag', 'add_custom_tag']
+    post_actions = []
+
+    def get_template(self, template_name, dirs):
+        """Sets up an environment and Gets jinja template."""
+
+        jinja_environment = jinja2.Environment(
+            autoescape=True, finalize=jinja_filters.finalize,
+            loader=jinja2.FileSystemLoader(dirs + [os.path.dirname(__file__)]))
+        jinja_environment.filters['js_string'] = jinja_filters.js_string
+
+        return jinja_environment.get_template(template_name)
+
+    def get_edit_custom_tag(self):
+        """Return the the page used to edit a custom HTML tag in a popup."""
+        tag_name = self.request.get('tag_name')
+        tag_bindings = tags.get_tag_bindings()
+        tag_class = tag_bindings[tag_name]
+        schema = tag_class().get_schema(self)
+        if schema.has_subregistries():
+            raise NotImplementedError()
+
+        template_values = {}
+        template_values['form_html'] = ObjectEditor.get_html_for(
+            self, schema.get_json_schema(), schema.get_schema_dict(), None,
+            None, None)
+        self.response.out.write(
+            self.get_template('popup.html', []).render(template_values))
+
+    def get_add_custom_tag(self):
+        """Return the page for the popup used to add a custom HTML tag."""
+        tag_name = self.request.get('tag_name')
+
+        tag_bindings = tags.get_tag_bindings()
+
+        select_data = []
+        for name in tag_bindings.keys():
+            clazz = tag_bindings[name]
+            select_data.append((name, '%s: %s' % (
+                clazz.vendor(), clazz.name())))
+        select_data = sorted(select_data, key=lambda pair: pair[1])
+
+        if tag_name:
+            tag_class = tag_bindings[tag_name]
+        else:
+            tag_class = tag_bindings[select_data[0][0]]
+        tag_schema = tag_class().get_schema(self)
+
+        schema = schema_fields.FieldRegistry('Add a Component')
+        type_select = schema.add_sub_registry('type', 'Component Type')
+        type_select.add_property(schema_fields.SchemaField(
+            'tag', 'Name', 'select', select_data=select_data))
+        schema.add_sub_registry('attributes', registry=tag_schema)
+
+        template_values = {}
+        template_values['form_html'] = ObjectEditor.get_html_for(
+            self, schema.get_json_schema(), schema.get_schema_dict(), None,
+            None, None, extra_js_files=['add_custom_tag.js'])
+        self.response.out.write(
+            self.get_template('popup.html', []).render(template_values))
 
 
 def create_bool_select_annotation(
@@ -155,3 +218,46 @@ def create_bool_select_annotation(
     if description:
         properties['description'] = description
     return (keys_list, {'type': 'select', '_inputex': properties})
+
+
+custom_module = None
+
+
+def register_module():
+    """Registers this module in the registry."""
+
+    from controllers import sites  # pylint: disable-msg=g-import-not-at-top
+
+    yui_handlers = [
+        ('/static/inputex-3.1.0/(.*)', sites.make_zip_handler(
+            os.path.join(
+                appengine_config.BUNDLE_ROOT, 'lib/inputex-3.1.0.zip'))),
+        ('/static/yui_3.6.0/(.*)', sites.make_zip_handler(
+            os.path.join(
+                appengine_config.BUNDLE_ROOT, 'lib/yui_3.6.0.zip'))),
+        ('/static/2in3/(.*)', sites.make_zip_handler(
+            os.path.join(
+                appengine_config.BUNDLE_ROOT, 'lib/yui_2in3-2.9.0.zip')))]
+
+    if appengine_config.BUNDLE_LIB_FILES:
+        yui_handlers += [
+            ('/static/combo/inputex', sites.make_css_combo_zip_handler(
+                os.path.join(
+                    appengine_config.BUNDLE_ROOT, 'lib/inputex-3.1.0.zip'),
+                '/static/inputex-3.1.0/')),
+            ('/static/combo/yui', sites.make_css_combo_zip_handler(
+                os.path.join(appengine_config.BUNDLE_ROOT, 'lib/yui_3.6.0.zip'),
+                '/yui/')),
+            ('/static/combo/2in3', sites.make_css_combo_zip_handler(
+                os.path.join(
+                    appengine_config.BUNDLE_ROOT, 'lib/yui_2in3-2.9.0.zip'),
+                '/static/2in3/'))]
+
+    oeditor_handlers = [('/oeditorpopup', PopupHandler)]
+
+    global custom_module
+    custom_module = custom_modules.Module(
+        'Object Editor',
+        'A visual editor for editing various types of objects.',
+        yui_handlers, oeditor_handlers)
+    return custom_module

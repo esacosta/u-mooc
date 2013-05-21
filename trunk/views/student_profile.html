@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 
 {% block subtitle %}
-  {% trans %} My Profile {% endtrans %}
+  {# I18N: Title of the webpage. #}
+  {{ gettext('My Profile') }}
 {% endblock subtitle %}
 
 {% block top_content %}
@@ -9,116 +10,50 @@
 
 {% block main_content %}
 <div class="row-fluid">
-  <div class="">
-    <div class="">
+  <div class="gcb-article tab-content">
+    <div class="gcb-aside">
       <h2>
-        {% trans %} Student Profile for {% endtrans %}
+        {# I18N: Title of the student profile page. Followed by a student's name. #}
+        {{ gettext('Student Profile for ') }}
         {{ student.key().name() }}
       </h2>
 
       {% if student %}
-      <table class="table table-bordered">
-        <colgroup>
-          <col width="20%">
-          <col>
-        </colgroup>
-        <!--<tr>
-          <th align="left">{% trans %} Currently enrolled {% endtrans %}</th>
-          <td>{{ student.is_enrolled }}</td>
-        </tr>-->
-        <tr>
-          <th align="left">{% trans %} Date enrolled {% endtrans %}</th>
-          <td>{{ student.enrolled_on }}</td>
-        </tr>
-        <tr>
-          <th align="left">{% trans %} Email {% endtrans %}</th>
-          <td>{{ student.key().name() }}</td>
-        </tr>
-        <tr>
-          <th align="left">{% trans %} Name {% endtrans %}</th>
-          <td>{{ student.name }}</td>
-        </tr>
-        <tr>
-          <th align="left">{% trans %} Age {% endtrans %}</th>
-          <td>{{ student.age }}</td>
-        </tr>
-		<tr>
-          <th align="left">{% trans %} Badges {% endtrans %}<br/>
-		  <small><i>Complete las evaluaciones por encima del 80%</i></small></th>
-		  <td>
-		  <table class="table table-bordered"><tr class="">
-		  {% for badge in student.badges %}
-		  <td style="width:10%;text-align:center;"><img class="insignia" style="max-height:100px;" src="/assets/img/{{ badge }}.png"></img></td>
-		  {% endfor %}
-		  </tr><tr class="info">
-		  {% for badgetitle in student.badgesTitle %}
-		  <td style="width:10%;text-align:center;">{{ badgetitle }}</td>
-		  {% endfor %}
-		  
-		  </tr></table>
-		  </td>
-          
-        </tr>
 
-        <tr>
-          <th align="left" colspan=2>{% trans %} Assessment scores {% endtrans %}</th>
-        </tr>
+        {% include 'student_data_table.html' %}
 
-        {% for assessment in score_list %}
-          <tr>
-            <th align="left">&nbsp;&nbsp;&nbsp;{{ assessment['title'] }}</th>
-            <td>
-              {% if 'score' in assessment and assessment['score'] is defined %}
-                <span id="assessment-score-{{assessment['title']}}">
-				<div class="progress progress-default progress-striped">
-									<div class="bar" style="width: {{ assessment['score'] }}%;"></div>
-								</div></span>
-              {% endif %}
-            </td>
-          </tr>
-        {% endfor %}
+        <form action='student/editstudent' method='post'>
+          <input type="hidden" name="xsrf_token" value="{{ student_edit_xsrf_token|escape }}">
+          <h2><label for="name">
+            {# I18N: Label for the input field that allows the student to change the name on his/her certificate. #}
+            {{ gettext('New Name') }}
+          </label></h2>
+          <fieldset style="border: none;">
+            <p><input name="name" id="name" type="text" size="40">
+              <input type="hidden" name="email" value="{{ student.key().name() }}"></p>
+          </fieldset>
 
-        {% if overall_score != None %}
-          <tr>
-            <th align="left">{% trans %} Overall course score {% endtrans %}</th>
-            <td>
-              <span id="assessment-score-overall" class="badge badge-info">{{ overall_score }}</span>
-            </td>
-          </tr>
-        {% endif %}
-      </table>
+          <p>
+            <button class="btn" type="submit">
+              {# I18N: Text for a button that allows the student to save changes to his/her name for the certificate. #}
+              {{ gettext('Change Name') }}
+            </button>
+          </p>
+        </form>
 
-      <form action='student/editstudent' enctype="multipart/form-data" method='post'>
-        <input type="hidden" name="xsrf_token" value="{{ student_edit_xsrf_token|escape }}">
-        <h2><label for="name">{% trans %} New Name {% endtrans %}</label></h2>
-        <fieldset style="border: none;">
-		  
-          <p><input name="name" id="name" type="text" size="40">
-		  <h2><label for="name">{% trans %} Nueva edad {% endtrans %}</label></h2>
-		  <p><input name="age" id="age" type="text" size="40">
-		  <h2><label for="name">{% trans %} Nuevo avatar {% endtrans %}</label></h2>
-		  <p><input type="file" name="img"/>
-		  <input type="hidden" name="email" value="{{ student.key().name() }}"></p>
-        </fieldset>
-		
-		<div><img src="img?img_id={{student.key().name()}}"></img></div>
-        <p><button class="btn" type="submit">
-          {% trans %} Save Changes {% endtrans %}
-        </button> &nbsp;&nbsp;&nbsp;
-          <a href="student/home" class="btn" role="button">
-            {% trans %} Cancel {% endtrans %}
-          </a>
-        </p>
-      </form>
+        <h2>
+          {# I18N: Shown on the student profile page. #}
+          {{ gettext('To leave the course permanently, click on Unenroll') }}
+        </h2>
 
-      <h3>{% trans %} To leave the course permanently, click on Unenroll {% endtrans %}</h3>
-
-      <p><a role="button" href="student/unenroll" class="btn btn-danger">
-        {% trans %} Unenroll {% endtrans %}
-      </a></p>
+        <p><a role="button" href="student/unenroll" class="btn btn-danger">
+          {# I18N: Button that allows the student to unenroll from a course. #}
+          {{ gettext('Unenroll') }}
+        </a></p>
 
       {% else %}
-      <p>Student profile not found ...</p>
+        {# I18N: Shown when the student profile cannot be found in the database. #}
+        <p>{{ gettext('Student profile not found ...')}}</p>
       {% endif %}
     </div>
   </div>

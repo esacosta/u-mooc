@@ -4,7 +4,7 @@
     <base href="{{ gcb_course_base }}" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
-    <title>{{ page_title|safe }}</title>
+    <title>{{ page_title }}</title>
     <link rel="icon" href="" />
     <style>
         body, h3 {
@@ -113,7 +113,7 @@
         div#formContainer {
           margin: 0;
         }
-        .btn {
+        .gcb-button {
           font-family: "open sans",arial,sans-serif;
           font-weight: bold;
           font-size: inherit;
@@ -134,25 +134,28 @@
         span.draft-label {
           color: #999;
         }
+        .strong {
+          font-weight: bold;
+        }
     </style>
   </head>
   <body>
   <div id='gcb-user-bar'>
-    {{ user_nav|safe }}
+    {{ user_nav }}
   </div>
-  <h2>{{ page_title|safe }}</h2>
+  <h2>{{ page_title }}</h2>
   <div id='gcb-nav-bar'>
-    {{ top_nav|safe }}
+    {{ top_nav }}
   </div>
   <div id='gcb-main-area'>
     {% if alerts %}
       <div id="gcb-alerts-bar">
-        {{ alerts|safe }}
+        {{ alerts }}
       </div>
     {% endif %}
     {% if page_description %}
       <p class="page-description">
-        {{ page_description|safe }}
+        {{ page_description }}
       </p>
     {% endif %}
     {% if sections %}
@@ -161,12 +164,12 @@
       <div id='gcb-section'>
         {% for action in section.actions %}
           {% if action.href %}
-          <a id='{{ action.id }}' class="btn pull-right" role="button"
+          <a id='{{ action.id }}' class="gcb-button pull-right" role="button"
               href="{{ action.href }}" >{{ action.caption }}</a>
           {% else %}
           <form id='{{ action.id }}' action='{{ action.action }}' method='POST'>
             <input type="hidden" name="xsrf_token" value="{{ action.xsrf_token }}">
-            <button class="btn pull-right" type="submit">{{ action.caption }}</button>
+            <button class="gcb-button pull-right" type="submit">{{ action.caption }}</button>
           </form>
           {% endif %}
         {% endfor %}
@@ -176,22 +179,18 @@
         <h3>{{ section.title }}</h3>
         {% if section.description %}
           <p class="description">
-            {{ section.description|safe }}
+            {{ section.description }}
           </p>
         {% endif %}
         {% if section.pre %}
-        {{ section.pre|safe }}
+        {{ section.pre }}
         {% else %}
         <ol>
           {% if not section.children %}
           &lt; none &gt;
           {% endif %}
           {% for item in section.children %}
-          {% if 2 == (item|count) %}
-          <li>{{ item[0] }}: {{ item[1] }}</li>
-          {% else %}
-          <li>{{ item|safe }}</li>
-          {% endif %}
+          <li>{{ item }}</li>
           {% endfor %}
         </ol>
         {% endif %}
@@ -201,7 +200,7 @@
     {% endif %}
     {% if main_content %}
     <div id='gcb-main-content'>
-        {{ main_content|safe }}
+        {{ main_content }}
     </div>
     {% endif %}
   </div>

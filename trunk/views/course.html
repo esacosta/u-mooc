@@ -1,146 +1,223 @@
 {% extends 'base.html' %}
+
 {% block top_content %}
-
-{% include 'summary.html' %}
-
+    <div class="gcb-cols">
+      <div class="gcb-col-11 gcb-aside">
+        {% include 'summary.html' %}
+      </div>
+    </div>
 {% endblock %}
 
 {% block main_content %}
-   <div class="row-fluid ">
-	<div class="span2">
-        <h3>
-          {% trans %} Schedule {% endtrans %}
-        </h3>
-		</div>
-	</div>
-	<div class="row-fluid ">
-        <div>
-		   <table class="table table-bordered">
-            <!--<ul>-->
+    <div style="margin-top: 20px;" class="gcb-cols">
+      <div class="row-fluid">
+        <h1 class="schedule-headers">
+          {# I18N: This should be interpreted as a noun. It is the title for the course schedule on the main contents page. #}
+          {{ gettext('Schedule') }}
+        </h1>
+        <div class="row-fluid">
+          <div class="" id="gcb-nav-y">
+            <ul class="nav nav-stacked nav-pills">
               {% for unit in units %}
                 {% if unit.now_available or is_course_admin %}
                   {% if unit.type == 'A' %}
-                    {% if progress[unit.unit_id] > 0 %}
-						<tr class="">
-							<td width="10%">
-								<div class="progress progress-success progress-striped">
-									<div class="bar" style="width: 100%;"></div>
+                    <li class="row-fluid active"><p >
+                      {% if progress[unit.unit_id] > 0 %}
+                        <!--<img src="assets/lib/completed.png"
+                             alt="{# I18N: Alt text for image representing student progress. #}{{ gettext('Completed') }}"
+                             title="{# I18N: Alt text for image representing student progress. #}{{ gettext('Completed') }}"
+                             class="progress"
+                             id="progress-completed-{{unit.unit_id}}">-->
+							 <div class="progress progress-success progress-striped span2">
+									<div class="bar" style="width: 100%;" 
+									alt="{# I18N: Alt text for image representing student progress. #}{{ gettext('Completed') }}"
+									title="{# I18N: Alt text for image representing student progress. #}{{ gettext('Completed') }}"
+									id="progress-completed-{{unit.unit_id}}"></div>
+							 </div>
+                      {% else %}
+                        <!--<img src="assets/lib/not_started.png"
+                             alt="{# I18N: Alt text for image representing student progress. #}{{ gettext('Not yet submitted') }}"
+                             title="{# I18N: Alt text for image representing student progress. #}{{ gettext('Not yet submitted') }}"
+                             class="progress"
+                             id="progress-notstarted-{{unit.unit_id}}">-->
+							 <div class="progress progress-info progress-striped span2">
+									<div class="bar" style="width: 10%;" 
+									alt="{# I18N: Alt text for image representing student progress. #}{{ gettext('Not yet submitted') }}"
+									title="{# I18N: Alt text for image representing student progress. #}{{ gettext('Not yet submitted') }}"
+									id="progress-notstarted-{{unit.unit_id}}"></div>
+							 </div>
+                      {% endif %}
+                      <a class="span9" href="assessment?name={{ unit.unit_id }}">{{ unit.title }}</a>
+
+                      {% if unit.needs_human_grader %}
+                        {% if not unit.now_available and is_course_admin %}
+                          (Private)
+                        {% endif %}
+                        </p></li>
+                        <li class="row-fluid">
+                          <p >
+                            <div class="progress span2"><div class="bar" style="width: 0%;"></div></div>
+                          {% if unit.review_progress == 2 %}
+                            <!--<img src="assets/lib/completed.png"
+                                 alt="{# I18N: Alt text for image representing student progress. #}{{ gettext('Completed') }}"
+                                 title="{# I18N: Alt text for image representing student progress. #}{{ gettext('Completed') }}"
+                                 class="progress"
+                                 id="progress-completed-review-{{unit.unit_id}}">-->
+								 <div class="progress progress-sucess progress-striped span2">
+									<div class="bar" style="width: 100%;" 
+									alt="{# I18N: Alt text for image representing student progress. #}{{ gettext('Completed') }}"
+									title="{# I18N: Alt text for image representing student progress. #}{{ gettext('Completed') }}"
+									id="progress-completed-review-{{unit.unit_id}}"></div>
 								</div>
-								<!--<img src="assets/lib/completed.png" alt="{% trans %} Completed {% endtrans %}" title="{% trans %} Completed {% endtrans %}" id="progress-completed-{{unit.unit_id}}">-->
-							</td>
-                    {% else %}
-						<tr class="">
-							<td width="10%">
-								<!--<img src="assets/lib/not_started.png" alt="{% trans %} Not yet submitted {% endtrans %}" title="{% trans %} Not yet submitted {% endtrans %}" id="progress-notstarted-{{unit.unit_id}}">-->
-								<div class="progress progress-danger progress-striped">
-									<div class="bar" style="width: 1%;"></div>
+                          {% elif unit.review_progress == 1 %}
+                            <!--<img src="assets/lib/in_progress.png"
+                                 alt="{# I18N: Alt text for image representing student progress. #}{{ gettext('In progress') }}"
+                                 title="{# I18N: Alt text for image representing student progress. #}{{ gettext('In progress') }}"
+                                 class="progress"
+                                 id="progress-inprogress-review-{{unit.unit_id}}">-->
+								 <div class="progress progress-warning progress-striped span2">
+									<div class="bar" style="width: 50%;" 
+									 alt="{# I18N: Alt text for image representing student progress. #}{{ gettext('In progress') }}"
+									title="{# I18N: Alt text for image representing student progress. #}{{ gettext('In progress') }}"
+									id="progress-inprogress-review-{{unit.unit_id}}"></div>
 								</div>
-							</td>
-                    {% endif %}
-							<td>
-								<a href="assessment?name={{ unit.unit_id }}" class="btn btn-block btn-info">{{ unit.title }}</a>
-							</td>
-						</tr>
+                          {% else %}
+                            <!--<img src="assets/lib/not_started.png"
+                                 alt="{# I18N: Alt text for image representing student progress. #}{{ gettext('Not yet submitted') }}"
+                                 title="{# I18N: Alt text for image representing student progress. #}{{ gettext('Not yet submitted') }}"
+                                 class="progress"
+                                 id="progress-notstarted-review-{{unit.unit_id}}">-->
+								 <div class="progress progress-info progress-striped span2">
+									<div class="bar" style="width: 10%;" 
+									 alt="{# I18N: Alt text for image representing student progress. #}{{ gettext('Not yet submitted') }}"
+									title="{# I18N: Alt text for image representing student progress. #}{{ gettext('Not yet submitted') }}"
+									id="progress-notstarted-review-{{unit.unit_id}}"></div>
+								</div>
+                          {% endif %}
+
+                          {% if unit.is_submitted %}
+                            <a class="span9" href="reviewdashboard?unit={{ unit.unit_id }}">
+                              {% if unit.matcher == 'peer' %}
+                                {# I18N: Displayed in the course contents page. Indicates a page to which students can go to review other students' assignments. #}
+                                {{ gettext('Review peer assignments') }}
+                              {% endif %}
+                            </a>
+                          {% else %}
+                            <span><a class="span9 disabled" href="#">
+                              {% if unit.matcher == 'peer' %}
+                                {# I18N: Displayed in the course contents page. Indicates a page to which students can go to review other students' assignments. #}
+                                {{ gettext('Review peer assignments') }}
+                              {% endif %}
+                            </a></span>
+                          {% endif %}
+
+                      {% endif %}
+
                   {% elif unit.type == 'U' %}
+                    <li class="row-fluid"><p >
                       {% if is_progress_recorded %}
                         {% if progress[unit.unit_id] == 2 %}
-						<tr class="">
-							<td width="10%">
-								<!--<img src="assets/lib/completed.png" alt="{% trans %} Completed {% endtrans %}" title="{% trans %} Completed {% endtrans %}" id="progress-completed-{{unit.unit_id}}">-->
-								<div class="progress progress-success progress-striped">
-									<div class="bar" style="width: 100%;"></div>
+                          <!--<img src="assets/lib/completed.png"
+                               alt="{# I18N: Alt text for image representing student progress. #}{{ gettext('Completed') }}"
+                               title="{# I18N: Alt text for image representing student progress. #}{{ gettext('Completed') }}"
+                               class="progress"
+                               id="progress-completed-{{unit.unit_id}}">-->
+							   <div class="progress progress-sucess progress-striped span2">
+									<div class="bar" style="width: 100%;" 
+									 alt="{# I18N: Alt text for image representing student progress. #}{{ gettext('Completed') }}"
+									title="{# I18N: Alt text for image representing student progress. #}{{ gettext('Completed') }}"
+									id="progress-completed-{{unit.unit_id}}"></div>
 								</div>
-							</td>
                         {% elif progress[unit.unit_id] == 1 %}
-						<tr class="">
-							<td width="10%">
-								<div class="progress progress-warning progress-striped active">
-									<div class="bar" style="width: 50%;"></div>
+                          <!--<img src="assets/lib/in_progress.png"
+                               alt="{# I18N: Alt text for image representing student progress. #}{{ gettext('In progress') }}"
+                               title="{# I18N: Alt text for image representing student progress. #}{{ gettext('In progress') }}"
+                               class="progress"
+                               id="progress-inprogress-{{unit.unit_id}}">-->
+							   <div class="progress progress-warning progress-striped span2">
+									<div class="bar" style="width: 50%;" 
+									 alt="{# I18N: Alt text for image representing student progress. #}{{ gettext('In progress') }}"
+									title="{# I18N: Alt text for image representing student progress. #}{{ gettext('In progress') }}"
+									id="progress-inprogress-{{unit.unit_id}}"></div>
 								</div>
-								<!--<img src="assets/lib/in_progress.png" alt="{% trans %} In progress {% endtrans %}" title="{% trans %} In progress {% endtrans %}" id="progress-inprogress-{{unit.unit_id}}">-->
-							</td>
                         {% else %}
-						<tr class="">
-							<td width="10%">
-								<div class="progress progress-info progress-striped">
-									<div class="bar" style="width: 20%;";"></div>
+                          <!--<img src="assets/lib/not_started.png"
+                               alt="{# I18N: Alt text for image representing student progress. #}{{ gettext('Not yet started') }}"
+                               title="{# I18N: Alt text for image representing student progress. #}{{ gettext('Not yet started') }}"
+                               class="progress"
+                               id="progress-notstarted-{{unit.unit_id}}">-->
+							   <div class="progress progress-info progress-striped span2">
+									<div class="bar" style="width: 10%;" 
+									 alt="{# I18N: Alt text for image representing student progress. #}{{ gettext('Not yet started') }}"
+									title="{# I18N: Alt text for image representing student progress. #}{{ gettext('Not yet started') }}"
+									id="progress-notstarted-{{unit.unit_id}}"></div>
 								</div>
-								<!--<img src="assets/lib/not_started.png" alt="{% trans %} Not yet started {% endtrans %}" title="{% trans %} Not yet started {% endtrans %}" id="progress-notstarted-{{unit.unit_id}}">-->
-							</td>
                         {% endif %}
                       {% else %}
-						<tr ><td width="10%"><div class="progress progress-info progress-striped">
-									<div class="bar" style="width: 1%;"></div>
-								</div></td>
+                        <div class="progress span2"><div class="bar" style="width: 0%;"></div></div>
                       {% endif %}
-							<td>
-								&nbsp;&nbsp;&nbsp;<a href="unit?unit={{ unit.unit_id }}" class="btn btn-link">{{ gettext('Unit %(id)s - %(title)s', id=unit.index, title=unit.title) }}</a>
-							</td>
-						</tr>  
+
+                      <a class="span9" href="unit?unit={{ unit.unit_id }}">
+                        {# I18N: A row in the course schedule. #}
+                        {{ gettext('Unit %(id)s - %(title)s', id=unit.index, title=unit.title) }}
+                      </a>
                   {% elif unit.type == 'O' %}
-                    <!--<li><p class="top_content">-->
-					<tr class="">
-						<td width="10%">
-							<span class="progress-empty"></span>
-						</td>
-						<td>
-							<a href="{{ unit.href }}" class="btn btn-default btn-block"> {{ unit.title }} </a>
-						</td>
-					</tr>
+                    <li class="row-fluid active">
+                      <p >
+                        <div class="progress span2"><div class="bar" style="width: 0%;"></div></div>
+                        <a class="span9" href="{{ unit.href }}"> {{ unit.title }} </a>
                   {% else %}
-					<tr class="">
-						<td width="10%">
-							<span class="progress-empty"></span>
-						</td>
-						<td>
-							Error: unit type not recognized.
-						</td>
-					</tr>
-                  {% endif %}
-			  {% if not unit.now_available and is_course_admin %}
-				(Private)
-			  {% endif %}
-                      <!--</p>-->
-                    <!--</li>-->
-                {% else %}
-				  <ul>
-                  {% if unit.type == 'A' %}
                     <li>
-                      <p class="top_content">
-                        <span class="progress-empty"></span>
-                        {{ unit.title }}
+                      <p >
+                        <div class="progress span2"><div class="bar" style="width: 0%;"></div></div>
+                        <span class="span9">Error: unit type not recognized.</span>
+                  {% endif %}
+                      {% if not unit.now_available and is_course_admin %}
+                        (Private)
+                      {% endif %}
+                      </p>
+                    </li>
+                {% else %}
+                  {% if unit.type == 'A' %}
+                    <li class="row-fluid disabled">
+                      <p >
+                        <div class="progress span2"><div class="bar" style="width: 0%;"></div></div>
+                        <a href="" class="span9">{{ unit.title }}</a>
                       </p>
                     </li>
                   {% elif unit.type == 'U' %}
-                    <li>
-                      <p class="top_content">
-                        <span class="progress-empty"></span>
+                    <li class="row-fluid">
+                      <p >
+                        <div class="progress span2"><div class="bar" style="width: 0%;"></div></div>
+                        {# I18N: A row in the course schedule. #}
                         {{ gettext('Unit %(id)s - %(title)s', id=unit.index, title=unit.title) }}
-                        <span>
+                        <span class="span8">
                           {{ unit.release_date }}
                         </span>
                       </p>
                     </li>
                   {% elif unit.type == 'O' %}
-                    <li>
-                      <p class="top_content">
-                        <span class="progress-empty"></span>
+                    <li class="row-fluid">
+                      <p >
+                        <div class="progress span2"><div class="bar" style="width: 0%;"></div></div>
                         {{ unit.title }}
                       </p>
                     </li>
                   {% else %}
-                    <li>
-                      <p class="top_content">
-                        <span class="progress-empty"></span>
+                    <li class="row-fluid">
+                      <p >
+                        <div class="progress span2"><div class="bar" style="width: 0%;"></div></div>
                         Error: unit type not recognized.
                       </p>
                     </li>
                   {% endif %}
-				  </ul>
                 {% endif %}
+
               {% endfor %}
-            <!--</ul>-->
-			</table>
-		</div>
+            </ul>
+          </div>
+        </div>
+
+      </div>
     </div>
 {% endblock %}

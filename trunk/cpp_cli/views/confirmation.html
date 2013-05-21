@@ -21,21 +21,21 @@
           <ul>
             {% if course_info.course.forum_url %}
               <li>
-                {% trans %} To participate in community discussions about this course, register for the web forum at {% endtrans %}
+                {{ gettext('To participate in community discussions about this course, register for the web forum at') }}
                 <a href="{{course_info.course.forum_url}}">
                   {{course_info.course.forum_url}}
                 </a>.
-                {% trans %} On that page, click on <b>Join Group</b> {% endtrans %}.
+                {{ gettext('On that page, click on <b>Join Group</b>') }}.
               </li>
             {% endif %}
 
             {% if course_info.course.announcement_list_url %}
               <li>
-                {% trans %} To receive announcements about this course, register for the announcements-only email list at {% endtrans %}
+                {{ gettext('To receive announcements about this course, register for the announcements-only email list at') }}
                 <a href="{{course_info.course.announcement_list_url}}">
                   {{course_info.course.announcement_list_url}}
                 </a>.
-                {% trans %} On that page, click on <b>Join Group</b>. In the dialog box that appears, under <b>How do you want to read this group?</b>, choose <b>Email</b>. {% endtrans %}
+                {{ gettext('On that page, click on <b>Join Group</b>. In the dialog box that appears, under <b>How do you want to read this group?</b>, choose <b>Email</b>.') }}
               </li>
             {% endif %}
           </ul>

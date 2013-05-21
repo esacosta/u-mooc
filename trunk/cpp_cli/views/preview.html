@@ -6,7 +6,7 @@
 		<div class="row-fluid">
           <center>
             <a class="btn btn-large" href="register" role="button">
-              {% trans %} Register {% endtrans %}
+              {{ gettext('Register') }}
             </a>
           </center>
 		</div>
@@ -17,7 +17,7 @@
     
 
 		  <h3 class="schedule-headers">
-          {% trans %} Schedule {% endtrans %}
+          {{ gettext('Schedule') }}
         </h3>
             <table class="table table-striped table-bordered">
               {% for unit in units %}

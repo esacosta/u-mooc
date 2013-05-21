@@ -33,7 +33,7 @@ var assessment = {
     },
   ],
 
-  assessmentName: 'precourse', // unique name submitted along with all of the answers
+  assessmentName: 'Pre', // unique name submitted along with all of the answers
   checkAnswers: true          // render a "Check your Answers" button to allow students to check answers prior to submitting?
 }
 

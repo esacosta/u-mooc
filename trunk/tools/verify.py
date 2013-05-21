@@ -57,6 +57,7 @@ SCHEMA = {
             'questionHTML': STRING,
             'lesson': STRING,
             'choices': [STRING, CORRECT],
+            'multiLine': BOOLEAN,
             'correctAnswerNumeric': FLOAT,
             'correctAnswerString': STRING,
             'correctAnswerRegex': REGEX}]
@@ -170,7 +171,7 @@ class SchemaException(Exception):
             return 'REGEX(...)'
         if name == CORRECT:
             return 'CORRECT(...)'
-        if name == STRING or isinstance(name, str):
+        if name == STRING or isinstance(name, basestring):
             return 'STRING'
         if name == FLOAT:
             return 'FLOAT'
@@ -312,7 +313,7 @@ class SchemaHelper(object):
 
         selector = {}
         for akey, avalue in type_map.items():
-            if isinstance(akey, str) and isinstance(avalue, str):
+            if isinstance(akey, basestring) and isinstance(avalue, basestring):
                 selector.update({akey: avalue})
         return selector
 
@@ -350,14 +351,14 @@ class SchemaHelper(object):
             else:
                 raise SchemaException(
                     'Expected: \'true\' or \'false\'\nfound: %s', value)
-        if isinstance(atype, str):
-            if isinstance(value, str):
+        if isinstance(atype, basestring):
+            if isinstance(value, basestring):
                 self.visit_element('str', value, context)
                 return True
             else:
                 raise SchemaException('Expected: \'string\'\nfound: %s', value)
         if atype == STRING:
-            if isinstance(value, str):
+            if isinstance(value, basestring):
                 self.visit_element('STRING', value, context)
                 return True
             else:
@@ -871,7 +872,8 @@ def read_objects_from_csv(value_rows, header, new_object, converter=None):
 
 def escape_javascript_regex(text):
     return re.sub(
-        r'([:][ ]*)([/])(.*)([/][ismx]*)', r': regex("\2\3\4")', text)
+        r'correctAnswerRegex([:][ ]*)([/])(.*)([/][ismx]*)',
+        r'correctAnswerRegex: regex("\2\3\4")', text)
 
 
 def remove_javascript_single_line_comment(text):
@@ -922,9 +924,10 @@ def convert_javascript_file_to_python(fname, root_name):
         ''.join(open(fname, 'r').readlines()), root_name)
 
 
-def evaluate_python_expression_from_text(content, root_name, scope,
-                                         noverify_text):
-    """Compiles and evaluates a Python script in a restricted environment."""
+def legacy_eval_python_expression_for_test(content, scope, unused_root_name):
+    """Legacy content parsing function using compile/exec."""
+
+    print 'WARNING! This code is unsafe and uses compile/exec!'
 
     # First compiles and then evaluates a Python script text in a restricted
     # environment using provided bindings. Returns the resulting bindings if
@@ -941,10 +944,26 @@ def evaluate_python_expression_from_text(content, root_name, scope,
     exec code in restricted_scope
     # pylint: enable-msg=exec-statement
 
+    return restricted_scope
+
+
+def not_implemented_parse_content(
+    unused_content, unused_scope, unused_root_name):
+    raise Exception('Not implemented.')
+
+
+# by default no parser method is configured; set custom parser if you have it
+parse_content = not_implemented_parse_content
+
+
+def evaluate_python_expression_from_text(content, root_name, scope,
+                                         noverify_text):
+    """Compiles and evaluates a Python script in a restricted environment."""
+
+    restricted_scope = parse_content(content, scope, root_name)
     if noverify_text:
         restricted_scope['noverify'] = noverify_text
-
-    if restricted_scope[root_name] is None:
+    if restricted_scope.get(root_name) is None:
         raise Exception('Unable to find \'%s\'' % root_name)
     return restricted_scope
 
@@ -985,12 +1004,6 @@ class Verifier(object):
                 self.error(
                     'Bad type \'%s\' for unit id %s; '
                     'expected: %s.' % (unit.type, unit.id, UNIT_TYPES))
-
-            if unit.type == 'A':
-                if not is_one_of(unit.unit_id, ('Pre', 'Mid', 'Fin')):
-                    self.error(
-                        'Bad unit_id \'%s\'; expected \'Pre\', \'Mid\' or '
-                        '\'Fin\' for unit id %s' % (unit.unit_id, unit.id))
 
             if unit.type == 'U':
                 if not is_integer(unit.unit_id):
@@ -1329,11 +1342,13 @@ class Verifier(object):
         except SchemaException as e:
             self.error(str(e))
 
-        self.info('Schema usage statistics: %s' % self.schema_helper.type_stats)
-        self.info('Completed verification: %s warnings, %s errors.' % (
-            self.warnings, self.errors))
+        info = (
+            'Schema usage statistics: %s'
+            'Completed verification: %s warnings, %s errors.' % (
+                self.schema_helper.type_stats, self.warnings, self.errors))
+        self.info(info)
 
-        return self.warnings, self.errors
+        return self.warnings, self.errors, info
 
 
 def run_all_regex_unit_tests():
@@ -1341,12 +1356,12 @@ def run_all_regex_unit_tests():
 
     # pylint: disable-msg=anomalous-backslash-in-string
     assert escape_javascript_regex(
-        'blah regex: /site:bls.gov?/i, blah') == (
-            'blah regex: regex(\"/site:bls.gov?/i\"), blah')
+        'correctAnswerRegex: /site:bls.gov?/i, blah') == (
+            'correctAnswerRegex: regex(\"/site:bls.gov?/i\"), blah')
     assert escape_javascript_regex(
-        'blah regex: /site:http:\/\/www.google.com?q=abc/i, blah') == (
-            'blah regex: regex(\"/site:http:\/\/www.google.com?q=abc/i\"), '
-            'blah')
+        'correctAnswerRegex: /site:http:\/\/www.google.com?q=abc/i, blah') == (
+            'correctAnswerRegex: '
+            'regex(\"/site:http:\/\/www.google.com?q=abc/i\"), blah')
     assert remove_javascript_multi_line_comment(
         'blah\n/*\ncomment\n*/\nblah') == 'blah\n\nblah'
     assert remove_javascript_multi_line_comment(
@@ -1568,8 +1583,9 @@ def run_all_schema_helper_unit_tests():
     assert_same(create_python_dict_from_js_object(
         '{"a": correct("hello world")}'),
                 {'a': Term(CORRECT, 'hello world')})
-    assert_same(create_python_dict_from_js_object('{"a": /hello/i}'),
-                {'a': Term(REGEX, '/hello/i')})
+    assert_same(create_python_dict_from_js_object(
+        '{correctAnswerRegex: /hello/i}'),
+                {'correctAnswerRegex': Term(REGEX, '/hello/i')})
 
 
 def run_example_activity_tests():
@@ -1586,12 +1602,52 @@ def run_example_activity_tests():
     verifier.verify_activity_instance(activity, fname)
 
 
+def test_exec():
+    """This test shows that exec/compile are explitable, thus not safe."""
+    content = """
+foo = [
+    c for c in ().__class__.__base__.__subclasses__()
+    if c.__name__ == 'catch_warnings'
+][0]()._module.__builtins__
+"""
+    restricted_scope = {}
+    restricted_scope.update({'__builtins__': {}})
+    code = compile(content, '<string>', 'exec')
+
+    # pylint: disable-msg=exec-statement
+    exec code in restricted_scope
+    # pylint: enable-msg=exec-statement
+
+    assert 'isinstance' in restricted_scope.get('foo')
+
+
+def test_sample_assets():
+    """Test assets shipped with the sample course."""
+    _, _, output = Verifier().load_and_verify_model(echo)
+    if (
+            'Schema usage statistics: {'
+            '\'REGEX\': 19, \'STRING\': 415, \'NUMBER\': 1, '
+            '\'BOOLEAN\': 81, \'dict\': 73, \'str\': 41, \'INTEGER\': 9, '
+            '\'CORRECT\': 9}' not in output
+            or 'Completed verification: 0 warnings, 0 errors.' not in output):
+        raise Exception('Sample course verification failed.\n%s' % output)
+
+
 def run_all_unit_tests():
-    run_all_regex_unit_tests()
-    run_all_schema_helper_unit_tests()
-    run_example_activity_tests()
+    """Runs all unit tests in this module."""
+    global parse_content
+    original = parse_content
+    try:
+        parse_content = legacy_eval_python_expression_for_test
+
+        run_all_regex_unit_tests()
+        run_all_schema_helper_unit_tests()
+        run_example_activity_tests()
+        test_exec()
+        test_sample_assets()
+    finally:
+        parse_content = original
 
 
-run_all_unit_tests()
 if __name__ == '__main__':
-    Verifier().load_and_verify_model(echo)
+    run_all_unit_tests()

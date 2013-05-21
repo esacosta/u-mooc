@@ -33,7 +33,6 @@ from google.appengine.api import namespace_manager
 from google.appengine.api import users
 
 
-
 # The name of the template dict key that stores a course's base location.
 COURSE_BASE_KEY = 'gcb_course_base'
 
@@ -50,6 +49,29 @@ XSRF_SECRET = ConfigProperty(
         'server rejects all subsequent requests issued using an old value for '
         'this variable.'),
     'course builder XSRF secret')
+
+
+# Whether to record page load/unload events in a database.
+CAN_PERSIST_PAGE_EVENTS = ConfigProperty(
+    'gcb_can_persist_page_events', bool, (
+        'Whether or not to record student page interactions in a '
+        'datastore. Without event recording, you cannot analyze student '
+        'page interactions. On the other hand, no event recording reduces '
+        'the number of datastore operations and minimizes the use of Google '
+        'App Engine quota. Turn event recording on if you want to analyze '
+        'this data.'),
+    False)
+
+
+# Date format string for displaying datetimes in UTC.
+# Example: 2013-03-21 13:00 UTC
+HUMAN_READABLE_DATETIME_FORMAT = '%Y-%m-%d, %H:%M UTC'
+
+# Date format string for displaying dates. Example: 2013-03-21
+HUMAN_READABLE_DATE_FORMAT = '%Y-%m-%d'
+
+# Time format string for displaying times. Example: 01:16:40 UTC.
+HUMAN_READABLE_TIME_FORMAT = '%H:%M:%S UTC'
 
 
 class ReflectiveRequestHandler(object):
@@ -162,9 +184,10 @@ class ApplicationHandler(webapp2.RequestHandler):
             location = '%s%s' % (self.app_context.get_slug(), location)
         return location
 
-    def redirect(self, location):
-        super(ApplicationHandler, self).redirect(
-            self.canonicalize_url(location))
+    def redirect(self, location, normalize=True):
+        if normalize:
+            location = self.canonicalize_url(location)
+        super(ApplicationHandler, self).redirect(location)
 
 
 class BaseHandler(ApplicationHandler):
@@ -199,7 +222,8 @@ class BaseHandler(ApplicationHandler):
         """Validate user exists."""
         user = users.get_current_user()
         if not user:
-            self.redirect(users.create_login_url(self.request.uri))
+            self.redirect(
+                users.create_login_url(self.request.uri), normalize=False)
         else:
             return user
 
@@ -210,19 +234,33 @@ class BaseHandler(ApplicationHandler):
             self.template_value['email'] = user.email()
             self.template_value['logoutUrl'] = (
                 users.create_logout_url(self.request.uri))
+
+            # configure page events
+            self.template_value['record_page_events'] = (
+                CAN_PERSIST_PAGE_EVENTS.value)
+            self.template_value['event_xsrf_token'] = (
+                XsrfTokenManager.create_xsrf_token('event-post'))
+
         return user
 
     def personalize_page_and_get_enrolled(self):
         """If the user is enrolled, add personalized fields to the navbar."""
         user = self.personalize_page_and_get_user()
         if not user:
-            self.redirect(users.create_login_url(self.request.uri))
+            self.redirect(
+                users.create_login_url(self.request.uri), normalize=False)
             return None
 
         student = Student.get_enrolled_student_by_email(user.email())
         if not student:
             self.redirect('/preview')
             return None
+
+        # Patch Student models which (for legacy reasons) do not have a user_id
+        # attribute set.
+        if not student.user_id:
+            student.user_id = user.user_id()
+            student.put()
 
         return student
 
@@ -254,6 +292,7 @@ class BaseRESTHandler(BaseHandler):
             return False
         return True
 
+
 class PreviewHandler(BaseHandler):
     """Handler for viewing course preview."""
 
@@ -281,15 +320,16 @@ class IndexHandler(BaseHandler):
     def get(self):
         """Handles GET requests."""
         self.render('index.html')
-			
 class RegisterHandler(BaseHandler):
     """Handler for course registration."""
 
     def get(self):
         """Handles GET request."""
+
         user = self.personalize_page_and_get_user()
         if not user:
-            self.redirect(users.create_login_url(self.request.uri))
+            self.redirect(
+                users.create_login_url(self.request.uri), normalize=False)
             return
 
         student = Student.get_enrolled_student_by_email(user.email())
@@ -306,7 +346,8 @@ class RegisterHandler(BaseHandler):
         """Handles POST requests."""
         user = self.personalize_page_and_get_user()
         if not user:
-            self.redirect(users.create_login_url(self.request.uri))
+            self.redirect(
+                users.create_login_url(self.request.uri), normalize=False)
             return
 
         if not self.assert_xsrf_token_or_fail(self.request, 'register-post'):
@@ -318,6 +359,7 @@ class RegisterHandler(BaseHandler):
             self.template_value['course_status'] = 'full'
         else:
             name = self.request.get('form01')
+            additional_fields = transforms.dumps(self.request.POST.items())
 
             # create new or re-enroll old student
             student = Student.get_by_email(user.email())
@@ -325,11 +367,17 @@ class RegisterHandler(BaseHandler):
                 student = Student(key_name=user.email())
                 student.user_id = user.user_id()
 
+            student_by_uid = Student.get_student_by_user_id(user.user_id())
+            is_valid_student = (student_by_uid is None or
+                                student_by_uid.user_id == student.user_id)
+            assert is_valid_student, (
+                'Student\'s email and user id do not match.')
+
+            student.user_id = user.user_id()
             student.is_enrolled = True
             student.name = name
             student.age = self.request.get('form02')
-            # student.avatar = self.request.get('formimg')
-            
+            student.additional_fields = additional_fields
             student.put()
 
         # Render registration confirmation page
@@ -394,6 +442,8 @@ class StudentProfileHandler(BaseHandler):
 
         self.template_value['navbar'] = {'myprofile': True}
         self.template_value['student'] = student
+        self.template_value['date_enrolled'] = student.enrolled_on.strftime(
+            HUMAN_READABLE_DATE_FORMAT)
         self.template_value['score_list'] = course.get_all_scores(student)
         self.template_value['overall_score'] = course.get_overall_score(student)
         self.template_value['student_edit_xsrf_token'] = (
@@ -552,7 +602,6 @@ class XsrfTokenManager(object):
             return False
         except Exception:  # pylint: disable-msg=broad-except
             return False
-
 class Image(webapp2.RequestHandler):
     def get(self):
         student = Student.get_by_email(self.request.get('img_id'))

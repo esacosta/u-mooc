@@ -16,7 +16,7 @@
 
 __author__ = 'Pavel Simakov (psimakov@google.com)'
 
-
+import base64
 import datetime
 import json
 from google.appengine.ext import db
@@ -110,7 +110,7 @@ def json_to_dict(source_dict, schema):
     return output
 
 
-def entity_to_dict(entity):
+def entity_to_dict(entity, force_utf_8_encoding=False):
     """Puts model object attributes into a Python dictionary."""
     output = {}
     for key, prop in entity.properties().iteritems():
@@ -118,6 +118,17 @@ def entity_to_dict(entity):
         if value is None or isinstance(value, SIMPLE_TYPES) or isinstance(
                 value, SUPPORTED_TYPES):
             output[key] = value
+
+            # some values are raw bytes; force utf-8 or base64 encoding
+            if force_utf_8_encoding and isinstance(value, basestring):
+                try:
+                    output[key] = value.encode('utf-8')
+                except UnicodeDecodeError:
+                    output[key] = {
+                        'type': 'binary',
+                        'encoding': 'base64',
+                        'content': base64.urlsafe_b64encode(value)}
+
         else:
             raise ValueError('Failed to encode: %s' % prop)
 
@@ -174,11 +185,16 @@ def value_to_string(value, value_type):
         raise ValueError('Unknown type: %s' % value_type)
 
 
-def dict_to_instance(adict, instance):
+def dict_to_instance(adict, instance, defaults=None):
     """Populates instance attributes using data dictionary."""
     for key, unused_value in instance.__dict__.iteritems():
         if not key.startswith('_'):
-            setattr(instance, key, adict[key])
+            if key in adict:
+                setattr(instance, key, adict[key])
+            elif defaults and key in defaults:
+                setattr(instance, key, defaults[key])
+            else:
+                raise KeyError(key)
 
 
 def instance_to_dict(instance):
@@ -193,7 +209,10 @@ def instance_to_dict(instance):
 def send_json_response(
     handler, status_code, message, payload_dict=None, xsrf_token=None):
     """Formats and sends out a JSON REST response envelope and body."""
-    handler.response.headers['Content-Type'] = 'application/json, charset=utf-8'
+    handler.response.headers[
+        'Content-Type'] = 'application/javascript; charset=utf-8'
+    handler.response.headers['X-Content-Type-Options'] = 'nosniff'
+    handler.response.headers['Content-Disposition'] = 'attachment'
     response = {}
     response['status'] = status_code
     response['message'] = message
@@ -202,6 +221,153 @@ def send_json_response(
     if xsrf_token:
         response['xsrf_token'] = xsrf_token
     handler.response.write(_JSON_XSSI_PREFIX + dumps(response))
+
+
+def send_json_file_upload_response(handler, status_code, message):
+    """Formats and sends out a JSON REST response envelope and body.
+
+    NOTE: This method has lowered protections against XSSI (compared to
+    send_json_response) and so it MUST NOT be used with dynamic data. Use ONLY
+    constant data originating entirely on the server as arguments.
+
+    Args:
+        handler: the request handler.
+        status_code: the HTTP status code for the response.
+        message: the text of the message - must not be dynamic data.
+    """
+
+    # The correct MIME type for JSON is application/json but there are issues
+    # with our AJAX file uploader in MSIE which require text/plain instead.
+    if 'MSIE' in handler.request.headers.get('user-agent'):
+        content_type = 'text/plain; charset=utf-8'
+    else:
+        content_type = 'application/javascript; charset=utf-8'
+    handler.response.headers['Content-Type'] = content_type
+    handler.response.headers['X-Content-Type-Options'] = 'nosniff'
+    response = {}
+    response['status'] = status_code
+    response['message'] = message
+    handler.response.write(_JSON_XSSI_PREFIX + dumps(response))
+
+
+class JsonFile(object):
+    """A streaming file-ish interface for JSON content.
+
+    Usage:
+
+        writer = JsonFile('path')
+        writer.open('w')
+        writer.write(json_serializable_python_object)  # We serialize for you.
+        writer.write(another_json_serializable_python_object)
+        writer.close()  # Must close before read.
+        reader = JsonFile('path')
+        reader.open('r')  # Only 'r' and 'w' are supported.
+        for entity in reader:
+            do_something_with(entity)  # We deserialize back to Python for you.
+        self.reader.reset()  # Reset read pointer to head.
+        contents = self.reader.read()  # Returns {'rows': [...]}.
+        for entity in contents['rows']:
+            do_something_with(entity)  # Again, deserialized back to Python.
+        reader.close()
+
+    with syntax is not supported.  Cannot be used inside the App Engine
+    container where the filesystem is read-only.
+
+    Internally, each call to write will take a Python object, serialize it, and
+    write the contents as one line to the json file. On __iter__ we deserialize
+    one line at a time, generator-style, to avoid OOM unless serialization/de-
+    serialization of one object exhausts memory.
+    """
+
+    # When writing to files use \n instead of os.linesep; see
+    # http://docs.python.org/2/library/os.html.
+    _LINE_TEMPLATE = ',\n    %s'
+    _MODE_READ = 'r'
+    _MODE_WRITE = 'w'
+    _MODES = frozenset([_MODE_READ, _MODE_WRITE])
+    _PREFIX = '{"rows": ['
+    _SUFFIX = ']}'
+
+    def __init__(self, path):
+        self._first = True
+        self._file = None
+        self._path = path
+
+    def __iter__(self):
+        assert self._file
+        return self
+
+    def close(self):
+        """Closes the file; must close before read."""
+        assert self._file
+        if not self._file.closed:  # Like file, allow multiple close calls.
+            if self.mode == self._MODE_WRITE:
+                self._file.write('\n' + self._SUFFIX)
+            self._file.close()
+
+    @property
+    def mode(self):
+        """Returns the mode the file was opened in."""
+        assert self._file
+        return self._file.mode
+
+    @property
+    def name(self):
+        """Returns string name of the file."""
+        assert self._file
+        return self._file.name
+
+    def next(self):
+        """Retrieves the next line and deserializes it into a Python object."""
+        assert self._file
+        line = self._file.readline()
+        if line.startswith(self._PREFIX):
+            line = self._file.readline()
+        if line.endswith(self._SUFFIX):
+            raise StopIteration()
+        line = line.strip()
+        if line.endswith(','):
+            line = line[:-1]
+        return loads(line)
+
+    def open(self, mode):
+        """Opens the file in the given mode string ('r, 'w' only)."""
+        assert not self._file
+        assert mode in self._MODES
+        self._file = open(self._path, mode)
+        if self.mode == self._MODE_WRITE:
+            self._file.write(self._PREFIX)
+
+    def read(self):
+        """Reads the file into a single Python object; may exhaust memory.
+
+        Returns:
+            dict. Format: {'rows': [...]} where the value is a list of de-
+            serialized objects passed to write.
+        """
+        assert self._file
+        return loads(self._file.read())
+
+    def reset(self):
+        """Resets file's position to head."""
+        assert self._file
+        self._file.seek(0)
+
+    def write(self, python_object):
+        """Writes serialized JSON representation of python_object to file.
+
+        Args:
+            python_object: object. Contents to write. Must be JSON-serializable.
+
+        Raises:
+            ValueError: if python_object cannot be JSON-serialized.
+        """
+        assert self._file
+        template = self._LINE_TEMPLATE
+        if self._first:
+            template = template[1:]
+            self._first = False
+        self._file.write(template % dumps(python_object))
 
 
 def run_all_unit_tests():

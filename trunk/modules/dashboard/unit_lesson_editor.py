@@ -20,6 +20,7 @@ __author__ = 'John Orr (jorr@google.com)'
 import cgi
 import logging
 import urllib
+from common import tags
 from controllers import sites
 from controllers.utils import ApplicationHandler
 from controllers.utils import BaseRESTHandler
@@ -45,10 +46,9 @@ PUBLISHED_TEXT = 'Public'
 # nested arrayable polymorphic attributes is a pain...
 
 
-def create_status_annotation():
-    return oeditor.create_bool_select_annotation(
-        ['properties', 'is_draft'], 'Status', DRAFT_TEXT,
-        PUBLISHED_TEXT, class_name='split-from-main-group')
+STATUS_ANNOTATION = oeditor.create_bool_select_annotation(
+    ['properties', 'is_draft'], 'Status', DRAFT_TEXT,
+    PUBLISHED_TEXT, class_name='split-from-main-group')
 
 
 class CourseOutlineRights(object):
@@ -154,6 +154,7 @@ class UnitLessonEditor(ApplicationHandler):
         """Adds new link to a course."""
         course = courses.Course(self)
         link = course.add_link()
+        link.href = ''
         course.save()
         self.redirect(self.get_action_url(
             'edit_link', key=link.unit_id, extra_args={'is_newly_created': 1}))
@@ -360,7 +361,7 @@ class UnitRESTHandler(CommonUnitRESTHandler):
         (['properties', 'type', '_inputex'], {
             'label': 'Type', '_type': 'uneditable'}),
         (['properties', 'title', '_inputex'], {'label': 'Title'}),
-        create_status_annotation()]
+        STATUS_ANNOTATION]
 
     REQUIRED_MODULES = [
         'inputex-string', 'inputex-select', 'inputex-uneditable']
@@ -410,7 +411,7 @@ class LinkRESTHandler(CommonUnitRESTHandler):
         (['properties', 'url', '_inputex'], {
             'label': 'URL',
             'description': messages.LINK_EDITOR_URL_DESCRIPTION}),
-        create_status_annotation()]
+        STATUS_ANNOTATION]
 
     REQUIRED_MODULES = [
         'inputex-string', 'inputex-select', 'inputex-uneditable']
@@ -452,9 +453,7 @@ class ImportCourseRESTHandler(CommonUnitRESTHandler):
         'inputex-string', 'inputex-select', 'inputex-uneditable']
 
     @classmethod
-    def SCHEMA_ANNOTATIONS_DICT(cls):  # pylint: disable-msg=g-bad-name
-        """Schema annotations are dynamic and include a list of courses."""
-
+    def _get_course_list(cls):
         # Make a list of courses user has the rights to.
         course_list = []
         for acourse in sites.get_all_courses():
@@ -465,7 +464,12 @@ class ImportCourseRESTHandler(CommonUnitRESTHandler):
             course_list.append({
                 'value': acourse.raw,
                 'label': cgi.escape(acourse.get_title())})
+        return course_list
 
+    @classmethod
+    def SCHEMA_ANNOTATIONS_DICT(cls):  # pylint: disable-msg=g-bad-name
+        """Schema annotations are dynamic and include a list of courses."""
+        course_list = cls._get_course_list()
         if not course_list:
             return None
 
@@ -485,19 +489,26 @@ class ImportCourseRESTHandler(CommonUnitRESTHandler):
             transforms.send_json_response(self, 401, 'Access denied.', {})
             return
 
+        first_course_in_dropdown = self._get_course_list()[0]['value']
+
         transforms.send_json_response(
-            self, 200, 'Success.',
-            payload_dict={'course': None},
+            self, 200, None,
+            payload_dict={'course': first_course_in_dropdown},
             xsrf_token=XsrfTokenManager.create_xsrf_token(
-                'unit-lesson-reorder'))
+                'import-course'))
 
     def put(self):
         """Handles REST PUT verb with JSON payload."""
+        request = transforms.loads(self.request.get('request'))
+
+        if not self.assert_xsrf_token_or_fail(
+                request, 'import-course', {'key': None}):
+            return
+
         if not CourseOutlineRights.can_edit(self):
             transforms.send_json_response(self, 401, 'Access denied.', {})
             return
 
-        request = transforms.loads(self.request.get('request'))
         payload = request.get('payload')
         course_raw = transforms.json_to_dict(
             transforms.loads(payload), self.SCHEMA_DICT)['course']
@@ -545,6 +556,8 @@ class AssessmentRESTHandler(CommonUnitRESTHandler):
             "title": {"optional": true, "type": "string"},
             "weight": {"optional": true, "type": "string"},
             "content": {"optional": true, "type": "text"},
+            "workflow_yaml": {"optional": true, "type": "text"},
+            "review_form": {"optional": true, "type": "text"},
             "is_draft": {"type": "boolean"}
             }
     }
@@ -560,8 +573,16 @@ class AssessmentRESTHandler(CommonUnitRESTHandler):
             'label': 'Type', '_type': 'uneditable'}),
         (['properties', 'title', '_inputex'], {'label': 'Title'}),
         (['properties', 'weight', '_inputex'], {'label': 'Weight'}),
-        (['properties', 'content', '_inputex'], {'label': 'Content'}),
-        create_status_annotation()]
+        (['properties', 'content', '_inputex'], {
+            'label': 'Assessment Content',
+            'description': str(messages.ASSESSMENT_CONTENT_DESCRIPTION)}),
+        (['properties', 'workflow_yaml', '_inputex'], {
+            'label': 'Assessment Details',
+            'description': str(messages.ASSESSMENT_DETAILS_DESCRIPTION)}),
+        (['properties', 'review_form', '_inputex'], {
+            'label': 'Reviewer Feedback Form',
+            'description': str(messages.REVIEWER_FEEDBACK_FORM_DESCRIPTION)}),
+        STATUS_ANNOTATION]
 
     REQUIRED_MODULES = [
         'inputex-select', 'inputex-string', 'inputex-textarea',
@@ -570,6 +591,10 @@ class AssessmentRESTHandler(CommonUnitRESTHandler):
     def _get_assessment_path(self, unit):
         return self.app_context.fs.impl.physical_to_logical(
             courses.Course(self).get_assessment_filename(unit.unit_id))
+
+    def _get_review_form_path(self, unit):
+        return self.app_context.fs.impl.physical_to_logical(
+            courses.Course(self).get_review_form_filename(unit.unit_id))
 
     def unit_to_dict(self, unit):
         """Assemble a dict with the unit data fields."""
@@ -582,16 +607,25 @@ class AssessmentRESTHandler(CommonUnitRESTHandler):
         else:
             content = ''
 
+        review_form_path = self._get_review_form_path(unit)
+        if review_form_path and fs.isfile(review_form_path):
+            review_form = fs.get(review_form_path)
+        else:
+            review_form = ''
+
         return {
             'key': unit.unit_id,
             'type': verify.UNIT_TYPE_NAMES[unit.type],
             'title': unit.title,
-            'weight': unit.weight if hasattr(unit, 'weight') else 0,
+            'weight': str(unit.weight if hasattr(unit, 'weight') else 0),
             'content': content,
-            'is_draft': not unit.now_available}
+            'workflow_yaml': unit.workflow_yaml,
+            'review_form': review_form,
+            'is_draft': not unit.now_available,
+        }
 
     def apply_updates(self, unit, updated_unit_dict, errors):
-        """Store the updated assignment."""
+        """Store the updated assessment."""
         unit.title = updated_unit_dict.get('title')
 
         try:
@@ -602,9 +636,21 @@ class AssessmentRESTHandler(CommonUnitRESTHandler):
             errors.append('The weight must be an integer.')
 
         unit.now_available = not updated_unit_dict.get('is_draft')
-        courses.Course(
-            None, app_context=self.app_context).set_assessment_content(
-                unit, updated_unit_dict.get('content'), errors=errors)
+        course = courses.Course(self)
+        course.set_assessment_content(
+            unit, updated_unit_dict.get('content'), errors=errors)
+
+        unit.workflow_yaml = updated_unit_dict.get('workflow_yaml')
+        unit.workflow.validate(errors=errors)
+
+        # Only save the review form if the assessment needs human grading.
+        if not errors:
+            if course.needs_human_grader(unit):
+                course.set_review_form(
+                    unit, updated_unit_dict.get('review_form'), errors=errors)
+            elif updated_unit_dict.get('review_form'):
+                errors.append(
+                    'Review forms for auto-graded assessments should be empty.')
 
 
 class UnitLessonTitleRESTHandler(BaseRESTHandler):
@@ -698,7 +744,7 @@ class UnitLessonTitleRESTHandler(BaseRESTHandler):
                 'lessons': lesson_data})
 
         transforms.send_json_response(
-            self, 200, 'Success.',
+            self, 200, None,
             payload_dict={'outline': outline_data},
             xsrf_token=XsrfTokenManager.create_xsrf_token(
                 'unit-lesson-reorder'))
@@ -730,6 +776,8 @@ class LessonRESTHandler(BaseRESTHandler):
 
     URI = '/rest/course/lesson'
 
+    # Note GcbRte relies on the structure of this schema. Do not change without
+    # checking the dependency.
     SCHEMA_JSON = """
     {
         "id": "Lesson Entity",
@@ -744,6 +792,7 @@ class LessonRESTHandler(BaseRESTHandler):
                 "type": "string", "format": "html", "optional": true},
             "notes" : {"type": "string", "optional": true},
             "activity_title" : {"type": "string", "optional": true},
+            "activity_listed" : {"type": "boolean", "optional": true},
             "activity": {"type": "string", "format": "text", "optional": true},
             "is_draft": {"type": "boolean"}
             }
@@ -754,7 +803,7 @@ class LessonRESTHandler(BaseRESTHandler):
 
     REQUIRED_MODULES = [
         'inputex-string', 'gcb-rte', 'inputex-select', 'inputex-textarea',
-        'inputex-uneditable']
+        'inputex-uneditable', 'inputex-checkbox']
 
     @classmethod
     def get_schema_annotations_dict(cls, units):
@@ -774,9 +823,11 @@ class LessonRESTHandler(BaseRESTHandler):
             (['properties', 'unit_id', '_inputex'], {
                 'label': 'Parent Unit', '_type': 'select',
                 'choices': unit_list}),
+            # TODO(sll): The internal 'objectives' property should also be
+            # renamed.
             (['properties', 'objectives', '_inputex'], {
-                'label': 'Objectives',
-                'editorType': 'simple',
+                'label': 'Lesson Body',
+                'supportCustomTags': tags.CAN_USE_DYNAMIC_TAGS.value,
                 'description': messages.LESSON_OBJECTIVES_DESCRIPTION}),
             (['properties', 'video', '_inputex'], {
                 'label': 'Video ID',
@@ -787,10 +838,13 @@ class LessonRESTHandler(BaseRESTHandler):
             (['properties', 'activity_title', '_inputex'], {
                 'label': 'Activity Title',
                 'description': messages.LESSON_ACTIVITY_TITLE_DESCRIPTION}),
+            (['properties', 'activity_listed', '_inputex'], {
+                'label': 'Activity Listed',
+                'description': messages.LESSON_ACTIVITY_LISTED_DESCRIPTION}),
             (['properties', 'activity', '_inputex'], {
                 'label': 'Activity',
-                'description': messages.LESSON_ACTIVITY_DESCRIPTION}),
-            create_status_annotation()]
+                'description': str(messages.LESSON_ACTIVITY_DESCRIPTION)}),
+            STATUS_ANNOTATION]
 
     def get(self):
         """Handles GET REST verb and returns lesson object as JSON payload."""
@@ -820,6 +874,7 @@ class LessonRESTHandler(BaseRESTHandler):
             'video': lesson.video,
             'notes': lesson.notes,
             'activity_title': lesson.activity_title,
+            'activity_listed': lesson.activity_listed,
             'activity': activity,
             'is_draft': not lesson.now_available
             }
@@ -864,6 +919,7 @@ class LessonRESTHandler(BaseRESTHandler):
         lesson.video = updates_dict['video']
         lesson.notes = updates_dict['notes']
         lesson.activity_title = updates_dict['activity_title']
+        lesson.activity_listed = updates_dict['activity_listed']
         lesson.now_available = not updates_dict['is_draft']
 
         activity = updates_dict.get('activity', '').strip()
