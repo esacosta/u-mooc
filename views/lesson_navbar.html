@@ -34,11 +34,11 @@
             {% endif %}
 
 			  {% if page_type == 'activity' and lesson.lesson_id == lesson_id %}
-                  <a href="#"><div class="row-fluid"><div class="span8">&nbsp;&nbsp;&nbsp;{% trans %} Activity {% endtrans %}</div>
+                  <a href="#"><div class="row-fluid"><div class="span8">&nbsp;&nbsp;&nbsp;{{ gettext('Activity') }}</div>
 				  
                 {% else %}
                   <a href="activity?unit={{ unit_id }}&lesson={{ lesson.lesson_id }}"><div class="row-fluid">
-                    <div class="span8">&nbsp;&nbsp;&nbsp;{% trans %} Activity {% endtrans %}</div>
+                    <div class="span8">&nbsp;&nbsp;&nbsp;{{ gettext('Activity') }}</div>
                  
                 {% endif %}
 			 
@@ -47,8 +47,8 @@
 				
                   {% if progress[lesson.lesson_id] == 2 %}
                     <!--<img src="assets/lib/completed.png"
-                         alt="{% trans %} Completed {% endtrans %}"
-                         title="{% trans %} Completed {% endtrans %}"
+                         alt="{{ gettext('Completed') }}"
+                         title="{{ gettext('Completed') }}"
                          class="progress"
                          id="progress-completed-{{lesson.lesson_id}}">-->
 						 <div class="progress progress-success">
@@ -56,8 +56,8 @@
 								</div>
                   {% elif progress[lesson.lesson_id] == 1 %}
                     <!--<img src="assets/lib/in_progress.png"
-                         alt="{% trans %} In progress {% endtrans %}"
-                         title="{% trans %} In progress {% endtrans %}"
+                         alt="{{ gettext('In progress') }}"
+                         title="{{ gettext('In progress') }}"
                          class="progress"
                          id="progress-inprogress-{{lesson.lesson_id}}">-->
 						 <div class="progress progress-warning">
@@ -68,8 +68,8 @@
 									<div class="bar" style="width: 1%;"></div>
 								</div>
                     <!--<img src="assets/lib/not_started.png"
-                         alt="{% trans %} Not yet started {% endtrans %}"
-                         title="{% trans %} Not yet started {% endtrans %}"
+                         alt="{{ gettext('Not yet started') }}"
+                         title="{{ gettext('Not yet started') }}"
                          class="progress"
                          id="progress-notstarted-{{lesson.lesson_id}}"-->
                   {% endif %}
@@ -114,7 +114,7 @@
                   <span class="grayed">
                 {% endif %}
 
-                  {% trans %} Activity {% endtrans %}
+                  {{ gettext('Activity') }}
                 </span>
               </li>
             </ul>

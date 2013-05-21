@@ -4,7 +4,7 @@ id,type,unit_id,title,release_date,now_available
 2,U,1,Introducción,,True
 3,U,2,Cambios fundamentales,,True
 4,U,3,Clases y estructuras,,True
-5,A,Mid,Evaluación media,En construcción,False
+5,A,Mid,Evaluación media,,True
 6,U,4,Arrays y otros cambios,,True
 7,U,5,Ejemplo de WebService,,True
 8,A,Fin,Evaluación final,En construcción,False

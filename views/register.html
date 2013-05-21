@@ -19,28 +19,25 @@
           <ol>
             <li>
               <label class="form-label" for="form01">
-               {% trans %} What is your name? {% endtrans %}
+                {# I18N: A question in the registration form. #}
+                {{ gettext('What is your name?') }}
               </label>
               <input name="form01" type="text">
             </li>
-            <li>
-              <label class="form-label" for="form02">
-               {% trans %} What is your age? {% endtrans %}
-              </label>
-              <input name="form02" type="text">
-            </li>
 			<li>
               <label class="form-label" for="form02">
-               {% trans %} Avatar {% endtrans %}
+                {# I18N: A question in the registration form. #}
+                {{ gettext('What is your age?') }}
               </label>
-              <input type="file" name="formimg">
+              <input name="form02" type="text">
             </li>
             {{course_info.reg_form.additional_registration_fields | safe}}
           </ol>
         </fieldset>
 
-        <button class="btn" type="submit">
-          {% trans %} Enroll {% endtrans %}
+        <button class="btn btn-primary" type="submit">
+          {# I18N: Button at the end of the registration form for a course. #}
+          {{ gettext('Enroll') }}
         </button>
       </form>
 

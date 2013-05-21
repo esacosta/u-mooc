@@ -16,27 +16,35 @@
 
 __author__ = 'Pavel Simakov (psimakov@google.com)'
 
-import cgi
 import datetime
 import os
 import urllib
+from common import jinja_filters
+from common import safe_dom
 from controllers import sites
 from controllers.utils import ApplicationHandler
+from controllers.utils import HUMAN_READABLE_TIME_FORMAT
 from controllers.utils import ReflectiveRequestHandler
 import jinja2
+import jinja2.exceptions
 from models import config
 from models import courses
+from models import custom_modules
 from models import jobs
 from models import roles
 from models import transforms
+from models import utils
 from models import vfs
 from models.models import Student
+from course_settings import CourseSettingsHandler
+from course_settings import CourseSettingsRESTHandler
 import filer
 from filer import AssetItemRESTHandler
 from filer import AssetUriRESTHandler
 from filer import FileManagerAndEditor
 from filer import FilesItemRESTHandler
 import messages
+from peer_review import AssignmentManager
 import unit_lesson_editor
 from unit_lesson_editor import AssessmentRESTHandler
 from unit_lesson_editor import ImportCourseRESTHandler
@@ -46,23 +54,25 @@ from unit_lesson_editor import UnitLessonEditor
 from unit_lesson_editor import UnitLessonTitleRESTHandler
 from unit_lesson_editor import UnitRESTHandler
 from google.appengine.api import users
-from google.appengine.ext import db
 
 
 class DashboardHandler(
-    FileManagerAndEditor, UnitLessonEditor, ApplicationHandler,
-    ReflectiveRequestHandler):
+    CourseSettingsHandler, FileManagerAndEditor, UnitLessonEditor,
+    AssignmentManager, ApplicationHandler, ReflectiveRequestHandler):
     """Handles all pages and actions required for managing a course."""
 
     default_action = 'outline'
     get_actions = [
-        default_action, 'assets', 'settings', 'students',
-        'edit_settings', 'edit_unit_lesson', 'edit_unit', 'edit_link',
-        'edit_lesson', 'edit_assessment', 'add_asset', 'delete_asset',
-        'import_course']
+        default_action, 'assets', 'settings', 'analytics',
+        'edit_basic_settings', 'edit_settings', 'edit_unit_lesson',
+        'edit_unit', 'edit_link', 'edit_lesson', 'edit_assessment',
+        'add_asset', 'delete_asset', 'import_course', 'edit_assignment']
+    # Requests to these handlers automatically go through an XSRF token check
+    # that is implemented in ReflectiveRequestHandler.
     post_actions = [
         'compute_student_stats', 'create_or_edit_settings', 'add_unit',
-        'add_link', 'add_assessment', 'add_lesson']
+        'add_link', 'add_assessment', 'add_lesson',
+        'edit_basic_course_settings', 'add_reviewer', 'delete_reviewer']
 
     @classmethod
     def get_child_routes(cls):
@@ -70,6 +80,7 @@ class DashboardHandler(
         return [
             (AssessmentRESTHandler.URI, AssessmentRESTHandler),
             (AssetItemRESTHandler.URI, AssetItemRESTHandler),
+            (CourseSettingsRESTHandler.URI, CourseSettingsRESTHandler),
             (FilesItemRESTHandler.URI, FilesItemRESTHandler),
             (AssetItemRESTHandler.URI, AssetItemRESTHandler),
             (AssetUriRESTHandler.URI, AssetUriRESTHandler),
@@ -77,7 +88,7 @@ class DashboardHandler(
             (LessonRESTHandler.URI, LessonRESTHandler),
             (LinkRESTHandler.URI, LinkRESTHandler),
             (UnitLessonTitleRESTHandler.URI, UnitLessonTitleRESTHandler),
-            (UnitRESTHandler.URI, UnitRESTHandler)
+            (UnitRESTHandler.URI, UnitRESTHandler),
         ]
 
     def can_view(self):
@@ -106,9 +117,12 @@ class DashboardHandler(
 
     def get_template(self, template_name, dirs):
         """Sets up an environment and Gets jinja template."""
+
         jinja_environment = jinja2.Environment(
-            autoescape=True,
+            autoescape=True, finalize=jinja_filters.finalize,
             loader=jinja2.FileSystemLoader(dirs + [os.path.dirname(__file__)]))
+        jinja_environment.filters['js_string'] = jinja_filters.js_string
+
         return jinja_environment.get_template(template_name)
 
     def _get_alerts(self):
@@ -125,33 +139,38 @@ class DashboardHandler(
             ('', 'Outline'),
             ('assets', 'Assets'),
             ('settings', 'Settings'),
-            ('students', 'Students')]
-        nav = []
+            ('analytics', 'Analytics'),
+            ('edit_assignment', 'Peer Review')]
+        nav = safe_dom.NodeList()
         for action, title in nav_mappings:
-            class_attr = 'class="selected"' if action == current_action else ''
-            nav.append(
-                '<a href="dashboard?action=%s" %s>%s</a>' % (
-                    action, class_attr, title))
+
+            class_name = 'selected' if action == current_action else ''
+            action_href = 'dashboard?action=%s' % action
+            nav.append(safe_dom.Element(
+                'a', href=action_href, className=class_name).add_text(
+                    title))
 
         if roles.Roles.is_super_admin():
-            nav.append('<a href="/admin">Admin</a>')
+            nav.append(safe_dom.Element(
+                'a', href='/admin').add_text('Admin'))
 
-        nav.append(
-            '<a href="https://code.google.com/p/course-builder/wiki/Dashboard"'
-            ' target="_blank">'
-            'Help</a>')
+        nav.append(safe_dom.Element(
+            'a', href='https://code.google.com/p/course-builder/wiki/Dashboard',
+            target='_blank').add_text('Help'))
 
-        return '\n'.join(nav)
+        return nav
 
     def render_page(self, template_values):
         """Renders a page using provided template values."""
 
         template_values['top_nav'] = self._get_top_nav()
         template_values['gcb_course_base'] = self.get_base_href(self)
-        template_values['user_nav'] = '%s | <a href="%s">Logout</a>' % (
-            users.get_current_user().email(),
-            users.create_logout_url(self.request.uri)
-        )
+        template_values['user_nav'] = safe_dom.NodeList().append(
+            safe_dom.Text('%s | ' % users.get_current_user().email())
+        ).append(
+            safe_dom.Element(
+                'a', href=users.create_logout_url(self.request.uri)
+            ).add_text('Logout'))
         template_values[
             'page_footer'] = 'Created on: %s' % datetime.datetime.now()
 
@@ -164,20 +183,42 @@ class DashboardHandler(
     def format_title(self, text):
         """Formats standard title."""
         title = self.app_context.get_environ()['course']['title']
-        return ('Course Builder &gt; %s &gt; Dashboard &gt; %s' %
-                (cgi.escape(title), text))
+        return safe_dom.NodeList().append(
+            safe_dom.Text('Course Builder ')
+        ).append(
+            safe_dom.Entity('&gt;')
+        ).append(
+            safe_dom.Text(' %s ' % title)
+        ).append(
+            safe_dom.Entity('&gt;')
+        ).append(
+            safe_dom.Text(' Dashboard ')
+        ).append(
+            safe_dom.Entity('&gt;')
+        ).append(
+            safe_dom.Text(' %s' % text)
+        )
 
     def _get_edit_link(self, url):
-        return '&nbsp;<a href="%s">Edit</a>' % url
+        return safe_dom.NodeList().append(
+            safe_dom.Text(' ')
+        ).append(
+            safe_dom.Element('a', href=url).add_text('Edit')
+        )
 
     def _get_availability(self, resource):
         if not hasattr(resource, 'now_available'):
-            return ''
+            return safe_dom.Text('')
         if resource.now_available:
-            return ''
+            return safe_dom.Text('')
         else:
-            return ' <span class="draft-label">(%s)</span>' % (
-                unit_lesson_editor.DRAFT_TEXT)
+            return safe_dom.NodeList().append(
+                safe_dom.Text(' ')
+            ).append(
+                safe_dom.Element(
+                    'span', className='draft-label'
+                ).add_text('(%s)' % unit_lesson_editor.DRAFT_TEXT)
+            )
 
     def render_course_outline_to_html(self):
         """Renders course outline to HTML."""
@@ -187,81 +228,85 @@ class DashboardHandler(
 
         is_editable = filer.is_editable_fs(self.app_context)
 
-        lines = []
-        lines.append('<ul style="list-style: none;">')
+        lines = safe_dom.Element('ul', style='list-style: none;')
         for unit in course.get_units():
             if unit.type == 'A':
-                lines.append('<li>')
-                lines.append(
-                    '<strong><a href="assessment?name=%s">%s</a></strong>' % (
-                        unit.unit_id, cgi.escape(unit.title)))
-                lines.append(self._get_availability(unit))
+                li = safe_dom.Element('li').add_child(
+                    safe_dom.Element(
+                        'a', href='assessment?name=%s' % unit.unit_id,
+                        className='strong'
+                    ).add_text(unit.title)
+                ).add_child(self._get_availability(unit))
                 if is_editable:
                     url = self.canonicalize_url(
                         '/dashboard?%s') % urllib.urlencode({
                             'action': 'edit_assessment',
                             'key': unit.unit_id})
-                    lines.append(self._get_edit_link(url))
-                lines.append('</li>\n')
+                    li.add_child(self._get_edit_link(url))
+                lines.add_child(li)
                 continue
 
             if unit.type == 'O':
-                lines.append('<li>')
-                lines.append(
-                    '<strong><a href="%s">%s</a></strong>' % (
-                        unit.href, cgi.escape(unit.title)))
-                lines.append(self._get_availability(unit))
+                li = safe_dom.Element('li').add_child(
+                    safe_dom.Element(
+                        'a', href=unit.href, className='strong'
+                    ).add_text(unit.title)
+                ).add_child(self._get_availability(unit))
                 if is_editable:
                     url = self.canonicalize_url(
                         '/dashboard?%s') % urllib.urlencode({
                             'action': 'edit_link',
                             'key': unit.unit_id})
-                    lines.append(self._get_edit_link(url))
-                lines.append('</li>\n')
+                    li.add_child(self._get_edit_link(url))
+                lines.add_child(li)
                 continue
 
             if unit.type == 'U':
-                lines.append('<li>')
-                lines.append(
-                    ('<strong><a href="unit?unit=%s">Unit %s - %s</a>'
-                     '</strong>') % (
-                         unit.unit_id, unit.index, cgi.escape(unit.title)))
-                lines.append(self._get_availability(unit))
+                li = safe_dom.Element('li').add_child(
+                    safe_dom.Element(
+                        'a', href='unit?unit=%s' % unit.unit_id,
+                        className='strong').add_text(
+                            'Unit %s - %s' % (unit.index, unit.title))
+                ).add_child(self._get_availability(unit))
                 if is_editable:
                     url = self.canonicalize_url(
                         '/dashboard?%s') % urllib.urlencode({
                             'action': 'edit_unit',
                             'key': unit.unit_id})
-                    lines.append(self._get_edit_link(url))
+                    li.add_child(self._get_edit_link(url))
 
-                lines.append('<ol>')
+                ol = safe_dom.Element('ol')
                 for lesson in course.get_lessons(unit.unit_id):
-                    lines.append(
-                        '<li><a href="unit?unit=%s&lesson=%s">%s</a>\n' % (
-                            unit.unit_id, lesson.lesson_id,
-                            cgi.escape(lesson.title)))
-                    lines.append(self._get_availability(lesson))
+                    li2 = safe_dom.Element('li').add_child(
+                        safe_dom.Element(
+                            'a',
+                            href='unit?unit=%s&lesson=%s' % (
+                                unit.unit_id, lesson.lesson_id),
+                        ).add_text(lesson.title)
+                    ).add_child(self._get_availability(lesson))
                     if is_editable:
                         url = self.get_action_url(
                             'edit_lesson', key=lesson.lesson_id)
-                        lines.append(self._get_edit_link(url))
-                    lines.append('</li>')
-                lines.append('</ol>')
-                lines.append('</li>\n')
+                        li2.add_child(self._get_edit_link(url))
+                    ol.add_child(li2)
+                li.add_child(ol)
+                lines.add_child(li)
                 continue
 
             raise Exception('Unknown unit type: %s.' % unit.type)
 
-        lines.append('</ul>')
-        return ''.join(lines)
+        return lines
 
     def get_outline(self):
         """Renders course outline view."""
 
         pages_info = [
-            '<a href="%s">Announcements</a>' % self.canonicalize_url(
-                '/announcements'),
-            '<a href="%s">Course</a>' % self.canonicalize_url('/course')]
+            safe_dom.Element(
+                'a', href=self.canonicalize_url('/announcements')
+            ).add_text('Announcements'),
+            safe_dom.Element(
+                'a', href=self.canonicalize_url('/course')
+            ).add_text('Course')]
 
         outline_actions = []
         if filer.is_editable_fs(self.app_context):
@@ -289,11 +334,12 @@ class DashboardHandler(
                 'caption': 'Add Assessment',
                 'action': self.get_action_url('add_assessment'),
                 'xsrf_token': self.create_xsrf_token('add_assessment')})
-            outline_actions.append({
-                'id': 'import_course',
-                'caption': 'Import',
-                'href': self.get_action_url('import_course')
-                })
+            if not courses.Course(self).get_units():
+                outline_actions.append({
+                    'id': 'import_course',
+                    'caption': 'Import',
+                    'href': self.get_action_url('import_course')
+                    })
 
         data_info = self.list_files('/data/')
 
@@ -331,28 +377,36 @@ class DashboardHandler(
         """Renders course settings view."""
 
         yaml_actions = []
+        basic_setting_actions = []
 
         # Basic course info.
         course_info = [
-            ('Course Title', self.app_context.get_environ()['course']['title']),
-            ('Context Path', self.app_context.get_slug()),
-            ('Datastore Namespace', self.app_context.get_namespace_name())]
+            'Course Title: %s' % self.app_context.get_environ()['course'][
+                'title'],
+            'Context Path: %s' % self.app_context.get_slug(),
+            'Datastore Namespace: %s' % self.app_context.get_namespace_name()]
 
         # Course file system.
         fs = self.app_context.fs.impl
-        course_info.append(('File system', fs.__class__.__name__))
+        course_info.append(('File System: %s' % fs.__class__.__name__))
         if fs.__class__ == vfs.LocalReadOnlyFileSystem:
-            course_info.append(('Home folder', sites.abspath(
+            course_info.append(('Home Folder: %s' % sites.abspath(
                 self.app_context.get_home_folder(), '/')))
 
         # Enable editing if supported.
         if filer.is_editable_fs(self.app_context):
             yaml_actions.append({
                 'id': 'edit_course_yaml',
-                'caption': 'Edit',
+                'caption': 'Advanced Edit',
                 'action': self.get_action_url('create_or_edit_settings'),
                 'xsrf_token': self.create_xsrf_token(
                     'create_or_edit_settings')})
+            yaml_actions.append({
+                'id': 'edit_basic_course_settings',
+                'caption': 'Edit',
+                'action': self.get_action_url('edit_basic_course_settings'),
+                'xsrf_token': self.create_xsrf_token(
+                    'edit_basic_course_settings')})
 
         # Yaml file content.
         yaml_info = []
@@ -373,6 +427,7 @@ class DashboardHandler(
             {
                 'title': 'About the Course',
                 'description': messages.ABOUT_THE_COURSE_DESCRIPTION,
+                'actions': basic_setting_actions,
                 'children': course_info},
             {
                 'title': 'Contents of course.yaml file',
@@ -399,47 +454,52 @@ class DashboardHandler(
         edit_url_template=None, sub_title=None):
         """Walks files in folders and renders their names in a section."""
 
-        lines = []
+        items = safe_dom.NodeList()
         count = 0
         for filename in self.list_files(subfolder):
             if prefix and not filename.startswith(prefix):
                 continue
+            li = safe_dom.Element('li')
             if links:
-                lines.append(
-                    '<li><a href="%s">%s</a>' % (
-                        urllib.quote(filename), cgi.escape(filename)))
+                li.add_child(safe_dom.Element(
+                    'a', href=urllib.quote(filename)).add_text(filename))
                 if edit_url_template:
                     edit_url = edit_url_template % urllib.quote(filename)
-                    lines.append('&nbsp;<a href="%s">[Edit]</a>' % edit_url)
-                lines.append('</li>\n')
+                    li.add_child(
+                        safe_dom.Entity('&nbsp;')
+                    ).add_child(
+                        safe_dom.Element('a', href=edit_url).add_text('[Edit]'))
             else:
-                lines.append('<li>%s</li>\n' % cgi.escape(filename))
+                li.add_text(filename)
             count += 1
+            items.append(li)
 
-        output = []
+        output = safe_dom.NodeList()
 
         if filer.is_editable_fs(self.app_context) and upload:
             output.append(
-                '<a class="btn pull-right" href="dashboard?%s">'
-                'Upload</a>' % urllib.urlencode(
-                    {'action': 'add_asset', 'base': subfolder}))
-            output.append('<div style=\"clear: both; padding-top: 2px;\" />')
+                safe_dom.Element(
+                    'a', className='gcb-button pull-right',
+                    href='dashboard?%s' % urllib.urlencode(
+                        {'action': 'add_asset', 'base': subfolder})
+                ).add_text('Upload')
+            ).append(
+                safe_dom.Element('div', style='clear: both; padding-top: 2px;'))
         if title:
-            output.append('<h3>%s' % cgi.escape(title))
+            h3 = safe_dom.Element('h3')
             if count:
-                output.append(' (%s)' % count)
-            output.append('</h3>')
+                h3.add_text('%s (%s)' % (title, count))
+            else:
+                h3.add_text(title)
+            output.append(h3)
         if sub_title:
-            output.append('<blockquote>%s</blockquote>' % cgi.escape(sub_title))
-        if lines:
-            output.append('<ol>')
-            output += lines
-            output.append('</ol>')
+            output.append(safe_dom.Element('blockquote').add_text(sub_title))
+        if items:
+            output.append(safe_dom.Element('ol').add_children(items))
         else:
             if caption_if_empty:
                 output.append(
-                    '<blockquote>%s</blockquote>' % cgi.escape(
-                        caption_if_empty))
+                    safe_dom.Element('blockquote').add_text(caption_if_empty))
         return output
 
     def get_assets(self):
@@ -448,133 +508,149 @@ class DashboardHandler(
         def inherits_from(folder):
             return '< inherited from %s >' % folder
 
-        lines = []
-        lines += self.list_and_format_file_list(
-            'Assessments', '/assets/js/', links=True,
-            prefix='assets/js/assessment-')
-        lines += self.list_and_format_file_list(
-            'Activities', '/assets/js/', links=True,
-            prefix='assets/js/activity-')
-        lines += self.list_and_format_file_list(
-            'Images & Documents', '/assets/img/', links=True, upload=True,
-            edit_url_template='dashboard?action=delete_asset&uri=%s',
-            sub_title='< inherited from /assets/img/ >', caption_if_empty=None)
-        lines += self.list_and_format_file_list(
-            'Cascading Style Sheets', '/assets/css/', links=True,
-            caption_if_empty=inherits_from('/assets/css/'))
-        lines += self.list_and_format_file_list(
-            'JavaScript Libraries', '/assets/lib/', links=True,
-            caption_if_empty=inherits_from('/assets/lib/'))
-        lines += self.list_and_format_file_list(
-            'View Templates', '/views/',
-            caption_if_empty=inherits_from('/views/'))
-        lines = ''.join(lines)
+        items = safe_dom.NodeList().append(
+            self.list_and_format_file_list(
+                'Assessments', '/assets/js/', links=True,
+                prefix='assets/js/assessment-')
+        ).append(
+            self.list_and_format_file_list(
+                'Activities', '/assets/js/', links=True,
+                prefix='assets/js/activity-')
+        ).append(
+            self.list_and_format_file_list(
+                'Images & Documents', '/assets/img/', links=True, upload=True,
+                edit_url_template='dashboard?action=delete_asset&uri=%s',
+                sub_title='< inherited from /assets/img/ >',
+                caption_if_empty=None)
+        ).append(
+            self.list_and_format_file_list(
+                'Cascading Style Sheets', '/assets/css/', links=True,
+                caption_if_empty=inherits_from('/assets/css/'))
+        ).append(
+            self.list_and_format_file_list(
+                'JavaScript Libraries', '/assets/lib/', links=True,
+                caption_if_empty=inherits_from('/assets/lib/'))
+        ).append(
+            self.list_and_format_file_list(
+                'View Templates', '/views/',
+                caption_if_empty=inherits_from('/views/'))
+        )
 
         template_values = {}
         template_values['page_title'] = self.format_title('Assets')
         template_values['page_description'] = messages.ASSETS_DESCRIPTION
-        template_values['main_content'] = lines
+        template_values['main_content'] = items
         self.render_page(template_values)
 
-    def get_students(self):
-        """Renders course students view."""
+    def get_markup_for_basic_analytics(self, job):
+        """Renders markup for basic enrollment and assessment analytics."""
+        subtemplate_values = {}
+        errors = []
+        stats_calculated = False
+        update_message = safe_dom.Text('')
 
-        template_values = {}
-        template_values['page_title'] = self.format_title('Students')
-
-        details = """
-            <h3>Enrollment Statistics</h3>
-            <ul><li>pending</li></ul>
-            <h3>Assessment Statistics</h3>
-            <ul><li>pending</li></ul>
-            """
-
-        update_message = ''
-        update_action = """
-            <form
-                id='gcb-compute-student-stats'
-                action='dashboard?action=compute_student_stats'
-                method='POST'>
-                <input type="hidden" name="xsrf_token" value="%s">
-                <p>
-                    <button class="btn" type="submit">
-                        Re-Calculate Now
-                    </button>
-                </p>
-            </form>
-        """ % self.create_xsrf_token('compute_student_stats')
-
-        job = ComputeStudentStats(self.app_context).load()
         if not job:
-            update_message = """
-                Student statistics have not been calculated yet."""
+            update_message = safe_dom.Text(
+                'Enrollment/assessment statistics have not been calculated '
+                'yet.')
         else:
             if job.status_code == jobs.STATUS_CODE_COMPLETED:
                 stats = transforms.loads(job.output)
-                enrolled = stats['enrollment']['enrolled']
-                unenrolled = stats['enrollment']['unenrolled']
+                stats_calculated = True
 
-                enrollment = []
-                enrollment.append(
-                    '<li>previously enrolled: %s</li>' % unenrolled)
-                enrollment.append(
-                    '<li>currently enrolled: %s</li>' % enrolled)
-                enrollment.append(
-                    '<li>total: %s</li>' % (unenrolled + enrolled))
-                enrollment = ''.join(enrollment)
+                subtemplate_values['enrolled'] = stats['enrollment']['enrolled']
+                subtemplate_values['unenrolled'] = (
+                    stats['enrollment']['unenrolled'])
 
-                assessment = []
-                total = 0
+                scores = []
+                total_records = 0
                 for key, value in stats['scores'].items():
-                    total += value[0]
-                    avg_score = 0
-                    if value[0]:
-                        avg_score = round(value[1] / value[0], 1)
-                    assessment.append("""
-                        <li>%s: completed %s, average score %s
-                        """ % (key, value[0], avg_score))
-                assessment.append('<li>total: %s</li>' % total)
-                assessment = ''.join(assessment)
+                    total_records += value[0]
+                    avg = round(value[1] / value[0], 1) if value[0] else 0
+                    scores.append({'key': key, 'completed': value[0],
+                                   'avg': avg})
+                subtemplate_values['scores'] = scores
+                subtemplate_values['total_records'] = total_records
 
-                details = """
-                    <h3>Enrollment Statistics</h3>
-                    <ul>%s</ul>
-                    <h3>Assessment Statistics</h3>
-                    <ul>%s</ul>
-                    """ % (enrollment, assessment)
-
-                update_message = """
-                    Student statistics were last updated on
+                update_message = safe_dom.Text("""
+                    Enrollment and assessment statistics were last updated at
                     %s in about %s second(s).""" % (
-                        job.updated_on, job.execution_time_sec)
+                        job.updated_on.strftime(HUMAN_READABLE_TIME_FORMAT),
+                        job.execution_time_sec))
             elif job.status_code == jobs.STATUS_CODE_FAILED:
-                update_message = """
-                    There was an error updating student statistics.
-                    Here is the message:<br>
-                    <blockquote>
-                      <pre>\n%s</pre>
-                    </blockquote>
-                    """ % cgi.escape(job.output)
+                update_message = safe_dom.NodeList().append(
+                    safe_dom.Text("""
+                        There was an error updating enrollment/assessment
+                        statistics. Here is the message:""")
+                ).append(
+                    safe_dom.Element('br')
+                ).append(
+                    safe_dom.Element('blockquote').add_child(
+                        safe_dom.Element('pre').add_text('\n%s' % job.output)))
             else:
-                update_action = ''
-                update_message = """
-                    Student statistics update started on %s and is running
-                    now. Please come back shortly.""" % job.updated_on
+                update_message = safe_dom.Text(
+                    'Enrollment and assessment statistics update started at %s'
+                    ' and is running now. Please come back shortly.' %
+                    job.updated_on.strftime(HUMAN_READABLE_TIME_FORMAT))
 
-        lines = []
-        lines.append(details)
-        lines.append(update_message)
-        lines.append(update_action)
-        lines = ''.join(lines)
+        subtemplate_values['stats_calculated'] = stats_calculated
+        subtemplate_values['errors'] = errors
+        subtemplate_values['update_message'] = update_message
 
-        template_values['main_content'] = lines
+        return jinja2.utils.Markup(self.get_template(
+            'basic_analytics.html', [os.path.dirname(__file__)]
+        ).render(subtemplate_values, autoescape=True))
+
+    def get_analytics(self):
+        """Renders course analytics view."""
+        template_values = {}
+        template_values['page_title'] = self.format_title('Analytics')
+
+        at_least_one_job_exists = False
+        at_least_one_job_finished = False
+
+        basic_analytics_job = ComputeStudentStats(self.app_context).load()
+        stats_html = self.get_markup_for_basic_analytics(basic_analytics_job)
+        if basic_analytics_job:
+            at_least_one_job_exists = True
+            if basic_analytics_job.status_code == jobs.STATUS_CODE_COMPLETED:
+                at_least_one_job_finished = True
+
+        for callback in DashboardRegistry.analytics_handlers:
+            handler = callback()
+            handler.app_context = self.app_context
+            handler.request = self.request
+            handler.response = self.response
+
+            job = handler.stats_computer(self.app_context).load()
+            stats_html += handler.get_markup(job)
+
+            if job:
+                at_least_one_job_exists = True
+                if job.status_code == jobs.STATUS_CODE_COMPLETED:
+                    at_least_one_job_finished = True
+
+        template_values['main_content'] = jinja2.utils.Markup(self.get_template(
+            'analytics.html', [os.path.dirname(__file__)]
+        ).render({
+            'show_recalculate_button': (
+                at_least_one_job_finished or not at_least_one_job_exists),
+            'stats_html': stats_html,
+            'xsrf_token': self.create_xsrf_token('compute_student_stats'),
+        }, autoescape=True))
+
         self.render_page(template_values)
 
     def post_compute_student_stats(self):
         """Submits a new student statistics calculation task."""
         job = ComputeStudentStats(self.app_context)
         job.submit()
-        self.redirect('/dashboard?action=students')
+
+        for callback in DashboardRegistry.analytics_handlers:
+            job = callback().stats_computer(self.app_context)
+            job.submit()
+
+        self.redirect('/dashboard?action=analytics')
 
 
 class ScoresAggregator(object):
@@ -622,12 +698,14 @@ class ComputeStudentStats(jobs.DurableJob):
 
         enrollment = EnrollmentAggregator()
         scores = ScoresAggregator()
-        query = db.GqlQuery(
-            'SELECT * FROM %s' % Student().__class__.__name__,
-            batch_size=10000)
-        for student in query.run():
+        mapper = utils.QueryMapper(
+            Student.all(), batch_size=500, report_every=1000)
+
+        def map_fn(student):
             enrollment.visit(student)
             scores.visit(student)
+
+        mapper.run(map_fn)
 
         data = {
             'enrollment': {
@@ -636,3 +714,37 @@ class ComputeStudentStats(jobs.DurableJob):
             'scores': scores.name_to_tuple}
 
         return data
+
+
+class DashboardRegistry(object):
+    """Holds registered handlers that produce HTML code for the dashboard."""
+    analytics_handlers = []
+
+    @classmethod
+    def add_custom_analytics_section(cls, handler):
+        """Adds handlers that provide additional data for the Analytics page."""
+        if handler not in cls.analytics_handlers:
+            existing_names = [h.name for h in cls.analytics_handlers]
+            existing_names.append('enrollment')
+            existing_names.append('scores')
+            if handler.name in existing_names:
+                raise Exception('Stats handler name %s is being duplicated.'
+                                % handler.name)
+
+            cls.analytics_handlers.append(handler)
+
+
+custom_module = None
+
+
+def register_module():
+    """Registers this module in the registry."""
+
+    dashboard_handlers = [('/dashboard', DashboardHandler)]
+
+    global custom_module
+    custom_module = custom_modules.Module(
+        'Course Dashboard',
+        'A set of pages for managing Course Builder course.',
+        [], dashboard_handlers)
+    return custom_module

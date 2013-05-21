@@ -19,22 +19,28 @@
           <ol>
             <li>
               <label class="form-label" for="form01">
-               {% trans %} What is your name? {% endtrans %}
+               {{ gettext('What is your name?') }}
               </label>
               <input name="form01" type="text">
             </li>
             <li>
               <label class="form-label" for="form02">
-               {% trans %} ¿Edad? {% endtrans %}
+               {{ gettext('What is your age?') }}
               </label>
               <input name="form02" type="text">
+            </li>
+			<li>
+              <label class="form-label" for="form02">
+               {{ gettext('Avatar') }}
+              </label>
+              <input type="file" name="formimg">
             </li>
             {{course_info.reg_form.additional_registration_fields | safe}}
           </ol>
         </fieldset>
 
         <button class="btn" type="submit">
-          {% trans %} Enroll {% endtrans %}
+          {{ gettext('Enroll') }}
         </button>
       </form>
 

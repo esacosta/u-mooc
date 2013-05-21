@@ -9,6 +9,7 @@ id,type,unit_id,title,release_date,now_available
 7,U,5,Gestionar el curso,,True
 8,U,6,Evaluar el curso,,True
 9,A,Fin,Evaluación final,,True
-10,U,7,Practicum,En construccion,True
-11,O,http://www.youtube.com/watch?v=_YatY-bZVnE&feature=player_embedded,¿Cómo crear un curso con unos cuantos clics?,,True
+10,U,7,Practicum,,True
+11,A,ReviewAssessmentExample,Ejemplo de evaluación por iguales,,True
+12,O,http://www.youtube.com/watch?v=_YatY-bZVnE&feature=player_embedded,¿Cómo crear un curso con unos cuantos clics?,,True
 

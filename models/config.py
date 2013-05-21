@@ -25,6 +25,7 @@ __author__ = 'Pavel Simakov (psimakov@google.com)'
 
 import logging
 import os
+import threading
 import time
 import appengine_config
 import entities
@@ -140,7 +141,7 @@ class ConfigProperty(object):
 
     @property
     def value(self):
-        return self.get_value(Registry.get_overrides())
+        return self.get_value(db_overrides=Registry.get_overrides())
 
 
 class Registry(object):
@@ -148,8 +149,11 @@ class Registry(object):
     registered = {}
     test_overrides = {}
     db_overrides = {}
+    names_with_draft = {}
     last_update_time = 0
     update_index = 0
+    threadlocal = threading.local()
+    REENTRY_ATTR_NAME = 'busy'
 
     @classmethod
     def get_overrides(cls, force_update=False):
@@ -157,27 +161,34 @@ class Registry(object):
 
         now = long(time.time())
         age = now - cls.last_update_time
-        max_age = UPDATE_INTERVAL_SEC.get_value(cls.db_overrides)
-        if force_update or age < 0 or age >= max_age:
+        max_age = UPDATE_INTERVAL_SEC.get_value(db_overrides=cls.db_overrides)
+
+        # do not update if call is reentrant or outer db transaction exists
+        busy = hasattr(cls.threadlocal, cls.REENTRY_ATTR_NAME) or (
+            db.is_in_transaction())
+
+        if (not busy) and (force_update or age < 0 or age >= max_age):
             # Value of '0' disables all datastore overrides.
             if UPDATE_INTERVAL_SEC.get_value() == 0:
                 cls.db_overrides = {}
                 return cls.db_overrides
 
             # Load overrides from a datastore.
+            setattr(cls.threadlocal, cls.REENTRY_ATTR_NAME, True)
             try:
                 old_namespace = namespace_manager.get_namespace()
                 try:
                     namespace_manager.set_namespace(
                         appengine_config.DEFAULT_NAMESPACE_NAME)
-
-                    cls.load_from_db()
+                    cls._load_from_db()
                 finally:
                     namespace_manager.set_namespace(old_namespace)
             except Exception as e:  # pylint: disable-msg=broad-except
                 logging.error(
                     'Failed to load properties from a database: %s.', str(e))
             finally:
+                delattr(cls.threadlocal, cls.REENTRY_ATTR_NAME)
+
                 # Avoid overload and update timestamp even if we failed.
                 cls.last_update_time = now
                 cls.update_index += 1
@@ -185,10 +196,11 @@ class Registry(object):
         return cls.db_overrides
 
     @classmethod
-    def load_from_db(cls):
+    def _load_from_db(cls):
         """Loads dynamic properties from db."""
         logging.info('Reloading properties.')
         overrides = {}
+        drafts = set()
         for item in ConfigPropertyEntity.all().fetch(1000):
             name = item.key().name()
 
@@ -198,6 +210,8 @@ class Registry(object):
                 continue
 
             target = cls.registered[name]
+            if target and item.is_draft:
+                drafts.add(name)
             if target and not item.is_draft:
                 # Enforce value type.
                 try:
@@ -227,6 +241,7 @@ class Registry(object):
                 overrides[name] = value
 
         cls.db_overrides = overrides
+        cls.names_with_draft = drafts
 
 
 class ConfigPropertyEntity(entities.BaseEntity):
@@ -279,10 +294,10 @@ UPDATE_INTERVAL_SEC = ConfigProperty(
     'gcb_config_update_interval_sec', int, (
         'An update interval (in seconds) for reloading runtime properties '
         'from a datastore. Using this editor, you can set this value to an '
-        'integer between 1 and 300. To completely disable  reloading '
+        'integer between 1 and %s, inclusive. To completely disable reloading '
         'properties from a datastore, you must set the value to 0. However, '
         'you can only set the value to 0 by directly modifying the app.yaml '
-        'file. Maximum value is "%s".' % MAX_UPDATE_INTERVAL_SEC),
+        'file.' % MAX_UPDATE_INTERVAL_SEC),
     default_value=DEFAULT_UPDATE_INTERVAL_SEC,
     validator=validate_update_interval)
 

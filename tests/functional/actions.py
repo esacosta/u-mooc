@@ -16,9 +16,12 @@
 
 """A collection of actions for testing Course Builder pages."""
 
+import cgi
 import logging
 import os
 import re
+import urllib
+
 import appengine_config
 from controllers import sites
 from controllers import utils
@@ -61,7 +64,7 @@ class TestBase(suite.AppEngineTestBase):
 
     def getApp(self):  # pylint: disable-msg=g-bad-name
         main.debug = True
-        sites.ApplicationRequestHandler.bind(main.urls)
+        sites.ApplicationRequestHandler.bind(main.namespaced_routes)
         return main.app
 
     def assert_default_namespace(self):
@@ -133,7 +136,7 @@ class TestBase(suite.AppEngineTestBase):
                     raise Exception('Invalid reference \'%s\' in:\n%s' % (
                         url, response.body))
 
-            self.audit_url(self.canonicalize(url, response))
+            self.audit_url(self.canonicalize(url, response=response))
 
     def get(self, url, **kwargs):
         url = self.canonicalize(url)
@@ -141,10 +144,10 @@ class TestBase(suite.AppEngineTestBase):
         response = self.testapp.get(url, **kwargs)
         return self.hook_response(response)
 
-    def post(self, url, params):
+    def post(self, url, params, expect_errors=False):
         url = self.canonicalize(url)
         logging.info('HTTP Post: %s', url)
-        response = self.testapp.post(url, params)
+        response = self.testapp.post(url, params, expect_errors=expect_errors)
         return self.hook_response(response)
 
     def put(self, url, params):
@@ -177,9 +180,11 @@ def to_unicode(text):
     return text
 
 
-def assert_contains(needle, haystack):
+def assert_contains(needle, haystack, collapse_whitespace=False):
     needle = to_unicode(needle)
     haystack = to_unicode(haystack)
+    if collapse_whitespace:
+        haystack = ' '.join(haystack.replace('\n', ' ').split())
     if not needle in haystack:
         raise Exception('Can\'t find \'%s\' in \'%s\'.' % (needle, haystack))
 
@@ -193,9 +198,11 @@ def assert_contains_all_of(needles, haystack):
                 'Can\'t find \'%s\' in \'%s\'.' % (needle, haystack))
 
 
-def assert_does_not_contain(needle, haystack):
+def assert_does_not_contain(needle, haystack, collapse_whitespace=False):
     needle = to_unicode(needle)
     haystack = to_unicode(haystack)
+    if collapse_whitespace:
+        haystack = ' '.join(haystack.replace('\n', ' ').split())
     if needle in haystack:
         raise Exception('Found \'%s\' in \'%s\'.' % (needle, haystack))
 
@@ -230,7 +237,7 @@ def assert_all_fail(browser, callbacks):
 
 def login(email, is_admin=False):
     os.environ['USER_EMAIL'] = email
-    os.environ['USER_ID'] = 'user1'
+    os.environ['USER_ID'] = email
 
     is_admin_value = '0'
     if is_admin:
@@ -269,7 +276,7 @@ def register(browser, name):
 def check_profile(browser, name):
     response = view_my_profile(browser)
     assert_contains('Email', response.body)
-    assert_contains(name, response.body)
+    assert_contains(cgi.escape(name), response.body)
     assert_contains(get_current_user_email(), response.body)
     return response
 
@@ -280,6 +287,23 @@ def view_registration(browser):
     assert_contains_all_of([
         '<!-- reg_form.additional_registration_fields -->'], response.body)
     return response
+
+
+def register_with_additional_fields(browser, name, data2, data3):
+    """Registers a new student with customized registration form."""
+
+    response = browser.get('/')
+    assert_equals(response.status_int, 302)
+
+    response = view_registration(browser)
+
+    response.form.set('form01', name)
+    response.form.set('form02', data2)
+    response.form.set('form03', data3)
+    response = browser.submit(response.form)
+
+    assert_contains('Thank you for registering for', response.body)
+    check_profile(browser, name)
 
 
 def view_preview(browser):
@@ -367,16 +391,17 @@ def view_assessments(browser):
         assert_contains(get_current_user_email(), response.body)
 
 
-def submit_assessment(browser, unit_id, args, base=''):
+def submit_assessment(browser, unit_id, args, base='', presubmit_checks=True):
     """Submits an assessment."""
     response = browser.get('%s/assessment?name=%s' % (base, unit_id))
-    assert_contains(
-        '<script src="assets/js/assessment-%s.js"></script>' % unit_id,
-        response.body)
 
-    js_response = browser.get(
-        '%s/assets/js/assessment-%s.js' % (base, unit_id))
-    assert_equals(js_response.status_int, 200)
+    if presubmit_checks:
+        assert_contains(
+            '<script src="assets/js/assessment-%s.js"></script>' % unit_id,
+            response.body)
+        js_response = browser.get(
+            '%s/assets/js/assessment-%s.js' % (base, unit_id))
+        assert_equals(js_response.status_int, 200)
 
     # Extract XSRF token from the page.
     match = re.search(r'assessmentXsrfToken = [\']([^\']+)', response.body)
@@ -386,6 +411,102 @@ def submit_assessment(browser, unit_id, args, base=''):
 
     response = browser.post('%s/answer' % base, args)
     assert_equals(response.status_int, 200)
+    return response
+
+
+def request_new_review(browser, unit_id, base='', expected_status_code=302):
+    """Requests a new assignment to review."""
+    response = browser.get('%s/reviewdashboard?unit=%s' % (base, unit_id))
+    assert_contains('Assignments for your review', response.body)
+
+    # Extract XSRF token from the page.
+    match = re.search(
+        r'<input type="hidden" name="xsrf_token"\s* value="([^"]*)">',
+        response.body)
+    assert match
+    xsrf_token = match.group(1)
+    args = {'xsrf_token': xsrf_token}
+
+    expect_errors = (expected_status_code not in [200, 302])
+
+    response = browser.post(
+        '%s/reviewdashboard?unit=%s' % (base, unit_id), args,
+        expect_errors=expect_errors)
+    assert_equals(response.status_int, expected_status_code)
+
+    if expected_status_code == 302:
+        assert_equals(response.status_int, expected_status_code)
+        assert_contains(
+            'review?unit=%s' % unit_id, response.location)
+        response = browser.get(response.location)
+        assert_contains('Assignment to review', response.body)
+
+    return response
+
+
+def view_review(
+    browser, unit_id, review_step_key, base='', expected_status_code=200):
+    """View a review page."""
+    response = browser.get(
+        '%s/review?unit=%s&key=%s' % (base, unit_id, review_step_key),
+        expect_errors=(expected_status_code != 200))
+    assert_equals(response.status_int, expected_status_code)
+    if expected_status_code == 200:
+        assert_contains('Assignment to review', response.body)
+    return response
+
+
+def submit_review(
+    browser, unit_id, review_step_key, args, base='', presubmit_checks=True):
+    """Submits a review."""
+    response = browser.get(
+        '%s/review?unit=%s&key=%s' % (base, unit_id, review_step_key))
+
+    if presubmit_checks:
+        assert_contains(
+            '<script src="assets/js/review-%s.js"></script>' % unit_id,
+            response.body)
+        js_response = browser.get(
+            '%s/assets/js/review-%s.js' % (base, unit_id))
+        assert_equals(js_response.status_int, 200)
+
+    # Extract XSRF token from the page.
+    match = re.search(r'assessmentXsrfToken = [\']([^\']+)', response.body)
+    assert match
+    xsrf_token = match.group(1)
+    args['xsrf_token'] = xsrf_token
+
+    args['key'] = review_step_key
+    args['unit_id'] = unit_id
+
+    response = browser.post('%s/review' % base, args)
+    assert_equals(response.status_int, 200)
+    return response
+
+
+def add_reviewer(browser, unit_id, reviewee_email, reviewer_email):
+    """Adds a reviewer to a submission."""
+    url_params = {
+        'action': 'edit_assignment',
+        'reviewee_id': reviewee_email,
+        'unit_id': unit_id,
+    }
+
+    response = browser.get('/dashboard?%s' % urllib.urlencode(url_params))
+
+    # Extract XSRF token from the page.
+    match = re.search(
+        r'<input type="hidden" name="xsrf_token"\s* value="([^"]*)">',
+        response.body)
+    assert match
+    xsrf_token = match.group(1)
+    args = {
+        'xsrf_token': xsrf_token,
+        'reviewer_id': reviewer_email,
+        'reviewee_id': reviewee_email,
+        'unit_id': unit_id,
+    }
+    response = browser.post('/dashboard?action=add_reviewer', args)
     return response
 
 

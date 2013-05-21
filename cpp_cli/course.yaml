@@ -10,12 +10,12 @@ course:
 
   # Main page blurb. (The '|' at the beginning enables multi-line input.)
   blurb: |
-    Con este curso será capaz de desarrollar aplicaciones y WebServices para Windows Azure y .NET en lenguaje C++, utilizando el nuevo lenguaje C++/CLI preparado para el desarrollo de C++ en .NET.<br/>
-    <small><i>Este curso se encuentra en fase de desarrollo, por favor pruébelo y envíe toda la información que considere oportuna para su finalización o colabore con nosotros, esperamos haberlo terminado para finales del mes próximo.</i></small>
+    Con este curso será capaz de desarrollar aplicaciones y WebServices para Windows Azure y .NET en lenguaje C++, utilizando el nuevo lenguaje C++/CLI preparado para el desarrollo de C++ en .NET.
+    Este curso se encuentra en fase de desarrollo, por favor pruébelo y envíe toda la información que considere oportuna para su finalización o colabore con nosotros, esperamos haberlo terminado para finales del mes próximo.
 
     
   # Information about the instructor to display on the main page.
-  instructor_details: '<small>Enrique Sánchez <br/> <i>esacosta at gmail.com</i></small>'
+  instructor_details: '<div class="text-right"><br/><small>Enrique Sánchez <br/> <i>esacosta at gmail.com</i></small></div>'
 
   # You can choose whether you want a video or an image on the main page.
   # If you specify both a video and an image link, then the video will take

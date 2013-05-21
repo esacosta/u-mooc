@@ -114,6 +114,9 @@ import urlparse
 import zipfile
 
 import appengine_config
+from common import jinja_filters
+from common import safe_dom
+from models import transforms
 from models.config import ConfigProperty
 from models.config import ConfigPropertyEntity
 from models.config import Registry
@@ -129,6 +132,7 @@ from webapp2_extras import i18n
 import utils
 
 from google.appengine.api import namespace_manager
+from google.appengine.api import users
 from google.appengine.ext import db
 from google.appengine.ext import zipserve
 
@@ -165,7 +169,7 @@ DEFAULT_EXPIRY_DATE = 'Mon, 01 Jan 1990 00:00:00 GMT'
 DEFAULT_PRAGMA = 'no-cache'
 
 # enable debug output
-DEBUG_INFO = True
+DEBUG_INFO = False
 
 # thread local storage for current request PATH_INFO
 PATH_INFO_THREAD_LOCAL = threading.local()
@@ -513,6 +517,10 @@ class CssComboZipHandler(zipserve.ZipHandler):
     def get(self):
         raise NotImplementedError()
 
+    def SetCachingHeaders(self):  # pylint: disable=C6409
+        """Properly controls caching."""
+        set_static_resource_cache_control(self)
+
     def serve_from_zip_file(self, zipfilename, static_file_handler):
         """Assemble the download by reading file from zip file."""
         zipfile_object = self.zipfile_cache.get(zipfilename)
@@ -737,6 +745,7 @@ class ApplicationContext(object):
 
         i18n.get_i18n().set_locale(locale)
         jinja_environment.install_gettext_translations(i18n)
+        jinja_environment.filters['gcb_tags'] = jinja_filters.gcb_tags
 
         return jinja_environment
 
@@ -789,7 +798,7 @@ def _add_new_course_entry_to_persistent_configuration(raw):
         entity = ConfigPropertyEntity(key_name=GCB_COURSES_CONFIG.name)
         entity.is_draft = False
     if not entity.value:
-        entity.value = GCB_COURSES_CONFIG.default_value
+        entity.value = GCB_COURSES_CONFIG.value
     lines = entity.value.splitlines()
 
     # Add new entry to the rest of the entries. Since entries are matched
@@ -845,33 +854,50 @@ def add_new_course_entry(unique_name, title, admin_email, errors):
 
 GCB_COURSES_CONFIG = ConfigProperty(
     'gcb_courses_config', str,
-    ("""<p>A newline separated list of course entries. Each course entry has
-four parts, separated by colons (':'). The four parts are:</p>
-<ol>
-<li>The word 'course', which is a required element.</li>
-<li>A unique course URL prefix. Examples could be '/cs101' or '/art'.
-Default: '/'</li>
-<li>A file system location of course asset files. If location is left empty,
+    safe_dom.NodeList().append(
+        safe_dom.Element('p').add_text("""
+A newline separated list of course entries. Each course entry has
+four parts, separated by colons (':'). The four parts are:""")
+    ).append(
+        safe_dom.Element('ol').add_child(
+            safe_dom.Element('li').add_text(
+                'The word \'course\', which is a required element.')
+        ).add_child(
+            safe_dom.Element('li').add_text("""
+A unique course URL prefix. Examples could be '/cs101' or '/art'.
+Default: '/'""")
+        ).add_child(
+            safe_dom.Element('li').add_text("""
+A file system location of course asset files. If location is left empty,
 the course assets are stored in a datastore instead of the file system. A course
 with assets in a datastore can be edited online. A course with assets on file
-system must be re-deployed to Google App Engine manually.</li>
-<li>A course datastore namespace where course data is stored in App Engine.
-Note: this value cannot be changed after the course is created.</li>
-</ol>
-For example, consider the following two course entries:<br />
-<blockquote>
-course:/cs101::/ns_cs101<br/>
-course:/:/
-</blockquote>
-<p>Assuming you are hosting Course Builder on http:/www.example.com, the first
+system must be re-deployed to Google App Engine manually.""")
+        ).add_child(
+            safe_dom.Element('li').add_text("""
+A course datastore namespace where course data is stored in App Engine.
+Note: this value cannot be changed after the course is created."""))
+    ).append(
+        safe_dom.Text(
+            'For example, consider the following two course entries:')
+    ).append(safe_dom.Element('br')).append(
+        safe_dom.Element('blockquote').add_text(
+            'course:/cs101::/ns_cs101'
+        ).add_child(
+            safe_dom.Element('br')
+        ).add_text('course:/:/')
+    ).append(
+        safe_dom.Element('p').add_text("""
+Assuming you are hosting Course Builder on http:/www.example.com, the first
 entry defines a course on a http://www.example.com/cs101 and both its assets
 and student data are stored in the datastore namespace 'ns_cs101'. The second
 entry defines a course hosted on http://www.example.com/, with its assets
 stored in the '/' folder of the installation and its data stored in the default
-empty datastore namespace.</p>
-<p>A line that starts with '#' is ignored. Course entries are applied in the
-order they are defined.</p>"""),
-    'course:/:/:', multiline=True, validator=_courses_config_validator)
+empty datastore namespace.""")
+    ).append(
+        safe_dom.Element('p').add_text("""
+A line that starts with '#' is ignored. Course entries are applied in the
+order they are defined.""")
+    ), 'course:/:/:', multiline=True, validator=_courses_config_validator)
 
 class Image(webapp2.RequestHandler):
     def get(self):
@@ -884,6 +910,48 @@ class Image(webapp2.RequestHandler):
 
 class ApplicationRequestHandler(webapp2.RequestHandler):
     """Handles dispatching of all URL's to proper handlers."""
+
+    # WARNING! never set this value to True, unless for the production load
+    # tests; setting this value to True will allow any anonymous third party to
+    # act as a Course Builder superuser
+    CAN_IMPERSONATE = False
+
+    # the name of the impersonation header
+    IMPERSONATE_HEADER_NAME = 'Gcb-Impersonate'
+
+    def dispatch(self):
+        if self.CAN_IMPERSONATE:
+            self.impersonate_and_dispatch()
+        else:
+            super(ApplicationRequestHandler, self).dispatch()
+
+    def impersonate_and_dispatch(self):
+        """Dispatches request with user impersonation."""
+        impersonate_info = self.request.headers.get(
+            self.IMPERSONATE_HEADER_NAME)
+        if not impersonate_info:
+            super(ApplicationRequestHandler, self).dispatch()
+            return
+
+        impersonate_info = transforms.loads(impersonate_info)
+        email = impersonate_info.get('email')
+        user_id = impersonate_info.get('user_id')
+
+        def get_impersonated_user():
+            """A method that returns impersonated user."""
+            try:
+                return users.User(email=email, _user_id=user_id)
+            except users.UserNotFoundError:
+                return None
+
+        old_get_current_user = users.get_current_user
+        try:
+            logging.info('Impersonating %s.', email)
+            users.get_current_user = get_impersonated_user
+            super(ApplicationRequestHandler, self).dispatch()
+            return
+        finally:
+            users.get_current_user = old_get_current_user
 
     @classmethod
     def bind_to(cls, urls, urls_map):
@@ -1281,6 +1349,8 @@ def test_path_construction():
 
 
 def run_all_unit_tests():
+    assert not ApplicationRequestHandler.CAN_IMPERSONATE
+
     test_namespace_collisions_are_detected()
     test_unprefix()
     test_rule_definitions()
