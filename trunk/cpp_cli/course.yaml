@@ -46,33 +46,44 @@ course:
   # Enable/disable the calendar page
   # Set this value to False if you don't use calendar and to remove 
   # the Calendar link from the student navigation bar.
-  calendar_on: False  
+  calendar_on: True  
   
   # Google calendar embedded link
   calendar_embed_url: https://www.google.com/calendar/embed?showTitle=0&amp;showPrint=0&amp;showTz=0&amp;height=600&amp;wkst=2&amp;hl=en&amp;bgcolor=%23FFFFFF&amp;src=ebkgbg9t4nulp81t7r574meu8c%40group.calendar.google.com&amp;color=%23125A12&amp;ctz=Europe%2FMadrid
-
+  
+  # Moderador de preguntas embedding URL ---
+  
+  # Enable/disable the calendar page
+  # Set this value to False if you don't use calendar and to remove 
+  # the Calendar link from the student navigation bar.
+  moderator_on: True  
+  
+  # Google moderator embedded link
+  moderator_embed_url: http://www.google.com/moderator/#1/e=209a23&t=209a23.40
+  moderator_url: http://goo.gl/mod/gOUk
+  
   # Enable/disable the report page
   # Set this value to False if you don't use calendar and to remove 
   # the Calendar link from the student navigation bar.
-  blog_on: False 
+  blog_on: True 
   
   blog_embed_url: http://u-mooc.blogspot.com.es/
   
   # Forum URL. For details, see
   #
   #     http://code.google.com/p/course-builder/wiki/WebForums.
-  #forum_url: https://groups.google.com/group/u-mooc
+  forum_url: https://groups.google.com/group/umooc-cpp_cli
 
   # Forum embedding URL. This link is used to embed the forum in an iframe on
   # the forum.html page. Set this value to False if you don't use forum and/or
   # to remove the Forum link from the student navigation bar.
-  #forum_embed_url: https://groups.google.com/forum/embed/?place=forum/u-mooc
+  forum_embed_url: https://groups.google.com/forum/embed/?place=forum/umooc-cpp_cli
 
   # URL for the mailing list where students can register to receive course
   # announcements. For details, see
   #
   #     http://code.google.com/p/course-builder/wiki/CreateEmailList
-  announcement_list_url: //groups.google.com/group/u-mooc
+  announcement_list_url: //groups.google.com/group/umooc-cpp_cli
 
   # Locale for internationalization.
   locale: 'es'

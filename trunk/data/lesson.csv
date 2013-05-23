@@ -18,7 +18,7 @@ unit_id,unit_title,lesson_id,lesson_title,lesson_activity,lesson_activity_name,l
 3,Arrancar la aplicación,3,Explorar el ejemplo de la aplicación,yes,Actividad de la Lección 3.3,/assets/html/lesson-3.3.html,,*
 3,Arrancar la aplicación,4,Explorar el código fuente,,Actividad de la Lección 3.4,/assets/html/lesson-3.4.html,,*
 
-4,Crear el material del curso,1,Los roles de Course-Builder,,Actividad de la Lección 4.1,/assets/html/lesson-4.1.html,,*
+4,Crear el material del curso,1,Los roles de U-MOOC,,Actividad de la Lección 4.1,/assets/html/lesson-4.1.html,,*
 4,Crear el material del curso,2,Especificaciones generales,,Actividad de la Lección 4.2,/assets/html/lesson-4.2.html,,*
 4,Crear el material del curso,3,Modificar la estructura del curso,,Actividad de la Lección 4.3,/assets/html/lesson-4.3.html,,*
 4,Crear el material del curso,4,Dashboard,,Actividad de la Lección 4.4,/assets/html/lesson-4.4.html,,*

@@ -451,7 +451,7 @@ class AdminSettingsPage(PageObject):
 
     def click_override_admin_user_emails(self):
         self._tester.driver.find_elements_by_css_selector(
-            'button.gcb-button')[0].click()
+            'button.btn btn-primary')[0].click()
         return ConfigPropertyOverridePage(self._tester)
 
     def verify_admin_user_emails_contains(self, email):

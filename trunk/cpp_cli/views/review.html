@@ -12,7 +12,7 @@
 
 {% if is_read_write_course and is_course_admin %}
   <a href="dashboard?action=edit_assessment&key={{ unit_id }}"
-    class="gcb-button gcb-button-action">Edit assessment</a>
+    class="btn btn-primary btn btn-primary-action">Edit assessment</a>
 {% endif %}
 
 <div class="gcb-main">
@@ -93,7 +93,7 @@
       <h3>{{ gettext('Review form') }}</h3>
     {% endif %}
 
-    <div style="width: 970px;" id="assessmentContents"></div>
+    <div id="assessmentContents"></div>
   </div>
 </div>
 

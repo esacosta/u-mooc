@@ -22,7 +22,7 @@ var activity = [
     correctAnswerRegex: /Google Analytics?/i,
     correctAnswerOutput: 'Correcto',
     incorrectAnswerOutput: 'Intentelo de nuevo, esa no es la respuesta correcta',
-    showAnswerOutput: 'Busque la información en el texto, o en internet. No olvide que Course-Builder es una herramienta de Google' },
+    showAnswerOutput: 'Busque la información en el texto, o en internet. No olvide que U-MOOC está basado en Course-Builder, una herramienta de Google' },
 
     '<br><br><br><b>4.</b> ¿Es bueno que otras personas evaluen el contenido de su curso?<br><br><center><img src="/assets/html/lesson-2.3_archivos/image013.jpg"/></center><br><br>',
 

@@ -17,7 +17,7 @@
     <input type="hidden" name="reviewee_id" value="{{ reviewee_id }}">
 
     Add new reviewer: <input type="text" name="reviewer_id" placeholder="reviewer@example.com">
-    <button class="gcb-button gcb-button-action" type="submit">
+    <button class="btn btn-primary btn btn-primary-action" type="submit">
       Add New Reviewer
     </button>
   </form>
@@ -45,7 +45,7 @@
             <input type="hidden" name="reviewee_id" value="{{ reviewee_id }}">
             <input type="hidden" name="key" value="{{ review_step.key }}">
 
-            <button class="gcb-button gcb-button-action right-button" type="submit"
+            <button class="btn btn-primary btn btn-primary-action right-button" type="submit"
               onclick='return confirm("Remove this review?");'>
               Remove This Review
             </button>

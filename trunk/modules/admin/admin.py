@@ -319,7 +319,7 @@ class AdminHandler(
             """Formats actions <a> link."""
             a = safe_dom.Element(
                 'a', href='/admin?%s' % urllib.urlencode(args),
-                className='gcb-button'
+                className='btn btn-primary'
             ).add_text(caption)
             if onclick:
                 a.add_attribute(onclick=onclick)
@@ -342,7 +342,7 @@ class AdminHandler(
                         value=self.create_xsrf_token('config_override'))
                 ).add_child(
                     safe_dom.Element(
-                        'button', className='gcb-button', type='submit'
+                        'button', className='btn btn-primary', type='submit'
                     ).add_text('Override'))
 
         def get_doc_string(item, default_value):
@@ -466,7 +466,7 @@ class AdminHandler(
         content = safe_dom.NodeList()
         content.append(
             safe_dom.Element(
-                'a', id='add_course', className='gcb-button pull-right',
+                'a', id='add_course', className='btn btn-primary pull-right',
                 role='button', href='admin?action=add_course'
             ).add_text('Add Course')
         ).append(
@@ -579,7 +579,7 @@ Input your Python code below and press "Run Program" to execute.""")
             ).add_child(
                 safe_dom.Element('p', align='center').add_child(
                     safe_dom.Element(
-                        'button', className='gcb-button', type='submit'
+                        'button', className='btn btn-primary', type='submit'
                     ).add_text('Run Program')
                 )
             )

@@ -1,6 +1,6 @@
-<table style="border-collapse:collapse;">
+<table class="table table-striped table-bordered">
   <colgroup>
-    <col style="width: 10%">
+    <col style="width: 20%">
     <col>
   </colgroup>
 
@@ -21,6 +21,29 @@
     <th align="left">{{ gettext('Name') }}</th>
     <td>{{ student.name }}</td>
   </tr>
+  
+  <tr>
+    {# I18N: Table header for the student's age. #}
+    <th align="left">{{ gettext('Age') }}</th>
+    <td>{{ student.age }}</td>
+  </tr>
+  <tr>
+	  <th align="left">{{ gettext('Badges') }}<br/>
+	  <small><i>Complete las evaluaciones por encima del 80%</i></small></th>
+	  <td>
+	  <table class="table table-bordered"><tr class="">
+	  {% for badge in student.badges %}
+	  <td style="width:10%;text-align:center;"><img class="insignia" style="max-height:100px;" src="/assets/img/{{ badge }}.png"></img></td>
+	  {% endfor %}
+	  </tr><tr class="info">
+	  {% for badgetitle in student.badgesTitle %}
+	  <td style="width:10%;text-align:center;">{{ badgetitle }}</td>
+	  {% endfor %}
+	  
+	  </tr></table>
+	  </td>
+   </tr>
+
 
   <tr>
     {# I18N: Table header for the student's assessment scores. #}
@@ -44,7 +67,11 @@
             {% endif %}
           </a>
         {% elif 'score' in assessment and assessment['score'] is defined %}
-          <span id="assessment-score-{{assessment['title']}}">{{ assessment['score'] }}</span>
+          
+		  <div class="progress progress-default progress-striped">
+		  
+									<div class="bar" style="width: {{ assessment['score'] }}%;"><span id="assessment-score-{{assessment['title']}}">{{ assessment['score'] }}</span></div>
+								</div>
         {% endif %}
       </td>
     </tr>
@@ -55,7 +82,7 @@
       {# I18N: Table header for the student's overall score. #}
       <th align="left">{{ gettext('Overall course score') }}</th>
       <td>
-        <span id="assessment-score-overall">{{ overall_score }}</span>
+        <span id="assessment-score-overall" class="badge badge-info">{{ overall_score }}</span>
       </td>
     </tr>
   {% endif %}

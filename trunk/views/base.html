@@ -305,7 +305,14 @@ Para uso no comercial, puede hacer lo que desee con ello.
               {{ gettext('Calendario') }}
             </a>
           </li>
-          {% endif %}  
+          {% endif %} 
+		  {% if course_info.course.moderator_on == True %}
+          <li {% if navbar.moderator %}class='active'{% endif %}>
+            <a href="moderator">
+              {{ gettext('Moderador de preguntas') }}
+            </a>
+          </li>
+          {% endif %}  		  
           {% if course_info.course.report_on == True %}
           <li {% if navbar.report %}class='active'{% endif %}>
             <a href="report">

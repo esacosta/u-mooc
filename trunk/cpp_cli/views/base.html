@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="{{course_info.course.locale}}">
   <head>
     <meta charset="utf-8">
@@ -187,14 +187,14 @@
 
   <body>
 	
-	<!-- Modal Información -->
+	<!-- Modal Informaci&oacute;n -->
 	<div id="myPrivacy" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myPrivacyLabel" aria-hidden="true">
 	  <div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 		<h3 id="myPrivacyLabel">Términos y condiciones</h3>
 	  </div>
 	  <div class="modal-body">
-		<p>Usted se compromete a no reproducir, duplicar, copiar, vender, revender o explotar con algún propósito comercial cualquier parte de los servicios prestados de la plataforma o los cursos.
+		<p>Usted se compromete a no reproducir, duplicar, copiar, vender, revender o explotar con algún prop&oacute;sito comercial cualquier parte de los servicios prestados de la plataforma o los cursos.
 Para uso no comercial, puede hacer lo que desee con ello.
 <br/>
 <br/>
@@ -305,7 +305,14 @@ Para uso no comercial, puede hacer lo que desee con ello.
               {{ gettext('Calendario') }}
             </a>
           </li>
-          {% endif %}  
+          {% endif %} 
+		  {% if course_info.course.moderator_on == True %}
+          <li {% if navbar.moderator %}class='active'{% endif %}>
+            <a href="moderator">
+              {{ gettext('Moderador de preguntas') }}
+            </a>
+          </li>
+          {% endif %}  		  
           {% if course_info.course.report_on == True %}
           <li {% if navbar.report %}class='active'{% endif %}>
             <a href="report">

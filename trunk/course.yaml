@@ -29,12 +29,12 @@ course:
   admin_user_emails: '[esacosta@gmail.com]'
 
   # Course title
-  title: 'Crear un MOOC con Course-Builder'
+  title: '¿Cómo crear un MOOC?'
 
   # Main page blurb. (The '|' at the beginning enables multi-line input.)
   blurb: |
-    Siguiendo este curso aprenderá a crear un MOOC a través de la nueva plataforma de Google Course-Builder.
-    Se trata de un experimento de Google para el mundo de la educación online que contiene el software e instrucciones necesarias para crear lecciones, 
+    Siguiendo este curso aprenderá a crear un MOOC a través de la nueva plataforma de U-MOOC.
+    Se trata de un experimento para el mundo de la educación online que contiene el software e instrucciones necesarias para crear lecciones, 
     actividades para los estudiantes, evaluaciones, etc. Sin embargo la creación de estos cursos resulta algo tediosa para personas poco familiarizadas con Html, Javascript o Python.
     Esperamos que este curso le sea útil para poder crear sus propios MOOC de una manera más fácil.
     Este curso se encuentra en fase de desarrollo, por favor pruébelo y envíe toda la información que considere oportuna para su finalización o colabore con nosotros, esperamos haberlo terminado para finales del mes próximo.
@@ -76,6 +76,17 @@ course:
   # Google calendar embedded link
   calendar_embed_url: https://www.google.com/calendar/embed?showTitle=0&amp;showPrint=0&amp;showTz=0&amp;height=600&amp;wkst=2&amp;hl=en&amp;bgcolor=%23FFFFFF&amp;src=ebkgbg9t4nulp81t7r574meu8c%40group.calendar.google.com&amp;color=%23125A12&amp;ctz=Europe%2FMadrid
 
+  # Moderador de preguntas embedding URL ---
+  
+  # Enable/disable the calendar page
+  # Set this value to False if you don't use calendar and to remove 
+  # the Calendar link from the student navigation bar.
+  moderator_on: True  
+  
+  # Google moderator embedded link
+  moderator_embed_url: http://www.google.com/moderator/#1/e=209a23&t=209a23.40
+  moderator_url: http://goo.gl/mod/gOUk
+  
   # Enable/disable the report page
   # Set this value to False if you don't use calendar and to remove 
   # the Calendar link from the student navigation bar.

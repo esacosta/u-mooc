@@ -22,10 +22,10 @@
 
 var assessment = {
   // HTML to display at the start of the page
-  preamble: 'Cuando escriba su revisi&oacute;n, por favor asegures&eacute; que la respuesta del estuante es relevante a la cuesti&oacute;n planteada. Si no, responda \'No\' a la primera de las cuestiones que le aparecen a continuaci&oacute;n.',
+  preamble: 'Cuando escriba su revisi&oacute;n, por favor asegures&eacute; que la respuesta del estudiante es relevante a la cuesti&oacute;n planteada. Si no, responda \'No\' a la primera de las cuestiones que le aparecen a continuaci&oacute;n.',
 
   questionsList: [
-    {questionHTML: 'A respondido el estudiante a todas las preguntas que se le plantean?',
+    {questionHTML: '¿A respondido el estudiante a todas las preguntas que se le plantean?',
      choices: ['Yes', 'No']},
 
     {questionHTML: 'Por favor, escriba algo como respuesta al autor de la cuesti&oacute;n, para que le sirva como retroalimentaci&oacute;n de su evaluaci&oacute;n.',
