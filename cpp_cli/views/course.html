@@ -56,7 +56,6 @@
                         </p></li>
                         <li class="row-fluid">
                           <p >
-                            <div class="progress span2"><div class="bar" style="width: 0%;"></div>
                           {% if unit.review_progress == 2 %}
                             <!--<img src="assets/lib/completed.png"
                                  alt="{# I18N: Alt text for image representing student progress. #}{{ gettext('Completed') }}"
@@ -103,12 +102,12 @@
                               {% endif %}
                             </a>
                           {% else %}
-                            <span><a class="span9 disabled" href="#">
+                            <a class="span9 disabled" href="">
                               {% if unit.matcher == 'peer' %}
                                 {# I18N: Displayed in the course contents page. Indicates a page to which students can go to review other students' assignments. #}
                                 {{ gettext('Review peer assignments') }}
                               {% endif %}
-                            </a></span>
+                            </a>
                           {% endif %}
 
                       {% endif %}
@@ -154,7 +153,7 @@
 								</div>
                         {% endif %}
                       {% else %}
-                        <div class="progress span2"><div class="bar" style="width: 0%;"></div>
+                        <div class="progress span2"><div class="bar" style="width: 0%;"></div></div>
                       {% endif %}
 
                       <a class="span9" href="unit?unit={{ unit.unit_id }}">
@@ -162,14 +161,14 @@
                         {{ gettext('Unit %(id)s - %(title)s', id=unit.index, title=unit.title) }}
                       </a>
                   {% elif unit.type == 'O' %}
-                    <li class="row-fluid">
+                    <li class="row-fluid active">
                       <p >
-                        <div class="progress span2"><div class="bar" style="width: 0%;"></div>
+                        <div class="progress span2"><div class="bar" style="width: 0%;"></div></div>
                         <a class="span9" href="{{ unit.href }}"> {{ unit.title }} </a>
                   {% else %}
                     <li>
                       <p >
-                        <div class="progress span2"><div class="bar" style="width: 0%;"></div>
+                        <div class="progress span2"><div class="bar" style="width: 0%;"></div></div>
                         <span class="span9">Error: unit type not recognized.</span>
                   {% endif %}
                       {% if not unit.now_available and is_course_admin %}
@@ -188,7 +187,7 @@
                   {% elif unit.type == 'U' %}
                     <li class="row-fluid">
                       <p >
-                        <div class="progress span2"><div class="bar" style="width: 0%;"></div>
+                        <div class="progress span2"><div class="bar" style="width: 0%;"></div></div>
                         {# I18N: A row in the course schedule. #}
                         {{ gettext('Unit %(id)s - %(title)s', id=unit.index, title=unit.title) }}
                         <span class="span8">
@@ -199,14 +198,14 @@
                   {% elif unit.type == 'O' %}
                     <li class="row-fluid">
                       <p >
-                        <div class="progress span2"><div class="bar" style="width: 0%;"></div>
+                        <div class="progress span2"><div class="bar" style="width: 0%;"></div></div>
                         {{ unit.title }}
                       </p>
                     </li>
                   {% else %}
                     <li class="row-fluid">
                       <p >
-                        <div class="progress span2"><div class="bar" style="width: 0%;"></div>
+                        <div class="progress span2"><div class="bar" style="width: 0%;"></div></div>
                         Error: unit type not recognized.
                       </p>
                     </li>

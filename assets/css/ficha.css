@@ -1,0 +1,322 @@
+body {
+height: 100%;
+font-family: arial,sans-serif;
+position: relative;
+background-color: #D7D6D1;
+margin: 0;
+padding: 0;
+
+}
+
+@font-face {
+font-family: arial,sans-serif; }
+
+img {
+    border:0;
+ }
+a {
+  color: #444;
+  text-decoration: none;
+}
+
+h2 a, h2 a:hover, h2 a:active {
+  color: #c00000;
+  text-decoration: none;
+}
+
+a:focus, a:hover, a:active {
+  text-decoration: underline;
+  color: black;
+}
+
+#barrasuperior1 h1, #barrasuperior1 h2 {
+  float: left;
+  font-size: 27px;
+  font-weight: 300;
+  line-height: 1.52;
+  margin: 0;
+  text-shadow: 0 1px 1px #fff;
+  white-space: nowrap;
+}
+
+#barrasuperior h1 {
+  padding: 0 12px 0 0;
+ }
+ 
+#barrasuperior1 h2 {
+ 
+  margin: 30px 12px;
+  color: #c00000;  
+}
+.separadorsup {
+	width: 978px;
+	height: 10px;
+	background-color: #c00;
+}
+.separador {
+	width: 978px;
+	height: 3px;
+	background-color: #252525;
+}
+.barrasuperior {	
+	width: 978px;
+	height: 95px;
+	background-color: white;	
+}
+
+.divescudo {	
+	margin: 17px 0; 
+	width: 210px;
+	height: 60px;
+	float: left;
+	border: solid #babcc0;
+	border-width: 0 1px 0 0;
+	
+}
+
+#escudo {
+	margin: 0 	17px;
+	border: none;
+	width: 182px;
+	height: 61px;
+	
+}
+
+.divupvx {
+	vertical-align: top;
+	width: 140px;
+	height: 95px;
+	float: right;
+}
+#upvx {
+	margin: 25px 0px 0px 0px;	
+	border: none;
+	width: 130px;
+	height: 45px;
+	
+}
+
+.barrasuperior1 {
+	float: left;
+	padding: 0px 0px 0px 0px;
+	display: inline;
+	height: 95px;
+	
+
+}
+.barraiconos {
+	float: right;	
+	display: inline;
+	width: 100px;
+	padding: 0px 3px 0px 0px;	
+}
+.barravideo {
+ 	background-color: #252525;
+	padding: 20px 20px 20px 20px;
+}
+.barravideo2 {
+	display: inline;
+	float: right;
+}
+.celdalateralvideo {
+    padding: 10px;
+	background-image: url(../img/fondo_caja_texto_informativo.png); 
+	background-repeat: repeat;	
+	
+}
+.barracurso {
+	padding: 10px;
+	
+}
+.titulocurso {
+	font-weight: bold;
+	padding: 10px 10px 0px 10px;
+	color: #c00000;	
+}
+.textocurso {
+	padding: 0px 10px 0px 20px;
+	color: #444;	
+}
+.footer {
+	height: 25px;
+	width: 978px;	
+	background-color: white;
+	padding: 3px 0 0 0;
+}
+.footer2 {
+	color: #444;
+	display: inline;
+	font-size: 11pt;
+
+}
+.footerbold {
+	color: #444;
+	font-weight: bold;
+	display: inline;
+	font-size: 11pt;	
+}
+
+#celdacursos {
+	padding: 10px;
+}
+.celdacurso {
+	width: 170px;
+	background-color: #E5E5E6;
+	vertical-align: top;
+}
+.fotoceldacurso {
+	width: 170px;
+	background-color: #E5E5E6;
+}
+.tabladecursos {
+	padding: 0;
+}
+.simbolomas {
+	float: right;
+	padding: 0px 5px 5px 0px;
+}
+.separadorentrecursos {
+	width: 30px;
+}
+#celdavideo {
+ 	background-color: #252525;
+	padding: 0px 10px 0px 20px;
+}
+.textolateralvideo {
+	color: #EBEBEB;
+	font-size: 9pt;	
+}
+.fotoprofesor {
+	width: 100px;	
+}
+.filaprofesor {
+	background-color: #E5E5E6;
+}
+.separadordiscontinua {
+	background-image: url(../img/simbolo_linea_discontinua.png); 
+	background-repeat: repeat-y;
+	width: 6px;
+}
+.tablaprofesores {
+	width: 49%;
+}
+.tituloprofesor {
+	font-weight: bold;
+	padding: 0px 10px 0px 10px;
+	color: #c00000;
+}
+.textoprofesor {
+	padding: 0px 10px 0px 20px;
+	color: #444;
+	font-size: 10pt;
+	text-align: justify;
+}
+.separadorentreprofesores {
+	height: 5px;
+	padding: 0px; !important
+}
+.separadorbajoprofesores {
+	height: 20px;
+	padding: 0px; !important
+}
+.tituloque {
+	font-weight: bold;
+	padding: 0px 10px 0px 10px;
+	color: #c00000;
+}
+.textoque {
+	padding: 0px 10px 0px 20px;
+	color: #444;
+	font-size: 11pt;
+	text-align: justify;
+}
+.separadorentreque {
+	//background-image: url(../img/simbolo_linea_discontinua.png); 
+	background-repeat: repeat-y;
+	//width: 6px;
+}
+.imagentitulocontenido {
+	display: inline;
+	padding: 0px 5px 10px 10px;
+}
+.titulocontenido {
+	display: inline;
+	font-weight: bold;
+	padding: 0px 5px 10px 0px;
+	color: #c00000;
+	font-size: 16pt;
+	vertical-align: top;
+}
+.unidadescurso {
+	padding: 10px 10px 10px 10px;
+	color: #444;
+	font-size: 13pt;
+	text-align: justify;
+}
+.contenidocurso {
+	vertical-align: top;
+}	
+
+	
+.submit {background: url(../img/lapiz_apuntarse.png) no-repeat top left;}
+.submit a {background-image: -webkit-linear-gradient(top,#285e6c,#1d434e) top right;}
+
+.btn btn-primary {
+  background-color: #1d434e;
+  background-image: -moz-linear-gradient(top,#285e6c,#1d434e);
+  background-image: -webkit-linear-gradient(top,#285e6c,#1d434e);
+  background-image: linear-gradient(top,#285e6c,#1d434e);
+  background-position: left bottom;
+  background-repeat: repeat-x;
+  border: 1px solid #1d434e;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  -moz-box-shadow: 0 1px 1px rgba(0,0,0,.2);
+  -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.2);
+  box-shadow: 0 1px 1px rgba(0,0,0,.2);
+  color: white;
+  display: inline-block;
+  font-family: arial,sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.54;
+  padding: 8px 12px;
+  text-align: center;
+  text-shadow: 0 1px rgba(0,0,0,.1);
+  -moz-transition: all .218s ease-in;
+  -webkit-transition: all .218s ease-in;
+  transition: all .218s ease-in;
+}
+
+
+a.btn btn-primary {
+  color: #fff !important;
+  text-decoration: none;
+  padding: 8px 12px;
+  background-color: #1d434e;
+}
+
+
+button.btn btn-primary::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+.btn btn-primary:hover, .btn btn-primary:focus {
+  border-color: #1d434e;
+  background-image: -moz-linear-gradient(top,#1d434e,#1d434e);
+  background-image: -webkit-linear-gradient(top,#1d434e,#1d434e);
+  background-image: linear-gradient(top,#1d434e,#1d434e);
+}
+table.social{
+  border: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
+  
+}
+table.social td,tr {
+  padding: 30px 0;
+  border: 0;
+  vertical-align: top;  
+}

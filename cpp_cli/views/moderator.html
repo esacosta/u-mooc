@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block subtitle %}
+  {{ gettext('Moderador de preguntas') }}
+{% endblock subtitle %}
+
+{% block top_content %}
+
+  <div>
+    <h1><a href="{{course_info.course.moderator_url}}">{{ gettext('Enviar preguntas') }}</a></h1>
+    <div class="row-luid">
+          <br>
+          <iframe src="{{course_info.course.moderator_embed_url}}" 
+            style="border: 0" 
+            width="100%" height="600" 
+            frameborder="0" 
+            scrolling="no">
+          </iframe>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block main_content %}
+
+{% endblock %}

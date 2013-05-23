@@ -8,7 +8,7 @@
 <div class="gcb-cols">
   <div class="gcb-col-1">
   </div>
-  <div class="gcb-col-7 gcb-aside gcb-button-box">
+  <div class="gcb-col-7 gcb-aside btn btn-primary-box">
 
     <p class="top_content">
       {% if previously_submitted %}
@@ -25,12 +25,12 @@
 
     <p>
       {% if matcher == 'peer' %}
-        <a class="gcb-button" href="{{review_dashboard_url}}">
+        <a class="btn btn-primary" href="{{review_dashboard_url}}">
           {# I18N: Text for the button on the assignment submission confirmation page. #}
           {{ gettext('Review peer assignments') }}
         </a>
       {% else %}
-        <a class="gcb-button" href="course">
+        <a class="btn btn-primary" href="course">
           {# I18N: Text for the button on the assignment submission confirmation page. #}
           {{ gettext('Back to Course page') }}
         </a>

@@ -312,7 +312,7 @@ th, td {
   padding: 0 6px 0 3px;
 }
 
-.gcb-button-box {
+.btn btn-primary-box {
   text-align: center;
 }
 
@@ -320,7 +320,7 @@ th, td {
   font-family: "open sans",arial,sans-serif;
 }
 
-.gcb-button {
+.btn btn-primary {
   background-color: #666;
   background-image: -moz-linear-gradient(top,#777,#555);
   background-image: -webkit-linear-gradient(top,#777,#555);
@@ -348,11 +348,11 @@ th, td {
   transition: all .218s ease-in;
 }
 
-.gcb-button-primary {
+.btn btn-primary-primary {
 
 }
 
-.gcb-button-large {
+.btn btn-primary-large {
   width: 200px;
   height: 48px;
   line-height: 48px;
@@ -360,40 +360,40 @@ th, td {
   margin: 12px;
 }
 
-a.gcb-button {
+a.btn btn-primary {
   color: #fff !important;
   text-decoration: none;
 }
 
-button.gcb-button {
+button.btn btn-primary {
   margin: 0;
   overflow: visible;
   white-space: normal;
 }
 
-button.gcb-button::-moz-focus-inner {
+button.btn btn-primary::-moz-focus-inner {
   border: 0;
   padding: 0;
 }
 
-.gcb-button:hover, .gcb-button:focus {
+.btn btn-primary:hover, .btn btn-primary:focus {
   border-color: #404040;
   background-image: -moz-linear-gradient(top,#444,#111);
   background-image: -webkit-linear-gradient(top,#444,#111);
   background-image: linear-gradient(top,#444,#111);
 }
 
-.gcb-button:focus {
+.btn btn-primary:focus {
   outline: 0;
 }
 
-.gcb-button:active {
+.btn btn-primary:active {
   -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,.3);
   -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,.3);
   box-shadow: inset 0 1px 2px rgba(0,0,0,.3);
 }
 
-.gcb-button[disabled] {
+.btn btn-primary[disabled] {
   background: none;
   background-image: -moz-linear-gradient(top,rgba(226,226,226,.14),rgba(34,34,34,.14));
   background-image: -webkit-linear-gradient(top,rgba(226,226,226,.14),rgba(34,34,34,.14));
@@ -402,16 +402,16 @@ button.gcb-button::-moz-focus-inner {
   color: #b8b8b8;
 }
 
-form.gcb-button {
+form.btn btn-primary {
   padding: 4px 12px;
 }
 
-button.gcb-button-action {
+button.btn btn-primary-action {
   float: right;
   margin-left: 8px;
 }
 
-a.gcb-button-action {
+a.btn btn-primary-action {
   float: right;
   margin-left: 8px;
 }
@@ -464,7 +464,7 @@ a.gcb-button-action {
   text-shadow: none;
 }
 
-#gcb-nav-x.gcb-button {
+#gcb-nav-x.btn btn-primary {
   float: right;
   margin: 8px 0 0;
   padding: 4px 12px;
@@ -557,7 +557,7 @@ a.gcb-button-action {
 
 */
 
-.gcb-button {
+.btn btn-primary {
   padding: 4px 7px;
 }
 

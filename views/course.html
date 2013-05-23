@@ -56,7 +56,6 @@
                         </p></li>
                         <li class="row-fluid">
                           <p >
-                            <div class="progress span2"><div class="bar" style="width: 0%;"></div></div>
                           {% if unit.review_progress == 2 %}
                             <!--<img src="assets/lib/completed.png"
                                  alt="{# I18N: Alt text for image representing student progress. #}{{ gettext('Completed') }}"
@@ -103,12 +102,12 @@
                               {% endif %}
                             </a>
                           {% else %}
-                            <span><a class="span9 disabled" href="#">
+                            <a class="span9 disabled" href="">
                               {% if unit.matcher == 'peer' %}
                                 {# I18N: Displayed in the course contents page. Indicates a page to which students can go to review other students' assignments. #}
                                 {{ gettext('Review peer assignments') }}
                               {% endif %}
-                            </a></span>
+                            </a>
                           {% endif %}
 
                       {% endif %}

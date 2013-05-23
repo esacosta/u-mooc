@@ -113,7 +113,7 @@
         div#formContainer {
           margin: 0;
         }
-        .gcb-button {
+        .btn btn-primary {
           font-family: "open sans",arial,sans-serif;
           font-weight: bold;
           font-size: inherit;
@@ -164,12 +164,12 @@
       <div id='gcb-section'>
         {% for action in section.actions %}
           {% if action.href %}
-          <a id='{{ action.id }}' class="gcb-button pull-right" role="button"
+          <a id='{{ action.id }}' class="btn btn-primary pull-right" role="button"
               href="{{ action.href }}" >{{ action.caption }}</a>
           {% else %}
           <form id='{{ action.id }}' action='{{ action.action }}' method='POST'>
             <input type="hidden" name="xsrf_token" value="{{ action.xsrf_token }}">
-            <button class="gcb-button pull-right" type="submit">{{ action.caption }}</button>
+            <button class="btn btn-primary pull-right" type="submit">{{ action.caption }}</button>
           </form>
           {% endif %}
         {% endfor %}
@@ -206,8 +206,8 @@
   </div>
   <div id='gcb-footer'>
     Powered by
-    <a target='_blank' href="https://code.google.com/p/course-builder/">
-      Course Builder</a>
+    <a target='_blank' href="http://u-mooc.appspot.com">
+      U-MOOC</a>
     &nbsp;|&nbsp;
     {{ page_footer }}
   </div>

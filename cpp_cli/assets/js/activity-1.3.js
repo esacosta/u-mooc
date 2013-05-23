@@ -16,7 +16,7 @@ var activity = [
                      choices: ['Verdadero', 'Falso'], correctIndex: 1},
                     {questionHTML: 'Lo último que hace un estudiante es la evaluación final',
                      choices: ['Verdadero', 'Falso'], correctIndex: 1},
-                    {questionHTML: 'Para los MOOC de Course-Builder podremos utilizar cualquier correo electrónico.',
+                    {questionHTML: 'Para los MOOC de U-MOOC podremos utilizar cualquier correo electrónico.',
                      choices: ['Verdadero', 'Falso'], correctIndex: 1}],
     allCorrectOutput: 'Continuemos.',
     someIncorrectOutput: 'Inténtelo otra vez.'},
