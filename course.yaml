@@ -110,7 +110,7 @@ course:
   #
   #     http://code.google.com/p/course-builder/wiki/CreateEmailList
   announcement_list_url: //groups.google.com/group/u-mooc
-  announcement_list_email: My-Course-Announce@googlegroups.com
+  announcement_list_email: u-mooc@googlegroups.com
 
   # Locale for internationalization. See modules/i18n/resources/locale for
   # available locales.

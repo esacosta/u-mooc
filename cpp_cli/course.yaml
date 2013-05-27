@@ -84,6 +84,7 @@ course:
   #
   #     http://code.google.com/p/course-builder/wiki/CreateEmailList
   announcement_list_url: //groups.google.com/group/umooc-cpp_cli
+  announcement_list_email: umooc-cpp_cli@googlegroups.com
 
   # Locale for internationalization.
   locale: 'es'
