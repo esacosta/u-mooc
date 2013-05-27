@@ -446,7 +446,7 @@ function renderAssessment(assessment, domRoot) {
         }
       });
     } else if (q.correctAnswerString || q.correctAnswerRegex || q.correctAnswerNumeric) {
-      curLI.append('Answer:&nbsp;&nbsp;<input type="text" class="alphanumericOnly" ' +
+      curLI.append('Respuesta:&nbsp;&nbsp;<input type="text" class="alphanumericOnly" ' +
           'style="border-style: solid; border-color: black; border-width: 1px;" ' +
           'id="q' + questionNum + '">');
     } else {

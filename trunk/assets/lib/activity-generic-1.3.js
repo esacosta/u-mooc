@@ -529,7 +529,7 @@ function renderAssessment(assessment, domRoot) {
       });
     } else if (q.correctAnswerString || q.correctAnswerRegex || q.correctAnswerNumeric) {
       if (('multiLine' in q) && q.multiLine) {
-        curLI.append('Answer:<br>');
+        curLI.append('Respuesta:<br>');
 
         var textarea = $('<textarea id="q' + questionNum + '" style="width: 100%" rows="7"></textarea>');
         if (savedAnswer != null) {
@@ -538,7 +538,7 @@ function renderAssessment(assessment, domRoot) {
         curLI.append(textarea);
 
       } else {
-        curLI.append('Answer:&nbsp;&nbsp;');
+        curLI.append('Respuesta:&nbsp;&nbsp;');
 
         var inputField = $('<input type="text" class="alphanumericOnly" ' +
             'style="border-style: solid; border-color: black; border-width: 1px;" ' +
