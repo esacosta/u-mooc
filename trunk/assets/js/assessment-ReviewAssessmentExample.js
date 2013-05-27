@@ -22,7 +22,7 @@
 
 var assessment = {
   // HTML to display at the start of the page
-  preamble: 'Resuelva el problema que se le indica a continuaci&oacute;n<br><br><strong>Problema</strong>: Imagine que uno de sus antiguos profesores desea realizar un MOOC para ciegos, quiere hacer un curso de matem&aacute;ticas para ciegos y no sabe como hacerlo. Puede realizarlo con U-MOOC? C&oacute;mo?',
+  preamble: 'Resuelva el problema que se le indica a continuaci&oacute;n<br><br><strong>Problema</strong>: Imagine que uno de sus antiguos profesores desea realizar un MOOC para ciegos, quiere hacer un curso de matem&aacute;ticas para ciegos y no sabe como hacerlo. Puede realizarlo con U-MOOC? ¿C&oacute;mo?',
 
   questionsList: [
     {questionHTML: 'Por favor, escriba la respuesta en un documento, utilizando por ejemplo Google doc, y copie el enlace público que esta herramienta le proporciona en esta caja, para que sea visible por otros alumnos, que revisar&aacute;n su documento.',

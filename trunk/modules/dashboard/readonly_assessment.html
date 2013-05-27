@@ -27,10 +27,10 @@
           {% endfor %}
         {% else %}
           {% if q['multiLine'] %}
-            Answer:<br>
+            {{ gettext('Answer:') }}<br>
             <textarea disabled="true" style="width: 90%" rows="7">{{ readonly_assessment['answers'][outer_loop.index0] }}</textarea>
           {% else %}
-            Answer:
+            {{ gettext('Answer:') }}
             <input type="text" size="50" value="{{ readonly_assessment['answers'][outer_loop.index0] }}" disabled="true">
           {% endif %}
         {% endif %}

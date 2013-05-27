@@ -22,13 +22,13 @@
 
 var assessment = {
   // HTML to display at the start of the page
-  preamble: 'Cuando escriba su revisi&oacute;n, por favor asegures&eacute; que la respuesta del estudiante es relevante a la cuesti&oacute;n planteada. Si no, responda \'No\' a la primera de las cuestiones que le aparecen a continuaci&oacute;n.',
+  preamble: 'When you write your review, please check that the student\'s response is relevant to the question asked. If not, answer \'No\' to the first question below.',
 
   questionsList: [
-    {questionHTML: '¿A respondido el estudiante a todas las preguntas que se le plantean?',
+    {questionHTML: 'Did the student answer all parts of the question?',
      choices: ['Yes', 'No']},
 
-    {questionHTML: 'Por favor, escriba algo como respuesta al autor de la cuesti&oacute;n, para que le sirva como retroalimentaci&oacute;n de su evaluaci&oacute;n.',
+    {questionHTML: 'Please provide feedback for the assignment author.',
      multiLine: true,
      correctAnswerRegex: /.*/i
     }
