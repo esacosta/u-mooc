@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2013-04-29 18:58-0700\n"
-"PO-Revision-Date: 2013-05-21 21:33+0100\n"
+"PO-Revision-Date: 2013-05-24 19:00+0100\n"
 "Last-Translator: Enrique Sánchez <esacosta@gmail.com>\n"
 "Language-Team: es_ES <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -127,11 +127,13 @@ msgid ""
 "The due date for submitting this assignment has passed. It was due on "
 "%(submission_due_date)s."
 msgstr ""
+"La fecha límite para la presentación de este trabajo ha pasado. Debió "
+"hacerlo en %(submission_due_date)s."
 
 #. Shown to the student on the assignment page.
 #: experimental/coursebuilder/views/assessment.html:49
 msgid "Due date for this assignment: "
-msgstr ""
+msgstr "Fecha de vencimiento para esta tarea:"
 
 #. Instructions to the student for a peer-reviewed assignment.
 #: experimental/coursebuilder/views/assessment.html:59
@@ -140,16 +142,19 @@ msgid ""
 "assignment will become read-only, and you will not be able to modify your "
 "answers. The answers you submit here will be reviewed by your peers."
 msgstr ""
+"Sólo se puede presentar esta tarea una vez. Después de enviar el trabajo, la "
+"tarea se convertirá en sólo lectura, y no se podrá modificar sus respuestas. "
+"Las respuestas que usted envíe aquí serán revisados ​​pro sus pares."
 
 #. Header text for a previously-submitted assignment.
 #: experimental/coursebuilder/views/assessment.html:71
 msgid "Submitted assignment"
-msgstr ""
+msgstr "Tarea enviada"
 
 #. Header text for the list of reviews received for an assignment.
 #: experimental/coursebuilder/views/assessment.html:79
 msgid "Reviews received"
-msgstr ""
+msgstr "Comentarios recibidos"
 
 #. Text shown below a student's peer-reviewed assignment.
 #: experimental/coursebuilder/views/assessment.html:86
@@ -157,12 +162,14 @@ msgid ""
 "After you have completed the required number of peer reviews for this "
 "assignment, the reviews you have received will appear here."
 msgstr ""
+"Después de haber completado el número requerido de evaluaciones por pares "
+"para esta tarea, los comentarios que ha recibido aparecerán aquí."
 
 #. Text shown on a button that allows the student to navigate from an
 #. assignment submission page to the peer review dashboard for that assignment.
 #: experimental/coursebuilder/views/assessment.html:93
 msgid "Go to the review dashboard"
-msgstr ""
+msgstr "Vaya al panel de revisión."
 
 #. Text shown below a student's peer-reviewed assignment.
 #: experimental/coursebuilder/views/assessment.html:98
@@ -202,7 +209,7 @@ msgstr " Guardar Respuestas "
 #. Text on the button for submitting a peer-reviewed assignment.
 #: experimental/coursebuilder/views/base.html:66
 msgid " Submit Assignment "
-msgstr "Enviar asignación"
+msgstr "Enviar tarea"
 
 #. Text on the button for submitting a peer review.
 #: experimental/coursebuilder/views/base.html:70
@@ -272,7 +279,7 @@ msgstr " ¿Está seguro que desea cancelar su inscripción de "
 #. submit this assignment/review?'
 #: experimental/coursebuilder/views/base.html:110
 msgid " You cannot edit or delete it after you have done so. "
-msgstr ""
+msgstr "No se puede editar o borrar una vez que haya hecho."
 
 #. Navbar text.
 #: experimental/coursebuilder/views/base.html:156
@@ -412,7 +419,7 @@ msgstr "En progreso"
 #: experimental/coursebuilder/views/lesson_navbar.html:47
 #: experimental/coursebuilder/views/lesson_navbar.html:48
 msgid "Not yet started"
-msgstr "No comenzada todabía"
+msgstr "No comenzada todavía"
 
 #. Error text for when a student has submitted a review after the deadline.
 #: experimental/coursebuilder/views/error.html:16
@@ -421,6 +428,8 @@ msgid ""
 "Your review has not been saved, because it was submitted on %(time_now)s. "
 "The deadline for submitting reviews was %(review_due_date)s."
 msgstr ""
+"Tu comentario no se ha guardado, ya que se presentó el %(time_now)s. La "
+"fecha límite para la presentación de comentarios fue %(review_due_date)s."
 
 #. Error text for when a student submits an assignment after the deadline.
 #: experimental/coursebuilder/views/error.html:21
@@ -430,6 +439,8 @@ msgid ""
 "%(time_now)s. The deadline for submitting assignments was "
 "%(submission_due_date)s."
 msgstr ""
+"Su tarea no se ha guardado, ya que se presentó el %(time_now)s.  La fecha "
+"límite para la presentación de trabajos fue %(submission_due_date)s."
 
 #. Error text for when a student tries to get a new assignment to review before
 #. submitting his/her own assignment.
@@ -438,6 +449,8 @@ msgid ""
 "You must submit the assignment for this unit before you can request new "
 "assignments to review."
 msgstr ""
+"Usted debe presentar la tarea para esta unidad antes de poder solicitar "
+"nuevos trabajos para su revisión."
 
 #. Error text for when a student tries to request a new assignment to review
 #. after the review submission deadline.
@@ -446,6 +459,8 @@ msgid ""
 "The deadline for submitting reviews has already passed, so you cannot "
 "request a new assignment to review."
 msgstr ""
+"La fecha límite para la presentación de opiniones ya ha pasado, por lo que "
+"no puede solicitar una nueva tarea a opinar."
 
 #. Error text for when a student requests a new assignment to review, but needs
 #. to complete more peer reviews first before a new review can be allocated to
@@ -454,6 +469,8 @@ msgstr ""
 msgid ""
 "You must complete all assigned reviews before you can request a new one."
 msgstr ""
+"Debes completar todos los comentarios asignados antes de poder solicitar una "
+"nueva."
 
 #. Error text for when a student has already submitted a review, and tries to
 #. submit it again.
@@ -461,6 +478,7 @@ msgstr ""
 msgid ""
 "You have already submitted this review. Your latest review was not saved."
 msgstr ""
+"Usted ya ha presentado esta revisión. Su último examen no se ha guardado."
 
 #. Registration button on the main course page.
 #: experimental/coursebuilder/views/preview.html:13
@@ -471,7 +489,7 @@ msgstr " Registrarse "
 #: experimental/coursebuilder/views/readonly_assessment.html:31
 #: experimental/coursebuilder/views/readonly_assessment.html:35
 msgid "Answer:"
-msgstr "Respuesta"
+msgstr "Respuesta:"
 
 #. A question in the registration form.
 #: experimental/coursebuilder/views/register.html:23
@@ -491,7 +509,7 @@ msgstr "Revisión"
 #. Link to return to the list of peer reviews.
 #: experimental/coursebuilder/views/review.html:43
 msgid "Back to the review dashboard."
-msgstr ""
+msgstr "Volver al panel de revisión."
 
 #. Text shown to students when they visit a review submission page for which
 #. the due date has passed.
@@ -501,12 +519,14 @@ msgid ""
 "The due date for submitting this review has passed. It was due on "
 "%(review_due_date)s."
 msgstr ""
+"La fecha límite para la presentación de esta revisión ha pasado. Esto se "
+"debió en %(review_due_date)s."
 
 #. Shown to a student who is asked to complete a peer review of another
 #. student's assignment.
 #: experimental/coursebuilder/views/review.html:56
 msgid "Due date for this review: "
-msgstr ""
+msgstr "Fecha límite para esta revisión:"
 
 #. Instructions to a student who is asked to complete a peer review of another
 #. student's assignment.
@@ -515,67 +535,69 @@ msgid ""
 "The scores and comments you submit here will be viewed by your peers. Once "
 "you submit your review, you may not edit it."
 msgstr ""
+"Las puntuaciones y los comentarios que envíes aquí serán vistos por sus "
+"compañeros. Una vez que envíe su opinión, no puede editarlo."
 
 #. Header text for a reviewed assignment.
 #: experimental/coursebuilder/views/review.html:73
 msgid "Reviewed assignment"
-msgstr ""
+msgstr "Tarea comentada"
 
 #. Header text for an assignment that a student still needs to review.
 #: experimental/coursebuilder/views/review.html:76
 msgid "Assignment to review"
-msgstr ""
+msgstr "Tarea a revisar"
 
 #. Header text for a review the student has previously submitted.
 #: experimental/coursebuilder/views/review.html:87
 msgid "Submitted review"
-msgstr ""
+msgstr "Comentario enviado"
 
 #. Header text for a review form that a student has to complete when reviewing
 #. another student's assignment.
 #: experimental/coursebuilder/views/review.html:93
 msgid "Review form"
-msgstr ""
+msgstr "Formulario de revisión"
 
 #. Shown as confirmation to a reviewer that his/her review draft has been
 #. saved.
 #: experimental/coursebuilder/views/review_confirmation.html:15
 msgid "Your review has been saved."
-msgstr ""
+msgstr "Tu comentario ha sido guardado."
 
 #. Shown as confirmation to a reviewer that his/her review draft has been
 #. submitted.
 #: experimental/coursebuilder/views/review_confirmation.html:18
 msgid "Your review has been submitted successfully."
-msgstr ""
+msgstr "Tu opinión se ha enviado correctamente."
 
 #. Text for the button shown on the review submission confirmation page that
 #. allows the student to return to the list of reviews.
 #: experimental/coursebuilder/views/review_confirmation.html:25
 msgid "Back to the review dashboard"
-msgstr ""
+msgstr "Volver al panel de revisiones"
 
 #. Title of the webpage.
 #: experimental/coursebuilder/views/review_dashboard.html:5
 msgid "Review Dashboard"
-msgstr ""
+msgstr "Panel de revisiones"
 
 #. Header text for a list of assignments that can be reviewed by the student.
 #: experimental/coursebuilder/views/review_dashboard.html:23
 msgid "Assignments for your review"
-msgstr ""
+msgstr "Tareas para su revisión"
 
 #. Text shown to students when they visit their list of reviews to be done, but
 #. the due date has passed.
 #: experimental/coursebuilder/views/review_dashboard.html:29
 msgid "The due date for submitting reviews has passed."
-msgstr ""
+msgstr "La fecha límite para la presentación de comentarios ha pasado."
 
 #. Instructions for a student being asked to do a review.
 #: experimental/coursebuilder/views/review_dashboard.html:37
 #, python-format
 msgid "All reviews are due by %(review_due_date)s."
-msgstr ""
+msgstr "Todos los comentarios se reciben hasta el %(review_due_date)s."
 
 #. Instructions for a student being asked to do a review.
 #: experimental/coursebuilder/views/review_dashboard.html:41
@@ -583,6 +605,8 @@ msgid ""
 "In order to earn credit for this assignment, you must complete at least 1 "
 "review by then."
 msgstr ""
+"Con el fin de obtener créditos para esta tarea, debe completar por lo menos "
+"1 opinión para entonces."
 
 #. Instructions for a student being asked to do a review.
 #: experimental/coursebuilder/views/review_dashboard.html:44
@@ -591,12 +615,14 @@ msgid ""
 "In order to earn credit for this assignment, you must complete at least "
 "%(review_min_count)d reviews by then."
 msgstr ""
+"Con el fin de obtener créditos para esta tarea, debe completar por lo menos "
+"%(review_min_count)d críticas para entonces."
 
 #. An item in a list of assignments.
 #: experimental/coursebuilder/views/review_dashboard.html:53
 #, python-format
 msgid "Assignment %(index)s"
-msgstr ""
+msgstr "Tarea %(index)s"
 
 #. Text shown after an assignment whose review is still in draft state.
 #: experimental/coursebuilder/views/review_dashboard.html:59
@@ -606,7 +632,7 @@ msgstr " (Borrador) "
 #. Button that a student can click to request a new assignment to review.
 #: experimental/coursebuilder/views/review_dashboard.html:76
 msgid "Review a new assignment"
-msgstr ""
+msgstr "Revise una nueva tarea"
 
 #. Text shown after a student has asked for a new assignment to review when
 #. there are no assignments left to review.
@@ -614,6 +640,8 @@ msgstr ""
 msgid ""
 "Sorry, there are no new submissions available for you to review at this time."
 msgstr ""
+"Lo sentimos, no hay nuevas presentaciones disponibles para que usted pueda "
+"revisar en este momento."
 
 #. Shown on the assignment submission confirmation page when the student has
 #. submitted a duplicate assignment.
@@ -622,6 +650,7 @@ msgid ""
 "You have already submitted this assignment. Your latest attempt has not been "
 "saved."
 msgstr ""
+"Usted ya ha presentado esta tarea. Su último intento no ha sido guardado."
 
 #. Shown on the assignment submission confirmation page when the student has
 #. successfully submitted an assignment.
@@ -630,17 +659,19 @@ msgid ""
 "Thank you for completing this assignment. Your work was successfully "
 "submitted."
 msgstr ""
+"Gracias por completar esta tarea. Su trabajo se ha enviado correctamente."
 
 #. Text shown on the assignment submission confirmation page after the student
 #. has submitted a peer-reviewed assignment.
 #: experimental/coursebuilder/views/reviewed_assessment_confirmation.html:23
 msgid "Review your peers' assignments by clicking on the button below."
 msgstr ""
+"Revise las tareas de sus compañeros haciendo clic en el botón de abajo."
 
 #. Text for the button on the assignment submission confirmation page.
 #: experimental/coursebuilder/views/reviewed_assessment_confirmation.html:30
 msgid "Review peer assignments"
-msgstr ""
+msgstr "Revise las tareas de pares"
 
 #. Text for the button on the assignment submission confirmation page.
 #. Shown after the student has submitted an assessment. This button allows the
@@ -680,7 +711,7 @@ msgstr " Puntuaciones de la evaluación "
 #. text for a self- or peer-reviewed assignment.
 #: experimental/coursebuilder/views/student_data_table.html:49
 msgid "View assignment"
-msgstr ""
+msgstr "Ver tarea"
 
 #. Table header for the student's overall score.
 #: experimental/coursebuilder/views/student_data_table.html:62
