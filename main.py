@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Course Builder web application entry point."""
+"""U-MOOC web application entry point."""
 
 __author__ = 'Pavel Simakov (psimakov@google.com)'
 

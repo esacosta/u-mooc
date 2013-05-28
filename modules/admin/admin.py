@@ -209,7 +209,7 @@ class AdminHandler(
     def format_title(self, text):
         """Formats standard title."""
         return safe_dom.NodeList().append(
-            safe_dom.Text('Course Builder ')
+            safe_dom.Text('U-MOOC ')
         ).append(
             safe_dom.Entity('&gt;')
         ).append(
@@ -451,7 +451,7 @@ class AdminHandler(
                     '[ the environment value in app.yaml ]'
                 ).add_child(safe_dom.Entity('&nbsp;'))
             ).add_text(', ').add_text("""
-                and the [ default value ] in the Course Builder codebase.
+                and the [ default value ] in the U-MOOC codebase.
             """))
 
         template_values['main_content'] = content
@@ -651,6 +651,6 @@ def register_module():
     global custom_module
     custom_module = custom_modules.Module(
         'Site Admin',
-        'A set of pages for Course Builder site administrator.',
+        'A set of pages for U-MOOC site administrator.',
         admin_handlers, [])
     return custom_module

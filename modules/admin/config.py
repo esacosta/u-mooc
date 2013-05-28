@@ -119,7 +119,7 @@ class ConfigPropertyEditor(object):
 
         template_values = {}
         template_values[
-            'page_title'] = 'Course Builder - Add Course'
+            'page_title'] = 'U-MOOC - Add Course'
         template_values['main_content'] = oeditor.ObjectEditor.get_html_for(
             self, CoursesItemRESTHandler.SCHEMA_JSON,
             CoursesItemRESTHandler.SCHEMA_ANNOTATIONS_DICT,
@@ -142,7 +142,7 @@ class ConfigPropertyEditor(object):
 
         template_values = {}
         template_values[
-            'page_title'] = 'Course Builder - Edit Settings'
+            'page_title'] = 'U-MOOC - Edit Settings'
 
         exit_url = '/admin?action=settings#%s' % cgi.escape(key)
         rest_url = '/rest/config/item'

@@ -1,0 +1,1 @@
+appcfg.py download_data --config_file=bulkloader.yaml --filename=student.csv --kind=Student --url=http://u-mooc.appspot.com/remote_api

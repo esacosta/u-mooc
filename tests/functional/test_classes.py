@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Tests that walk through Course Builder pages."""
+"""Tests that walk through U-MOOC pages."""
 
 __author__ = 'Sean Lip'
 
@@ -1037,7 +1037,7 @@ class AdminAspectTest(actions.TestBase):
 
         actions.login(email, is_admin=True)
         response = self.testapp.get('/admin')
-        assert_contains('Course Builder &gt; Admin &gt; Courses', response.body)
+        assert_contains('U-MOOC &gt; Admin &gt; Courses', response.body)
         assert_contains('Total: 2 item(s)', response.body)
 
         # Check ocurse URL's.

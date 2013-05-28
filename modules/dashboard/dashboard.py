@@ -184,7 +184,7 @@ class DashboardHandler(
         """Formats standard title."""
         title = self.app_context.get_environ()['course']['title']
         return safe_dom.NodeList().append(
-            safe_dom.Text('Course Builder ')
+            safe_dom.Text('U-MOOC ')
         ).append(
             safe_dom.Entity('&gt;')
         ).append(
@@ -745,6 +745,6 @@ def register_module():
     global custom_module
     custom_module = custom_modules.Module(
         'Course Dashboard',
-        'A set of pages for managing Course Builder course.',
+        'A set of pages for managing U-MOOC course.',
         [], dashboard_handlers)
     return custom_module

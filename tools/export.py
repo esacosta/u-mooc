@@ -55,7 +55,7 @@ def export_to_javascript(filename, lines, date):
     code.append('}')
 
     afile = open('%s.js' % filename, 'w')
-    afile.write('// Course Builder %s JavaScript Export on %s\n' % (
+    afile.write('// U-MOOC %s JavaScript Export on %s\n' % (
         RELEASE_TAG, date))
     afile.write('// begin\n')
     afile.write('\n'.join(code))
@@ -95,7 +95,7 @@ def export_to_python(filename, lines, date):
     code.append('  return course;')
 
     afile = open('%s.py' % filename, 'w')
-    afile.write('# Course Builder %s Python Export on %s\n' % (
+    afile.write('# U-MOOC %s Python Export on %s\n' % (
         RELEASE_TAG, date))
     afile.write('# begin\n')
     afile.write('\n'.join(code))
@@ -125,7 +125,7 @@ def export_to_php(filename, lines, date):
 
     afile = open('%s.php' % filename, 'w')
     afile.write('<?php\n')
-    afile.write('// Course Builder %s PHP Export on %s\n' %
+    afile.write('// U-MOOC %s PHP Export on %s\n' %
                 (RELEASE_TAG, date))
     afile.write('// begin\n')
     afile.write('\n'.join(code))

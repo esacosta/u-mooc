@@ -81,7 +81,7 @@ class UploadFileToCourse(etl_lib.Job):
             'path', help='Absolute path of the file to upload', type=str)
         self.parser.add_argument(
             'target',
-            help=('Internal Course Builder path to upload to (e.g. '
+            help=('Internal U-MOOC path to upload to (e.g. '
                   '"assets/img/logo.png")'), type=str)
 
     def main(self):

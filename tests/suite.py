@@ -12,9 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Course Builder test suite.
+"""U-MOOC test suite.
 
-This script runs all functional and units test in the Course Builder project.
+This script runs all functional and units test in the U-MOOC project.
 
 Here is how to use the script:
     - download WebTest Python package from a URL below and put
@@ -93,7 +93,7 @@ def iterate_tests(test_suite_or_case):
 
 
 class TestBase(unittest.TestCase):
-    """Base class for all Course Builder tests."""
+    """Base class for all U-MOOC tests."""
 
     REQUIRES_INTEGRATION_SERVER = 1
     INTEGRATION_SERVER_BASE_URL = 'http://localhost:8081'

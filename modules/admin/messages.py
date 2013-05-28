@@ -33,7 +33,7 @@ COURSES_DESCRIPTION = assemble_sanitized_message(
     None, 'https://code.google.com/p/course-builder/wiki/CreateNewCourse')
 
 DEPLOYMENT_DESCRIPTION = assemble_sanitized_message("""
-These deployment settings are configurable by editing the Course Builder code
+These deployment settings are configurable by editing the U-MOOC code
 before uploading it to Google App Engine.
 """, 'https://code.google.com/p/course-builder/wiki/AdminPage')
 
