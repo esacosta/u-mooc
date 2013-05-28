@@ -32,13 +32,3 @@ transformers:
     - property: __key__
       external_name: email
       export_transform: datastore.Key.name
-    - property: enrolled_on
-      external_name: enrolled_on
-      import_transform: transform.import_date_time('%Y-%m-%d %H:%M:%S')
-      export_transform: transform.export_date_time('%Y-%m-%d %H:%M:%S')
-    - property: user_id
-      external_name: user_id
-    - property: name
-      external_name: name
-    - property: scores
-      external_name: scores

@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Functional tests for Course Builder."""
+"""Functional tests for U-MOOC."""
 
 __author__ = 'John Orr (jorr@google.com)'
 
@@ -81,7 +81,7 @@ class BaseIntegrationTest(suite.TestBase):
 
 
 class SampleCourseTests(BaseIntegrationTest):
-    """Integration tests on the sample course installed with Course Builder."""
+    """Integration tests on the sample course installed with U-MOOC."""
 
     def test_admin_can_add_announcement(self):
         uid = self.get_uid()

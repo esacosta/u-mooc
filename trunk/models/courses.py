@@ -136,8 +136,8 @@ HUMAN_GRADED_ASSESSMENT_KEY_LIST = [
 
 # The name for the peer review assessment used in the sample v1.2 CSV file.
 # This is here so that a peer review assessment example is available when
-# Course Builder loads with the sample course. However, in general, peer
-# review assessments should only be specified in Course Builder v1.4 or
+# U-MOOC loads with the sample course. However, in general, peer
+# review assessments should only be specified in U-MOOC v1.4 or
 # later (via the web interface).
 LEGACY_REVIEW_ASSESSMENT = 'ReviewAssessmentExample'
 

@@ -16,12 +16,12 @@
 
 There are three features:
 
-1. Download and upload of Course Builder 1.3 data:
+1. Download and upload of U-MOOC 1.3 data:
 
 $ python etl.py download course /cs101 myapp server.appspot.com archive.zip
 
 This will result in a file called archive.zip that contains the files that make
-up the Course Builder 1.3 course found at the URL /cs101 on the application with
+up the U-MOOC 1.3 course found at the URL /cs101 on the application with
 id myapp running on the server named server.appspot.com. archive.zip will
 contain assets and data files from the course along with a manifest.json
 enumerating them. The format of archive.zip will change and should not be relied
@@ -49,13 +49,13 @@ $ python etl.py run path.to.my.Job /cs101 myapp server.appspot.com \
     --job_args='more_args --delegated_to my.Job'
 
 This requires that you have written a custom class named Job found in the
-directory path/to/my, relative to the Course Builder root. Job's main method
+directory path/to/my, relative to the U-MOOC root. Job's main method
 will be executed against the specified course, identified as above. See
 etl_lib.Job for more information.
 
 In order to run this script, you must add the following to the head of sys.path:
 
-1. The absolute path of your Course Builder installation.
+1. The absolute path of your U-MOOC installation.
 2. The absolute path of your App Engine SDK.
 3. The absolute paths of third party libraries from the SDK used by Course
    Builder:
@@ -201,13 +201,13 @@ PARSER.add_argument(
 
 
 class _Archive(object):
-    """Manager for local archives of Course Builder data.
+    """Manager for local archives of U-MOOC data.
 
     The internal format of the archive may change from version to version; users
     must not depend on it.
 
     Archives contain assets and data from a single course, along with a manifest
-    detailing the course's raw definition string, version of Course Builder the
+    detailing the course's raw definition string, version of U-MOOC the
     course is compatible with, and the list of course files contained within
     the archive.
 
@@ -316,7 +316,7 @@ class _Manifest(object):
 
         Args:
             raw: string. Raw course definition string.
-            version: string. Version of Course Builder course this manifest was
+            version: string. Version of U-MOOC course this manifest was
                 generated from.
         """
         self._entities = []
@@ -422,7 +422,7 @@ def _download(
 def _download_course(context, course, archive_path, course_url_prefix):
     if course.version < courses.COURSE_MODEL_VERSION_1_3:
         _die(
-            'Cannot export course made with Course Builder version < %s' % (
+            'Cannot export course made with U-MOOC version < %s' % (
                 courses.COURSE_MODEL_VERSION_1_3))
     archive = _Archive(archive_path)
     archive.open('w')

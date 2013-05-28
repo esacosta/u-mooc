@@ -152,7 +152,7 @@ function getAddCustomTagUrl(env, tagName) {
 }
 
 /**
- * Define a YUI class for a Google Course Builder rich text editor.
+ * Define a YUI class for a Google U-MOOC rich text editor.
  */
 var GcbRteField = function(options) {
   GcbRteField.superclass.constructor.call(this, options);

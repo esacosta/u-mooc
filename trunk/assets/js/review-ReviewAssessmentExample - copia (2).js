@@ -13,7 +13,7 @@ var assessment = {
     }
   ],
 
-  // The assessmentName key is deprecated in v1.3 of Course Builder, and no
+  // The assessmentName key is deprecated in v1.3 of U-MOOC, and no
   // longer used. The assessment name should be set in the unit.csv file or via
   // the course editor interface.
   assessmentName: 'ReviewAssessmentExample',

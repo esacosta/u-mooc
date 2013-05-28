@@ -75,7 +75,7 @@ parent unit.
 DATA_FILES_DESCRIPTION = assemble_sanitized_message("""
 The lesson.csv file contains the contents of your lesson. The unit.csv file
 contains the course related content shown on the homepage. These files are
-located in your Course Builder installation. Edit them directly with an editor
+located in your U-MOOC installation. Edit them directly with an editor
 like Notepad++. Be careful, some editors will add extra characters, which may
 prevent the uploading of these files.
 """, 'https://code.google.com/p/course-builder/wiki/Dashboard#Outline')

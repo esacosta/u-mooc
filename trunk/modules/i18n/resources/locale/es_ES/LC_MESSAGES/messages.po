@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2013-04-29 18:58-0700\n"
-"PO-Revision-Date: 2013-05-24 19:00+0100\n"
+"PO-Revision-Date: 2013-05-28 21:05+0100\n"
 "Last-Translator: Enrique Sánchez <esacosta@gmail.com>\n"
 "Language-Team: es_ES <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -771,8 +771,8 @@ msgstr " Aceptar "
 #. Shown when a student has asked to unenroll from a course. Followed by a
 #. course name.
 #: experimental/coursebuilder/views/unenroll_confirmation_check.html:13
-msgid "Are you sure you want to unenroll from "
-msgstr " ¿Está seguro que desea cancelar su inscripción de "
+msgid "Are you sure you want to unenroll from"
+msgstr "Está seguro que desea cancelar su inscripción de"
 
 #. Response option to 'Are you sure you want to unenroll from COURSE_NAME'?
 #: experimental/coursebuilder/views/unenroll_confirmation_check.html:21

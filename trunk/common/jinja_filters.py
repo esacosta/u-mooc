@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Custom Jinja2 filters used in Course Builder."""
+"""Custom Jinja2 filters used in U-MOOC."""
 
 __author__ = 'John Orr (jorr@google.com)'
 

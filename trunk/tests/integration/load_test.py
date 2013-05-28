@@ -14,7 +14,7 @@
 
 """Performance test for a peer review system.
 
-WARNING! Use this script to test load Course Builder. This is very dangerous
+WARNING! Use this script to test load U-MOOC. This is very dangerous
 feature, be careful, because anyone can impersonate super user of your Course
 Builder instance; use only if you have to perform specific load testing
 

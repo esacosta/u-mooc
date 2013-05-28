@@ -10,7 +10,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# FIXME: You can use this configuration file to customize Course Builder
+# FIXME: You can use this configuration file to customize U-MOOC
 # for a specific course. More information on YAML can be found at:
 #
 #     http://www.yaml.org/spec/1.2/spec.html#id2759963
@@ -85,7 +85,7 @@ course:
   
   # Google moderator embedded link
   moderator_embed_url: http://www.google.com/moderator/#1/e=209a23&t=209a23.40
-  moderator_url: http://goo.gl/mod/gOUk
+  moderator_url: http://www.google.com/moderator/#15/e=209a23&t=209a23.40
   
   # Enable/disable the report page
   # Set this value to False if you don't use calendar and to remove 

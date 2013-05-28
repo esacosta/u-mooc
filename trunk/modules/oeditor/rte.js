@@ -240,7 +240,7 @@ function getGcbRteDefs(env, Dom, Editor) {
         editor.on('toolbarLoaded', function() {
           var button = {
             type: 'push',
-            label: 'Insert Google Course Builder component',
+            label: 'Insert U-MOOC component',
             value: 'insertcustomtag',
             disabled: false
           };

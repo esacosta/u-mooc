@@ -14,7 +14,7 @@
 #
 # @author: psimakov@google.com (Pavel Simakov)
 
-"""A collection of actions for testing Course Builder pages."""
+"""A collection of actions for testing U-MOOC pages."""
 
 import cgi
 import logging

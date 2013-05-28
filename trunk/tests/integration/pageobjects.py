@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Page objects used in functional tests for Course Builder."""
+"""Page objects used in functional tests for U-MOOC."""
 
 __author__ = 'John Orr (jorr@google.com)'
 
@@ -381,7 +381,7 @@ class AddLesson(DashboardEditor):
 
     def click_rte_add_custom_tag(self):
         self.find_element_by_link_text(
-            'Insert Google Course Builder component').click()
+            'Insert Google U-MOOC component').click()
         return self
 
     def doubleclick_rte_element(self, elt_css_selector):

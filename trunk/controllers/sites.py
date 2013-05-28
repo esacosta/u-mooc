@@ -45,13 +45,13 @@ expected to be placed into folders '/courses/a' and '/courses/b' of your Google
 App Engine installation respectively. If this value is absent a datastore is
 used to store course assets, not the file system.
 
-By default Course Builder handles static '/assets' files using a custom
+By default U-MOOC handles static '/assets' files using a custom
 handler. You may choose to handle '/assets' files of your course as 'static'
 files using Google App Engine handler. You can do so by creating a new static
 file handler entry in your app.yaml and placing it before our main course
 handler.
 
-If you have an existing course developed using Course Builder and do NOT want
+If you have an existing course developed using U-MOOC and do NOT want
 to host multiple courses, there is nothing for you to do. A following default
 rule is silently created for you:
 
@@ -63,16 +63,16 @@ rule is silently created for you:
 It sets the '/' as the base URL for the course, uses root folder of your Google
 App Engine installation to look for course /assets/..., /data/..., and
 /views/... and uses blank datastore and memcache namespace. All in all,
-everything behaves just as it did in the prior version of Course Builder when
+everything behaves just as it did in the prior version of U-MOOC when
 only one course was supported.
 
-If you have existing course developed using Course Builder and DO want to start
+If you have existing course developed using U-MOOC and DO want to start
 hosting multiple courses here are the steps. First, define the courses
 configuration environment variable as described above. Second, copy existing
 'assets', 'data' and 'views' folders of your course into the new location, for
 example '/courses/mycourse'.
 
-If you have an existing course built on a previous version of Course Builder
+If you have an existing course built on a previous version of U-MOOC
 and you now decided to use new URL prefix, which is not '/', you will need
 to update your old course html template and JavaScript files. You typically
 would have to make two modifications. First, replace all absolute URLs with
@@ -86,7 +86,7 @@ like this:
     <base href="{{ gcb_course_base }}" />
   ...
 
-Current Course Builder release already has all these modifications.
+Current U-MOOC release already has all these modifications.
 
 Note, that each 'course' runs in a separate Google App Engine namespace. The
 name of the namespace is derived from the course files location. In the example
@@ -887,7 +887,7 @@ Note: this value cannot be changed after the course is created."""))
         ).add_text('course:/:/')
     ).append(
         safe_dom.Element('p').add_text("""
-Assuming you are hosting Course Builder on http:/www.example.com, the first
+Assuming you are hosting U-MOOC on http:/www.example.com, the first
 entry defines a course on a http://www.example.com/cs101 and both its assets
 and student data are stored in the datastore namespace 'ns_cs101'. The second
 entry defines a course hosted on http://www.example.com/, with its assets
@@ -913,7 +913,7 @@ class ApplicationRequestHandler(webapp2.RequestHandler):
 
     # WARNING! never set this value to True, unless for the production load
     # tests; setting this value to True will allow any anonymous third party to
-    # act as a Course Builder superuser
+    # act as a U-MOOC superuser
     CAN_IMPERSONATE = False
 
     # the name of the impersonation header
