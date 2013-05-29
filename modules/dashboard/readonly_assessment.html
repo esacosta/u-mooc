@@ -14,6 +14,7 @@
 
         {% if q['choices'] %}
           {% for choice in q['choices'] %}
+		  <label class="radio" for="readonly-{{outer_loop.index0}}-{{loop.index0}}">
             <input type="radio" disabled="true"
                    id="readonly-{{outer_loop.index0}}-{{loop.index0}}"
                    {% if loop.index0 == readonly_assessment['answers'][outer_loop.index0] %}
@@ -21,7 +22,6 @@
                    {% endif %}
             >
             &nbsp;
-            <label for="readonly-{{outer_loop.index0}}-{{loop.index0}}">
               {{ choice }}
             </label>
           {% endfor %}
