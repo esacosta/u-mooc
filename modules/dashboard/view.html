@@ -6,7 +6,25 @@
     <meta charset="utf-8">
     <title>{{ page_title }}</title>
     <link rel="icon" href="" />
-    <style>
+	<!--<link href="assets/css/main.css" rel="stylesheet" type="text/css">-->
+    <!-- Bootstrap -->
+	<meta name="viewport" content="width=device-width, initial-scale=2.0">
+	<link href="assets/css/bootstrap.css" rel="stylesheet">
+	<link href="assets/css/docs.css" rel="stylesheet">
+    <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+	<!--<link href="assets/css/main.css" rel="stylesheet">-->
+
+	<style>
+	.progress{
+	margin-bottom:0px;
+	}
+	</style>
+
+	<link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin" rel="stylesheet">
+
+    <!-- jQuery should be imported first -->
+    <script src="assets/lib/jquery-1.7.2.min.js"></script>
+    <!--<style>
         body, h3 {
           margin: 0px;
           padding: 0px;
@@ -137,19 +155,56 @@
         .strong {
           font-weight: bold;
         }
-    </style>
+    </style>-->
   </head>
-  <body>
-  <div id='gcb-user-bar'>
+  <body >
+  <!-- Modal Informaci&oacute;n -->
+	<div id="myPrivacy" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myPrivacyLabel" aria-hidden="true">
+	  <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h3 id="myPrivacyLabel">Términos y condiciones</h3>
+	  </div>
+	  <div class="modal-body">
+		<p>Usted se compromete a no reproducir, duplicar, copiar, vender, revender o explotar con algún prop&oacute;sito comercial cualquier parte de los servicios prestados de la plataforma o los cursos.
+Para uso no comercial, puede hacer lo que desee con ello.
+<br/>
+<br/>
+¡Recuerde referenciar siempre sus notas y publicaciones!.</p>
+	  </div>
+	  <div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+	  </div>
+	</div>
+  <div class="container">
+  <div id='gcb-user-bar' class="row-fluid">
     {{ user_nav }}
   </div>
-  <h2>{{ page_title }}</h2>
-  <div id='gcb-nav-bar'>
-    {{ top_nav }}
+  <ul class="breadcrumb">
+  {{ page_title }}
+  </ul>
+  <div id='gcb-nav-bar' class="">
+  <div class="navbar">
+      <div class="navbar-inner">
+	  <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+		<span class="brand">
+		Dashboard
+		</span>
+	   <div class="nav-collapse collapse">
+	     <ul class="nav">
+        {{ top_nav }}
+		</ul>
+		</div>
+		</div>
+		</div>
+
   </div>
   <div id='gcb-main-area'>
     {% if alerts %}
-      <div id="gcb-alerts-bar">
+      <div id="gcb-alerts-bar" class="alert">
         {{ alerts }}
       </div>
     {% endif %}
@@ -204,12 +259,56 @@
     </div>
     {% endif %}
   </div>
-  <div id='gcb-footer'>
-    Powered by
-    <a target='_blank' href="http://u-mooc.appspot.com">
-      U-MOOC</a>
-    &nbsp;|&nbsp;
-    {{ page_footer }}
+  <!-- footer section -->
+    <footer>
+	<div class="row-fluid" id='gcb-footer'>
+      <div class="navbar">
+	  
+	
+        <div class="navbar-inner">
+          <ul class="nav">
+            <li>
+              <a href="http://u-mooc.appspot.com">U-MOOC</a>
+            </li>
+			
+            <li>
+              <a href="#myPrivacy" data-toggle="modal">
+                Privacy & Terms
+              </a>
+            </li>
+			<li class="pull-right">
+              <a> {{ page_footer }}</a>
+            </li>
+          </ul>
+        </div>
+		</div>
+		</div>
+		
+    </footer
+  
   </div>
+  <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/assets/js/jquery.js"></script>
+    <script src="/assets/js/bootstrap-transition.js"></script>
+    <script src="/assets/js/bootstrap-modal.js"></script>
+    <script src="/assets/js/bootstrap-dropdown.js"></script>
+    <script src="/assets/js/bootstrap-scrollspy.js"></script>
+    <script src="/assets/js/bootstrap-tab.js"></script>
+    <script src="/assets/js/bootstrap-tooltip.js"></script>
+    <script src="/assets/js/bootstrap-popover.js"></script>
+    <script src="/assets/js/bootstrap-button.js"></script>
+    <script src="/assets/js/bootstrap-collapse.js"></script>
+    <script src="/assets/js/bootstrap-carousel.js"></script>
+    <script src="/assets/js/bootstrap-typeahead.js"></script>
+    <script>
+      !function ($) {
+        $(function(){
+          // carousel demo
+          $('#myCarousel').carousel()
+        })
+      }(window.jQuery)
+    </script>
   </body>
 </html>
