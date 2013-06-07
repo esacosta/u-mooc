@@ -144,19 +144,21 @@ class DashboardHandler(
         nav = safe_dom.NodeList()
         for action, title in nav_mappings:
 
-            class_name = 'selected' if action == current_action else ''
+            class_name = 'active' if action == current_action else ''
             action_href = 'dashboard?action=%s' % action
-            nav.append(safe_dom.Element(
+            nav.append(safe_dom.Element('li', className=class_name).add_child(safe_dom.Element(
                 'a', href=action_href, className=class_name).add_text(
-                    title))
+                    title)))
+            
+
 
         if roles.Roles.is_super_admin():
-            nav.append(safe_dom.Element(
-                'a', href='/admin').add_text('Admin'))
+            nav.append(safe_dom.Element('li').add_child(safe_dom.Element(
+                'a', href='/admin').add_text('Admin')))
 
-        nav.append(safe_dom.Element(
+        nav.append(safe_dom.Element('li').add_child(safe_dom.Element(
             'a', href='https://code.google.com/p/course-builder/wiki/Dashboard',
-            target='_blank').add_text('Help'))
+            target='_blank').add_text('Help')))
 
         return nav
 
