@@ -49,7 +49,7 @@ course:
   main_video:
     # url: https://www.youtube.com/embed/Kdg2drcUjYI?rel=0
   main_image:
-    url: /assets/img/banner1.jpg
+    url: /assets/img/u-mooc.png
     alt_text: Crear un curso MOOC
 
   # Course start date.

@@ -176,12 +176,8 @@ Para uso no comercial, puede hacer lo que desee con ello.
 	  </div>
 	</div>
   <div class="container">
-  <div id='gcb-user-bar' class="row-fluid">
-    {{ user_nav }}
-  </div>
-  <ul class="breadcrumb">
-  {{ page_title }}
-  </ul>
+  
+  
   <div id='gcb-nav-bar' class="">
   <div class="navbar">
       <div class="navbar-inner">
@@ -197,11 +193,17 @@ Para uso no comercial, puede hacer lo que desee con ello.
 	     <ul class="nav">
         {{ top_nav }}
 		</ul>
+		<ul id='gcb-user-bar' class="nav pull-right">
+    <li>{{ user_nav }}</li>
+  </ul>
 		</div>
 		</div>
 		</div>
 
   </div>
+  <ul class="breadcrumb">
+  {{ page_title }}
+  </ul>
   <div id='gcb-main-area'>
     {% if alerts %}
       <div id="gcb-alerts-bar" class="alert">
@@ -209,14 +211,14 @@ Para uso no comercial, puede hacer lo que desee con ello.
       </div>
     {% endif %}
     {% if page_description %}
-      <p class="page-description">
+      <p class="page-description ">
         {{ page_description }}
       </p>
     {% endif %}
     {% if sections %}
     <div id='gcb-main-content'>
       {% for section in sections %}
-      <div id='gcb-section'>
+      <div id='gcb-section' class="thumbnail">
         {% for action in section.actions %}
           {% if action.href %}
           <a id='{{ action.id }}' class="btn btn-primary pull-right" role="button"
@@ -231,7 +233,7 @@ Para uso no comercial, puede hacer lo que desee con ello.
         {% if section.actions %}
           <div style='clear: both; padding-top: 2px;' />
         {% endif %}
-        <h3>{{ section.title }}</h3>
+        <h3 class="well well-small">{{ section.title }}</h3>
         {% if section.description %}
           <p class="description">
             {{ section.description }}
@@ -250,6 +252,7 @@ Para uso no comercial, puede hacer lo que desee con ello.
         </ol>
         {% endif %}
       </div>
+	  <br/>
       {% endfor %}
     </div>
     {% endif %}
