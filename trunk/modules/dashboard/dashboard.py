@@ -168,8 +168,6 @@ class DashboardHandler(
         template_values['top_nav'] = self._get_top_nav()
         template_values['gcb_course_base'] = self.get_base_href(self)
         template_values['user_nav'] = safe_dom.NodeList().append(
-            safe_dom.Text('%s | ' % users.get_current_user().email())
-        ).append(
             safe_dom.Element(
                 'a', href=users.create_logout_url(self.request.uri)
             ).add_text('Logout'))

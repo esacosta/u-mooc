@@ -8,7 +8,7 @@
 
         {% if page_type == 'unit' and lesson.lesson_id == lesson_id %}
           <li class="active">
-		  <a href="#">
+		  <a href="">
             {{ unit.index }}.{{ lesson.index }} {{ lesson.title }}
 			</a>
         {% else %}
@@ -34,7 +34,7 @@
             {% endif %}
 
 			  {% if page_type == 'activity' and lesson.lesson_id == lesson_id %}
-                  <a href="#"><div class="row-fluid"><div class="span8">&nbsp;&nbsp;&nbsp;{{ gettext('Activity') }}</div>
+                  <a href=""><div class="row-fluid"><div class="span8">&nbsp;&nbsp;&nbsp;{{ gettext('Activity') }}</div>
 				  
                 {% else %}
                   <a href="activity?unit={{ unit_id }}&lesson={{ lesson.lesson_id }}"><div class="row-fluid">
