@@ -16,7 +16,52 @@
     <!--[if lt IE 9]>
       <script src="assets/js/html5shiv.js"></script>
     <![endif]-->
+<style>
 
+    /* MARKETING CONTENT
+    -------------------------------------------------- */
+
+    /* Center align the text within the three columns below the carousel */
+    .marketing .span4 {
+      text-align: center;
+    }
+    .marketing h2 {
+      font-weight: normal;
+    }
+    .marketing .span4 p {
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+
+
+    /* Featurettes
+    ------------------------- */
+
+    .featurette-divider {
+      margin: 80px 0; /* Space out the Bootstrap <hr> more */
+    }
+    .featurette {
+            overflow: hidden; /* Vertically center images part 2: clear their floats. */
+    }
+    
+    /* Give some space on the sides of the floated elements so text doesn't run right into it. */
+    .featurette-image.pull-left {
+      margin-right: 40px;
+    }
+    .featurette-image.pull-right {
+      margin-left: 40px;
+    }
+
+    /* Thin out the marketing headings */
+    .featurette-heading {
+      font-size: 50px;
+      font-weight: 300;
+      line-height: 1;
+      letter-spacing: -1px;
+    }
+
+
+    </style>
     <!-- Fav and touch icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
@@ -94,17 +139,19 @@ Para uso no comercial, puede hacer lo que desee con ello.
             <div class="nav-collapse collapse">
               <ul class="nav">
                 <li class="active"><a href="">Inicio</a></li>
+				<li><a href="http://u-mooc.blogspot.com.es/" data-toggle="modal">Blog</a></li>
                 <li><a href="#myContact" data-toggle="modal">Contacto</a></li>
 				<li><a href="#myInformation" data-toggle="modal">Información</a></li>
                 <!-- Read about Bootstrap dropdowns at http://twitter.github.com/bootstrap/javascript.html#dropdowns -->
                 <li class="dropdown">
                   <a class="dropdown-toggle" data-toggle="dropdown">Colaboradores<b class="caret"></b></a>
                   <ul class="dropdown-menu">
-					<li><a>Google Inc.</a></li>
+					<li><a href="http://www.google.es">Google Inc.</a></li>
                     <li class="divider"></li>
                     <li class="nav-header">Soporte</li>
-                    <li><a>course-builder</a></li>
-                    <li><a>Google App Engine (GAE)</a></li>
+                    <li><a href="https://code.google.com/p/course-builder/">course-builder</a></li>
+                    <li><a href="https://developers.google.com/appengine/">Google App Engine (GAE)</a></li>
+					<li><a href="http://www.python.org/">Python</a></li>
                   </ul>
                 </li>
               </ul>
@@ -163,22 +210,22 @@ Para uso no comercial, puede hacer lo que desee con ello.
       <!-- Three columns of text below the carousel -->
       <div class="row-fluid">
         <div class="span4">
-          <img class="img-polaroid" data-src="holder.js/140x140" src="assets/img/banner_cpp_cli.jpg">
+          <img class="img-polaroid" data-src="holder.js/60x60" src="assets/img/banner_cpp_cli.jpg">
           <h2>Aprendiendo C++/CLI</h2>
           <p>Con este curso será capaz de desarrollar aplicaciones y WebServices para Windows Azure y .NET en lenguaje C++, utilizando el nuevo lenguaje C++/CLI preparado para el desarrollo de C++ en .NET.
 Este curso se encuentra en fase de desarrollo, por favor pruébelo y envíe toda la información que considere oportuna para su finalización o colabore con nosotros, esperamos haberlo terminado para finales del mes próximo..</p>
           <p><a class="btn" href="/cpp_cli/preview">Comience ahora &raquo;</a></p>
         </div><!-- /.span4 -->
         <div class="span4">
-          <img class="img-polaroid" data-src="holder.js/140x140" src="assets/img/banner1.jpg">
+          <img class="img-polaroid" data-src="holder.js/60x60" src="assets/img/u-mooc.png">
           <h2>¿Cómo crear un MOOC?</h2>
           <p>Siguiendo este curso aprenderá a crear un MOOC a través de la nueva plataforma U-MOOC.
 Se trata de un experimento para el mundo de la educación online que contiene el software e instrucciones necesarias para crear lecciones, actividades para los estudiantes, evaluaciones, etc. Sin embargo la creación de estos cursos resulta algo tediosa para personas poco familiarizadas con Html, Javascript o Python.
 Esperamos que este curso le sea útil para poder crear sus propios MOOC de una manera más fácil.</p>
           <p><a class="btn" href="/preview">Comience ahora &raquo;</a></p>
         </div><!-- /.span4 -->
-        <div class="span4">
-          <img class="img-polaroid" data-src="holder.js/140x140" src="assets/img/appengine.png">
+        <div class="span4 ">
+          <img class="img-polaroid" data-src="holder.js/60x60" src="assets/img/appengine.png">
           <h2>Mi curso</h2>
           <p>Puede crear y publicar sus cursos en esta plataforma de un modo completamente gratuito, y con asistentes que le ayudarán a crearlo y publicarlo en u-mooc.</p>
           <p><a class="btn" href="#myContact" data-toggle="modal">Contacto &raquo;</a></p>
@@ -187,11 +234,34 @@ Esperamos que este curso le sea útil para poder crear sus propios MOOC de una m
 
 
       <!-- START THE FEATURETTES -->
+	  <hr class="featurette-divider">
+	  
+	  <div class="featurette">
+        <img class="featurette-image pull-right img-polaroid" data-src="holder.js/60x60" src="assets/img/pp-preguntas-directo.jpg">
+        <h2 class="featurette-heading">Moderador de preguntas</h2>
+        <p class="lead">Los alumnos disponen de una nueva herramienta para votar y enviar preguntas y respuestas, que serán moderadas en las próximas clases en linea de los profesores del curso. Cuando se realiza una clase en línea es importante saber de antemano cuales son las preguntas mas frecuentes o las mas votadas por los alumnos.</p>
+      </div>
+	  
+	  <hr class="featurette-divider">
+	  
+	  <div class="featurette">
+        <img class="featurette-image pull-left img-polaroid" data-src="holder.js/60x60" src="assets/img/traducciones1.jpg">
+        <h2 class="featurette-heading">Traducción automática a cualquier idioma</h2>
+        <p class="lead">Gracias a las herramientas de Google Translator, la plataforma es ahora capaz de traducir los cursos a cualquier idioma. En el menú de opciones se encuentra una lista desplegable con los idiomas a los puede traducir los cursos.</p>
+      </div>
+	  
+	  <hr class="featurette-divider">
+	  
+	  <div class="featurette">
+        <img class="featurette-image pull-right img-polaroid" data-src="holder.js/60x60" src="assets/img/PeerReview.jpg">
+        <h2 class="featurette-heading">Evaluación por pares</h2>
+        <p class="lead">Además de las preguntas tipo test con multiples opciones, los profesores disponen ahora de la nueva herramienta de evaluación por pares, para que los alumnos puedan evaluarse entre ellos, esta herramienta resulta prácticamente indispensable en un curso masivo online.</p>
+      </div>
 	  
       <hr class="featurette-divider">
 	  
 	  <div class="featurette">
-        <img class="featurette-image pull-left" src="assets/img/responsive_web_design.png">
+        <img class="featurette-image pull-left img-polaroid" data-src="holder.js/60x60" src="assets/img/responsive_web_design.png">
         <h2 class="featurette-heading">Desarrollo Web Responsable</h2>
         <p class="lead">La plataforma cumple con los requisitos para poder verse perfectamente y ser f&aacute;cil de usar en cualquier dispositivo.</p>
       </div>
@@ -199,7 +269,7 @@ Esperamos que este curso le sea útil para poder crear sus propios MOOC de una m
       <hr class="featurette-divider">
 
 	  <div class="featurette">
-        <img class="featurette-image pull-right" src="assets/img/wai.jpg">
+        <img class="featurette-image pull-right img-polaroid" data-src="holder.js/60x60" src="assets/img/wai.jpg">
         <h2 class="featurette-heading">Iniciativa para la Accesibilidad Web<span class="muted">&nbsp;&nbsp;WAI</span></h2>
         <p class="lead">Se trata de una rama del World Wide Web Consortium que vela por la accesibilidad de la Web. El grado de accesibilidad se establece en niveles denominados A, AA, y AAA, correspondiendo respectivamente a criterios mínimos de accesibilidad, extendidos, y accesibilidad máxima. Técnicamente la accesibilidad se implementa mediante pautas de lógica estructural de documentos, contenido auto-explicativo y semántica adicional, con la intención de permitir, a una audiencia lo más extensa posible de usuarios con distintos niveles de dotación tecnológica y capacidad sensorial, acceder a la información que se intenta representar y transmitir.</p>
       </div>
@@ -207,7 +277,7 @@ Esperamos que este curso le sea útil para poder crear sus propios MOOC de una m
 	  <hr class="featurette-divider">
 	  
       <div class="featurette">
-        <img class="featurette-image pull-right" src="assets/img/browser-icon-chrome.png">
+        <img class="featurette-image pull-right img-polaroid" data-src="holder.js/60x60" src="assets/img/browser-icon-chrome.png">
         <h2 class="featurette-heading">La plataforma es completamente compatible con su navegador habitual</h2>
         <p class="lead">Puede utilizar cualquiera de los navegadores disponibles en el mercado para seguir el curso en la plataforma, Firefox, Chrome, Safari, etc. Incluyendo los  navegadores disponibles en sus dispositivos móviles.</p>
       </div>

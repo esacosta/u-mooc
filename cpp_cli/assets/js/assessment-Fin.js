@@ -9,100 +9,87 @@ var assessment = {
   //   correctAnswerNumeric - freetext numeric match
   questionsList: [
 
-    {questionHTML: '¿Una evaluación lleva asociada una nota?',
+    {questionHTML: '¿Puede utilizar una clase completamente nativa de C++ en CLI?',
      choices: [correct('Si'),
                'No'],
      // the (optional) lesson associated with this question, which is displayed as a suggestion
      // for further study if the student answers this question incorrectly.
-     lesson: '4.10'},
+     lesson: '4.2'},
+	 
+	{questionHTML: '¿A que reemplaza T::typeid?',
+    correctAnswerString: '/typeof/i',
+     lesson: '4.8'},
+	 
+	{questionHTML: '¿Cual es la palabra clave para especificar una clase como sellada?',
+     correctAnswerString: '/__sealed/i',
+     lesson: '4.8'},
+	 
+    {questionHTML: '¿Qué DLL utilizamos para nuestro ejemplo sencillo en este curso?',
+     correctAnswerRegex: /mscorlib.dll?/i,
+     lesson: '1.1'},
 
-    {questionHTML: '¿questionHTML es la adena que contiene el texto?',
-     choices: [correct('Si'),
-               'No'],
-     lesson: '4.10'},
-
-    {questionHTML: '¿Puede incluir cadenas HTML en el texto?',
-      choices: [correct('Si'),
-               'No'],
+    {questionHTML: '¿Es correcto utilizar palabras clave con el dobre dubrayado en el nuevo CLR?<br/>',
+      choices: [correct('No'),
+               'Si, a veces',
+               'No, pero aun queda alguna',
+               'Si'],
      // the (optional) lesson associated with this question, which is displayed as a suggestion
      // for further study if the student answers this question incorrectly.
-     lesson: '4.10'},
+     lesson: '2.1'},
 
-    {questionHTML: '¿De que áreas se compone la página de registro?',
-     choices: ['register.html, model.py y utils.py',
-              'register.html, model.py, utils.py y bulkloader.yaml',
-              'base_registration.html y register.html',
-              correct('Cabecera, área de contenido y pie de página')],
-     lesson: '4.5'},
+    {questionHTML: '¿Cual es la palabra clave para crear un nuevo montón administrado?<br/>',
+     correctAnswerRegex: /gcnew?/i,
+     lesson: '1.1'},
 
-    {questionHTML: 'Cuando crea una lección del curso puede incluir videos para poder reproducirlos en cualquier dispositivo, como en la siguiente imagen.</p><center><img src="/assets/html/lesson-4.8_archivos/image002.jpg" border="0" alt="" title=""></center><p>Pero ¿Cual es el nombre del canal donde debe subir los vídeos?',
-    correctAnswerString: '/Youtube/i',
-     lesson: '4.8'},
-
-    {questionHTML: '¿En que campo se pone el ID del vídeo asociado a la lección?',
-     correctAnswerString: '/lesson_video_id/i',
-     lesson: '4.8'},
-
-     {questionHTML: '¿Cuál de estas frases es correcta?',
-     choices: ['Las lecciones de un curso son siempre evaluables, es necesario realizar una actividad por cada una',
-               'Las lecciones de un curso se contruyen con 3 archivos, base.html, unit.html y unit.csv',
-               correct('Sí.')],
-     lesson: '4.8'},
-
-     {questionHTML: 'activity-NM.js, donde N es el número de actividad y M es el número de la lección ¿es correcto?',
-     choices: ['Atractivas y sencillas, pero no intimidantes.',
-               'Atractivas y desafiantes, pero no frustrantes',
-               correct('Las lecciones de un curso se contruyen con 3 archivos, base.html, unit.html y lesson.csv')],
-     lesson: '4.8'},
-
-     {questionHTML: '¿En que tres partes se dividen la mayoría de las páginas?',
-     choices: ['No lo se',
+    {questionHTML: '¿Esta expresión es correcta en la nueva sintaxis? <i>Object *o = __box( 1024 );</i><br/>',
+     choices: ['No, sobra el punto y coma.',
                'Si',
-               correct('No')],
-     lesson: '4.9'},
+               'Puede servir',
+               correct('No, ha desaparecido')],
+     lesson: '2.2'},
+	 
+	 {questionHTML: '¿Quién creó C++/CLI?',
+     choices: [correct("Microsoft"), "Oracle", "ECMA-372", "Un grupo de programadores independiente", "No lo se"]
+    },
 
-     {questionHTML: '¿Que herramienta puede utilizar para crear un foro en el curso?',
-     choices: ['Google Gmail',
-               'Foro activo',
-               correct('Google Groups')],
-     lesson: '5.2'},
-	 
-	{questionHTML: 'Este es un ejemplo de ayuda a la suscripción.<br/><i><p> Gracias por registrarse. </ p> Para participar en las discusiones de la comunidad sobre este curso...</i></p><br/> ¿Donde debe ir este texto?',
-     choices: ['views / confirmacion.html',
-               'views / registration.html',
-			   'views / forum.html',
-               correct('Ninguna de las anteriores')],
-     lesson: '5.2'},
-	 
-	 {questionHTML: '¿Cual es la palabra que se utiliza cuando debemos arreglar algo en un texto, o queremos personalizar el foro?',
-     correctAnswerString: '/FIXME/i',
-     lesson: '5.2'},
-	 
-	 {questionHTML: '¿Cual es el programa de Google que le permite crear una clase en línea con mas de 10 participantes?',
-     correctAnswerString: '/On Air|Google On Air/i',
-     lesson: '5.6'},
-	 
-	 {questionHTML: '¿Cual es la mejor manera de manejar a todas las personas que envían inforamción a los TA?',
-     choices: ['Formando todo lo posible a los TA, como si expertos en la materia',
-                'Impidiendo que los alumnos hagan mas de una pregunta',
-               correct('Creando diferentes alias de cuentas de correo para organizar las preguntas')],
-     lesson: '5.7'},
-	 
-	 {questionHTML: '¿Cual es la herramienta de google más efectiva para realizar la evaluación de los datos del curso?',
-     correctAnswerString: '/Google Analytics/i',
-     lesson: '6.3'},
-	 
-	 {questionHTML: '¿En que archivo debe incluir la información del programa con que analizará los datos del curso para que aparezca en todas y cada una de las páginas del curso?',
-     correctAnswerString: '/course.yaml/i',
-     lesson: '6.3'},
-	 
-	 {questionHTML: '¿Cuál es la extensión de exportación de los archivos de datos?',
-     correctAnswerString: '/csv/i',
-     lesson: '6.7'},
-	 
-	 {questionHTML: '¿Cuál es el archivo donde podemos especificar que campos exportar, <i>Por ejemplo para obtener todos los email de los estudiantes</i>?',
-     correctAnswerString: '/bulkloader.yaml/i',
-     lesson: '6.3'},
+    {questionHTML: '¿Un compilador de C++ puede compilar esta expresión (String ^stringVar;)?',
+     choices: [correct("No"), "Si", "No lo se"]
+    },
+
+    {questionHTML: 'Aproximádamente, ¿En qué año se estandarizó C++/CLI?',
+     correctAnswerString: '2005'
+    },
+
+    {questionHTML: '¿Cual de estas respuestas es incorrecta?',
+     choices: ["Con C++/CLI puede realizar programas para .NET.", "C++/CLI fué creado por Microsoft.", 
+     correct("C++/CLI sirve solamente para aplicaciones en la red, tipo WebService, etc."), "C++ nació poco antes que C++/CLI."]
+    },
+
+    {questionHTML: '¿Cual de estas respuestas es correcta?',
+     choices: ["C++/CLI nace de la mano de una alianza entre Microsoft y Linux.", "C++/CLI está muy extendido para usarse en AppEngine.", 
+     "No hay nada mejor que C++/CLI.", correct("C++/CLI puede gestionar de forma diferente las referencias y punteros que C++."), "No existe diferencia entre C++ y C++/CLI.", 
+     "CLI son las siglas de Componente Libre de Interacción."]
+    },
+
+    {questionHTML: 'Tipos de valor son un medio para permitir al usuario crear nuevos tipos más allá de los tipos primitivos; todos los tipos de valor se derivan de<br/>',
+     choices: ['System.',
+               'ValueType.',
+               correct('System::ValueType')],
+     lesson: '3.1'},
+
+     {questionHTML: '¿Cual es la palabra para especificar una clase como abstracta?',
+      correctAnswerRegex: /abstract ?/i,
+     lesson: '3.1'},
+
+     {questionHTML: '<i>void Dispose()</i>¿Qué es esto?<br>',
+     choices: ['Un método para despachar interfaces.',
+               'Una función normal.',
+               correct('La nueva función del destructor de una clase.')],
+     lesson: '3.3'},
+
+     {questionHTML: '¿Cual es la palabra clave para sellar una función virtual?',
+     correctAnswerRegex: /sealed?/i,
+     lesson: '3.2'},
   ],
 
   assessmentName: 'postcourse', // unique name submitted along with all of the answers

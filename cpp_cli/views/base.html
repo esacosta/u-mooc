@@ -1,14 +1,16 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="{{course_info.course.locale}}">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="google-translate-customization" content="493affb19b3a57f7-4280a55f4d7f1ed2-ge1cd29661f58f728-12"></meta>
     <base href="{{ gcb_course_base }}" />
     <script>
       (function(H) {
         H.className = H.className.replace(/\bgoogle\b/,'google-js');
       })(document.documentElement)
     </script>
+	
       <script type="text/javascript" language = "javascript" > 
     function doIframe(){ 
         o = document.getElementsByTagName("iframe"); 
@@ -312,7 +314,8 @@ Para uso no comercial, puede hacer lo que desee con ello.
               {{ gettext('Moderador de preguntas') }}
             </a>
           </li>
-          {% endif %}  		  
+          {% endif %}  	
+		  				  
           {% if course_info.course.report_on == True %}
           <li {% if navbar.report %}class='active'{% endif %}>
             <a href="report">
@@ -327,6 +330,17 @@ Para uso no comercial, puede hacer lo que desee con ello.
             </a>
           </li>
           {% endif %} 
+		  {% if course_info.course.translator_on == True %}
+	      <li>
+		  <a href="">
+		  <div id="google_translate_element"></div><script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'es', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, multilanguagePage: true}, 'google_translate_element');
+}
+</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+        </a>
+		  <li>	
+		  {% endif %}  	
 			  </ul>
 			</li>
 		  </ul>
@@ -369,6 +383,7 @@ Para uso no comercial, puede hacer lo que desee con ello.
 				  </li>
 				  <li class="divider"></li>
 				  {% endif %}
+			
 				  {% if is_course_admin %}
 				  <li>
 					<a href="dashboard">Dashboard</a>
@@ -441,6 +456,10 @@ Para uso no comercial, puede hacer lo que desee con ello.
         </div>
 		</div>
 		</div>
+		
+		
+		
+        
 		
     </footer>
 		 {{course_info.base.before_body_tag_ends | safe}}

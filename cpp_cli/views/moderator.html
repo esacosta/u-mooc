@@ -7,7 +7,7 @@
 {% block top_content %}
 
   <div>
-    <h1><a href="{{course_info.course.moderator_url}}">{{ gettext('Enviar preguntas') }}</a></h1>
+    <h1><a class="btn btn-primary" href="{{course_info.course.moderator_url}}">{{ gettext('Votar o enviar preguntas') }}</a></h1>
     <div class="row-luid">
           <br>
           <iframe src="{{course_info.course.moderator_embed_url}}" 
