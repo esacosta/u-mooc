@@ -7,4 +7,5 @@ id,type,unit_id,title,release_date,now_available
 5,A,Mid,Evaluación media,,True
 6,U,4,Arrays y otros cambios,,True
 7,U,5,Ejemplo de WebService,,True
-8,A,Fin,Evaluación final,En construcción,False
+8,A,Fin,Evaluación final,,True
+9,A,ReviewAssessmentExample,Practicum,,True
