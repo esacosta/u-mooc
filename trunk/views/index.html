@@ -8,8 +8,8 @@
     <meta name="author" content="">
 
     <!-- Le styles -->
-    <link href="assets/css/bootstrap.css" rel="stylesheet">
-    <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/bootstrap-responsive.min.css" rel="stylesheet">
 	<!--<link href="assets/css/main.css" rel="stylesheet">-->
 		
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -18,28 +18,11 @@
     <![endif]-->
 <style>
 
-    /* MARKETING CONTENT
-    -------------------------------------------------- */
-
-    /* Center align the text within the three columns below the carousel */
-    .marketing .span4 {
-      text-align: center;
-    }
-    .marketing h2 {
-      font-weight: normal;
-    }
-    .marketing .span4 p {
-      margin-left: 10px;
-      margin-right: 10px;
-    }
-
-
+    
     /* Featurettes
     ------------------------- */
 
-    .featurette-divider {
-      margin: 80px 0; /* Space out the Bootstrap <hr> more */
-    }
+    
     .featurette {
             overflow: hidden; /* Vertically center images part 2: clear their floats. */
     }
@@ -52,6 +35,10 @@
       margin-left: 40px;
     }
 
+	.featurette
+	{
+		height: 350px;
+	}
     /* Thin out the marketing headings */
     .featurette-heading {
       font-size: 50px;
@@ -59,7 +46,20 @@
       line-height: 1;
       letter-spacing: -1px;
     }
-
+	.thumb
+	{
+		min-height: 550px;
+	}
+	.thumb img
+	{
+		max-height: 100px;
+	}
+	.thumb p
+	{
+		max-height: 250px;
+	}
+	
+	
 
     </style>
     <!-- Fav and touch icons -->
@@ -70,7 +70,7 @@
                                    <link rel="shortcut icon" href="assets/ico/favicon.png">
   </head>
 
-  <body>
+  <body class="container">
 
 	<!-- Modal Contacto -->
 	<div id="myContact" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -93,7 +93,7 @@
 		<h3 id="myInformationLabel">Información</h3>
 	  </div>
 	  <div class="modal-body">
-		<p>U-MOOC nace con la idea de crear una plataforma abierta y gratuita para que profesores y alumnos creen sus MOOC y aprendan a utilizar este nuevo paradigma educativo. Todo en esta plataforma va encaminado a la gratuidad de los contenidos, del código y de los avances en las herramientas e instrumentos de evaluación de las plataformas MOOC.<br/>Cualquier persona puede colaborar con la plataforma, realizando mejoras, encontrando errores, creando cursos, etc.<br/>Esta plataforma se encuentra en continuo crecimiento y aunque en un primer momento se crea para hispanohablantes se hace extensible a cualquiera que quiera colaborar con cursos en otros idiomas.</p>
+		<p >U-MOOC nace con la idea de crear una plataforma abierta y gratuita para que profesores y alumnos creen sus MOOC y aprendan a utilizar este nuevo paradigma educativo. Todo en esta plataforma va encaminado a la gratuidad de los contenidos, del código y de los avances en las herramientas e instrumentos de evaluación de las plataformas MOOC.<br/>Cualquier persona puede colaborar con la plataforma, realizando mejoras, encontrando errores, creando cursos, etc.<br/>Esta plataforma se encuentra en continuo crecimiento y aunque en un primer momento se crea para hispanohablantes se hace extensible a cualquiera que quiera colaborar con cursos en otros idiomas.</p>
 	  </div>
 	  <div class="modal-footer">
 		<button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
@@ -165,126 +165,112 @@ Para uso no comercial, puede hacer lo que desee con ello.
     <!-- Carousel
     ================================================== -->
     <div id="myCarousel" class="carousel slide">
+		<ol class="carousel-indicators">
+			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+			<li data-target="#myCarousel" data-slide-to="1"></li>
+			<li data-target="#myCarousel" data-slide-to="2"></li>
+			<li data-target="#myCarousel" data-slide-to="3"></li>
+			<li data-target="#myCarousel" data-slide-to="4"></li>
+		</ol>
       <div class="carousel-inner">
         <div class="item active">
-         
           <div class="container">
-            <div class="">
-              <h1>¿Cómo crear un MOOC?</h1>
-              <p class="lead">Siguiendo este curso aprenderá a crear un MOOC a través de la nueva plataforma U-MOOC.</p>
-              <a class="btn btn-large btn-primary" href="/preview">Comience ahora</a>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          
-          <div class="container">
-            <div class="">
-              <h1>Aprendiendo C++/CLI</h1>
-              <p class="lead">Con este curso será capaz de desarrollar aplicaciones y WebServices para Windows Azure y .NET en lenguaje C++, utilizando el nuevo lenguaje C++/CLI preparado para el desarrollo de C++ en .NET.</p>
-              <a class="btn btn-large btn-primary" href="/cpp_cli/preview">Comience ahora</a>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          
-          <div class="container">
-            <div class="">
-              <h1>Publique aquí su curso</h1>
-              <p class="lead">Puede realizar su curso y publicarlo en esta plataforma de un modo completamente abierto y gratuito, pongase en contacto con nosotros y le ayudaremos a realizar y publicar su MOOC</p>
-            </div>
-          </div>
-        </div>
+            <div class="featurette">
+        <img class="featurette-image pull-right img-polaroid" data-src="holder.js/260x180" style="height: 180px;" src="assets/img/pp-preguntas-directo.jpg">
+        <h2 class="featurette-heading">Moderador de preguntas</h2>
+        <p class="lead">Los alumnos disponen de una nueva herramienta para votar y enviar preguntas y respuestas, que serán moderadas en las próximas clases en linea de los profesores del curso. Cuando se realiza una clase en línea es importante saber de antemano cuales son las preguntas mas frecuentes o las mas votadas por los alumnos.</p>
       </div>
+          </div>
+        </div>
+        <div class="item">
+          
+          <div class="container">
+            <div class="featurette">
+        <img class="featurette-image pull-left img-polaroid" data-src="holder.js/260x180" style="height: 180px;" src="assets/img/traducciones1.jpg">
+        <h2 class="featurette-heading">Traducción automática a cualquier idioma</h2>
+        <p class="lead">Gracias a las herramientas de Google Translator, la plataforma es ahora capaz de traducir los cursos a cualquier idioma. En el menú de opciones se encuentra una lista desplegable con los idiomas a los puede traducir los cursos.</p>
+      </div>
+          </div>
+        </div>
+        <div class="item">
+          
+          <div class="container">
+            <div class="featurette">
+        <img class="featurette-image pull-right img-polaroid" data-src="holder.js/260x180" style="height: 180px;" src="assets/img/PeerReview.jpg">
+        <h2 class="featurette-heading">Evaluación por pares</h2>
+        <p class="lead">Además de las preguntas tipo test con multiples opciones, los profesores disponen ahora de la nueva herramienta de evaluación por pares, para que los alumnos puedan evaluarse entre ellos, esta herramienta resulta prácticamente indispensable en un curso masivo online.</p>
+      </div>
+          </div>
+        </div>
+		<div class="item">
+          
+          <div class="container">
+            <div class="featurette">
+        <img class="featurette-image pull-left img-polaroid" data-src="holder.js/260x180" style="height: 180px;" src="assets/img/responsive_web_design.png">
+        <h2 class="featurette-heading">Desarrollo Web Responsable</h2>
+        <p class="lead">La plataforma cumple con los requisitos para poder verse perfectamente y ser f&aacute;cil de usar en cualquier dispositivo.</p>
+      </div>
+          </div>
+		  </div>
+		  <div class="item">
+		  <div class="container">
+            <div class="featurette">
+        <img class="featurette-image pull-right img-polaroid" data-src="holder.js/260x180" style="height: 180px;" src="assets/img/browser-icon-chrome.png">
+        <h2 class="featurette-heading">La plataforma es completamente compatible con su navegador habitual</h2>
+        <p class="lead">Puede utilizar cualquiera de los navegadores disponibles en el mercado para seguir el curso en la plataforma, Firefox, Chrome, Safari, etc. Incluyendo los  navegadores disponibles en sus dispositivos móviles.</p>
+      </div>
+          </div>
+		  </div>
+		  <div class="item">
+		  <div class="container">
+            <div class="featurette">
+        <img class="featurette-image pull-right img-polaroid" data-src="holder.js/60x60" style="width: 260px; height: 180px;" src="assets/img/wai.jpg">
+        <h2 class="featurette-heading">Iniciativa para la Accesibilidad Web<span class="muted">&nbsp;&nbsp;WAI</span></h2>
+        <p class="lead">Se trata de una rama del World Wide Web Consortium que vela por la accesibilidad de la Web. El grado de accesibilidad se establece en niveles denominados A, AA, y AAA, correspondiendo respectivamente a criterios mínimos de accesibilidad, extendidos, y accesibilidad máxima. Técnicamente la accesibilidad se implementa mediante pautas de lógica estructural de documentos, contenido auto-explicativo y semántica adicional, con la intención de permitir, a una audiencia lo más extensa posible de usuarios con distintos niveles de dotación tecnológica y capacidad sensorial, acceder a la información que se intenta representar y transmitir.</p>
+      </div>
+	  </div>
+	  
+      
+          </div>
+		  </div>
       <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
       <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
     </div><!-- /.carousel -->
 
-
-
-    <!-- Marketing messaging and featurettes
-    ================================================== -->
-    <!-- Wrap the rest of the page in another container to center all the content. -->
-
-    <div class="container marketing">
-      <!-- Three columns of text below the carousel -->
-      <div class="row-fluid">
-        <div class="span4">
-          <img class="img-polaroid" data-src="holder.js/60x60" src="assets/img/banner_cpp_cli.jpg">
-          <h2>Aprendiendo C++/CLI</h2>
-          <p>Con este curso será capaz de desarrollar aplicaciones y WebServices para Windows Azure y .NET en lenguaje C++, utilizando el nuevo lenguaje C++/CLI preparado para el desarrollo de C++ en .NET.
-Este curso se encuentra en fase de desarrollo, por favor pruébelo y envíe toda la información que considere oportuna para su finalización o colabore con nosotros, esperamos haberlo terminado para finales del mes próximo..</p>
-          <p><a class="btn" href="/cpp_cli/preview">Comience ahora &raquo;</a></p>
-        </div><!-- /.span4 -->
-        <div class="span4">
-          <img class="img-polaroid" data-src="holder.js/60x60" src="assets/img/u-mooc.png">
-          <h2>¿Cómo crear un MOOC?</h2>
-          <p>Siguiendo este curso aprenderá a crear un MOOC a través de la nueva plataforma U-MOOC.
+	<div class="row-fluid">
+    
+	<ul class="thumbnails">
+	  <li class="span4">
+		<div class="thumbnail thumb">
+		  <img data-src="holder.js/260x180" alt="" src="assets/img/banner_cpp_cli.jpg">
+		  <h3 class="well">Aprendiendo C++/CLI</h3>
+		  <p>Con este curso será capaz de desarrollar aplicaciones y WebServices para Windows Azure y .NET en lenguaje C++, utilizando el nuevo lenguaje C++/CLI preparado para el desarrollo de C++ en .NET.
+Este curso se encuentra en fase de desarrollo, por favor pruébelo y envíe toda la información que considere oportuna para su finalización o colabore con nosotros, esperamos haberlo terminado para finales del mes próximo.<br/></p>
+			<a class="btn btn-primary span8 offset2" href="/cpp_cli/preview">Comience ahora &raquo;</a>
+		</div>
+	  </li>
+	  <li class="span4">
+		<div class="thumbnail thumb">
+		  <img data-src="holder.js/260x180" alt="" src="assets/img/u-mooc.png">
+		  <h3 class="well">¿Cómo crear un MOOC?</h3>
+		  <p>Siguiendo este curso aprenderá a crear un MOOC a través de la nueva plataforma U-MOOC.
 Se trata de un experimento para el mundo de la educación online que contiene el software e instrucciones necesarias para crear lecciones, actividades para los estudiantes, evaluaciones, etc. Sin embargo la creación de estos cursos resulta algo tediosa para personas poco familiarizadas con Html, Javascript o Python.
-Esperamos que este curso le sea útil para poder crear sus propios MOOC de una manera más fácil.</p>
-          <p><a class="btn" href="/preview">Comience ahora &raquo;</a></p>
-        </div><!-- /.span4 -->
-        <div class="span4 ">
-          <img class="img-polaroid" data-src="holder.js/60x60" src="assets/img/appengine.png">
-          <h2>Mi curso</h2>
-          <p>Puede crear y publicar sus cursos en esta plataforma de un modo completamente gratuito, y con asistentes que le ayudarán a crearlo y publicarlo en u-mooc.</p>
-          <p><a class="btn" href="#myContact" data-toggle="modal">Contacto &raquo;</a></p>
-        </div><!-- /.span4 -->
-      </div><!-- /.row -->
+Esperamos que este curso le sea útil para poder crear sus propios MOOC de una manera más fácil.<br/></p>
+			<a class="btn btn-primary span8 offset2" href="/preview">Comience ahora &raquo;</a>
+		</div>
+	  </li>
+	  <li class="span4">
+		<div class="thumbnail thumb">
+		  <img data-src="holder.js/260x180" alt="" src="assets/img/appengine.png">
+		  <h3 class="well">Mi curso</h3>
+		  <p>Puede crear y publicar sus cursos en esta plataforma de un modo completamente gratuito, y con asistentes que le ayudarán a crearlo y publicarlo en u-mooc.<br/></p>
+			<a class="btn btn-primary span8 offset2" href="#myContact" data-toggle="modal">Contacto &raquo;</a>
+		</div>
+	  </li>
+	</ul>
 
-
-      <!-- START THE FEATURETTES -->
-	  <hr class="featurette-divider">
-	  
-	  <div class="featurette">
-        <img class="featurette-image pull-right img-polaroid" data-src="holder.js/60x60" src="assets/img/pp-preguntas-directo.jpg">
-        <h2 class="featurette-heading">Moderador de preguntas</h2>
-        <p class="lead">Los alumnos disponen de una nueva herramienta para votar y enviar preguntas y respuestas, que serán moderadas en las próximas clases en linea de los profesores del curso. Cuando se realiza una clase en línea es importante saber de antemano cuales son las preguntas mas frecuentes o las mas votadas por los alumnos.</p>
-      </div>
-	  
-	  <hr class="featurette-divider">
-	  
-	  <div class="featurette">
-        <img class="featurette-image pull-left img-polaroid" data-src="holder.js/60x60" src="assets/img/traducciones1.jpg">
-        <h2 class="featurette-heading">Traducción automática a cualquier idioma</h2>
-        <p class="lead">Gracias a las herramientas de Google Translator, la plataforma es ahora capaz de traducir los cursos a cualquier idioma. En el menú de opciones se encuentra una lista desplegable con los idiomas a los puede traducir los cursos.</p>
-      </div>
-	  
-	  <hr class="featurette-divider">
-	  
-	  <div class="featurette">
-        <img class="featurette-image pull-right img-polaroid" data-src="holder.js/60x60" src="assets/img/PeerReview.jpg">
-        <h2 class="featurette-heading">Evaluación por pares</h2>
-        <p class="lead">Además de las preguntas tipo test con multiples opciones, los profesores disponen ahora de la nueva herramienta de evaluación por pares, para que los alumnos puedan evaluarse entre ellos, esta herramienta resulta prácticamente indispensable en un curso masivo online.</p>
-      </div>
-	  
-      <hr class="featurette-divider">
-	  
-	  <div class="featurette">
-        <img class="featurette-image pull-left img-polaroid" data-src="holder.js/60x60" src="assets/img/responsive_web_design.png">
-        <h2 class="featurette-heading">Desarrollo Web Responsable</h2>
-        <p class="lead">La plataforma cumple con los requisitos para poder verse perfectamente y ser f&aacute;cil de usar en cualquier dispositivo.</p>
-      </div>
-	  
-      <hr class="featurette-divider">
-
-	  <div class="featurette">
-        <img class="featurette-image pull-right img-polaroid" data-src="holder.js/60x60" src="assets/img/wai.jpg">
-        <h2 class="featurette-heading">Iniciativa para la Accesibilidad Web<span class="muted">&nbsp;&nbsp;WAI</span></h2>
-        <p class="lead">Se trata de una rama del World Wide Web Consortium que vela por la accesibilidad de la Web. El grado de accesibilidad se establece en niveles denominados A, AA, y AAA, correspondiendo respectivamente a criterios mínimos de accesibilidad, extendidos, y accesibilidad máxima. Técnicamente la accesibilidad se implementa mediante pautas de lógica estructural de documentos, contenido auto-explicativo y semántica adicional, con la intención de permitir, a una audiencia lo más extensa posible de usuarios con distintos niveles de dotación tecnológica y capacidad sensorial, acceder a la información que se intenta representar y transmitir.</p>
-      </div>
-	  
-	  <hr class="featurette-divider">
-	  
-      <div class="featurette">
-        <img class="featurette-image pull-right img-polaroid" data-src="holder.js/60x60" src="assets/img/browser-icon-chrome.png">
-        <h2 class="featurette-heading">La plataforma es completamente compatible con su navegador habitual</h2>
-        <p class="lead">Puede utilizar cualquiera de los navegadores disponibles en el mercado para seguir el curso en la plataforma, Firefox, Chrome, Safari, etc. Incluyendo los  navegadores disponibles en sus dispositivos móviles.</p>
-      </div>
-
-      <hr class="featurette-divider">
-
-      <!-- /END THE FEATURETTES -->
+    </div><!-- /.row -->
+    
 
 
       <!-- FOOTER -->
