@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Plataforma U-MOOC</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+	<!--<link href="assets/css/main.css" rel="stylesheet">-->
+		
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="assets/js/html5shiv.js"></script>
+    <![endif]-->
+<style>
+
+    /* MARKETING CONTENT
+    -------------------------------------------------- */
+
+    /* Center align the text within the three columns below the carousel */
+    .marketing .span4 {
+      text-align: center;
+    }
+    .marketing h2 {
+      font-weight: normal;
+    }
+    .marketing .span4 p {
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+
+
+    /* Featurettes
+    ------------------------- */
+
+    .featurette-divider {
+      margin: 80px 0; /* Space out the Bootstrap <hr> more */
+    }
+    .featurette {
+            overflow: hidden; /* Vertically center images part 2: clear their floats. */
+    }
+    
+    /* Give some space on the sides of the floated elements so text doesn't run right into it. */
+    .featurette-image.pull-left {
+      margin-right: 40px;
+    }
+    .featurette-image.pull-right {
+      margin-left: 40px;
+    }
+
+    /* Thin out the marketing headings */
+    .featurette-heading {
+      font-size: 50px;
+      font-weight: 300;
+      line-height: 1;
+      letter-spacing: -1px;
+    }
+
+
+    </style>
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="assets/ico/favicon.png">
+  </head>
+
+  <body>
+
+	<!-- Modal Contacto -->
+	<div id="myContact" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h3 id="myModalLabel">Contacto</h3>
+	  </div>
+	  <div class="modal-body">
+		<p>Por el momento y hasta que la plataforma vaya creciendo, puede ponerse en contacto con <br/><br/><i class="pull-right">esacosta at gmail point com</i></p>
+	  </div>
+	  <div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+	  </div>
+	</div>
+	
+	<!-- Modal Información -->
+	<div id="myInformation" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myInformationLabel" aria-hidden="true">
+	  <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h3 id="myInformationLabel">Información</h3>
+	  </div>
+	  <div class="modal-body">
+		<p>U-MOOC nace con la idea de crear una plataforma abierta y gratuita para que profesores y alumnos creen sus MOOC y aprendan a utilizar este nuevo paradigma educativo. Todo en esta plataforma va encaminado a la gratuidad de los contenidos, del código y de los avances en las herramientas e instrumentos de evaluación de las plataformas MOOC.<br/>Cualquier persona puede colaborar con la plataforma, realizando mejoras, encontrando errores, creando cursos, etc.<br/>Esta plataforma se encuentra en continuo crecimiento y aunque en un primer momento se crea para hispanohablantes se hace extensible a cualquiera que quiera colaborar con cursos en otros idiomas.</p>
+	  </div>
+	  <div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+	  </div>
+	</div>
+	
+	<!-- Modal Información -->
+	<div id="myPrivacy" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myPrivacyLabel" aria-hidden="true">
+	  <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h3 id="myPrivacyLabel">Términos y condiciones</h3>
+	  </div>
+	  <div class="modal-body">
+		<p>Usted se compromete a no reproducir, duplicar, copiar, vender, revender o explotar con algún propósito comercial cualquier parte de los servicios prestados de la plataforma o los cursos.
+Para uso no comercial, puede hacer lo que desee con ello.
+<br/>
+<br/>
+¡Recuerde referenciar siempre sus notas y publicaciones!.</p>
+	  </div>
+	  <div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+	  </div>
+	</div>
+
+    <!-- NAVBAR
+    ================================================== -->
+	<!-- Button to trigger modal -->
+
+    <div class="navbar-wrapper">
+      <!-- Wrap the .navbar in .container to center it within the absolutely positioned parent. -->
+      <div class="container">
+
+        <div class="navbar">
+          <div class="navbar-inner">
+            <!-- Responsive Navbar Part 1: Button for triggering responsive navbar (not covered in tutorial). Include responsive CSS to utilize. -->
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="brand">u-MOOC</a>
+            <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
+            <div class="nav-collapse collapse">
+              <ul class="nav">
+                <li class="active"><a href="">Inicio</a></li>
+				<li><a href="http://u-mooc.blogspot.com.es/" data-toggle="modal">Blog</a></li>
+                <li><a href="#myContact" data-toggle="modal">Contacto</a></li>
+				<li><a href="#myInformation" data-toggle="modal">Información</a></li>
+                <!-- Read about Bootstrap dropdowns at http://twitter.github.com/bootstrap/javascript.html#dropdowns -->
+                <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown">Colaboradores<b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+					<li><a href="http://www.google.es">Google Inc.</a></li>
+                    <li class="divider"></li>
+                    <li class="nav-header">Soporte</li>
+                    <li><a href="https://code.google.com/p/course-builder/">course-builder</a></li>
+                    <li><a href="https://developers.google.com/appengine/">Google App Engine (GAE)</a></li>
+					<li><a href="http://www.python.org/">Python</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div><!--/.nav-collapse -->
+          </div><!-- /.navbar-inner -->
+        </div><!-- /.navbar -->
+
+      </div> <!-- /.container -->
+    </div><!-- /.navbar-wrapper -->
+
+    <!-- Carousel
+    ================================================== -->
+    <div id="myCarousel" class="carousel slide">
+      <div class="carousel-inner">
+        <div class="item active">
+         
+          <div class="container">
+            <div class="">
+              <h1>¿Cómo crear un MOOC?</h1>
+              <p class="lead">Siguiendo este curso aprenderá a crear un MOOC a través de la nueva plataforma U-MOOC.</p>
+              <a class="btn btn-large btn-primary" href="/preview">Comience ahora</a>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          
+          <div class="container">
+            <div class="">
+              <h1>Taller UEM X JIIU</h1>
+              <p class="lead">Pequeño tutorial de ejemplo para el taller "Aprende a crear una plataforma MOOC para tus propios cursos.</p>
+              <a class="btn btn-large btn-primary" href="/cpp_cli/preview">Comience ahora</a>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          
+          <div class="container">
+            <div class="">
+              <h1>Publique aquí su curso</h1>
+              <p class="lead">Puede realizar su curso y publicarlo en esta plataforma de un modo completamente abierto y gratuito, pongase en contacto con nosotros y le ayudaremos a realizar y publicar su MOOC</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
+    </div><!-- /.carousel -->
+
+
+
+    <!-- Marketing messaging and featurettes
+    ================================================== -->
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+
+    <div class="container marketing">
+      <!-- Three columns of text below the carousel -->
+      <div class="row-fluid">
+        <div class="span4">
+          <img class="img-polaroid" data-src="holder.js/60x60" src="assets/img/uem.jpg">
+          <h2>Taller UEM X JIIU</h2>
+          <p>Pequeño tutorial de ejemplo para el taller "Aprende a crear una plataforma MOOC para tus propios cursos.</p>
+          <p><a class="btn" href="/preview">Comience ahora &raquo;</a></p>
+        </div><!-- /.span4 -->
+        <div class="span4">
+          <img class="img-polaroid" data-src="holder.js/60x60" src="assets/img/u-mooc.png">
+          <h2>¿Cómo crear un MOOC?</h2>
+          <p>Siguiendo este curso aprenderá a crear un MOOC a través de la nueva plataforma U-MOOC.
+Se trata de un experimento para el mundo de la educación online que contiene el software e instrucciones necesarias para crear lecciones, actividades para los estudiantes, evaluaciones, etc. Sin embargo la creación de estos cursos resulta algo tediosa para personas poco familiarizadas con Html, Javascript o Python.
+Esperamos que este curso le sea útil para poder crear sus propios MOOC de una manera más fácil.</p>
+          <p><a class="btn" href="http://u-mooc.appspot.com/preview">Comience ahora &raquo;</a></p>
+        </div><!-- /.span4 -->
+        <div class="span4 ">
+          <img class="img-polaroid" data-src="holder.js/60x60" src="assets/img/appengine.png">
+          <h2>Mi curso</h2>
+          <p>Puede crear y publicar sus cursos en esta plataforma de un modo completamente gratuito, y con asistentes que le ayudarán a crearlo y publicarlo en u-mooc.</p>
+          <p><a class="btn" href="/new_course/preview">Nuevo curso &raquo;</a></p>
+        </div><!-- /.span4 -->
+      </div><!-- /.row -->
+
+
+      <!-- START THE FEATURETTES -->
+	  <hr class="featurette-divider">
+	  
+	  <div class="featurette">
+        <img class="featurette-image pull-right img-polaroid" data-src="holder.js/60x60" src="assets/img/pp-preguntas-directo.jpg">
+        <h2 class="featurette-heading">Moderador de preguntas</h2>
+        <p class="lead">Los alumnos disponen de una nueva herramienta para votar y enviar preguntas y respuestas, que serán moderadas en las próximas clases en linea de los profesores del curso. Cuando se realiza una clase en línea es importante saber de antemano cuales son las preguntas mas frecuentes o las mas votadas por los alumnos.</p>
+      </div>
+	  
+	  <hr class="featurette-divider">
+	  
+	  <div class="featurette">
+        <img class="featurette-image pull-left img-polaroid" data-src="holder.js/60x60" src="assets/img/traducciones1.jpg">
+        <h2 class="featurette-heading">Traducción automática a cualquier idioma</h2>
+        <p class="lead">Gracias a las herramientas de Google Translator, la plataforma es ahora capaz de traducir los cursos a cualquier idioma. En el menú de opciones se encuentra una lista desplegable con los idiomas a los puede traducir los cursos.</p>
+      </div>
+	  
+	  <hr class="featurette-divider">
+	  
+	  <div class="featurette">
+        <img class="featurette-image pull-right img-polaroid" data-src="holder.js/60x60" src="assets/img/PeerReview.jpg">
+        <h2 class="featurette-heading">Evaluación por pares</h2>
+        <p class="lead">Además de las preguntas tipo test con multiples opciones, los profesores disponen ahora de la nueva herramienta de evaluación por pares, para que los alumnos puedan evaluarse entre ellos, esta herramienta resulta prácticamente indispensable en un curso masivo online.</p>
+      </div>
+	  
+      <hr class="featurette-divider">
+	  
+	  <div class="featurette">
+        <img class="featurette-image pull-left img-polaroid" data-src="holder.js/60x60" src="assets/img/responsive_web_design.png">
+        <h2 class="featurette-heading">Desarrollo Web Responsable</h2>
+        <p class="lead">La plataforma cumple con los requisitos para poder verse perfectamente y ser f&aacute;cil de usar en cualquier dispositivo.</p>
+      </div>
+	  
+      <hr class="featurette-divider">
+
+	  <div class="featurette">
+        <img class="featurette-image pull-right img-polaroid" data-src="holder.js/60x60" src="assets/img/wai.jpg">
+        <h2 class="featurette-heading">Iniciativa para la Accesibilidad Web<span class="muted">&nbsp;&nbsp;WAI</span></h2>
+        <p class="lead">Se trata de una rama del World Wide Web Consortium que vela por la accesibilidad de la Web. El grado de accesibilidad se establece en niveles denominados A, AA, y AAA, correspondiendo respectivamente a criterios mínimos de accesibilidad, extendidos, y accesibilidad máxima. Técnicamente la accesibilidad se implementa mediante pautas de lógica estructural de documentos, contenido auto-explicativo y semántica adicional, con la intención de permitir, a una audiencia lo más extensa posible de usuarios con distintos niveles de dotación tecnológica y capacidad sensorial, acceder a la información que se intenta representar y transmitir.</p>
+      </div>
+	  
+	  <hr class="featurette-divider">
+	  
+      <div class="featurette">
+        <img class="featurette-image pull-right img-polaroid" data-src="holder.js/60x60" src="assets/img/browser-icon-chrome.png">
+        <h2 class="featurette-heading">La plataforma es completamente compatible con su navegador habitual</h2>
+        <p class="lead">Puede utilizar cualquiera de los navegadores disponibles en el mercado para seguir el curso en la plataforma, Firefox, Chrome, Safari, etc. Incluyendo los  navegadores disponibles en sus dispositivos móviles.</p>
+      </div>
+
+      <hr class="featurette-divider">
+
+      <!-- /END THE FEATURETTES -->
+
+
+      <!-- FOOTER -->
+      <footer>
+        <p class="pull-right"><a href="">Ir al inicio</a></p>
+        <p>&copy; 2013 u-mooc &middot; <a href="#myPrivacy" data-toggle="modal">Privacidad y condiciones</a></p>
+      </footer>
+
+    </div><!-- /.container -->
+
+
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/bootstrap-transition.js"></script>
+    <script src="assets/js/bootstrap-alert.js"></script>
+    <script src="assets/js/bootstrap-modal.js"></script>
+    <script src="assets/js/bootstrap-dropdown.js"></script>
+    <script src="assets/js/bootstrap-scrollspy.js"></script>
+    <script src="assets/js/bootstrap-tab.js"></script>
+    <script src="assets/js/bootstrap-tooltip.js"></script>
+    <script src="assets/js/bootstrap-popover.js"></script>
+    <script src="assets/js/bootstrap-button.js"></script>
+    <script src="assets/js/bootstrap-collapse.js"></script>
+    <script src="assets/js/bootstrap-carousel.js"></script>
+    <script src="assets/js/bootstrap-typeahead.js"></script>
+    <script>
+      !function ($) {
+        $(function(){
+          // carousel demo
+          $('#myCarousel').carousel()
+        })
+      }(window.jQuery)
+    </script>
+    <script src="assets/js/holder/holder.js"></script>
+  </body>
+</html>

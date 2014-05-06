@@ -1,0 +1,29 @@
+unit_id,unit_title,lesson_id,lesson_title,lesson_activity,lesson_activity_name,lesson_notes,lesson_video_id,lesson_objectives
+
+1,Hasta el conectivismo,1,Historia,,,,qLEBAPA7yqo,Isaac Asimov. Su visión hacia el futuro.
+1,Hasta el conectivismo,2,Introducción,,,http://prezi.com/embed/kml5rpas2ap0/?bgcolor=ffffff&amp;lock_to_path=0&amp;autoplay=0&amp;autohide_ctrls=0&amp;features=undefined&amp;disabled_features=undefined,,*
+1,Hasta el conectivismo,3,Antecedentes,,,http://prezi.com/embed/_hgx-ul4kg5u/?bgcolor=ffffff&amp;lock_to_path=0&amp;autoplay=0&amp;autohide_ctrls=0&amp;features=undefined&amp;disabled_features=undefined,,*
+1,Hasta el conectivismo,4,Grabar videos para e-learning,,,http://www.wedubox.com,do_p2sfncO4,Crear un vídeo para los MOOC
+
+2,Tipos de MOOC,1,xMOOC,,,/assets/html/tiposdemooc.htm,,*
+2,Tipos de MOOC,2,cMOOC,yes,Actividad de la Lección 2.2,/assets/html/tiposdemooc.htm,,*
+
+3,¿Que debería tener un MOOC?,1,Presentación,,,http://prezi.com/embed/up-9xb1q7tbw/?bgcolor=ffffff&amp;lock_to_path=0&amp;autoplay=0&amp;autohide_ctrls=0&amp;features=undefined&amp;disabled_features=undefined,,*
+3,¿Que debería tener un MOOC?,2,El contenido del curso,,,/assets/html/contenidocurso.htm,,*
+3,¿Que debería tener un MOOC?,3,Actividades y evaluaciones,,,/assets/html/actividades.htm,,*
+3,¿Que debería tener un MOOC?,4,Interacción social,,,/assets/html/social.htm,,*
+3,¿Que debería tener un MOOC?,5,Tareas administrativas,,,/assets/html/tareas.htm,,*
+
+4,¿Cómo plantearse la creación de un MOOC?,1,Diseñar un plan para el curso,,,/assets/html/disenar.htm,,*
+4,¿Cómo plantearse la creación de un MOOC?,2,Desarrollar los contenidos sin tecnología,,,/assets/html/sintecnologia.htm,,*
+4,¿Cómo plantearse la creación de un MOOC?,3,Diseñar desde los objetivos,,,/assets/html/objetivos.htm,,*
+4,¿Cómo plantearse la creación de un MOOC?,4,Evaluar la eficacia del curso,yes,Actividad de la Lección 4.4,/assets/html/evaluar.htm,,*
+4,¿Cómo plantearse la creación de un MOOC?,5,Clases en línea,,,,gR0-40sXH-w,Preparar una clase
+
+5,Crear una plataforma,1,Instalar la plataforma en el PC,,,/assets/html/instalarplataforma.htm,,*
+5,Crear una plataforma,2,Crear cursos (readonly) en el PC,,,/assets/html/readonly.htm,dauY84JRZSc,Crear una lección en u-mooc
+5,Crear una plataforma,3,Crear la aplicación en internet,,,,Yz2OJUTv56k,Crear una aplicación AppEngine para nuestra plataforma
+5,Crear una plataforma,4,Publicar la plataforma,,,,Yz2OJUTv56k,Publicar una plataforma con AppEngine
+5,Crear una plataforma,5,Crear cursos en línea,,,,_YatY-bZVnE,¿Cómo crear un MOOC con unos clics?
+
+

@@ -1446,8 +1446,8 @@ class StudentAspectTest(actions.TestBase):
             environ['reg_form']['additional_registration_fields'] = (
                 '\'<!-- reg_form.additional_registration_fields -->'
                 '<li>'
-                '<label class="form-label" for="form02"> What is your zipcode?'
-                '</label><input name="form02" type="text"></li>'
+                '<label class="form-label" for="formAge"> What is your zipcode?'
+                '</label><input name="formAge" type="text"></li>'
                 '<li>'
                 '<label class="form-label" for="form03"> What is your score?'
                 '</label> <input name="form03" type="text"></li>\''

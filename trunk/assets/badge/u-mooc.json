@@ -1,0 +1,14 @@
+{
+  "uid": "992212#1",
+  "recipient": {
+    "type": "email",
+    "hashed": false,
+    "identity": ""
+  },
+  "issuedOn": "2013-10-22T06:04:18.417Z",
+  "badge": "http://u-mooc.appspot.com/assets/badge/class.json",
+  "verify": {
+    "type": "hosted",
+    "url": "http://u-mooc.appspot.com/assets/badge/esacosta.json"
+  }
+}

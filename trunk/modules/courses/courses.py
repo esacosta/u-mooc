@@ -41,6 +41,7 @@ def register_module():
         ('/assessment', lessons.AssessmentHandler),
         ('/course', lessons.CourseHandler),
         ('/forum', utils.ForumHandler),
+        ('/chat', utils.ChatHandler),
         ('/report', utils.ReportHandler),
         ('/blog', utils.BlogHandler),
         ('/moderator', utils.ModeratorHandler),

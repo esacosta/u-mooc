@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block subtitle %}
+  {# I18N: Title of the webpage. #}
+  {{ gettext('My Profile') }}
+{% endblock subtitle %}
+
+{% block top_content %}
+{% endblock %}
+
+{% block main_content %}
+<div class="row-fluid">
+  <div class="gcb-article tab-content">
+    <div class="gcb-aside">
+      <h2>
+        {# I18N: Title of the student profile page. Followed by a student's name. #}
+        {{ gettext('Student Profile for ') }}
+        {{ student.key().name() }}
+      </h2>
+
+      {% if student %}
+
+        {% include 'student_data_table.html' %}
+
+        <form action='student/editstudent' method='post'>
+          <input type="hidden" name="xsrf_token" value="{{ student_edit_xsrf_token|escape }}">
+          <h2><label for="name">
+            {# I18N: Label for the input field that allows the student to change the name on his/her certificate. #}
+            {{ gettext('New Name') }}
+          </label></h2>
+          <fieldset style="border: none;">
+            <p><input name="name" id="name" type="text" size="40">
+              <input type="hidden" name="email" value="{{ student.key().name() }}"></p>
+          </fieldset>
+
+          <p>
+            <button class="btn" type="submit">
+              {# I18N: Text for a button that allows the student to save changes to his/her name for the certificate. #}
+              {{ gettext('Change Name') }}
+            </button>
+          </p>
+        </form>
+
+        <h2>
+          {# I18N: Shown on the student profile page. #}
+          {{ gettext('To leave the course permanently, click on Unenroll') }}
+        </h2>
+
+        <p><a role="button" href="student/unenroll" class="btn btn-danger">
+          {# I18N: Button that allows the student to unenroll from a course. #}
+          {{ gettext('Unenroll') }}
+        </a></p>
+
+      {% else %}
+        {# I18N: Shown when the student profile cannot be found in the database. #}
+        <p>{{ gettext('Student profile not found ...')}}</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+

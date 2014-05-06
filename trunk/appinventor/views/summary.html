@@ -1,0 +1,26 @@
+
+<div class="row-fluid">
+<div class="span8">
+  <h3>
+    {{course_info.course.title}}
+  </h3>
+
+    {{course_info.course.blurb}}
+
+
+    {{course_info.course.instructor_details | safe}}
+</div>
+<div class="span4">
+
+  {% if course_info.course.main_video %}
+    <iframe class="youtube-player" type="text/html" width=""
+     title="{{ gettext('YouTube Video Player') }}"
+     height="300" src="{{course_info.course.main_video.url}}"
+     frameborder="0" allowfullscreen></iframe>
+  {% else %}
+    <img src="{{course_info.course.main_image.url}}">
+  {% endif %}
+
+</div>
+
+</div>

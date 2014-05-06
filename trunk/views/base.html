@@ -301,6 +301,13 @@ Para uso no comercial, puede hacer lo que desee con ello.
             </a>
           </li>
           {% endif %}
+		  {% if course_info.course.chat_embed_url %}
+          <li {% if navbar.chat %}class='active'{% endif %}>
+            <a href="chat">
+              {{ gettext('Chat') }}
+            </a>
+          </li>
+          {% endif %}
           {% if course_info.course.calendar_on == True %}
           <li {% if navbar.calendar %}class='active'{% endif %}>
             <a href="calendar">

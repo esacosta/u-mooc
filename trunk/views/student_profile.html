@@ -9,6 +9,43 @@
 {% endblock %}
 
 {% block main_content %}
+<script src="https://backpack.openbadges.org/issuer.js"></script>
+<script>
+	  var messages = ['Ha habido un error al añadir el badge', 'Badge añadido'];
+	  
+	  function addBadge(token, email) {
+	    OpenBadges.issue(["http://app-srvud3sy03z65bdo.apprun0.codenvycorp.com/?email=" + email], function(errors, successes) {
+			var error = false, errorMsg = "", success = false;
+		
+	        for(i = 0; i < errors.length; i++) {
+			  error = true;
+			  if(errorMsg == "") {
+			    errorMsg = errors[i].reason;
+			  }
+			  else {
+			    errorMsg += " | " + errors[i].reason;
+			  }
+	        }
+
+	        for(i = 0; i < successes.length; i++) {
+			  success = true;
+	        }
+			
+			if(error) {
+			  //alert(messages[0] + ": " + errorMsg);
+			}
+			if(success) {
+			  //alert(messages[1]);
+			}
+			if(!error && !success)
+			{
+			  alert("Un error inesperado ha ocurrido");//REVISAAR
+			}
+	      }
+	    );
+	  }
+	</script>
+
 <div class="row-fluid">
   <div class="gcb-article tab-content">
     <div class="gcb-aside">
