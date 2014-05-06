@@ -298,7 +298,7 @@ def register_with_additional_fields(browser, name, data2, data3):
     response = view_registration(browser)
 
     response.form.set('form01', name)
-    response.form.set('form02', data2)
+    response.form.set('formAge', data2)
     response.form.set('form03', data3)
     response = browser.submit(response.form)
 

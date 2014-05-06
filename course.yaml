@@ -106,11 +106,22 @@ course:
   #     http://code.google.com/p/course-builder/wiki/WebForums.
   forum_url: https://groups.google.com/group/u-mooc
   forum_email: My-Course@googlegroups.com
+  
+  # Chat URL. For details, see
+  #
+  #     http://code.google.com/p/course-builder/wiki/WebForums.
+  chat_url: http://chatumooc.appspot.com/
+  chat_email: My-Course@googlegroups.com
 
   # Forum embedding URL. This link is used to embed the forum in an iframe on
   # the forum.html page. Set this value to False if you don't use forum and/or
   # to remove the Forum link from the student navigation bar.
   forum_embed_url: https://groups.google.com/forum/embed/?place=forum/u-mooc
+  
+  # Forum embedding URL. This link is used to embed the forum in an iframe on
+  # the forum.html page. Set this value to False if you don't use forum and/or
+  # to remove the Forum link from the student navigation bar.
+  chat_embed_url: http://chatumooc.appspot.com/
 
   # URL for the mailing list where students can register to receive course
   # announcements. For details, see

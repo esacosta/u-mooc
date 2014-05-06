@@ -1,0 +1,16 @@
+unit_id,unit_title,lesson_id,lesson_title,lesson_activity,lesson_activity_name,lesson_notes,lesson_video_id,lesson_objectives
+
+1,Introducción,1,Introducción,,,/appinventor/assets/html/introduccion.htm,,*
+1,Introducción,2,Antecedentes,,,/appinventor/assets/html/antecedentes.htm,,*
+1,Introducción,3,Vídeo,,,,T4X5so1oiBA,
+1,Introducción,4,Ejemplo,,,/appinventor/assets/html/ejemplo.htm,,*
+1,Introducción,5,Conclusiones,,,/appinventor/assets/html/conclusiones.htm,,*
+
+2,Vídeos de aprendizaje,1,Primera parte,,,,jKA4eumaFkw,Twitter - Imágenes y botones - Reconocimiento de voz
+2,Vídeos de aprendizaje,2,Segunda parte,,,,ABq7-YnbTYw,Twitter - Imágenes y botones - Reconocimiento de voz
+2,Vídeos de aprendizaje,3,Tercera parte,,,,4NBx_cfWwAg,Twitter - Imágenes y botones - Reconocimiento de voz
+
+3,Presentación,1,Presentación,,,http://www.slideshare.net/slideshow/embed_code/28405561,,*
+
+4,Ejemplo real,1,¿902? no gracias,,,/appinventor/assets/html/902.htm,,*
+

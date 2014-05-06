@@ -202,7 +202,7 @@ class AnswerHandler(BaseHandler):
             self.template_value['overall_score'] = course.get_overall_score(
                 student)
 
-            if (student and score >= 80):
+            if (student and score >= 50):
                 i = 0
                 for ent in student.badges:
                     if ent == unit.unit_id:

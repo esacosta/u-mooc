@@ -1,0 +1,13 @@
+id,type,unit_id,title,release_date,now_available
+
+1,A,Pre,Evaluación inicial,,True
+2,U,1,Introducción,,True
+3,A,Mid,Evaluación media,,True
+4,U,2,Vídeos de aprendizaje,,True
+5,U,3,Presentación,,True
+6,U,4,Ejemplo real,,True
+7,A,Fin,Evaluación final,,True
+8,A,ReviewAssessmentExample,Tarea,,True
+9,O,http://appinventor.mit.edu/,Más información,,True
+
+

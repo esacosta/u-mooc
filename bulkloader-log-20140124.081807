@@ -1,0 +1,426 @@
+[INFO     2014-01-24 08:18:07,036 bulkloader.py] Logging to bulkloader-log-20140124.081807
+[INFO     2014-01-24 08:18:07,036 bulkloader.py] Throttling transfers:
+[INFO     2014-01-24 08:18:07,039 bulkloader.py] Bandwidth: 250000 bytes/second
+[INFO     2014-01-24 08:18:07,039 bulkloader.py] HTTP connections: 8/second
+[INFO     2014-01-24 08:18:07,039 bulkloader.py] Entities inserted/fetched/modified: 20/second
+[INFO     2014-01-24 08:18:07,039 bulkloader.py] Batch Size: 10
+[INFO     2014-01-24 08:18:17,874 bulkloader.py] Opening database: bulkloader-progress-20140124.081807.sql3
+[INFO     2014-01-24 08:18:18,408 bulkloader.py] Opening database: bulkloader-results-20140124.081807.sql3
+[DEBUG    2014-01-24 08:18:18,694 adaptive_thread_pool.py] [WorkerThread-0] WorkerThread: started
+[DEBUG    2014-01-24 08:18:18,694 adaptive_thread_pool.py] [WorkerThread-1] WorkerThread: started
+[DEBUG    2014-01-24 08:18:18,696 adaptive_thread_pool.py] [WorkerThread-2] WorkerThread: started
+[DEBUG    2014-01-24 08:18:18,696 adaptive_thread_pool.py] [WorkerThread-3] WorkerThread: started
+[DEBUG    2014-01-24 08:18:18,697 adaptive_thread_pool.py] [WorkerThread-4] WorkerThread: started
+[DEBUG    2014-01-24 08:18:18,697 adaptive_thread_pool.py] [WorkerThread-5] WorkerThread: started
+[DEBUG    2014-01-24 08:18:18,697 adaptive_thread_pool.py] [WorkerThread-6] WorkerThread: started
+[DEBUG    2014-01-24 08:18:18,697 adaptive_thread_pool.py] [WorkerThread-7] WorkerThread: started
+[DEBUG    2014-01-24 08:18:18,698 adaptive_thread_pool.py] [WorkerThread-8] WorkerThread: started
+[DEBUG    2014-01-24 08:18:18,698 adaptive_thread_pool.py] [WorkerThread-9] WorkerThread: started
+[DEBUG    2014-01-24 08:18:18,698 bulkloader.py] Configuring remote_api. url_path = /remote_api, servername = u-mooc.appspot.com
+[DEBUG    2014-01-24 08:18:18,700 bulkloader.py] Bulkloader using app_id: s~u-mooc
+[INFO     2014-01-24 08:18:18,700 bulkloader.py] Connecting to u-mooc.appspot.com/remote_api
+[DEBUG    2014-01-24 08:18:19,003 bulkloader.py] [Thread-11] ExportProgressThread: started
+[DEBUG    2014-01-24 08:18:19,005 bulkloader.py] [Thread-12] DataSourceThread: started
+[INFO     2014-01-24 08:18:19,005 bulkloader.py] Downloading kinds: ['Student']
+[DEBUG    2014-01-24 08:18:19,127 bulkloader.py] [Thread-12] DataSourceThread: exiting
+[DEBUG    2014-01-24 08:18:19,168 adaptive_thread_pool.py] [WorkerThread-0] Got work item Student-ASC[None to None]
+[DEBUG    2014-01-24 08:18:19,171 bulkloader.py] Waiting for worker threads to finish...
+[DEBUG    2014-01-24 08:18:19,812 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.003
+[DEBUG    2014-01-24 08:18:19,813 bulkloader.py] Entities transferred total: 10
+[DEBUG    2014-01-24 08:18:19,997 bulkloader.py] delete: delta=0.001
+[DEBUG    2014-01-24 08:18:20,219 bulkloader.py] [WorkerThread-0] Student-ASC[None to None] Transferred 10 entities in 0.4 seconds
+[DEBUG    2014-01-24 08:18:20,220 adaptive_thread_pool.py] Increasing active thread count to 2
+[DEBUG    2014-01-24 08:18:20,220 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'Eli.Oviedo@gmail.com', _app=u's~u-mooc') to None]
+[INFO     2014-01-24 08:18:20,573 bulkloader.py] Student: No descending index on __key__, performing serial download
+[DEBUG    2014-01-24 08:18:20,948 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.003
+[DEBUG    2014-01-24 08:18:20,948 bulkloader.py] Entities transferred total: 20
+[DEBUG    2014-01-24 08:18:21,150 bulkloader.py] delete: delta=0.001
+[DEBUG    2014-01-24 08:18:21,345 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'Eli.Oviedo@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.6 seconds
+[DEBUG    2014-01-24 08:18:21,346 adaptive_thread_pool.py] Increasing active thread count to 3
+[DEBUG    2014-01-24 08:18:21,349 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'HeroLearning@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:18:21,767 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.004
+[DEBUG    2014-01-24 08:18:21,769 bulkloader.py] Entities transferred total: 30
+[DEBUG    2014-01-24 08:18:22,042 bulkloader.py] delete: delta=0.001
+[DEBUG    2014-01-24 08:18:22,341 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'HeroLearning@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.3 seconds
+[DEBUG    2014-01-24 08:18:22,341 adaptive_thread_pool.py] Increasing active thread count to 4
+[DEBUG    2014-01-24 08:18:22,341 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'Mapeba1996@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:18:22,703 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.003
+[DEBUG    2014-01-24 08:18:22,703 bulkloader.py] Entities transferred total: 40
+[DEBUG    2014-01-24 08:18:22,891 bulkloader.py] delete: delta=0.000
+[DEBUG    2014-01-24 08:18:23,066 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'Mapeba1996@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.2 seconds
+[DEBUG    2014-01-24 08:18:23,066 adaptive_thread_pool.py] Increasing active thread count to 5
+[DEBUG    2014-01-24 08:18:23,068 adaptive_thread_pool.py] [WorkerThread-0] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'Salva.Gmz@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:18:23,513 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.003
+[DEBUG    2014-01-24 08:18:23,513 bulkloader.py] Entities transferred total: 50
+[DEBUG    2014-01-24 08:18:23,683 bulkloader.py] delete: delta=0.000
+[DEBUG    2014-01-24 08:18:23,874 bulkloader.py] [WorkerThread-0] Student-ASC(datastore_types.Key.from_path(u'Student', u'Salva.Gmz@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.4 seconds
+[DEBUG    2014-01-24 08:18:23,874 adaptive_thread_pool.py] Increasing active thread count to 6
+[DEBUG    2014-01-24 08:18:23,874 adaptive_thread_pool.py] [WorkerThread-9] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'achimeno@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:18:24,957 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.010
+[DEBUG    2014-01-24 08:18:24,959 bulkloader.py] Entities transferred total: 60
+[DEBUG    2014-01-24 08:18:25,089 bulkloader.py] delete: delta=0.001
+[DEBUG    2014-01-24 08:18:25,272 bulkloader.py] [WorkerThread-9] Student-ASC(datastore_types.Key.from_path(u'Student', u'achimeno@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 1.0 seconds
+[DEBUG    2014-01-24 08:18:25,273 adaptive_thread_pool.py] Increasing active thread count to 7
+[DEBUG    2014-01-24 08:18:25,275 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'ajgruiz@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:18:25,749 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.005
+[DEBUG    2014-01-24 08:18:25,749 bulkloader.py] Entities transferred total: 70
+[DEBUG    2014-01-24 08:18:25,934 bulkloader.py] delete: delta=0.001
+[DEBUG    2014-01-24 08:18:26,101 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'ajgruiz@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.3 seconds
+[DEBUG    2014-01-24 08:18:26,101 adaptive_thread_pool.py] Increasing active thread count to 8
+[DEBUG    2014-01-24 08:18:26,104 adaptive_thread_pool.py] [WorkerThread-5] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'alexaronaca@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:18:26,786 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.007
+[DEBUG    2014-01-24 08:18:26,786 bulkloader.py] Entities transferred total: 80
+[DEBUG    2014-01-24 08:18:26,951 bulkloader.py] delete: delta=0.000
+[DEBUG    2014-01-24 08:18:27,207 bulkloader.py] [WorkerThread-5] Student-ASC(datastore_types.Key.from_path(u'Student', u'alexaronaca@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.5 seconds
+[DEBUG    2014-01-24 08:18:27,209 adaptive_thread_pool.py] Increasing active thread count to 9
+[DEBUG    2014-01-24 08:18:27,209 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'amorales.cer@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:18:27,592 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.003
+[DEBUG    2014-01-24 08:18:27,592 bulkloader.py] Entities transferred total: 90
+[DEBUG    2014-01-24 08:18:27,788 bulkloader.py] delete: delta=0.001
+[DEBUG    2014-01-24 08:18:28,154 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'amorales.cer@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.3 seconds
+[DEBUG    2014-01-24 08:18:28,154 adaptive_thread_pool.py] Increasing active thread count to 10
+[DEBUG    2014-01-24 08:18:28,154 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'antoherrera@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:18:28,717 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.003
+[DEBUG    2014-01-24 08:18:28,717 bulkloader.py] Entities transferred total: 100
+[DEBUG    2014-01-24 08:18:28,944 bulkloader.py] delete: delta=0.000
+[DEBUG    2014-01-24 08:18:29,417 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'antoherrera@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.4 seconds
+[DEBUG    2014-01-24 08:18:29,417 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'armandocalmet@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:18:30,086 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.005
+[DEBUG    2014-01-24 08:18:30,086 bulkloader.py] Entities transferred total: 110
+[DEBUG    2014-01-24 08:18:30,196 bulkloader.py] delete: delta=0.000
+[DEBUG    2014-01-24 08:18:30,378 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'armandocalmet@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.3 seconds
+[DEBUG    2014-01-24 08:18:30,378 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'asgelabert@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:18:30,805 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.010
+[DEBUG    2014-01-24 08:18:30,805 bulkloader.py] Entities transferred total: 120
+[DEBUG    2014-01-24 08:18:30,974 bulkloader.py] delete: delta=0.001
+[DEBUG    2014-01-24 08:18:31,183 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'asgelabert@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.3 seconds
+[DEBUG    2014-01-24 08:18:31,183 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'belcaol@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:18:31,642 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.004
+[DEBUG    2014-01-24 08:18:31,644 bulkloader.py] Entities transferred total: 130
+[DEBUG    2014-01-24 08:18:31,782 bulkloader.py] delete: delta=0.001
+[DEBUG    2014-01-24 08:18:31,993 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'belcaol@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.2 seconds
+[DEBUG    2014-01-24 08:18:31,993 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'cand.la287@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:18:32,522 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.003
+[DEBUG    2014-01-24 08:18:32,522 bulkloader.py] Entities transferred total: 140
+[DEBUG    2014-01-24 08:18:32,709 bulkloader.py] delete: delta=0.000
+[DEBUG    2014-01-24 08:18:32,898 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'cand.la287@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.4 seconds
+[DEBUG    2014-01-24 08:18:32,898 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'carlosvdc58@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:18:33,384 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.003
+[DEBUG    2014-01-24 08:18:33,385 bulkloader.py] Entities transferred total: 150
+[DEBUG    2014-01-24 08:18:33,519 bulkloader.py] delete: delta=0.000
+[DEBUG    2014-01-24 08:18:33,687 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'carlosvdc58@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.3 seconds
+[DEBUG    2014-01-24 08:18:33,687 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'cejuna@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:18:34,154 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.003
+[DEBUG    2014-01-24 08:18:34,154 bulkloader.py] Entities transferred total: 160
+[DEBUG    2014-01-24 08:18:34,381 bulkloader.py] delete: delta=0.001
+[DEBUG    2014-01-24 08:18:34,747 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'cejuna@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.3 seconds
+[DEBUG    2014-01-24 08:18:34,747 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'cinetrivia@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:18:35,286 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.007
+[DEBUG    2014-01-24 08:18:35,286 bulkloader.py] Entities transferred total: 170
+[DEBUG    2014-01-24 08:18:35,467 bulkloader.py] delete: delta=0.001
+[DEBUG    2014-01-24 08:18:35,671 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'cinetrivia@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.4 seconds
+[DEBUG    2014-01-24 08:18:35,673 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'cmarin@amidaconsulting.es', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:18:36,197 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.007
+[DEBUG    2014-01-24 08:18:36,197 bulkloader.py] Entities transferred total: 180
+[DEBUG    2014-01-24 08:18:36,361 bulkloader.py] delete: delta=0.000
+[DEBUG    2014-01-24 08:18:36,625 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'cmarin@amidaconsulting.es', _app=u's~u-mooc') to None] Transferred 10 entities in 0.4 seconds
+[DEBUG    2014-01-24 08:18:36,625 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'cquintero59@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:18:37,312 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.003
+[DEBUG    2014-01-24 08:18:37,312 bulkloader.py] Entities transferred total: 190
+[DEBUG    2014-01-24 08:18:37,418 bulkloader.py] delete: delta=0.000
+[DEBUG    2014-01-24 08:18:37,586 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'cquintero59@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.4 seconds
+[DEBUG    2014-01-24 08:18:37,586 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'cvazquez@ucol.mx', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:18:38,227 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.005
+[DEBUG    2014-01-24 08:18:38,227 bulkloader.py] Entities transferred total: 200
+[DEBUG    2014-01-24 08:18:38,384 bulkloader.py] delete: delta=0.001
+[DEBUG    2014-01-24 08:18:38,651 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'cvazquez@ucol.mx', _app=u's~u-mooc') to None] Transferred 10 entities in 0.5 seconds
+[DEBUG    2014-01-24 08:18:38,651 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'danielajara1028@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:18:39,599 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.003
+[DEBUG    2014-01-24 08:18:39,599 bulkloader.py] Entities transferred total: 210
+[DEBUG    2014-01-24 08:18:39,736 bulkloader.py] delete: delta=0.000
+[DEBUG    2014-01-24 08:18:39,920 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'danielajara1028@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.8 seconds
+[DEBUG    2014-01-24 08:18:39,921 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'delvallecarmen55@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:18:40,483 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.003
+[DEBUG    2014-01-24 08:18:40,484 bulkloader.py] Entities transferred total: 220
+[DEBUG    2014-01-24 08:18:40,588 bulkloader.py] delete: delta=0.000
+[DEBUG    2014-01-24 08:18:40,953 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'delvallecarmen55@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.4 seconds
+[DEBUG    2014-01-24 08:18:40,954 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'dmartinmarin@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:18:41,573 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.004
+[DEBUG    2014-01-24 08:18:41,573 bulkloader.py] Entities transferred total: 230
+[DEBUG    2014-01-24 08:18:41,864 bulkloader.py] delete: delta=0.001
+[DEBUG    2014-01-24 08:18:42,053 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'dmartinmarin@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.4 seconds
+[DEBUG    2014-01-24 08:18:42,055 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'dreyesd@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:18:42,769 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.003
+[DEBUG    2014-01-24 08:18:42,769 bulkloader.py] Entities transferred total: 240
+[DEBUG    2014-01-24 08:18:43,039 bulkloader.py] delete: delta=0.001
+[DEBUG    2014-01-24 08:18:43,233 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'dreyesd@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.6 seconds
+[DEBUG    2014-01-24 08:18:43,233 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'eduardocdt@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:18:43,736 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.003
+[DEBUG    2014-01-24 08:18:43,736 bulkloader.py] Entities transferred total: 250
+[DEBUG    2014-01-24 08:18:43,901 bulkloader.py] delete: delta=0.001
+[DEBUG    2014-01-24 08:18:44,058 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'eduardocdt@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.3 seconds
+[DEBUG    2014-01-24 08:18:44,059 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'elrobotijo@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:18:44,461 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.009
+[DEBUG    2014-01-24 08:18:44,463 bulkloader.py] Entities transferred total: 260
+[DEBUG    2014-01-24 08:18:44,559 bulkloader.py] delete: delta=0.000
+[DEBUG    2014-01-24 08:18:44,763 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'elrobotijo@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.3 seconds
+[DEBUG    2014-01-24 08:18:44,763 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'evamariarodriguez.es@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:18:45,134 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.003
+[DEBUG    2014-01-24 08:18:45,134 bulkloader.py] Entities transferred total: 270
+[DEBUG    2014-01-24 08:18:45,444 bulkloader.py] delete: delta=0.001
+[DEBUG    2014-01-24 08:18:45,723 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'evamariarodriguez.es@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.3 seconds
+[DEBUG    2014-01-24 08:18:45,724 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'fernandigoo@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:18:46,151 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.008
+[DEBUG    2014-01-24 08:18:46,151 bulkloader.py] Entities transferred total: 280
+[DEBUG    2014-01-24 08:18:46,256 bulkloader.py] delete: delta=0.001
+[DEBUG    2014-01-24 08:18:46,499 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'fernandigoo@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.3 seconds
+[DEBUG    2014-01-24 08:18:46,499 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'franvazquez9@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:18:47,094 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.004
+[DEBUG    2014-01-24 08:18:47,094 bulkloader.py] Entities transferred total: 290
+[DEBUG    2014-01-24 08:18:47,380 bulkloader.py] delete: delta=0.001
+[DEBUG    2014-01-24 08:18:47,821 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'franvazquez9@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.4 seconds
+[DEBUG    2014-01-24 08:18:47,821 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'gcuriel@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:18:48,500 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.003
+[DEBUG    2014-01-24 08:18:48,500 bulkloader.py] Entities transferred total: 300
+[DEBUG    2014-01-24 08:18:48,644 bulkloader.py] delete: delta=0.001
+[DEBUG    2014-01-24 08:18:48,835 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'gcuriel@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.3 seconds
+[DEBUG    2014-01-24 08:18:48,835 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'ginesharo@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:18:49,207 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.003
+[DEBUG    2014-01-24 08:18:49,207 bulkloader.py] Entities transferred total: 310
+[DEBUG    2014-01-24 08:18:49,301 bulkloader.py] delete: delta=0.000
+[DEBUG    2014-01-24 08:18:49,549 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'ginesharo@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.2 seconds
+[DEBUG    2014-01-24 08:18:49,549 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'gootyfer@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:18:49,979 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.011
+[DEBUG    2014-01-24 08:18:49,980 bulkloader.py] Entities transferred total: 320
+[DEBUG    2014-01-24 08:18:50,084 bulkloader.py] delete: delta=0.000
+[DEBUG    2014-01-24 08:18:50,286 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'gootyfer@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.3 seconds
+[DEBUG    2014-01-24 08:18:50,288 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'gusochoa60@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:18:50,665 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.006
+[DEBUG    2014-01-24 08:18:50,665 bulkloader.py] Entities transferred total: 330
+[DEBUG    2014-01-24 08:18:50,990 bulkloader.py] delete: delta=0.001
+[DEBUG    2014-01-24 08:18:51,180 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'gusochoa60@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.3 seconds
+[DEBUG    2014-01-24 08:18:51,180 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'herminiomr@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:18:51,612 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.003
+[DEBUG    2014-01-24 08:18:51,612 bulkloader.py] Entities transferred total: 340
+[DEBUG    2014-01-24 08:18:51,729 bulkloader.py] delete: delta=0.001
+[DEBUG    2014-01-24 08:18:51,950 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'herminiomr@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.2 seconds
+[DEBUG    2014-01-24 08:18:51,950 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'igemasanchez@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:18:52,361 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.003
+[DEBUG    2014-01-24 08:18:52,362 bulkloader.py] Entities transferred total: 350
+[DEBUG    2014-01-24 08:18:52,463 bulkloader.py] delete: delta=0.000
+[DEBUG    2014-01-24 08:18:52,716 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'igemasanchez@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.3 seconds
+[DEBUG    2014-01-24 08:18:52,717 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'iuliuse@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:18:53,131 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.003
+[DEBUG    2014-01-24 08:18:53,131 bulkloader.py] Entities transferred total: 360
+[DEBUG    2014-01-24 08:18:53,233 bulkloader.py] delete: delta=0.000
+[DEBUG    2014-01-24 08:18:53,398 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'iuliuse@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.3 seconds
+[DEBUG    2014-01-24 08:18:53,398 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'jantoniorb@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:18:53,763 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.003
+[DEBUG    2014-01-24 08:18:53,763 bulkloader.py] Entities transferred total: 370
+[DEBUG    2014-01-24 08:18:53,852 bulkloader.py] delete: delta=0.000
+[DEBUG    2014-01-24 08:18:54,095 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'jantoniorb@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.3 seconds
+[DEBUG    2014-01-24 08:18:54,095 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'jcamposd3@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:18:54,502 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.004
+[DEBUG    2014-01-24 08:18:54,503 bulkloader.py] Entities transferred total: 380
+[DEBUG    2014-01-24 08:18:54,595 bulkloader.py] delete: delta=0.002
+[DEBUG    2014-01-24 08:18:54,813 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'jcamposd3@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.3 seconds
+[DEBUG    2014-01-24 08:18:54,815 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'jehernandez17@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:18:55,221 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.004
+[DEBUG    2014-01-24 08:18:55,221 bulkloader.py] Entities transferred total: 390
+[DEBUG    2014-01-24 08:18:55,329 bulkloader.py] delete: delta=0.001
+[DEBUG    2014-01-24 08:18:55,515 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'jehernandez17@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.3 seconds
+[DEBUG    2014-01-24 08:18:55,515 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'jhogue12@hotmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:18:55,907 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.012
+[DEBUG    2014-01-24 08:18:55,907 bulkloader.py] Entities transferred total: 400
+[DEBUG    2014-01-24 08:18:56,209 bulkloader.py] delete: delta=0.001
+[DEBUG    2014-01-24 08:18:56,427 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'jhogue12@hotmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.3 seconds
+[DEBUG    2014-01-24 08:18:56,428 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'joegomezar@unal.edu.co', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:18:56,869 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.003
+[DEBUG    2014-01-24 08:18:56,869 bulkloader.py] Entities transferred total: 410
+[DEBUG    2014-01-24 08:18:56,986 bulkloader.py] delete: delta=0.001
+[DEBUG    2014-01-24 08:18:57,253 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'joegomezar@unal.edu.co', _app=u's~u-mooc') to None] Transferred 10 entities in 0.3 seconds
+[DEBUG    2014-01-24 08:18:57,253 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'jose.chacon.ayala@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:18:57,740 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.004
+[DEBUG    2014-01-24 08:18:57,740 bulkloader.py] Entities transferred total: 420
+[DEBUG    2014-01-24 08:18:57,845 bulkloader.py] delete: delta=0.001
+[DEBUG    2014-01-24 08:18:58,022 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'jose.chacon.ayala@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.3 seconds
+[DEBUG    2014-01-24 08:18:58,023 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'jpenafielr@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:18:58,497 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.003
+[DEBUG    2014-01-24 08:18:58,497 bulkloader.py] Entities transferred total: 430
+[DEBUG    2014-01-24 08:18:58,651 bulkloader.py] delete: delta=0.001
+[DEBUG    2014-01-24 08:18:58,823 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'jpenafielr@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.4 seconds
+[DEBUG    2014-01-24 08:18:58,825 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'juhuca09@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:18:59,171 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.004
+[DEBUG    2014-01-24 08:18:59,171 bulkloader.py] Entities transferred total: 440
+[DEBUG    2014-01-24 08:18:59,262 bulkloader.py] delete: delta=0.001
+[DEBUG    2014-01-24 08:18:59,500 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'juhuca09@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.3 seconds
+[DEBUG    2014-01-24 08:18:59,500 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'kikegavila@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:18:59,930 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.003
+[DEBUG    2014-01-24 08:18:59,930 bulkloader.py] Entities transferred total: 450
+[DEBUG    2014-01-24 08:19:00,198 bulkloader.py] delete: delta=0.001
+[DEBUG    2014-01-24 08:19:00,483 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'kikegavila@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.3 seconds
+[DEBUG    2014-01-24 08:19:00,483 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'laura.adriana.jimenez@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:19:00,960 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.004
+[DEBUG    2014-01-24 08:19:00,960 bulkloader.py] Entities transferred total: 460
+[DEBUG    2014-01-24 08:19:01,223 bulkloader.py] delete: delta=0.001
+[DEBUG    2014-01-24 08:19:01,529 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'laura.adriana.jimenez@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.3 seconds
+[DEBUG    2014-01-24 08:19:01,529 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'lindalealu@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:19:02,022 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.003
+[DEBUG    2014-01-24 08:19:02,022 bulkloader.py] Entities transferred total: 470
+[DEBUG    2014-01-24 08:19:02,184 bulkloader.py] delete: delta=0.001
+[DEBUG    2014-01-24 08:19:02,371 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'lindalealu@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.3 seconds
+[DEBUG    2014-01-24 08:19:02,371 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'luisara@gabilos.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:19:02,730 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.003
+[DEBUG    2014-01-24 08:19:02,730 bulkloader.py] Entities transferred total: 480
+[DEBUG    2014-01-24 08:19:02,908 bulkloader.py] delete: delta=0.001
+[DEBUG    2014-01-24 08:19:03,207 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'luisara@gabilos.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.3 seconds
+[DEBUG    2014-01-24 08:19:03,209 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'maikagonzalezgil@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:19:03,579 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.003
+[DEBUG    2014-01-24 08:19:03,579 bulkloader.py] Entities transferred total: 490
+[DEBUG    2014-01-24 08:19:03,700 bulkloader.py] delete: delta=0.000
+[DEBUG    2014-01-24 08:19:03,967 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'maikagonzalezgil@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.3 seconds
+[DEBUG    2014-01-24 08:19:03,967 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'margarita.r.cardona@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:19:04,404 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.012
+[DEBUG    2014-01-24 08:19:04,404 bulkloader.py] Entities transferred total: 500
+[DEBUG    2014-01-24 08:19:04,667 bulkloader.py] delete: delta=0.001
+[DEBUG    2014-01-24 08:19:04,930 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'margarita.r.cardona@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.3 seconds
+[DEBUG    2014-01-24 08:19:04,931 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'martatrabajos@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:19:05,309 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.011
+[DEBUG    2014-01-24 08:19:05,311 bulkloader.py] Entities transferred total: 510
+[DEBUG    2014-01-24 08:19:05,482 bulkloader.py] delete: delta=0.001
+[DEBUG    2014-01-24 08:19:05,798 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'martatrabajos@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.3 seconds
+[DEBUG    2014-01-24 08:19:05,799 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'mcvdo00@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:19:06,283 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.004
+[DEBUG    2014-01-24 08:19:06,285 bulkloader.py] Entities transferred total: 520
+[DEBUG    2014-01-24 08:19:06,483 bulkloader.py] delete: delta=0.000
+[DEBUG    2014-01-24 08:19:06,664 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'mcvdo00@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.3 seconds
+[DEBUG    2014-01-24 08:19:06,664 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'miguelpradosrodriguez@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:19:07,088 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.003
+[DEBUG    2014-01-24 08:19:07,088 bulkloader.py] Entities transferred total: 530
+[DEBUG    2014-01-24 08:19:07,398 bulkloader.py] delete: delta=0.001
+[DEBUG    2014-01-24 08:19:07,573 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'miguelpradosrodriguez@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.3 seconds
+[DEBUG    2014-01-24 08:19:07,573 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'mrtvillaret@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:19:07,938 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.003
+[DEBUG    2014-01-24 08:19:07,938 bulkloader.py] Entities transferred total: 540
+[DEBUG    2014-01-24 08:19:08,055 bulkloader.py] delete: delta=0.000
+[DEBUG    2014-01-24 08:19:08,269 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'mrtvillaret@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.3 seconds
+[DEBUG    2014-01-24 08:19:08,270 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'natiabuin@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:19:08,687 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.003
+[DEBUG    2014-01-24 08:19:08,687 bulkloader.py] Entities transferred total: 550
+[DEBUG    2014-01-24 08:19:08,869 bulkloader.py] delete: delta=0.000
+[DEBUG    2014-01-24 08:19:09,108 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'natiabuin@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.3 seconds
+[DEBUG    2014-01-24 08:19:09,109 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'noema.perez@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:19:09,684 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.012
+[DEBUG    2014-01-24 08:19:09,686 bulkloader.py] Entities transferred total: 560
+[DEBUG    2014-01-24 08:19:09,852 bulkloader.py] delete: delta=0.001
+[DEBUG    2014-01-24 08:19:10,086 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'noema.perez@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.4 seconds
+[DEBUG    2014-01-24 08:19:10,086 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'offilance@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:19:10,569 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.007
+[DEBUG    2014-01-24 08:19:10,571 bulkloader.py] Entities transferred total: 570
+[DEBUG    2014-01-24 08:19:10,832 bulkloader.py] delete: delta=0.001
+[DEBUG    2014-01-24 08:19:10,989 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'offilance@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.3 seconds
+[DEBUG    2014-01-24 08:19:10,990 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'pablo@audiogil.es', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:19:11,371 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.004
+[DEBUG    2014-01-24 08:19:11,371 bulkloader.py] Entities transferred total: 580
+[DEBUG    2014-01-24 08:19:11,526 bulkloader.py] delete: delta=0.001
+[DEBUG    2014-01-24 08:19:11,739 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'pablo@audiogil.es', _app=u's~u-mooc') to None] Transferred 10 entities in 0.3 seconds
+[DEBUG    2014-01-24 08:19:11,740 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'pedro.garciapilan@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:19:12,184 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.003
+[DEBUG    2014-01-24 08:19:12,184 bulkloader.py] Entities transferred total: 590
+[DEBUG    2014-01-24 08:19:12,483 bulkloader.py] delete: delta=0.001
+[DEBUG    2014-01-24 08:19:12,706 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'pedro.garciapilan@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.3 seconds
+[DEBUG    2014-01-24 08:19:12,707 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'prismarombo@hotmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:19:13,081 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.003
+[DEBUG    2014-01-24 08:19:13,081 bulkloader.py] Entities transferred total: 600
+[DEBUG    2014-01-24 08:19:13,262 bulkloader.py] delete: delta=0.001
+[DEBUG    2014-01-24 08:19:13,444 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'prismarombo@hotmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.3 seconds
+[DEBUG    2014-01-24 08:19:13,444 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'ralguacil1968@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:19:13,854 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.011
+[DEBUG    2014-01-24 08:19:13,855 bulkloader.py] Entities transferred total: 610
+[DEBUG    2014-01-24 08:19:14,187 bulkloader.py] delete: delta=0.000
+[DEBUG    2014-01-24 08:19:14,628 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'ralguacil1968@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.3 seconds
+[DEBUG    2014-01-24 08:19:14,628 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'renechiari@hotmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:19:15,270 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.012
+[DEBUG    2014-01-24 08:19:15,272 bulkloader.py] Entities transferred total: 620
+[DEBUG    2014-01-24 08:19:15,397 bulkloader.py] delete: delta=0.002
+[DEBUG    2014-01-24 08:19:15,618 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'renechiari@hotmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.4 seconds
+[DEBUG    2014-01-24 08:19:15,618 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'rosapanos@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:19:16,012 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.003
+[DEBUG    2014-01-24 08:19:16,013 bulkloader.py] Entities transferred total: 630
+[DEBUG    2014-01-24 08:19:16,243 bulkloader.py] delete: delta=0.001
+[DEBUG    2014-01-24 08:19:16,496 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'rosapanos@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.3 seconds
+[DEBUG    2014-01-24 08:19:16,496 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'rvergara@continental.edu.pe', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:19:16,914 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.003
+[DEBUG    2014-01-24 08:19:16,914 bulkloader.py] Entities transferred total: 640
+[DEBUG    2014-01-24 08:19:17,204 bulkloader.py] delete: delta=0.000
+[DEBUG    2014-01-24 08:19:17,394 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'rvergara@continental.edu.pe', _app=u's~u-mooc') to None] Transferred 10 entities in 0.3 seconds
+[DEBUG    2014-01-24 08:19:17,394 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'sarixu86@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:19:17,765 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.003
+[DEBUG    2014-01-24 08:19:17,765 bulkloader.py] Entities transferred total: 650
+[DEBUG    2014-01-24 08:19:18,075 bulkloader.py] delete: delta=0.000
+[DEBUG    2014-01-24 08:19:18,362 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'sarixu86@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.2 seconds
+[DEBUG    2014-01-24 08:19:18,364 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'seclgo@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:19:18,845 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.012
+[DEBUG    2014-01-24 08:19:18,846 bulkloader.py] Entities transferred total: 660
+[DEBUG    2014-01-24 08:19:19,043 bulkloader.py] delete: delta=0.000
+[DEBUG    2014-01-24 08:19:19,311 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'seclgo@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.4 seconds
+[DEBUG    2014-01-24 08:19:19,311 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'sosespiritu@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:19:19,723 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.008
+[DEBUG    2014-01-24 08:19:19,723 bulkloader.py] Entities transferred total: 670
+[DEBUG    2014-01-24 08:19:19,838 bulkloader.py] delete: delta=0.000
+[DEBUG    2014-01-24 08:19:20,029 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'sosespiritu@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.3 seconds
+[DEBUG    2014-01-24 08:19:20,029 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'temporalcorreo1975@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:19:20,461 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.004
+[DEBUG    2014-01-24 08:19:20,461 bulkloader.py] Entities transferred total: 680
+[DEBUG    2014-01-24 08:19:20,584 bulkloader.py] delete: delta=0.001
+[DEBUG    2014-01-24 08:19:20,905 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'temporalcorreo1975@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.3 seconds
+[DEBUG    2014-01-24 08:19:20,905 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'u1400534@unimilitar.edu.co', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:19:21,331 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.003
+[DEBUG    2014-01-24 08:19:21,331 bulkloader.py] Entities transferred total: 690
+[DEBUG    2014-01-24 08:19:21,434 bulkloader.py] delete: delta=0.001
+[DEBUG    2014-01-24 08:19:21,619 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'u1400534@unimilitar.edu.co', _app=u's~u-mooc') to None] Transferred 10 entities in 0.3 seconds
+[DEBUG    2014-01-24 08:19:21,621 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'vaneb28@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:19:22,346 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.003
+[DEBUG    2014-01-24 08:19:22,346 bulkloader.py] Entities transferred total: 700
+[DEBUG    2014-01-24 08:19:22,653 bulkloader.py] delete: delta=0.000
+[DEBUG    2014-01-24 08:19:22,885 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'vaneb28@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.4 seconds
+[DEBUG    2014-01-24 08:19:22,887 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'voyarzun@ulagos.cl', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:19:23,519 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.003
+[DEBUG    2014-01-24 08:19:23,519 bulkloader.py] Entities transferred total: 710
+[DEBUG    2014-01-24 08:19:23,799 bulkloader.py] delete: delta=0.002
+[DEBUG    2014-01-24 08:19:24,002 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'voyarzun@ulagos.cl', _app=u's~u-mooc') to None] Transferred 10 entities in 0.4 seconds
+[DEBUG    2014-01-24 08:19:24,003 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'wedearmasdoria@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:19:24,473 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.010
+[DEBUG    2014-01-24 08:19:24,473 bulkloader.py] Entities transferred total: 720
+[DEBUG    2014-01-24 08:19:24,648 bulkloader.py] delete: delta=0.001
+[DEBUG    2014-01-24 08:19:24,825 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'wedearmasdoria@gmail.com', _app=u's~u-mooc') to None] Transferred 10 entities in 0.3 seconds
+[DEBUG    2014-01-24 08:19:24,825 adaptive_thread_pool.py] [WorkerThread-1] Got work item Student-DESC(datastore_types.Key.from_path(u'Student', u'ybericat@gmail.com', _app=u's~u-mooc') to None]
+[DEBUG    2014-01-24 08:19:25,276 bulkloader.py] bulkloader-results-20140124.081807.sql3 insert: delta=0.002
+[DEBUG    2014-01-24 08:19:25,276 bulkloader.py] Entities transferred total: 725
+[DEBUG    2014-01-24 08:19:25,461 bulkloader.py] delete: delta=0.000
+[DEBUG    2014-01-24 08:19:25,559 bulkloader.py] [WorkerThread-1] Student-ASC(datastore_types.Key.from_path(u'Student', u'ybericat@gmail.com', _app=u's~u-mooc') to None] Transferred 5 entities in 0.3 seconds
+[DEBUG    2014-01-24 08:19:25,595 adaptive_thread_pool.py] Waiting for Anonymous_WorkerThread to exit
+[DEBUG    2014-01-24 08:19:25,596 adaptive_thread_pool.py] [WorkerThread-5] WorkerThread: exiting
+[DEBUG    2014-01-24 08:19:25,596 adaptive_thread_pool.py] [WorkerThread-1] WorkerThread: exiting
+[DEBUG    2014-01-24 08:19:25,601 adaptive_thread_pool.py] [WorkerThread-7] WorkerThread: exiting
+[DEBUG    2014-01-24 08:19:25,607 adaptive_thread_pool.py] [WorkerThread-3] WorkerThread: exiting
+[DEBUG    2014-01-24 08:19:25,608 adaptive_thread_pool.py] [WorkerThread-9] WorkerThread: exiting
+[DEBUG    2014-01-24 08:19:25,614 adaptive_thread_pool.py] [WorkerThread-2] WorkerThread: exiting
+[DEBUG    2014-01-24 08:19:25,617 adaptive_thread_pool.py] [WorkerThread-0] WorkerThread: exiting
+[DEBUG    2014-01-24 08:19:25,617 adaptive_thread_pool.py] Waiting for Anonymous_WorkerThread to exit
+[DEBUG    2014-01-24 08:19:25,617 adaptive_thread_pool.py] Waiting for Anonymous_WorkerThread to exit
+[DEBUG    2014-01-24 08:19:25,617 adaptive_thread_pool.py] Waiting for Anonymous_WorkerThread to exit
+[DEBUG    2014-01-24 08:19:25,617 adaptive_thread_pool.py] Waiting for Anonymous_WorkerThread to exit
+[DEBUG    2014-01-24 08:19:25,631 adaptive_thread_pool.py] [WorkerThread-4] WorkerThread: exiting
+[DEBUG    2014-01-24 08:19:25,631 adaptive_thread_pool.py] Waiting for Anonymous_WorkerThread to exit
+[DEBUG    2014-01-24 08:19:25,631 adaptive_thread_pool.py] Waiting for Anonymous_WorkerThread to exit
+[DEBUG    2014-01-24 08:19:25,632 adaptive_thread_pool.py] [WorkerThread-8] WorkerThread: exiting
+[DEBUG    2014-01-24 08:19:25,642 adaptive_thread_pool.py] [WorkerThread-6] WorkerThread: exiting
+[DEBUG    2014-01-24 08:19:25,642 adaptive_thread_pool.py] Waiting for Anonymous_WorkerThread to exit
+[DEBUG    2014-01-24 08:19:25,642 adaptive_thread_pool.py] Waiting for Anonymous_WorkerThread to exit
+[DEBUG    2014-01-24 08:19:25,642 adaptive_thread_pool.py] Waiting for Anonymous_WorkerThread to exit
+[DEBUG    2014-01-24 08:19:25,644 bulkloader.py] Waiting for progress_thread to terminate...
+[DEBUG    2014-01-24 08:19:25,680 bulkloader.py] [Thread-11] ExportProgressThread: exiting
+[DEBUG    2014-01-24 08:19:25,707 bulkloader.py] ... done.
+[INFO     2014-01-24 08:19:26,081 bulkloader.py] Have 725 entities, 0 previously transferred
+[INFO     2014-01-24 08:19:26,082 bulkloader.py] 725 entities (338692 bytes) transferred in 79.0 seconds

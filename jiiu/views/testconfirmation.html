@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block top_content %}
+{% endblock %}
+
+{% block main_content %}
+
+<div class="row-fluid">
+  <div class="gcb-aside btn-small">
+
+    <p class="top_content">
+      <!-- Thank you for taking the {{assessment_name | lower}}. Your score for this assessment
+      is {{score}}%. If you wish, you may return to the assessment and take it again.-->
+	  Gracias por realizar la {{assessment_name | lower}}. Su puntuación es del {{score}}%.<br/> 
+	  Si lo desea, puede realizar la evaluación de nuevo.
+    </p>
+
+    <br>
+
+
+
+    <p>
+      <a class="btn" href="course">
+        {{ gettext('Back to Course page') }}
+      </a>
+    </p>
+
+  </div>
+</div>
+
+{% endblock %}

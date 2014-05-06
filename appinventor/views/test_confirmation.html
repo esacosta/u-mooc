@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block top_content %}
+{% endblock %}
+
+{% block main_content %}
+
+<div class="row-fluid">
+  <div class="gcb-aside btn-small">
+
+    <p class="top_content">
+      <!-- Thank you for taking the {{assessment_name | lower}}. Your score for this assessment
+      is {{score}}%. If you wish, you may return to the assessment and take it again.-->
+	  Gracias por realizar la {{assessment_name | lower}}. Su puntuación es del <span id="assessment-score-overall" class="badge badge-info">{{score}}%</span><br/> 
+	  Si lo desea, puede realizar la evaluación de nuevo.
+    </p>
+
+    <br>
+
+    {% if 'assessment_confirmations' in course_info and is_last_assessment and overall_score != None and result %}
+      <!-- Displays result-specific text for the final assessment. -->
+      <p class="top_content">
+        {{course_info.assessment_confirmations['postcourse_'+result]}}
+      </p>
+    {% endif %}
+
+    <p class="text-center">
+      <a class="btn" href="course">
+        {{ gettext('Back to Course page') }}
+      </a>
+    </p>
+
+  </div>
+</div>
+
+{% endblock %}

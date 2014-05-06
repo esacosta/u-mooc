@@ -1,0 +1,122 @@
+<html>
+<head>
+<link rel="shortcut icon" type="image/x-icon" href="http://researchcoursebadges.edu20.org/images/favicon/16x16_new.ico?2" />
+
+  <link href="http://researchcoursebadges.edu20.org/stylesheets/base-colors-user.css?1389852806" media="screen" rel="stylesheet" type="text/css" />
+  
+  
+    <link href="http://researchcoursebadges.edu20.org/stylesheets/themes/tangerine_user.css?1389852806" media="screen" rel="stylesheet" title="theme" type="text/css" />
+  
+  
+  <link href="http://researchcoursebadges.edu20.org/stylesheets/default-styles.css?1389852806" media="screen" rel="stylesheet" type="text/css" />
+  <link href="http://researchcoursebadges.edu20.org/stylesheets/styles-user.css?1389852806" media="screen" rel="stylesheet" type="text/css" />
+  <link href="http://researchcoursebadges.edu20.org/stylesheets/extra-user.css?1389852806" media="screen" rel="stylesheet" type="text/css" />
+
+
+
+
+<link href="http://researchcoursebadges.edu20.org/stylesheets/fonts/font-all.css?1389852806" media="screen" rel="stylesheet" type="text/css" />
+
+
+  <link href="http://researchcoursebadges.edu20.org/stylesheets/facebox_new.css?1389852806" media="screen" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="lms_api.js" type="text/javascript"></script>
+
+<p id='classes'>
+</p>
+
+
+
+<div id="centreColumn">
+      	<div id="alerts" style="display:none"></div>
+ 
+  <div class="materialStyle"><p></p><p style="text-align: center;"><strong>Introducci&oacute;n a AppInventor</strong></p>
+<p dir="ltr"><span>Esta unidad est&aacute; dirigida a la obtenci&oacute;n de conocimientos b&aacute;sicos sobre la aplicaci&oacute;n de aprendizaje en programaci&oacute;n de software AppInventor, actualmente gestionada por el M.I.T. y es impulsada como una actividad de investigaci&oacute;n por parte del departamento de inform&aacute;tica de la Universidad Europea, dentro de un estudio para un postgrado en Tecnolog&iacute;as de la Informaci&oacute;n Aplicadas de dicha universidad.<br/>
+Tras la investigaci&oacute;n se publicar&aacute; una serie de datos estad&iacute;sticos referentes a los resultados obtenidos en el estudio, en ning&uacute;n caso se utilizar&aacute;n para el mismo sus datos personales.<br/>
+No considere este curso como un estudio y real&iacute;celo tal y como lo har&iacute;a en la realidad, no tiene por que sentirse obligado a terminarlo o a solventarlo de forma distinta a la que pudiera hacerlo en cualquier otro curso similar.<br/></span></p>
+<p><span>&nbsp;</span></p>
+<p style="text-align: center;"><span id="docs-internal-guid-2645e297-880d-26b7-418b-8b524ec11e8c"></span></p>
+<script>// <![CDATA[
+// ]]></script><p></p></div>
+
+  
+<hr>
+<p>
+<b>Acceda al curso que le sea asignado, mediante el cuadro que hay debajo y una vez que se suscriba, no necesitar&aacute; entrar otra vez en esta p&aacute;gina, bastar&aacute; con guardar el enlace al curso que se le ha asignado</b>
+</p>
+
+<div class="catalog_blocks ui-sortable" id="users">
+  
+
+  
+  
+</p>
+<p></p>
+
+
+<script type="text/javascript">
+var text = $('#users');
+var d = new Date();
+var n = d.getMinutes();
+if (n % 2 == 0)
+{
+	text.append("<a class='' id='62604' href='http://researchcourse.edu20.org/' width=50%><div class='header '><h2>AppInventor</h2></div><img src='../img/appinventor.jpg' width='100' height='100'><div class='sideText'>Acceder<br><span>5</span></div></a>");
+}
+else
+{
+	text.append("<a class='' id='62602' href='http://researchcoursebadges.edu20.org/'  width=50%><div class='header '><h2>AppInventor B</h2></div><img src='../img/appinventor.jpg' width='100' height='100'><div class='sideText'>Acceder<br><span>5</span></div></a>");
+}
+/*var numUsers = 0;
+var text = $('#users');
+  
+  function successUser(users)
+  {
+    
+	for (var user_id in users)
+	{
+		numUsers++;
+    }
+	
+  }
+  function successUser2(users)
+  {
+	for (var user_id in users)
+    {
+		numUsers++;
+    }
+	text.append("<span>Alumnos inscritos: ");text.append(numUsers);text.append("</span><br><br>");
+	if (numUsers % 2 == 0)
+	{
+		text.append("<a class='draggable' id='62604' href='http://researchcourse.edu20.org/'><div class='header '><h2>AppInventor</h2></div><img src='../img/appinventor.jpg' width='100' height='100'><div class='sideText'>Actividades<br><span>5</span></div></a>");
+	}
+	else
+	{
+		text.append("<a class='draggable' id='62602' href='http://researchcoursebadges.edu20.org/'><div class='header '><h2>AppInventor</h2></div><img src='../img/appinventor.jpg' width='100' height='100'><div class='sideText'>Actividades<br><span>5</span></div></a>");
+	}
+  }
+  
+  function failureUser(status, message)
+  {
+	  var text = $('#users');
+	  text.append("<h2>get_all_users</hr>");
+	  text.append("<p>Failure: " + status + ", " + message + "</p>");
+  }
+  function failureUser2(status, message)
+  {
+	  var text = $('#users');
+	  text.append("<h2>get_all_users</hr>");
+	  text.append("<p>Failure: " + status + ", " + message + "</p>");
+  }
+
+	
+	var API = new LMS_API({url: 'http://researchcoursebadges.edu20.org', api_key: '54889-1598385-9193e8e33f1311ccd011c65d85c8237608f7a19c', api_version: 1});
+var users = API.get_all_users(successUser, failureUser);
+var API2 = new LMS_API({url: 'http://researchcourse.edu20.org', api_key: '55013-1600955-abc0841d91452bb802d127f9bace4536dec7ae3d', api_version: 1});
+var users2 = API2.get_all_users(successUser2, failureUser2);
+	*/
+</script>
+      </div>
+</body>
+</html>

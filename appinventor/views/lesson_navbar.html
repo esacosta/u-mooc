@@ -1,0 +1,129 @@
+<div class="span3">
+  <ul class="nav nav-tabs nav-stacked">
+    {{course_info.unit.after_leftnav_begins | safe}}
+
+    {% for lesson in lessons %}
+
+      {% if lesson.now_available or is_course_admin %}
+
+        {% if page_type == 'unit' and lesson.lesson_id == lesson_id %}
+          <li class="active">
+		  <a href="">
+            {{ unit.index }}.{{ lesson.index }} {{ lesson.title }}
+			</a>
+        {% else %}
+          <li>
+            <a href="unit?unit={{ unit_id }}&lesson={{ lesson.lesson_id }}">
+              {{ unit.index }}.{{ lesson.index }} {{ lesson.title }}
+            </a>
+        {% endif %}
+
+        {% if not lesson.now_available and is_course_admin %}
+          <span class="grayed">
+            (Private)
+          </span>
+        {% endif %}
+		</li>
+        {% if lesson.activity %}
+			
+            {% if page_type == 'activity' and lesson.lesson_id == lesson_id %}
+              <li class="active">
+			 
+            {% else %}
+              <li>	 
+            {% endif %}
+
+			  {% if page_type == 'activity' and lesson.lesson_id == lesson_id %}
+                  <a href=""><div class="row-fluid"><div class="span8">&nbsp;&nbsp;&nbsp;{{ gettext('Activity') }}</div>
+				  
+                {% else %}
+                  <a href="activity?unit={{ unit_id }}&lesson={{ lesson.lesson_id }}"><div class="row-fluid">
+                    <div class="span8">&nbsp;&nbsp;&nbsp;{{ gettext('Activity') }}</div>
+                 
+                {% endif %}
+			 
+				<div class="span4">
+                {% if is_progress_recorded %}
+				
+                  {% if progress[lesson.lesson_id] == 2 %}
+                    <!--<img src="assets/lib/completed.png"
+                         alt="{{ gettext('Completed') }}"
+                         title="{{ gettext('Completed') }}"
+                         class="progress"
+                         id="progress-completed-{{lesson.lesson_id}}">-->
+						 <div class="progress progress-success">
+									<div class="bar" style="width: 100%;"></div>
+								</div>
+                  {% elif progress[lesson.lesson_id] == 1 %}
+                    <!--<img src="assets/lib/in_progress.png"
+                         alt="{{ gettext('In progress') }}"
+                         title="{{ gettext('In progress') }}"
+                         class="progress"
+                         id="progress-inprogress-{{lesson.lesson_id}}">-->
+						 <div class="progress progress-warning">
+									<div class="bar" style="width: 50%;"></div>
+								</div>
+                  {% else %}
+				  			 <div class="progress progress-danger">
+									<div class="bar" style="width: 1%;"></div>
+								</div>
+                    <!--<img src="assets/lib/not_started.png"
+                         alt="{{ gettext('Not yet started') }}"
+                         title="{{ gettext('Not yet started') }}"
+                         class="progress"
+                         id="progress-notstarted-{{lesson.lesson_id}}"-->
+                  {% endif %}
+                {% else %}
+				 <div class="progress progress-success">
+									<div class="bar" style="width: 1%;"></div>
+								</div>
+                  <!--<span class="progress-empty"></span>-->
+                {% endif %}
+				</div>
+				</div>
+				
+				
+                </a>
+				
+              </li>
+			 
+			  
+         
+        {% endif %}
+		
+        
+
+      {% else %}
+        <li>
+          {% if page_type == 'unit' and lesson.lesson_id == lesson_id %}
+            <span class="grayed-active">
+          {% else %}
+            <span class="grayed">
+          {% endif %}
+
+            {{ unit.index}}.{{ lesson.index }} {{ lesson.title }}
+          </span>
+
+          {% if lesson.activity %}
+            <ul>
+              <li>
+                <span class="progress-empty"></span>
+                {% if page_type == 'activity' and lesson.lesson_id == lesson_id %}
+                  <span class="grayed-active">
+                {% else %}
+                  <span class="grayed">
+                {% endif %}
+
+                  {{ gettext('Activity') }}
+                </span>
+              </li>
+            </ul>
+          {% endif %}
+        </li>
+      {% endif %}
+
+    {% endfor %}
+
+    {{course_info.unit.before_leftnav_ends | safe}}
+	</ul>
+</div>

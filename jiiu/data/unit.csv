@@ -1,0 +1,14 @@
+id,type,unit_id,title,release_date,now_available
+
+1,A,Pre,Evaluación inicial,,True
+2,U,1,Hasta el conectivismo,,True
+3,U,2,Tipos de MOOC,,True
+4,A,Mid,Evaluación media,,True
+5,U,3,¿Que debería tener un MOOC?,,True
+6,U,4,¿Cómo plantearse la creación de un MOOC?,,True
+7,U,5,Crear una plataforma,,True
+8,A,Fin,Evaluación final,,True
+9,A,ReviewAssessmentExample,Tarea,,True
+10,O,https://docs.google.com/document/d/1NzqgB1RtiZJNyyQNv6ntdHOvPjyJrolvMBcH5fgf3yE/edit?usp=sharing,Documento para seguir el taller,,True
+
+

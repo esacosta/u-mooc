@@ -376,7 +376,7 @@ class RegisterHandler(BaseHandler):
             student.user_id = user.user_id()
             student.is_enrolled = True
             student.name = name
-            student.age = self.request.get('form02')
+            student.age = self.request.get('formAge')
             student.additional_fields = additional_fields
             student.put()
 
@@ -439,6 +439,16 @@ class ForumHandler(BaseHandler):
         self.template_value['navbar'] = {'forum': True}
         self.render('forum.html')
 
+class ChatHandler(BaseHandler):
+    """Handler for forum page."""
+
+    def get(self):
+        """Handles GET requests."""
+        if not self.personalize_page_and_get_enrolled():
+            return
+
+        self.template_value['navbar'] = {'chat': True}
+        self.render('chat.html')
 
 class StudentProfileHandler(BaseHandler):
     """Handles the click to 'My Profile' link in the nav bar."""

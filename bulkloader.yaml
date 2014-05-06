@@ -23,12 +23,507 @@ python_preamble:
 - import: google.appengine.api.users
 
 transformers:
-- kind: Student
-  connector: csv
-  # FIXME: remove fields that you don't need from the property_map below. This
-  # is likely to speed up the data export process, especially if the datastore
-  # contains a large number of Student entities.
+
+- kind: AnnouncementEntity
+  connector: csv # TODO: Choose a connector here: csv, simplexml, etc...
+  connector_options:
+    # TODO: Add connector options here--these are specific to each connector.
   property_map:
     - property: __key__
-      external_name: email
-      export_transform: datastore.Key.name
+      external_name: key
+      export_transform: transform.key_id_or_name_as_string
+
+    - property: date
+      external_name: date
+      # Type: Date/Time Stats: 2 properties of this type in this kind.
+      import_transform: transform.import_date_time('%Y-%m-%dT%H:%M:%S')
+      export_transform: transform.export_date_time('%Y-%m-%dT%H:%M:%S')
+
+    - property: html
+      external_name: html
+      # Type: Text Stats: 2 properties of this type in this kind.
+      import_transform: db.Text
+
+    - property: is_draft
+      external_name: is_draft
+      # Type: Boolean Stats: 2 properties of this type in this kind.
+      import_transform: transform.regexp_bool('true', re.IGNORECASE)
+
+    - property: title
+      external_name: title
+      # Type: String Stats: 2 properties of this type in this kind.
+
+
+- kind: ConfigPropertyEntity
+  connector: csv # TODO: Choose a connector here: csv, simplexml, etc...
+  connector_options:
+    # TODO: Add connector options here--these are specific to each connector.
+  property_map:
+    - property: __key__
+      external_name: key
+      export_transform: transform.key_id_or_name_as_string
+
+    - property: is_draft
+      external_name: is_draft
+      # Type: Boolean Stats: 2 properties of this type in this kind.
+      import_transform: transform.regexp_bool('true', re.IGNORECASE)
+
+    - property: value
+      external_name: value
+      # Type: Text Stats: 2 properties of this type in this kind.
+      import_transform: db.Text
+
+
+- kind: DurableJobEntity
+  connector: csv # TODO: Choose a connector here: csv, simplexml, etc...
+  connector_options:
+    # TODO: Add connector options here--these are specific to each connector.
+  property_map:
+    - property: __key__
+      external_name: key
+      export_transform: transform.key_id_or_name_as_string
+
+    - property: execution_time_sec
+      external_name: execution_time_sec
+      # Type: Integer Stats: 4 properties of this type in this kind.
+      import_transform: transform.none_if_empty(int)
+
+    - property: output
+      external_name: output
+      # Type: Text Stats: 4 properties of this type in this kind.
+      import_transform: db.Text
+
+    - property: status_code
+      external_name: status_code
+      # Type: Integer Stats: 4 properties of this type in this kind.
+      import_transform: transform.none_if_empty(int)
+
+    - property: updated_on
+      external_name: updated_on
+      # Type: Date/Time Stats: 4 properties of this type in this kind.
+      import_transform: transform.import_date_time('%Y-%m-%dT%H:%M:%S')
+      export_transform: transform.export_date_time('%Y-%m-%dT%H:%M:%S')
+
+
+- kind: EventEntity
+  connector: csv # TODO: Choose a connector here: csv, simplexml, etc...
+  connector_options:
+    # TODO: Add connector options here--these are specific to each connector.
+  property_map:
+    - property: __key__
+      external_name: key
+      export_transform: transform.key_id_or_name_as_string
+
+    - property: data
+      external_name: data
+      # Type: Text Stats: 28 properties of this type in this kind.
+      import_transform: db.Text
+
+    - property: recorded_on
+      external_name: recorded_on
+      # Type: Date/Time Stats: 28 properties of this type in this kind.
+      import_transform: transform.import_date_time('%Y-%m-%dT%H:%M:%S')
+      export_transform: transform.export_date_time('%Y-%m-%dT%H:%M:%S')
+
+    - property: source
+      external_name: source
+      # Type: String Stats: 28 properties of this type in this kind.
+
+    - property: user_id
+      external_name: user_id
+      # Type: String Stats: 28 properties of this type in this kind.
+
+
+- kind: FileDataEntity
+  connector: csv # TODO: Choose a connector here: csv, simplexml, etc...
+  connector_options:
+    # TODO: Add connector options here--these are specific to each connector.
+  property_map:
+    - property: __key__
+      external_name: key
+      export_transform: transform.key_id_or_name_as_string
+
+    - property: data
+      external_name: data
+      # Type: Blob Stats: 119 properties of this type in this kind.
+      import_transform: transform.blobproperty_from_base64
+      export_transform: base64.b64encode
+
+
+- kind: FileMetadataEntity
+  connector: csv # TODO: Choose a connector here: csv, simplexml, etc...
+  connector_options:
+    # TODO: Add connector options here--these are specific to each connector.
+  property_map:
+    - property: __key__
+      external_name: key
+      export_transform: transform.key_id_or_name_as_string
+
+    - property: created_on
+      external_name: created_on
+      # Type: Date/Time Stats: 119 properties of this type in this kind.
+      import_transform: transform.import_date_time('%Y-%m-%dT%H:%M:%S')
+      export_transform: transform.export_date_time('%Y-%m-%dT%H:%M:%S')
+
+    - property: is_draft
+      external_name: is_draft
+      # Type: Boolean Stats: 119 properties of this type in this kind.
+      import_transform: transform.regexp_bool('true', re.IGNORECASE)
+
+    - property: size
+      external_name: size
+      # Type: Integer Stats: 119 properties of this type in this kind.
+      import_transform: transform.none_if_empty(int)
+
+    - property: updated_on
+      external_name: updated_on
+      # Type: Date/Time Stats: 119 properties of this type in this kind.
+      import_transform: transform.import_date_time('%Y-%m-%dT%H:%M:%S')
+      export_transform: transform.export_date_time('%Y-%m-%dT%H:%M:%S')
+
+
+- kind: StudentAnswersEntity
+  connector: csv # TODO: Choose a connector here: csv, simplexml, etc...
+  connector_options:
+    # TODO: Add connector options here--these are specific to each connector.
+  property_map:
+    - property: __key__
+      external_name: key
+      export_transform: transform.key_id_or_name_as_string
+
+    - property: data
+      external_name: data
+      # Type: Text Stats: 7 properties of this type in this kind.
+      import_transform: db.Text
+
+    - property: updated_on
+      external_name: updated_on
+      # Type: Date/Time Stats: 7 properties of this type in this kind.
+      import_transform: transform.import_date_time('%Y-%m-%dT%H:%M:%S')
+      export_transform: transform.export_date_time('%Y-%m-%dT%H:%M:%S')
+
+
+- kind: StudentPropertyEntity
+  connector: csv # TODO: Choose a connector here: csv, simplexml, etc...
+  connector_options:
+    # TODO: Add connector options here--these are specific to each connector.
+  property_map:
+    - property: __key__
+      external_name: key
+      export_transform: transform.key_id_or_name_as_string
+
+    - property: name
+      external_name: name
+      # Type: String Stats: 17 properties of this type in this kind.
+
+    - property: updated_on
+      external_name: updated_on
+      # Type: Date/Time Stats: 8 properties of this type in this kind.
+      import_transform: transform.import_date_time('%Y-%m-%dT%H:%M:%S')
+      export_transform: transform.export_date_time('%Y-%m-%dT%H:%M:%S')
+
+    - property: value
+      external_name: value
+      # Type: Text Stats: 8 properties of this type in this kind.
+      import_transform: db.Text
+
+
+- kind: Student
+  connector: csv # TODO: Choose a connector here: csv, simplexml, etc...
+  connector_options:
+    # TODO: Add connector options here--these are specific to each connector.
+  property_map:
+    - property: __key__
+      external_name: key
+      export_transform: transform.key_id_or_name_as_string
+
+    - property: additional_fields
+      external_name: additional_fields
+      # Type: Text Stats: 8 properties of this type in this kind.
+      import_transform: db.Text
+
+    - property: enrolled_on
+      external_name: enrolled_on
+      # Type: Date/Time Stats: 16 properties of this type in this kind.
+      import_transform: transform.import_date_time('%Y-%m-%dT%H:%M:%S')
+      export_transform: transform.export_date_time('%Y-%m-%dT%H:%M:%S')
+
+    - property: is_enrolled
+      external_name: is_enrolled
+      # Type: Boolean Stats: 16 properties of this type in this kind.
+      import_transform: transform.regexp_bool('true', re.IGNORECASE)
+
+    - property: name
+      external_name: name
+      # Type: String Stats: 16 properties of this type in this kind.
+
+    - property: scores
+      external_name: scores
+      # Type: Text Stats: 6 properties of this type in this kind.
+      import_transform: db.Text
+
+    - property: user_id
+      external_name: user_id
+      # Type: String Stats: 16 properties of this type in this kind.
+
+
+- kind: Submission
+  connector: csv # TODO: Choose a connector here: csv, simplexml, etc...
+  connector_options:
+    # TODO: Add connector options here--these are specific to each connector.
+  property_map:
+    - property: __key__
+      external_name: key
+      export_transform: transform.key_id_or_name_as_string
+
+    - property: contents
+      external_name: contents
+      # Type: Text Stats: 6 properties of this type in this kind.
+      import_transform: db.Text
+
+    - property: reviewee_key
+      external_name: reviewee_key
+      # Type: Key Stats: 6 properties of this type in this kind.
+      import_transform: transform.create_foreign_key('Submission')
+      export_transform: transform.key_id_or_name_as_string
+
+    - property: unit_id
+      external_name: unit_id
+      # Type: String Stats: 6 properties of this type in this kind.
+
+
+- kind: _AE_Backup_Information_Kind_Files
+  connector: csv # TODO: Choose a connector here: csv, simplexml, etc...
+  connector_options:
+    # TODO: Add connector options here--these are specific to each connector.
+  property_map:
+    - property: __key__
+      external_name: key
+      export_transform: transform.key_id_or_name_as_string
+
+    - property: files
+      external_name: files
+      # Type: String Stats: 233 properties of this type in this kind.
+
+
+- kind: _AE_Backup_Information_Kind_Type_Info
+  connector: csv # TODO: Choose a connector here: csv, simplexml, etc...
+  connector_options:
+    # TODO: Add connector options here--these are specific to each connector.
+  property_map:
+    - property: __key__
+      external_name: key
+      export_transform: transform.key_id_or_name_as_string
+
+    - property: entity_type_info
+      external_name: entity_type_info
+      # Type: Text Stats: 233 properties of this type in this kind.
+      import_transform: db.Text
+
+    - property: is_partial
+      external_name: is_partial
+      # Type: Boolean Stats: 233 properties of this type in this kind.
+      import_transform: transform.regexp_bool('true', re.IGNORECASE)
+
+
+- kind: _AE_Backup_Information
+  connector: csv # TODO: Choose a connector here: csv, simplexml, etc...
+  connector_options:
+    # TODO: Add connector options here--these are specific to each connector.
+  property_map:
+    - property: __key__
+      external_name: key
+      export_transform: transform.key_id_or_name_as_string
+
+    - property: complete_time
+      external_name: complete_time
+      # Type: Date/Time Stats: 8 properties of this type in this kind.
+      import_transform: transform.import_date_time('%Y-%m-%dT%H:%M:%S')
+      export_transform: transform.export_date_time('%Y-%m-%dT%H:%M:%S')
+
+    - property: completed_jobs
+      external_name: completed_jobs
+      # Type: String Stats: 78 properties of this type in this kind.
+
+    - property: filesystem
+      external_name: filesystem
+      # Type: String Stats: 8 properties of this type in this kind.
+
+    - property: kinds
+      external_name: kinds
+      # Type: String Stats: 78 properties of this type in this kind.
+
+    - property: name
+      external_name: name
+      # Type: String Stats: 8 properties of this type in this kind.
+
+    - property: start_time
+      external_name: start_time
+      # Type: Date/Time Stats: 8 properties of this type in this kind.
+      import_transform: transform.import_date_time('%Y-%m-%dT%H:%M:%S')
+      export_transform: transform.export_date_time('%Y-%m-%dT%H:%M:%S')
+
+
+- kind: _AE_DatastoreAdmin_Operation
+  connector: csv # TODO: Choose a connector here: csv, simplexml, etc...
+  connector_options:
+    # TODO: Add connector options here--these are specific to each connector.
+  property_map:
+    - property: __key__
+      external_name: key
+      export_transform: transform.key_id_or_name_as_string
+
+    - property: active_job_ids
+      external_name: active_job_ids
+      # Type: String Stats: 30 properties of this type in this kind.
+
+    - property: active_jobs
+      external_name: active_jobs
+      # Type: Integer Stats: 15 properties of this type in this kind.
+      import_transform: transform.none_if_empty(int)
+
+    - property: completed_jobs
+      external_name: completed_jobs
+      # Type: Integer Stats: 15 properties of this type in this kind.
+      import_transform: transform.none_if_empty(int)
+
+    - property: description
+      external_name: description
+      # Type: Text Stats: 15 properties of this type in this kind.
+      import_transform: db.Text
+
+    - property: last_updated
+      external_name: last_updated
+      # Type: Date/Time Stats: 15 properties of this type in this kind.
+      import_transform: transform.import_date_time('%Y-%m-%dT%H:%M:%S')
+      export_transform: transform.export_date_time('%Y-%m-%dT%H:%M:%S')
+
+    - property: status
+      external_name: status
+      # Type: String Stats: 15 properties of this type in this kind.
+
+    - property: status_info
+      external_name: status_info
+      # Type: String Stats: 15 properties of this type in this kind.
+
+
+- kind: _GAE_MR_MapreduceState
+  connector: csv # TODO: Choose a connector here: csv, simplexml, etc...
+  connector_options:
+    # TODO: Add connector options here--these are specific to each connector.
+  property_map:
+    - property: __key__
+      external_name: key
+      export_transform: transform.key_id_or_name_as_string
+
+    - property: aborted_shards
+      external_name: aborted_shards
+      # Type: Integer Stats: 30 properties of this type in this kind.
+      import_transform: transform.none_if_empty(int)
+
+    - property: active
+      external_name: active
+      # Type: Boolean Stats: 30 properties of this type in this kind.
+      import_transform: transform.regexp_bool('true', re.IGNORECASE)
+
+    - property: active_shards
+      external_name: active_shards
+      # Type: Integer Stats: 30 properties of this type in this kind.
+      import_transform: transform.none_if_empty(int)
+
+    - property: chart_url
+      external_name: chart_url
+      # Type: Text Stats: 30 properties of this type in this kind.
+      import_transform: db.Text
+
+    - property: chart_width
+      external_name: chart_width
+      # Type: Integer Stats: 30 properties of this type in this kind.
+      import_transform: transform.none_if_empty(int)
+
+    - property: counters_map
+      external_name: counters_map
+      # Type: Text Stats: 30 properties of this type in this kind.
+      import_transform: db.Text
+
+    - property: failed_shards
+      external_name: failed_shards
+      # Type: Integer Stats: 30 properties of this type in this kind.
+      import_transform: transform.none_if_empty(int)
+
+    - property: last_poll_time
+      external_name: last_poll_time
+      # Type: Date/Time Stats: 30 properties of this type in this kind.
+      import_transform: transform.import_date_time('%Y-%m-%dT%H:%M:%S')
+      export_transform: transform.export_date_time('%Y-%m-%dT%H:%M:%S')
+
+    - property: mapreduce_spec
+      external_name: mapreduce_spec
+      # Type: Text Stats: 30 properties of this type in this kind.
+      import_transform: db.Text
+
+    - property: sparkline_url
+      external_name: sparkline_url
+      # Type: Text Stats: 30 properties of this type in this kind.
+      import_transform: db.Text
+
+    - property: start_time
+      external_name: start_time
+      # Type: Date/Time Stats: 30 properties of this type in this kind.
+      import_transform: transform.import_date_time('%Y-%m-%dT%H:%M:%S')
+      export_transform: transform.export_date_time('%Y-%m-%dT%H:%M:%S')
+
+
+- kind: _GAE_MR_ShardState
+  connector: csv # TODO: Choose a connector here: csv, simplexml, etc...
+  connector_options:
+    # TODO: Add connector options here--these are specific to each connector.
+  property_map:
+    - property: __key__
+      external_name: key
+      export_transform: transform.key_id_or_name_as_string
+
+    - property: active
+      external_name: active
+      # Type: Boolean Stats: 312 properties of this type in this kind.
+      import_transform: transform.regexp_bool('true', re.IGNORECASE)
+
+    - property: counters_map
+      external_name: counters_map
+      # Type: Text Stats: 312 properties of this type in this kind.
+      import_transform: db.Text
+
+    - property: last_work_item
+      external_name: last_work_item
+      # Type: Text Stats: 312 properties of this type in this kind.
+      import_transform: db.Text
+
+    - property: mapreduce_id
+      external_name: mapreduce_id
+      # Type: String Stats: 312 properties of this type in this kind.
+
+    - property: retries
+      external_name: retries
+      # Type: Integer Stats: 312 properties of this type in this kind.
+      import_transform: transform.none_if_empty(int)
+
+    - property: shard_description
+      external_name: shard_description
+      # Type: Text Stats: 312 properties of this type in this kind.
+      import_transform: db.Text
+
+    - property: slice_id
+      external_name: slice_id
+      # Type: Integer Stats: 312 properties of this type in this kind.
+      import_transform: transform.none_if_empty(int)
+
+    - property: slice_retries
+      external_name: slice_retries
+      # Type: Integer Stats: 312 properties of this type in this kind.
+      import_transform: transform.none_if_empty(int)
+
+    - property: update_time
+      external_name: update_time
+      # Type: Date/Time Stats: 312 properties of this type in this kind.
+      import_transform: transform.import_date_time('%Y-%m-%dT%H:%M:%S')
+      export_transform: transform.export_date_time('%Y-%m-%dT%H:%M:%S')
